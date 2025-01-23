@@ -9,35 +9,27 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class OrgsOrgActionsRunnerGroupsGetResponse200Type(TypedDict):
-    """OrgsOrgActionsRunnerGroupsGetResponse200"""
+class GistsGistIdGetResponse403Type(TypedDict):
+    """GistsGistIdGetResponse403"""
 
-    total_count: float
-    runner_groups: list[RunnerGroupsOrgType]
+    block: NotRequired[GistsGistIdGetResponse403PropBlockType]
+    message: NotRequired[str]
+    documentation_url: NotRequired[str]
 
 
-class RunnerGroupsOrgType(TypedDict):
-    """RunnerGroupsOrg"""
+class GistsGistIdGetResponse403PropBlockType(TypedDict):
+    """GistsGistIdGetResponse403PropBlock"""
 
-    id: float
-    name: str
-    visibility: str
-    default: bool
-    selected_repositories_url: NotRequired[str]
-    runners_url: str
-    hosted_runners_url: NotRequired[str]
-    inherited: bool
-    inherited_allows_public_repositories: NotRequired[bool]
-    allows_public_repositories: bool
-    workflow_restrictions_read_only: NotRequired[bool]
-    restricted_to_workflows: NotRequired[bool]
-    selected_workflows: NotRequired[list[str]]
+    reason: NotRequired[str]
+    created_at: NotRequired[str]
+    html_url: NotRequired[Union[str, None]]
 
 
 __all__ = (
-    "OrgsOrgActionsRunnerGroupsGetResponse200Type",
-    "RunnerGroupsOrgType",
+    "GistsGistIdGetResponse403PropBlockType",
+    "GistsGistIdGetResponse403Type",
 )

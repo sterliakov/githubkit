@@ -9,29 +9,38 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from datetime import datetime
+from typing import Union
+
 from pydantic import Field
 
-from githubkit.compat import ExtraGitHubModel, model_rebuild
+from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class IntegrationPropPermissions(ExtraGitHubModel):
-    """IntegrationPropPermissions
+class Enterprise(GitHubModel):
+    """Enterprise
 
-    The set of permissions for the GitHub app
-
-    Examples:
-        {'issues': 'read', 'deployments': 'write'}
+    An enterprise on GitHub.
     """
 
-    issues: Missing[str] = Field(default=UNSET)
-    checks: Missing[str] = Field(default=UNSET)
-    metadata: Missing[str] = Field(default=UNSET)
-    contents: Missing[str] = Field(default=UNSET)
-    deployments: Missing[str] = Field(default=UNSET)
+    description: Missing[Union[str, None]] = Field(
+        default=UNSET, description="A short description of the enterprise."
+    )
+    html_url: str = Field()
+    website_url: Missing[Union[str, None]] = Field(
+        default=UNSET, description="The enterprise's website URL."
+    )
+    id: int = Field(description="Unique identifier of the enterprise")
+    node_id: str = Field()
+    name: str = Field(description="The name of the enterprise.")
+    slug: str = Field(description="The slug url identifier for the enterprise.")
+    created_at: Union[datetime, None] = Field()
+    updated_at: Union[datetime, None] = Field()
+    avatar_url: str = Field()
 
 
-model_rebuild(IntegrationPropPermissions)
+model_rebuild(Enterprise)
 
-__all__ = ("IntegrationPropPermissions",)
+__all__ = ("Enterprise",)

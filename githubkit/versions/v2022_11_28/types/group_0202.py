@@ -9,18 +9,38 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
-
-class VerificationType(TypedDict):
-    """Verification"""
-
-    verified: bool
-    reason: str
-    payload: Union[str, None]
-    signature: Union[str, None]
-    verified_at: NotRequired[Union[str, None]]
+from .group_0002 import SimpleUserType
+from .group_0009 import IntegrationType
+from .group_0086 import TeamType
 
 
-__all__ = ("VerificationType",)
+class ProtectedBranchPullRequestReviewPropDismissalRestrictionsType(TypedDict):
+    """ProtectedBranchPullRequestReviewPropDismissalRestrictions"""
+
+    users: NotRequired[builtins.list[SimpleUserType]]
+    teams: NotRequired[builtins.list[TeamType]]
+    apps: NotRequired[builtins.list[Union[IntegrationType, None]]]
+    url: NotRequired[str]
+    users_url: NotRequired[str]
+    teams_url: NotRequired[str]
+
+
+class ProtectedBranchPullRequestReviewPropBypassPullRequestAllowancesType(TypedDict):
+    """ProtectedBranchPullRequestReviewPropBypassPullRequestAllowances
+
+    Allow specific users, teams, or apps to bypass pull request requirements.
+    """
+
+    users: NotRequired[builtins.list[SimpleUserType]]
+    teams: NotRequired[builtins.list[TeamType]]
+    apps: NotRequired[builtins.list[Union[IntegrationType, None]]]
+
+
+__all__ = (
+    "ProtectedBranchPullRequestReviewPropBypassPullRequestAllowancesType",
+    "ProtectedBranchPullRequestReviewPropDismissalRestrictionsType",
+)

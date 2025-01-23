@@ -9,20 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0366 import TrafficType
 
+class TopicType(TypedDict):
+    """Topic
 
-class ViewTrafficType(TypedDict):
-    """View Traffic
-
-    View Traffic
+    A topic aggregates entities that are related to a subject.
     """
 
-    count: int
-    uniques: int
-    views: list[TrafficType]
+    names: builtins.list[str]
 
 
-__all__ = ("ViewTrafficType",)
+__all__ = ("TopicType",)

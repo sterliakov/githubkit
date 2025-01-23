@@ -9,38 +9,33 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal, Union
-from typing_extensions import TypedDict
+import builtins
+from typing import Literal
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0208 import DiffEntryType
+from .group_0209 import CommitType
 
 
-class ContentSubmoduleType(TypedDict):
-    """Submodule Content
+class CommitComparisonType(TypedDict):
+    """Commit Comparison
 
-    An object describing a submodule
+    Commit Comparison
     """
 
-    type: Literal["submodule"]
-    submodule_git_url: str
-    size: int
-    name: str
-    path: str
-    sha: str
     url: str
-    git_url: Union[str, None]
-    html_url: Union[str, None]
-    download_url: Union[str, None]
-    links: ContentSubmodulePropLinksType
+    html_url: str
+    permalink_url: str
+    diff_url: str
+    patch_url: str
+    base_commit: CommitType
+    merge_base_commit: CommitType
+    status: Literal["diverged", "ahead", "behind", "identical"]
+    ahead_by: int
+    behind_by: int
+    total_commits: int
+    commits: builtins.list[CommitType]
+    files: NotRequired[builtins.list[DiffEntryType]]
 
 
-class ContentSubmodulePropLinksType(TypedDict):
-    """ContentSubmodulePropLinks"""
-
-    git: Union[str, None]
-    html: Union[str, None]
-    self_: str
-
-
-__all__ = (
-    "ContentSubmodulePropLinksType",
-    "ContentSubmoduleType",
-)
+__all__ = ("CommitComparisonType",)

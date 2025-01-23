@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -24,7 +26,7 @@ class ValidationErrorSimple(GitHubModel):
 
     message: str = Field()
     documentation_url: str = Field()
-    errors: Missing[list[str]] = Field(default=UNSET)
+    errors: Missing[builtins.list[str]] = Field(default=UNSET)
 
 
 model_rebuild(ValidationErrorSimple)

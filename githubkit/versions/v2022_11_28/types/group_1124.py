@@ -13,10 +13,12 @@ from typing import Literal
 from typing_extensions import TypedDict
 
 
-class UserEmailVisibilityPatchBodyType(TypedDict):
-    """UserEmailVisibilityPatchBody"""
+class TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBodyType(TypedDict):
+    """TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBody"""
 
-    visibility: Literal["public", "private"]
+    content: Literal[
+        "+1", "-1", "laugh", "confused", "heart", "hooray", "rocket", "eyes"
+    ]
 
 
-__all__ = ("UserEmailVisibilityPatchBodyType",)
+__all__ = ("TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBodyType",)

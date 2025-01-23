@@ -9,19 +9,14 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal, Union
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
 
 
-class OrgsOrgPrivateRegistriesPostBodyType(TypedDict):
-    """OrgsOrgPrivateRegistriesPostBody"""
+class OrgsOrgCopilotBillingSelectedUsersDeleteBodyType(TypedDict):
+    """OrgsOrgCopilotBillingSelectedUsersDeleteBody"""
 
-    registry_type: Literal["maven_repository"]
-    username: NotRequired[Union[str, None]]
-    encrypted_value: str
-    key_id: str
-    visibility: Literal["all", "private", "selected"]
-    selected_repository_ids: NotRequired[list[int]]
+    selected_usernames: builtins.list[str]
 
 
-__all__ = ("OrgsOrgPrivateRegistriesPostBodyType",)
+__all__ = ("OrgsOrgCopilotBillingSelectedUsersDeleteBodyType",)

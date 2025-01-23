@@ -44,7 +44,7 @@ class Unset(Enum):
         return value
 
 
-UNSET = Unset._UNSET
+UNSET: Literal[Unset._UNSET] = Unset._UNSET
 
 
 def exclude_unset(data: Any) -> Any:

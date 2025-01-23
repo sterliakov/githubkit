@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -16,20 +18,12 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourcePostResponse200(
-    GitHubModel
-):
-    """EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourcePostResponse2
-    00
-    """
+class EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422(GitHubModel):
+    """EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422"""
 
-    message: Missing[str] = Field(default=UNSET)
+    errors: Missing[builtins.list[str]] = Field(default=UNSET)
 
 
-model_rebuild(
-    EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourcePostResponse200
-)
+model_rebuild(EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422)
 
-__all__ = (
-    "EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourcePostResponse200",
-)
+__all__ = ("EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422",)

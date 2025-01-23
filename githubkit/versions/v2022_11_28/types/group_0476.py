@@ -9,27 +9,29 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0258 import DependabotAlertType
-from .group_0393 import EnterpriseWebhooksType
-from .group_0394 import SimpleInstallationType
-from .group_0395 import OrganizationSimpleWebhooksType
-from .group_0396 import RepositoryWebhooksType
+from .group_0113 import CustomPropertyValueType
+from .group_0398 import EnterpriseWebhooksType
+from .group_0399 import SimpleInstallationType
+from .group_0400 import OrganizationSimpleWebhooksType
+from .group_0401 import RepositoryWebhooksType
 
 
-class WebhookDependabotAlertDismissedType(TypedDict):
-    """Dependabot alert dismissed event"""
+class WebhookCustomPropertyValuesUpdatedType(TypedDict):
+    """Custom property values updated event"""
 
-    action: Literal["dismissed"]
-    alert: DependabotAlertType
-    installation: NotRequired[SimpleInstallationType]
-    organization: NotRequired[OrganizationSimpleWebhooksType]
+    action: Literal["updated"]
     enterprise: NotRequired[EnterpriseWebhooksType]
+    installation: NotRequired[SimpleInstallationType]
     repository: RepositoryWebhooksType
-    sender: SimpleUserType
+    organization: OrganizationSimpleWebhooksType
+    sender: NotRequired[SimpleUserType]
+    new_property_values: builtins.list[CustomPropertyValueType]
+    old_property_values: builtins.list[CustomPropertyValueType]
 
 
-__all__ = ("WebhookDependabotAlertDismissedType",)
+__all__ = ("WebhookCustomPropertyValuesUpdatedType",)

@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -155,8 +157,12 @@ class OrgsClient:
         since: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationSimple], list[OrganizationSimpleType]]:
+    ) -> Response[
+        builtins.list[OrganizationSimple], builtins.list[OrganizationSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-organizations"""
+
+        import builtins
 
         from ..models import OrganizationSimple
 
@@ -169,12 +175,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSimple],
+            response_model=builtins.list[OrganizationSimple],
         )
 
     async def async_list(
@@ -183,8 +189,12 @@ class OrgsClient:
         since: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationSimple], list[OrganizationSimpleType]]:
+    ) -> Response[
+        builtins.list[OrganizationSimple], builtins.list[OrganizationSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-organizations"""
+
+        import builtins
 
         from ..models import OrganizationSimple
 
@@ -197,12 +207,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSimple],
+            response_model=builtins.list[OrganizationSimple],
         )
 
     def list_custom_roles(
@@ -222,7 +232,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -246,7 +256,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -267,7 +277,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -291,7 +301,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -321,7 +331,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -352,7 +362,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -424,7 +434,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationFull, OrganizationFullType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#update-an-organization"""
 
@@ -446,12 +456,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -524,7 +534,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationFull, OrganizationFullType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#update-an-organization"""
 
@@ -546,12 +556,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -577,7 +587,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -598,7 +608,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -617,7 +627,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -635,7 +645,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -667,7 +677,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[AnnouncementType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[AnnouncementBanner, AnnouncementBannerType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/announcement-banners/organizations#set-announcement-banner-for-organization"""
 
@@ -681,12 +691,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Announcement, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -720,7 +730,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[AnnouncementType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[AnnouncementBanner, AnnouncementBannerType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/announcement-banners/organizations#set-announcement-banner-for-organization"""
 
@@ -734,12 +744,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Announcement, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -774,7 +784,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -809,7 +819,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -828,8 +838,10 @@ class OrgsClient:
         order: Missing[Literal["desc", "asc"]] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[AuditLogEvent], list[AuditLogEventType]]:
+    ) -> Response[builtins.list[AuditLogEvent], builtins.list[AuditLogEventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#get-the-audit-log-for-an-organization"""
+
+        import builtins
 
         from ..models import AuditLogEvent
 
@@ -846,12 +858,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[AuditLogEvent],
+            response_model=builtins.list[AuditLogEvent],
         )
 
     async def async_get_audit_log(
@@ -865,8 +877,10 @@ class OrgsClient:
         order: Missing[Literal["desc", "asc"]] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[AuditLogEvent], list[AuditLogEventType]]:
+    ) -> Response[builtins.list[AuditLogEvent], builtins.list[AuditLogEventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#get-the-audit-log-for-an-organization"""
+
+        import builtins
 
         from ..models import AuditLogEvent
 
@@ -883,12 +897,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[AuditLogEvent],
+            response_model=builtins.list[AuditLogEvent],
         )
 
     def list_blocked_users(
@@ -898,8 +912,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/blocking#list-users-blocked-by-an-organization"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -912,12 +928,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_blocked_users(
@@ -927,8 +943,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/blocking#list-users-blocked-by-an-organization"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -941,12 +959,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def check_blocked_user(
@@ -964,7 +982,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -988,7 +1006,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1012,7 +1030,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1036,7 +1054,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1058,7 +1076,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1077,7 +1095,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1097,8 +1115,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PushRuleBypassRequest], list[PushRuleBypassRequestType]]:
+    ) -> Response[
+        builtins.list[PushRuleBypassRequest], builtins.list[PushRuleBypassRequestType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/bypass-requests#list-push-rule-bypass-requests-within-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, PushRuleBypassRequest
 
@@ -1116,12 +1138,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PushRuleBypassRequest],
+            response_model=builtins.list[PushRuleBypassRequest],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -1142,8 +1164,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PushRuleBypassRequest], list[PushRuleBypassRequestType]]:
+    ) -> Response[
+        builtins.list[PushRuleBypassRequest], builtins.list[PushRuleBypassRequestType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/bypass-requests#list-push-rule-bypass-requests-within-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, PushRuleBypassRequest
 
@@ -1161,12 +1187,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PushRuleBypassRequest],
+            response_model=builtins.list[PushRuleBypassRequest],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -1181,8 +1207,13 @@ class OrgsClient:
         page: Missing[int] = UNSET,
         login: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CredentialAuthorization], list[CredentialAuthorizationType]]:
+    ) -> Response[
+        builtins.list[CredentialAuthorization],
+        builtins.list[CredentialAuthorizationType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-saml-sso-authorizations-for-an-organization"""
+
+        import builtins
 
         from ..models import CredentialAuthorization
 
@@ -1196,12 +1227,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CredentialAuthorization],
+            response_model=builtins.list[CredentialAuthorization],
         )
 
     async def async_list_saml_sso_authorizations(
@@ -1212,8 +1243,13 @@ class OrgsClient:
         page: Missing[int] = UNSET,
         login: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CredentialAuthorization], list[CredentialAuthorizationType]]:
+    ) -> Response[
+        builtins.list[CredentialAuthorization],
+        builtins.list[CredentialAuthorizationType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-saml-sso-authorizations-for-an-organization"""
+
+        import builtins
 
         from ..models import CredentialAuthorization
 
@@ -1227,12 +1263,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CredentialAuthorization],
+            response_model=builtins.list[CredentialAuthorization],
         )
 
     def remove_saml_sso_authorization(
@@ -1250,7 +1286,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1274,7 +1310,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1300,7 +1336,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1324,7 +1360,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1352,7 +1388,7 @@ class OrgsClient:
         name: str,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Literal["read", "triage", "write", "maintain"],
-        permissions: list[str],
+        permissions: builtins.list[str],
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1363,7 +1399,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleCreateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -1384,14 +1420,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleCreateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1424,7 +1460,7 @@ class OrgsClient:
         name: str,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Literal["read", "triage", "write", "maintain"],
-        permissions: list[str],
+        permissions: builtins.list[str],
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1435,7 +1471,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleCreateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -1456,14 +1492,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleCreateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1492,7 +1528,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1519,7 +1555,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1542,7 +1578,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1561,7 +1597,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1590,7 +1626,7 @@ class OrgsClient:
         name: Missing[str] = UNSET,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Missing[Literal["read", "triage", "write", "maintain"]] = UNSET,
-        permissions: Missing[list[str]] = UNSET,
+        permissions: Missing[builtins.list[str]] = UNSET,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1602,7 +1638,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleUpdateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -1623,14 +1659,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleUpdateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1665,7 +1701,7 @@ class OrgsClient:
         name: Missing[str] = UNSET,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Missing[Literal["read", "triage", "write", "maintain"]] = UNSET,
-        permissions: Missing[list[str]] = UNSET,
+        permissions: Missing[builtins.list[str]] = UNSET,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1677,7 +1713,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleUpdateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -1698,14 +1734,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleUpdateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1738,7 +1774,7 @@ class OrgsClient:
         name: str,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Literal["read", "triage", "write", "maintain"],
-        permissions: list[str],
+        permissions: builtins.list[str],
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1749,7 +1785,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleCreateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -1770,14 +1806,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleCreateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1810,7 +1846,7 @@ class OrgsClient:
         name: str,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Literal["read", "triage", "write", "maintain"],
-        permissions: list[str],
+        permissions: builtins.list[str],
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1821,7 +1857,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleCreateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -1842,14 +1878,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleCreateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1878,7 +1914,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1905,7 +1941,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1928,7 +1964,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1947,7 +1983,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1976,7 +2012,7 @@ class OrgsClient:
         name: Missing[str] = UNSET,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Missing[Literal["read", "triage", "write", "maintain"]] = UNSET,
-        permissions: Missing[list[str]] = UNSET,
+        permissions: Missing[builtins.list[str]] = UNSET,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -1988,7 +2024,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleUpdateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -2009,14 +2045,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleUpdateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2051,7 +2087,7 @@ class OrgsClient:
         name: Missing[str] = UNSET,
         description: Missing[Union[str, None]] = UNSET,
         base_role: Missing[Literal["read", "triage", "write", "maintain"]] = UNSET,
-        permissions: Missing[list[str]] = UNSET,
+        permissions: Missing[builtins.list[str]] = UNSET,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]: ...
@@ -2063,7 +2099,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomRepositoryRoleUpdateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrganizationCustomRepositoryRole, OrganizationCustomRepositoryRoleType
     ]:
@@ -2084,14 +2120,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomRepositoryRoleUpdateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2110,8 +2146,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-failed-organization-invitations"""
+
+        import builtins
 
         from ..models import BasicError, OrganizationInvitation
 
@@ -2124,12 +2164,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
             error_models={
                 "404": BasicError,
             },
@@ -2142,8 +2182,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-failed-organization-invitations"""
+
+        import builtins
 
         from ..models import BasicError, OrganizationInvitation
 
@@ -2156,12 +2200,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
             error_models={
                 "404": BasicError,
             },
@@ -2173,9 +2217,12 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[RepositoryFineGrainedPermission], list[RepositoryFineGrainedPermissionType]
+        builtins.list[RepositoryFineGrainedPermission],
+        builtins.list[RepositoryFineGrainedPermissionType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---list-fine-grained-permissions-for-an-organization"""
+
+        import builtins
 
         from ..models import RepositoryFineGrainedPermission
 
@@ -2183,11 +2230,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RepositoryFineGrainedPermission],
+            response_model=builtins.list[RepositoryFineGrainedPermission],
         )
 
     async def async_list_fine_grained_permissions(
@@ -2196,9 +2243,12 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[RepositoryFineGrainedPermission], list[RepositoryFineGrainedPermissionType]
+        builtins.list[RepositoryFineGrainedPermission],
+        builtins.list[RepositoryFineGrainedPermissionType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---list-fine-grained-permissions-for-an-organization"""
+
+        import builtins
 
         from ..models import RepositoryFineGrainedPermission
 
@@ -2206,11 +2256,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RepositoryFineGrainedPermission],
+            response_model=builtins.list[RepositoryFineGrainedPermission],
         )
 
     def list_webhooks(
@@ -2220,8 +2270,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrgHook], list[OrgHookType]]:
+    ) -> Response[builtins.list[OrgHook], builtins.list[OrgHookType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#list-organization-webhooks"""
+
+        import builtins
 
         from ..models import BasicError, OrgHook
 
@@ -2234,12 +2286,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrgHook],
+            response_model=builtins.list[OrgHook],
             error_models={
                 "404": BasicError,
             },
@@ -2252,8 +2304,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrgHook], list[OrgHookType]]:
+    ) -> Response[builtins.list[OrgHook], builtins.list[OrgHookType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#list-organization-webhooks"""
+
+        import builtins
 
         from ..models import BasicError, OrgHook
 
@@ -2266,12 +2320,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrgHook],
+            response_model=builtins.list[OrgHook],
             error_models={
                 "404": BasicError,
             },
@@ -2295,7 +2349,7 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         config: OrgsOrgHooksPostBodyPropConfigType,
-        events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[OrgHook, OrgHookType]: ...
 
@@ -2305,7 +2359,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgHooksPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgHook, OrgHookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#create-an-organization-webhook"""
 
@@ -2319,12 +2373,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgHooksPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2354,7 +2408,7 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         config: OrgsOrgHooksPostBodyPropConfigType,
-        events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[OrgHook, OrgHookType]: ...
 
@@ -2364,7 +2418,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgHooksPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgHook, OrgHookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#create-an-organization-webhook"""
 
@@ -2378,12 +2432,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgHooksPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2410,7 +2464,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2435,7 +2489,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2460,7 +2514,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2484,7 +2538,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2512,7 +2566,7 @@ class OrgsClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         config: Missing[OrgsOrgHooksHookIdPatchBodyPropConfigType] = UNSET,
-        events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
         name: Missing[str] = UNSET,
     ) -> Response[OrgHook, OrgHookType]: ...
@@ -2524,7 +2578,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgHooksHookIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgHook, OrgHookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#update-an-organization-webhook"""
 
@@ -2543,12 +2597,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgHooksHookIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2579,7 +2633,7 @@ class OrgsClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         config: Missing[OrgsOrgHooksHookIdPatchBodyPropConfigType] = UNSET,
-        events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
         name: Missing[str] = UNSET,
     ) -> Response[OrgHook, OrgHookType]: ...
@@ -2591,7 +2645,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgHooksHookIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgHook, OrgHookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#update-an-organization-webhook"""
 
@@ -2610,12 +2664,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgHooksHookIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2642,7 +2696,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2664,7 +2718,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2702,7 +2756,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgHooksHookIdConfigPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[WebhookConfig, WebhookConfigType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#update-a-webhook-configuration-for-an-organization"""
 
@@ -2716,12 +2770,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgHooksHookIdConfigPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2760,7 +2814,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgHooksHookIdConfigPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[WebhookConfig, WebhookConfigType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#update-a-webhook-configuration-for-an-organization"""
 
@@ -2774,12 +2828,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgHooksHookIdConfigPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2795,8 +2849,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         cursor: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[HookDeliveryItem], list[HookDeliveryItemType]]:
+    ) -> Response[builtins.list[HookDeliveryItem], builtins.list[HookDeliveryItemType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#list-deliveries-for-an-organization-webhook"""
+
+        import builtins
 
         from ..models import BasicError, HookDeliveryItem, ValidationError
 
@@ -2809,12 +2865,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[HookDeliveryItem],
+            response_model=builtins.list[HookDeliveryItem],
             error_models={
                 "400": BasicError,
                 "422": ValidationError,
@@ -2829,8 +2885,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         cursor: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[HookDeliveryItem], list[HookDeliveryItemType]]:
+    ) -> Response[builtins.list[HookDeliveryItem], builtins.list[HookDeliveryItemType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/webhooks#list-deliveries-for-an-organization-webhook"""
+
+        import builtins
 
         from ..models import BasicError, HookDeliveryItem, ValidationError
 
@@ -2843,12 +2901,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[HookDeliveryItem],
+            response_model=builtins.list[HookDeliveryItem],
             error_models={
                 "400": BasicError,
                 "422": ValidationError,
@@ -2871,7 +2929,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2898,7 +2956,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2932,7 +2990,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -2966,7 +3024,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -2992,7 +3050,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3016,7 +3074,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3043,7 +3101,7 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "last_rate_limited_timestamp",
                     "last_request_timestamp",
@@ -3057,9 +3115,12 @@ class OrgsClient:
         api_route_substring: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[ApiInsightsRouteStatsItems], list[ApiInsightsRouteStatsItemsType]
+        builtins.list[ApiInsightsRouteStatsItems],
+        builtins.list[ApiInsightsRouteStatsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-route-stats-by-actor"""
+
+        import builtins
 
         from ..models import ApiInsightsRouteStatsItems
 
@@ -3077,12 +3138,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsRouteStatsItems],
+            response_model=builtins.list[ApiInsightsRouteStatsItems],
         )
 
     async def async_get_route_stats_by_actor(
@@ -3103,7 +3164,7 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "last_rate_limited_timestamp",
                     "last_request_timestamp",
@@ -3117,9 +3178,12 @@ class OrgsClient:
         api_route_substring: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[ApiInsightsRouteStatsItems], list[ApiInsightsRouteStatsItemsType]
+        builtins.list[ApiInsightsRouteStatsItems],
+        builtins.list[ApiInsightsRouteStatsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-route-stats-by-actor"""
+
+        import builtins
 
         from ..models import ApiInsightsRouteStatsItems
 
@@ -3137,12 +3201,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsRouteStatsItems],
+            response_model=builtins.list[ApiInsightsRouteStatsItems],
         )
 
     def get_subject_stats(
@@ -3155,7 +3219,7 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "last_rate_limited_timestamp",
                     "last_request_timestamp",
@@ -3168,9 +3232,12 @@ class OrgsClient:
         subject_name_substring: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[ApiInsightsSubjectStatsItems], list[ApiInsightsSubjectStatsItemsType]
+        builtins.list[ApiInsightsSubjectStatsItems],
+        builtins.list[ApiInsightsSubjectStatsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-subject-stats"""
+
+        import builtins
 
         from ..models import ApiInsightsSubjectStatsItems
 
@@ -3188,12 +3255,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsSubjectStatsItems],
+            response_model=builtins.list[ApiInsightsSubjectStatsItems],
         )
 
     async def async_get_subject_stats(
@@ -3206,7 +3273,7 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "last_rate_limited_timestamp",
                     "last_request_timestamp",
@@ -3219,9 +3286,12 @@ class OrgsClient:
         subject_name_substring: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[ApiInsightsSubjectStatsItems], list[ApiInsightsSubjectStatsItemsType]
+        builtins.list[ApiInsightsSubjectStatsItems],
+        builtins.list[ApiInsightsSubjectStatsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-subject-stats"""
+
+        import builtins
 
         from ..models import ApiInsightsSubjectStatsItems
 
@@ -3239,12 +3309,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsSubjectStatsItems],
+            response_model=builtins.list[ApiInsightsSubjectStatsItems],
         )
 
     def get_summary_stats(
@@ -3268,7 +3338,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3297,7 +3367,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3327,7 +3397,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3357,7 +3427,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3394,7 +3464,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3431,7 +3501,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3447,8 +3517,13 @@ class OrgsClient:
         max_timestamp: Missing[str] = UNSET,
         timestamp_increment: str,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsTimeStatsItems], list[ApiInsightsTimeStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsTimeStatsItems],
+        builtins.list[ApiInsightsTimeStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-time-stats"""
+
+        import builtins
 
         from ..models import ApiInsightsTimeStatsItems
 
@@ -3462,12 +3537,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsTimeStatsItems],
+            response_model=builtins.list[ApiInsightsTimeStatsItems],
         )
 
     async def async_get_time_stats(
@@ -3478,8 +3553,13 @@ class OrgsClient:
         max_timestamp: Missing[str] = UNSET,
         timestamp_increment: str,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsTimeStatsItems], list[ApiInsightsTimeStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsTimeStatsItems],
+        builtins.list[ApiInsightsTimeStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-time-stats"""
+
+        import builtins
 
         from ..models import ApiInsightsTimeStatsItems
 
@@ -3493,12 +3573,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsTimeStatsItems],
+            response_model=builtins.list[ApiInsightsTimeStatsItems],
         )
 
     def get_time_stats_by_user(
@@ -3510,8 +3590,13 @@ class OrgsClient:
         max_timestamp: Missing[str] = UNSET,
         timestamp_increment: str,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsTimeStatsItems], list[ApiInsightsTimeStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsTimeStatsItems],
+        builtins.list[ApiInsightsTimeStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-time-stats-by-user"""
+
+        import builtins
 
         from ..models import ApiInsightsTimeStatsItems
 
@@ -3525,12 +3610,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsTimeStatsItems],
+            response_model=builtins.list[ApiInsightsTimeStatsItems],
         )
 
     async def async_get_time_stats_by_user(
@@ -3542,8 +3627,13 @@ class OrgsClient:
         max_timestamp: Missing[str] = UNSET,
         timestamp_increment: str,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsTimeStatsItems], list[ApiInsightsTimeStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsTimeStatsItems],
+        builtins.list[ApiInsightsTimeStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-time-stats-by-user"""
+
+        import builtins
 
         from ..models import ApiInsightsTimeStatsItems
 
@@ -3557,12 +3647,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsTimeStatsItems],
+            response_model=builtins.list[ApiInsightsTimeStatsItems],
         )
 
     def get_time_stats_by_actor(
@@ -3581,8 +3671,13 @@ class OrgsClient:
         max_timestamp: Missing[str] = UNSET,
         timestamp_increment: str,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsTimeStatsItems], list[ApiInsightsTimeStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsTimeStatsItems],
+        builtins.list[ApiInsightsTimeStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-time-stats-by-actor"""
+
+        import builtins
 
         from ..models import ApiInsightsTimeStatsItems
 
@@ -3596,12 +3691,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsTimeStatsItems],
+            response_model=builtins.list[ApiInsightsTimeStatsItems],
         )
 
     async def async_get_time_stats_by_actor(
@@ -3620,8 +3715,13 @@ class OrgsClient:
         max_timestamp: Missing[str] = UNSET,
         timestamp_increment: str,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsTimeStatsItems], list[ApiInsightsTimeStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsTimeStatsItems],
+        builtins.list[ApiInsightsTimeStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-time-stats-by-actor"""
+
+        import builtins
 
         from ..models import ApiInsightsTimeStatsItems
 
@@ -3635,12 +3735,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsTimeStatsItems],
+            response_model=builtins.list[ApiInsightsTimeStatsItems],
         )
 
     def get_user_stats(
@@ -3654,7 +3754,7 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "last_rate_limited_timestamp",
                     "last_request_timestamp",
@@ -3666,8 +3766,13 @@ class OrgsClient:
         ] = UNSET,
         actor_name_substring: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsUserStatsItems], list[ApiInsightsUserStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsUserStatsItems],
+        builtins.list[ApiInsightsUserStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-user-stats"""
+
+        import builtins
 
         from ..models import ApiInsightsUserStatsItems
 
@@ -3685,12 +3790,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsUserStatsItems],
+            response_model=builtins.list[ApiInsightsUserStatsItems],
         )
 
     async def async_get_user_stats(
@@ -3704,7 +3809,7 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "last_rate_limited_timestamp",
                     "last_request_timestamp",
@@ -3716,8 +3821,13 @@ class OrgsClient:
         ] = UNSET,
         actor_name_substring: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ApiInsightsUserStatsItems], list[ApiInsightsUserStatsItemsType]]:
+    ) -> Response[
+        builtins.list[ApiInsightsUserStatsItems],
+        builtins.list[ApiInsightsUserStatsItemsType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/api-insights#get-user-stats"""
+
+        import builtins
 
         from ..models import ApiInsightsUserStatsItems
 
@@ -3735,12 +3845,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ApiInsightsUserStatsItems],
+            response_model=builtins.list[ApiInsightsUserStatsItems],
         )
 
     def list_app_installations(
@@ -3766,7 +3876,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3797,7 +3907,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3818,8 +3928,12 @@ class OrgsClient:
         ] = UNSET,
         invitation_source: Missing[Literal["all", "member", "scim"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-pending-organization-invitations"""
+
+        import builtins
 
         from ..models import BasicError, OrganizationInvitation
 
@@ -3834,12 +3948,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
             error_models={
                 "404": BasicError,
             },
@@ -3858,8 +3972,12 @@ class OrgsClient:
         ] = UNSET,
         invitation_source: Missing[Literal["all", "member", "scim"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-pending-organization-invitations"""
+
+        import builtins
 
         from ..models import BasicError, OrganizationInvitation
 
@@ -3874,12 +3992,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
             error_models={
                 "404": BasicError,
             },
@@ -3906,7 +4024,7 @@ class OrgsClient:
         role: Missing[
             Literal["admin", "direct_member", "billing_manager", "reinstate"]
         ] = UNSET,
-        team_ids: Missing[list[int]] = UNSET,
+        team_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[OrganizationInvitation, OrganizationInvitationType]: ...
 
     def create_invitation(
@@ -3915,7 +4033,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgInvitationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationInvitation, OrganizationInvitationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#create-an-organization-invitation"""
 
@@ -3934,12 +4052,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgInvitationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3972,7 +4090,7 @@ class OrgsClient:
         role: Missing[
             Literal["admin", "direct_member", "billing_manager", "reinstate"]
         ] = UNSET,
-        team_ids: Missing[list[int]] = UNSET,
+        team_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[OrganizationInvitation, OrganizationInvitationType]: ...
 
     async def async_create_invitation(
@@ -3981,7 +4099,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgInvitationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationInvitation, OrganizationInvitationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#create-an-organization-invitation"""
 
@@ -4000,12 +4118,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgInvitationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -4032,7 +4150,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4057,7 +4175,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4075,8 +4193,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-organization-invitation-teams"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -4089,12 +4209,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
             },
@@ -4108,8 +4228,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-organization-invitation-teams"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -4122,12 +4244,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
             },
@@ -4142,8 +4264,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-organization-members"""
+
+        import builtins
 
         from ..models import SimpleUser, ValidationError
 
@@ -4158,12 +4282,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -4178,8 +4302,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-organization-members"""
+
+        import builtins
 
         from ..models import SimpleUser, ValidationError
 
@@ -4194,12 +4320,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -4218,7 +4344,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4238,7 +4364,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4260,7 +4386,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4284,7 +4410,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4308,7 +4434,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4334,7 +4460,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4373,7 +4499,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgMembershipsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgMembership, OrgMembershipType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#set-organization-membership-for-a-user"""
 
@@ -4392,12 +4518,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgMembershipsUsernamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4437,7 +4563,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgMembershipsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgMembership, OrgMembershipType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#set-organization-membership-for-a-user"""
 
@@ -4456,12 +4582,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgMembershipsUsernamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4488,7 +4614,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4513,7 +4639,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4529,10 +4655,12 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationFineGrainedPermission],
-        list[OrganizationFineGrainedPermissionType],
+        builtins.list[OrganizationFineGrainedPermission],
+        builtins.list[OrganizationFineGrainedPermissionType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-organization-fine-grained-permissions-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -4544,11 +4672,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[OrganizationFineGrainedPermission],
+            response_model=builtins.list[OrganizationFineGrainedPermission],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -4561,10 +4689,12 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationFineGrainedPermission],
-        list[OrganizationFineGrainedPermissionType],
+        builtins.list[OrganizationFineGrainedPermission],
+        builtins.list[OrganizationFineGrainedPermissionType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-organization-fine-grained-permissions-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -4576,11 +4706,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[OrganizationFineGrainedPermission],
+            response_model=builtins.list[OrganizationFineGrainedPermission],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -4608,7 +4738,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4640,7 +4770,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4669,7 +4799,7 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         description: Missing[str] = UNSET,
-        permissions: list[str],
+        permissions: builtins.list[str],
         base_role: Missing[
             Literal["read", "triage", "write", "maintain", "admin"]
         ] = UNSET,
@@ -4681,7 +4811,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomOrganizationRoleCreateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationRole, OrganizationRoleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#create-a-custom-organization-role"""
 
@@ -4700,14 +4830,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomOrganizationRoleCreateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -4738,7 +4868,7 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         description: Missing[str] = UNSET,
-        permissions: list[str],
+        permissions: builtins.list[str],
         base_role: Missing[
             Literal["read", "triage", "write", "maintain", "admin"]
         ] = UNSET,
@@ -4750,7 +4880,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomOrganizationRoleCreateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationRole, OrganizationRoleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#create-a-custom-organization-role"""
 
@@ -4769,14 +4899,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomOrganizationRoleCreateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -4802,7 +4932,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4821,7 +4951,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4841,7 +4971,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -4862,7 +4992,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -4883,7 +5013,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4903,7 +5033,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4922,7 +5052,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4941,7 +5071,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4961,7 +5091,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -4982,7 +5112,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -5003,7 +5133,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -5023,7 +5153,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -5044,7 +5174,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5070,7 +5200,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5094,7 +5224,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -5113,7 +5243,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -5139,7 +5269,7 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: Missing[str] = UNSET,
         description: Missing[str] = UNSET,
-        permissions: Missing[list[str]] = UNSET,
+        permissions: Missing[builtins.list[str]] = UNSET,
         base_role: Missing[
             Literal["none", "read", "triage", "write", "maintain", "admin"]
         ] = UNSET,
@@ -5152,7 +5282,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomOrganizationRoleUpdateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationRole, OrganizationRoleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#update-a-custom-organization-role"""
 
@@ -5171,14 +5301,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomOrganizationRoleUpdateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -5211,7 +5341,7 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: Missing[str] = UNSET,
         description: Missing[str] = UNSET,
-        permissions: Missing[list[str]] = UNSET,
+        permissions: Missing[builtins.list[str]] = UNSET,
         base_role: Missing[
             Literal["none", "read", "triage", "write", "maintain", "admin"]
         ] = UNSET,
@@ -5224,7 +5354,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrganizationCustomOrganizationRoleUpdateSchemaType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrganizationRole, OrganizationRoleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#update-a-custom-organization-role"""
 
@@ -5243,14 +5373,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrganizationCustomOrganizationRoleUpdateSchema, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -5271,8 +5401,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamRoleAssignment], list[TeamRoleAssignmentType]]:
+    ) -> Response[
+        builtins.list[TeamRoleAssignment], builtins.list[TeamRoleAssignmentType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-teams-that-are-assigned-to-an-organization-role"""
+
+        import builtins
 
         from ..models import TeamRoleAssignment
 
@@ -5285,12 +5419,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamRoleAssignment],
+            response_model=builtins.list[TeamRoleAssignment],
             error_models={},
         )
 
@@ -5302,8 +5436,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamRoleAssignment], list[TeamRoleAssignmentType]]:
+    ) -> Response[
+        builtins.list[TeamRoleAssignment], builtins.list[TeamRoleAssignmentType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-teams-that-are-assigned-to-an-organization-role"""
+
+        import builtins
 
         from ..models import TeamRoleAssignment
 
@@ -5316,12 +5454,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamRoleAssignment],
+            response_model=builtins.list[TeamRoleAssignment],
             error_models={},
         )
 
@@ -5333,8 +5471,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[UserRoleAssignment], list[UserRoleAssignmentType]]:
+    ) -> Response[
+        builtins.list[UserRoleAssignment], builtins.list[UserRoleAssignmentType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-users-that-are-assigned-to-an-organization-role"""
+
+        import builtins
 
         from ..models import UserRoleAssignment
 
@@ -5347,12 +5489,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[UserRoleAssignment],
+            response_model=builtins.list[UserRoleAssignment],
             error_models={},
         )
 
@@ -5364,8 +5506,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[UserRoleAssignment], list[UserRoleAssignmentType]]:
+    ) -> Response[
+        builtins.list[UserRoleAssignment], builtins.list[UserRoleAssignmentType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-users-that-are-assigned-to-an-organization-role"""
+
+        import builtins
 
         from ..models import UserRoleAssignment
 
@@ -5378,12 +5524,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[UserRoleAssignment],
+            response_model=builtins.list[UserRoleAssignment],
             error_models={},
         )
 
@@ -5395,8 +5541,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/outside-collaborators#list-outside-collaborators-for-an-organization"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -5410,12 +5558,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_outside_collaborators(
@@ -5426,8 +5574,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/outside-collaborators#list-outside-collaborators-for-an-organization"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -5441,12 +5591,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     @overload
@@ -5483,7 +5633,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgOutsideCollaboratorsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgOutsideCollaboratorsUsernamePutResponse202,
         OrgsOrgOutsideCollaboratorsUsernamePutResponse202Type,
@@ -5504,14 +5654,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgOutsideCollaboratorsUsernamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5556,7 +5706,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgOutsideCollaboratorsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgOutsideCollaboratorsUsernamePutResponse202,
         OrgsOrgOutsideCollaboratorsUsernamePutResponse202Type,
@@ -5577,14 +5727,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgOutsideCollaboratorsUsernamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5610,7 +5760,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -5634,7 +5784,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -5651,17 +5801,19 @@ class OrgsClient:
         page: Missing[int] = UNSET,
         sort: Missing[Literal["created_at"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
-        owner: Missing[list[str]] = UNSET,
+        owner: Missing[builtins.list[str]] = UNSET,
         repository: Missing[str] = UNSET,
         permission: Missing[str] = UNSET,
         last_used_before: Missing[datetime] = UNSET,
         last_used_after: Missing[datetime] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationProgrammaticAccessGrantRequest],
-        list[OrganizationProgrammaticAccessGrantRequestType],
+        builtins.list[OrganizationProgrammaticAccessGrantRequest],
+        builtins.list[OrganizationProgrammaticAccessGrantRequestType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-requests-to-access-organization-resources-with-fine-grained-personal-access-tokens"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -5685,12 +5837,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationProgrammaticAccessGrantRequest],
+            response_model=builtins.list[OrganizationProgrammaticAccessGrantRequest],
             error_models={
                 "500": BasicError,
                 "422": ValidationError,
@@ -5707,17 +5859,19 @@ class OrgsClient:
         page: Missing[int] = UNSET,
         sort: Missing[Literal["created_at"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
-        owner: Missing[list[str]] = UNSET,
+        owner: Missing[builtins.list[str]] = UNSET,
         repository: Missing[str] = UNSET,
         permission: Missing[str] = UNSET,
         last_used_before: Missing[datetime] = UNSET,
         last_used_after: Missing[datetime] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationProgrammaticAccessGrantRequest],
-        list[OrganizationProgrammaticAccessGrantRequestType],
+        builtins.list[OrganizationProgrammaticAccessGrantRequest],
+        builtins.list[OrganizationProgrammaticAccessGrantRequestType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-requests-to-access-organization-resources-with-fine-grained-personal-access-tokens"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -5741,12 +5895,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationProgrammaticAccessGrantRequest],
+            response_model=builtins.list[OrganizationProgrammaticAccessGrantRequest],
             error_models={
                 "500": BasicError,
                 "422": ValidationError,
@@ -5774,7 +5928,7 @@ class OrgsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        pat_request_ids: Missing[list[int]] = UNSET,
+        pat_request_ids: Missing[builtins.list[int]] = UNSET,
         action: Literal["approve", "deny"],
         reason: Missing[Union[str, None]] = UNSET,
     ) -> Response[
@@ -5788,7 +5942,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPersonalAccessTokenRequestsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -5810,14 +5964,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgPersonalAccessTokenRequestsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -5850,7 +6004,7 @@ class OrgsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        pat_request_ids: Missing[list[int]] = UNSET,
+        pat_request_ids: Missing[builtins.list[int]] = UNSET,
         action: Literal["approve", "deny"],
         reason: Missing[Union[str, None]] = UNSET,
     ) -> Response[
@@ -5864,7 +6018,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPersonalAccessTokenRequestsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -5886,14 +6040,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgPersonalAccessTokenRequestsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -5938,7 +6092,7 @@ class OrgsClient:
         data: Missing[
             OrgsOrgPersonalAccessTokenRequestsPatRequestIdPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#review-a-request-to-access-organization-resources-with-a-fine-grained-personal-access-token"""
 
@@ -5956,14 +6110,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgPersonalAccessTokenRequestsPatRequestIdPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6007,7 +6161,7 @@ class OrgsClient:
         data: Missing[
             OrgsOrgPersonalAccessTokenRequestsPatRequestIdPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#review-a-request-to-access-organization-resources-with-a-fine-grained-personal-access-token"""
 
@@ -6025,14 +6179,14 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgPersonalAccessTokenRequestsPatRequestIdPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6053,8 +6207,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-repositories-requested-to-be-accessed-by-a-fine-grained-personal-access-token"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -6069,12 +6227,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "500": BasicError,
                 "404": BasicError,
@@ -6090,8 +6248,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-repositories-requested-to-be-accessed-by-a-fine-grained-personal-access-token"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -6106,12 +6268,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "500": BasicError,
                 "404": BasicError,
@@ -6127,17 +6289,19 @@ class OrgsClient:
         page: Missing[int] = UNSET,
         sort: Missing[Literal["created_at"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
-        owner: Missing[list[str]] = UNSET,
+        owner: Missing[builtins.list[str]] = UNSET,
         repository: Missing[str] = UNSET,
         permission: Missing[str] = UNSET,
         last_used_before: Missing[datetime] = UNSET,
         last_used_after: Missing[datetime] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationProgrammaticAccessGrant],
-        list[OrganizationProgrammaticAccessGrantType],
+        builtins.list[OrganizationProgrammaticAccessGrant],
+        builtins.list[OrganizationProgrammaticAccessGrantType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-fine-grained-personal-access-tokens-with-access-to-organization-resources"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -6161,12 +6325,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationProgrammaticAccessGrant],
+            response_model=builtins.list[OrganizationProgrammaticAccessGrant],
             error_models={
                 "500": BasicError,
                 "422": ValidationError,
@@ -6183,17 +6347,19 @@ class OrgsClient:
         page: Missing[int] = UNSET,
         sort: Missing[Literal["created_at"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
-        owner: Missing[list[str]] = UNSET,
+        owner: Missing[builtins.list[str]] = UNSET,
         repository: Missing[str] = UNSET,
         permission: Missing[str] = UNSET,
         last_used_before: Missing[datetime] = UNSET,
         last_used_after: Missing[datetime] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationProgrammaticAccessGrant],
-        list[OrganizationProgrammaticAccessGrantType],
+        builtins.list[OrganizationProgrammaticAccessGrant],
+        builtins.list[OrganizationProgrammaticAccessGrantType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-fine-grained-personal-access-tokens-with-access-to-organization-resources"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -6217,12 +6383,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationProgrammaticAccessGrant],
+            response_model=builtins.list[OrganizationProgrammaticAccessGrant],
             error_models={
                 "500": BasicError,
                 "422": ValidationError,
@@ -6251,7 +6417,7 @@ class OrgsClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         action: Literal["revoke"],
-        pat_ids: list[int],
+        pat_ids: builtins.list[int],
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -6263,7 +6429,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPersonalAccessTokensPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -6285,12 +6451,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPersonalAccessTokensPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6324,7 +6490,7 @@ class OrgsClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         action: Literal["revoke"],
-        pat_ids: list[int],
+        pat_ids: builtins.list[int],
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -6336,7 +6502,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPersonalAccessTokensPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -6358,12 +6524,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPersonalAccessTokensPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6405,7 +6571,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPersonalAccessTokensPatIdPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#update-the-access-a-fine-grained-personal-access-token-has-to-organization-resources"""
 
@@ -6423,12 +6589,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPersonalAccessTokensPatIdPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6469,7 +6635,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPersonalAccessTokensPatIdPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#update-the-access-a-fine-grained-personal-access-token-has-to-organization-resources"""
 
@@ -6487,12 +6653,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPersonalAccessTokensPatIdPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6513,8 +6679,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-repositories-a-fine-grained-personal-access-token-has-access-to"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -6527,12 +6697,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "500": BasicError,
                 "404": BasicError,
@@ -6548,8 +6718,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/personal-access-tokens#list-repositories-a-fine-grained-personal-access-token-has-access-to"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -6562,12 +6736,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "500": BasicError,
                 "404": BasicError,
@@ -6580,8 +6754,10 @@ class OrgsClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]:
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#get-all-custom-properties-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, CustomProperty
 
@@ -6589,11 +6765,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CustomProperty],
+            response_model=builtins.list[CustomProperty],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -6605,8 +6781,10 @@ class OrgsClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]:
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#get-all-custom-properties-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, CustomProperty
 
@@ -6614,11 +6792,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CustomProperty],
+            response_model=builtins.list[CustomProperty],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -6632,7 +6810,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: OrgsOrgPropertiesSchemaPatchBodyType,
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]: ...
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]: ...
 
     @overload
     def create_or_update_custom_properties(
@@ -6641,8 +6819,8 @@ class OrgsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        properties: list[CustomPropertyType],
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]: ...
+        properties: builtins.list[CustomPropertyType],
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]: ...
 
     def create_or_update_custom_properties(
         self,
@@ -6650,9 +6828,11 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPropertiesSchemaPatchBodyType] = UNSET,
-        **kwargs,
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#create-or-update-custom-properties-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -6668,17 +6848,17 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPropertiesSchemaPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[CustomProperty],
+            response_model=builtins.list[CustomProperty],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -6692,7 +6872,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: OrgsOrgPropertiesSchemaPatchBodyType,
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]: ...
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]: ...
 
     @overload
     async def async_create_or_update_custom_properties(
@@ -6701,8 +6881,8 @@ class OrgsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        properties: list[CustomPropertyType],
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]: ...
+        properties: builtins.list[CustomPropertyType],
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]: ...
 
     async def async_create_or_update_custom_properties(
         self,
@@ -6710,9 +6890,11 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPropertiesSchemaPatchBodyType] = UNSET,
-        **kwargs,
-    ) -> Response[list[CustomProperty], list[CustomPropertyType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[CustomProperty], builtins.list[CustomPropertyType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#create-or-update-custom-properties-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -6728,17 +6910,17 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPropertiesSchemaPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[CustomProperty],
+            response_model=builtins.list[CustomProperty],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -6760,7 +6942,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6786,7 +6968,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6817,9 +6999,9 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         value_type: Literal["string", "single_select", "multi_select", "true_false"],
         required: Missing[bool] = UNSET,
-        default_value: Missing[Union[str, list[str], None]] = UNSET,
+        default_value: Missing[Union[str, builtins.list[str], None]] = UNSET,
         description: Missing[Union[str, None]] = UNSET,
-        allowed_values: Missing[Union[list[str], None]] = UNSET,
+        allowed_values: Missing[Union[builtins.list[str], None]] = UNSET,
     ) -> Response[CustomProperty, CustomPropertyType]: ...
 
     def create_or_update_custom_property(
@@ -6829,7 +7011,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[CustomPropertySetPayloadType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CustomProperty, CustomPropertyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#create-or-update-a-custom-property-for-an-organization"""
 
@@ -6843,12 +7025,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(CustomPropertySetPayload, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6880,9 +7062,9 @@ class OrgsClient:
         headers: Optional[Mapping[str, str]] = None,
         value_type: Literal["string", "single_select", "multi_select", "true_false"],
         required: Missing[bool] = UNSET,
-        default_value: Missing[Union[str, list[str], None]] = UNSET,
+        default_value: Missing[Union[str, builtins.list[str], None]] = UNSET,
         description: Missing[Union[str, None]] = UNSET,
-        allowed_values: Missing[Union[list[str], None]] = UNSET,
+        allowed_values: Missing[Union[builtins.list[str], None]] = UNSET,
     ) -> Response[CustomProperty, CustomPropertyType]: ...
 
     async def async_create_or_update_custom_property(
@@ -6892,7 +7074,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[CustomPropertySetPayloadType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CustomProperty, CustomPropertyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#create-or-update-a-custom-property-for-an-organization"""
 
@@ -6906,12 +7088,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(CustomPropertySetPayload, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6938,7 +7120,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6963,7 +7145,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6982,9 +7164,12 @@ class OrgsClient:
         repository_query: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrgRepoCustomPropertyValues], list[OrgRepoCustomPropertyValuesType]
+        builtins.list[OrgRepoCustomPropertyValues],
+        builtins.list[OrgRepoCustomPropertyValuesType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#list-custom-property-values-for-organization-repositories"""
+
+        import builtins
 
         from ..models import BasicError, OrgRepoCustomPropertyValues
 
@@ -6998,12 +7183,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrgRepoCustomPropertyValues],
+            response_model=builtins.list[OrgRepoCustomPropertyValues],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -7019,9 +7204,12 @@ class OrgsClient:
         repository_query: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrgRepoCustomPropertyValues], list[OrgRepoCustomPropertyValuesType]
+        builtins.list[OrgRepoCustomPropertyValues],
+        builtins.list[OrgRepoCustomPropertyValuesType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#list-custom-property-values-for-organization-repositories"""
+
+        import builtins
 
         from ..models import BasicError, OrgRepoCustomPropertyValues
 
@@ -7035,12 +7223,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrgRepoCustomPropertyValues],
+            response_model=builtins.list[OrgRepoCustomPropertyValues],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -7063,8 +7251,8 @@ class OrgsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        repository_names: list[str],
-        properties: list[CustomPropertyValueType],
+        repository_names: builtins.list[str],
+        properties: builtins.list[CustomPropertyValueType],
     ) -> Response: ...
 
     def create_or_update_custom_properties_values_for_repos(
@@ -7073,7 +7261,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPropertiesValuesPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#create-or-update-custom-property-values-for-organization-repositories"""
 
@@ -7091,12 +7279,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPropertiesValuesPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -7124,8 +7312,8 @@ class OrgsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        repository_names: list[str],
-        properties: list[CustomPropertyValueType],
+        repository_names: builtins.list[str],
+        properties: builtins.list[CustomPropertyValueType],
     ) -> Response: ...
 
     async def async_create_or_update_custom_properties_values_for_repos(
@@ -7134,7 +7322,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPropertiesValuesPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-properties#create-or-update-custom-property-values-for-organization-repositories"""
 
@@ -7152,12 +7340,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPropertiesValuesPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -7176,8 +7364,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-public-organization-members"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -7190,12 +7380,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_public_members(
@@ -7205,8 +7395,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-public-organization-members"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -7219,12 +7411,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def check_public_membership_for_user(
@@ -7240,7 +7432,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7260,7 +7452,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7282,7 +7474,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -7306,7 +7498,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -7328,7 +7520,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7347,7 +7539,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7359,9 +7551,12 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[RepositoryFineGrainedPermission], list[RepositoryFineGrainedPermissionType]
+        builtins.list[RepositoryFineGrainedPermission],
+        builtins.list[RepositoryFineGrainedPermissionType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#list-repository-fine-grained-permissions-for-an-organization"""
+
+        import builtins
 
         from ..models import RepositoryFineGrainedPermission
 
@@ -7369,11 +7564,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RepositoryFineGrainedPermission],
+            response_model=builtins.list[RepositoryFineGrainedPermission],
         )
 
     async def async_list_repo_fine_grained_permissions(
@@ -7382,9 +7577,12 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[RepositoryFineGrainedPermission], list[RepositoryFineGrainedPermissionType]
+        builtins.list[RepositoryFineGrainedPermission],
+        builtins.list[RepositoryFineGrainedPermissionType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#list-repository-fine-grained-permissions-for-an-organization"""
+
+        import builtins
 
         from ..models import RepositoryFineGrainedPermission
 
@@ -7392,11 +7590,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RepositoryFineGrainedPermission],
+            response_model=builtins.list[RepositoryFineGrainedPermission],
         )
 
     def list_security_manager_teams(
@@ -7404,8 +7602,10 @@ class OrgsClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamSimple], list[TeamSimpleType]]:
+    ) -> Response[builtins.list[TeamSimple], builtins.list[TeamSimpleType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/security-managers#list-security-manager-teams"""
+
+        import builtins
 
         from ..models import TeamSimple
 
@@ -7413,11 +7613,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[TeamSimple],
+            response_model=builtins.list[TeamSimple],
         )
 
     async def async_list_security_manager_teams(
@@ -7425,8 +7625,10 @@ class OrgsClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamSimple], list[TeamSimpleType]]:
+    ) -> Response[builtins.list[TeamSimple], builtins.list[TeamSimpleType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/security-managers#list-security-manager-teams"""
+
+        import builtins
 
         from ..models import TeamSimple
 
@@ -7434,11 +7636,11 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[TeamSimple],
+            response_model=builtins.list[TeamSimple],
         )
 
     def add_security_manager_team(
@@ -7454,7 +7656,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -7473,7 +7675,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -7492,7 +7694,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7511,7 +7713,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7572,7 +7774,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgSecurityProductEnablementPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#enable-or-disable-a-security-feature-for-an-organization"""
 
@@ -7586,12 +7788,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgSecurityProductEnablementPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -7654,7 +7856,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgSecurityProductEnablementPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#enable-or-disable-a-security-feature-for-an-organization"""
 
@@ -7668,12 +7870,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgSecurityProductEnablementPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -7688,8 +7890,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrgMembership], list[OrgMembershipType]]:
+    ) -> Response[builtins.list[OrgMembership], builtins.list[OrgMembershipType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-organization-memberships-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, OrgMembership, ValidationError
 
@@ -7703,12 +7907,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrgMembership],
+            response_model=builtins.list[OrgMembership],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -7723,8 +7927,10 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrgMembership], list[OrgMembershipType]]:
+    ) -> Response[builtins.list[OrgMembership], builtins.list[OrgMembershipType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#list-organization-memberships-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, OrgMembership, ValidationError
 
@@ -7738,12 +7944,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrgMembership],
+            response_model=builtins.list[OrgMembership],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -7765,7 +7971,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7790,7 +7996,7 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7826,7 +8032,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserMembershipsOrgsOrgPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgMembership, OrgMembershipType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#update-an-organization-membership-for-the-authenticated-user"""
 
@@ -7845,12 +8051,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserMembershipsOrgsOrgPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -7888,7 +8094,7 @@ class OrgsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserMembershipsOrgsOrgPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[OrgMembership, OrgMembershipType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/members#update-an-organization-membership-for-the-authenticated-user"""
 
@@ -7907,12 +8113,12 @@ class OrgsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserMembershipsOrgsOrgPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -7931,8 +8137,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationSimple], list[OrganizationSimpleType]]:
+    ) -> Response[
+        builtins.list[OrganizationSimple], builtins.list[OrganizationSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-organizations-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, OrganizationSimple
 
@@ -7945,12 +8155,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSimple],
+            response_model=builtins.list[OrganizationSimple],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -7963,8 +8173,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationSimple], list[OrganizationSimpleType]]:
+    ) -> Response[
+        builtins.list[OrganizationSimple], builtins.list[OrganizationSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-organizations-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, OrganizationSimple
 
@@ -7977,12 +8191,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSimple],
+            response_model=builtins.list[OrganizationSimple],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -7996,8 +8210,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationSimple], list[OrganizationSimpleType]]:
+    ) -> Response[
+        builtins.list[OrganizationSimple], builtins.list[OrganizationSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-organizations-for-a-user"""
+
+        import builtins
 
         from ..models import OrganizationSimple
 
@@ -8010,12 +8228,12 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSimple],
+            response_model=builtins.list[OrganizationSimple],
         )
 
     async def async_list_for_user(
@@ -8025,8 +8243,12 @@ class OrgsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationSimple], list[OrganizationSimpleType]]:
+    ) -> Response[
+        builtins.list[OrganizationSimple], builtins.list[OrganizationSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/orgs#list-organizations-for-a-user"""
+
+        import builtins
 
         from ..models import OrganizationSimple
 
@@ -8039,10 +8261,10 @@ class OrgsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSimple],
+            response_model=builtins.list[OrganizationSimple],
         )

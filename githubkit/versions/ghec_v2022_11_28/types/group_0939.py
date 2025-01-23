@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-
-class OrgsOrgCopilotBillingSelectedTeamsPostResponse201Type(TypedDict):
-    """OrgsOrgCopilotBillingSelectedTeamsPostResponse201
-
-    The total number of seats created for members of the specified team(s).
-    """
-
-    seats_created: int
+from .group_0153 import MinimalRepositoryType
 
 
-__all__ = ("OrgsOrgCopilotBillingSelectedTeamsPostResponse201Type",)
+class OrgsOrgActionsSecretsSecretNameRepositoriesGetResponse200Type(TypedDict):
+    """OrgsOrgActionsSecretsSecretNameRepositoriesGetResponse200"""
+
+    total_count: int
+    repositories: builtins.list[MinimalRepositoryType]
+
+
+__all__ = ("OrgsOrgActionsSecretsSecretNameRepositoriesGetResponse200Type",)

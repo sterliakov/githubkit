@@ -9,45 +9,31 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0002 import SimpleUserType
 
+class GroupMappingType(TypedDict):
+    """GroupMapping
 
-class TeamProjectType(TypedDict):
-    """Team Project
-
-    A team's access to a project.
+    External Groups to be mapped to a team for membership
     """
 
-    owner_url: str
-    url: str
-    html_url: str
-    columns_url: str
-    id: int
-    node_id: str
-    name: str
-    body: Union[str, None]
-    number: int
-    state: str
-    creator: SimpleUserType
-    created_at: str
-    updated_at: str
-    organization_permission: NotRequired[str]
-    private: NotRequired[bool]
-    permissions: TeamProjectPropPermissionsType
+    groups: NotRequired[builtins.list[GroupMappingPropGroupsItemsType]]
 
 
-class TeamProjectPropPermissionsType(TypedDict):
-    """TeamProjectPropPermissions"""
+class GroupMappingPropGroupsItemsType(TypedDict):
+    """GroupMappingPropGroupsItems"""
 
-    read: bool
-    write: bool
-    admin: bool
+    group_id: str
+    group_name: str
+    group_description: str
+    status: NotRequired[str]
+    synced_at: NotRequired[Union[str, None]]
 
 
 __all__ = (
-    "TeamProjectPropPermissionsType",
-    "TeamProjectType",
+    "GroupMappingPropGroupsItemsType",
+    "GroupMappingType",
 )

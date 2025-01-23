@@ -9,24 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
-
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class ActionsGetDefaultWorkflowPermissions(GitHubModel):
-    """ActionsGetDefaultWorkflowPermissions"""
+class ActionsOidcCustomIssuerPolicyForEnterprise(GitHubModel):
+    """ActionsOidcCustomIssuerPolicyForEnterprise"""
 
-    default_workflow_permissions: Literal["read", "write"] = Field(
-        description="The default workflow permissions granted to the GITHUB_TOKEN when running workflows."
+    include_enterprise_slug: Missing[bool] = Field(
+        default=UNSET,
+        description="Whether the enterprise customer requested a custom issuer URL.",
     )
-    can_approve_pull_request_reviews: bool = Field(
-        description="Whether GitHub Actions can approve pull requests. Enabling this can be a security risk."
-    )
 
 
-model_rebuild(ActionsGetDefaultWorkflowPermissions)
+model_rebuild(ActionsOidcCustomIssuerPolicyForEnterprise)
 
-__all__ = ("ActionsGetDefaultWorkflowPermissions",)
+__all__ = ("ActionsOidcCustomIssuerPolicyForEnterprise",)

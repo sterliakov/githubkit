@@ -276,7 +276,7 @@ class WebhookNamespace:
         """
         from ._types import WebhookEvent
 
-        return type_validate_json(WebhookEvent, payload)
+        return type_validate_json(WebhookEvent, payload)  # type: ignore[arg-type]
 
     @overload
     @staticmethod
@@ -669,7 +669,7 @@ class WebhookNamespace:
 
         from ._types import WebhookEvent
 
-        return type_validate_python(WebhookEvent, payload)
+        return type_validate_python(WebhookEvent, payload)  # type: ignore[arg-type]
 
     @overload
     @staticmethod

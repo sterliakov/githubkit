@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
@@ -33,19 +34,19 @@ class GlobalAdvisoryType(TypedDict):
     type: Literal["reviewed", "unreviewed", "malware"]
     severity: Literal["critical", "high", "medium", "low", "unknown"]
     source_code_location: Union[str, None]
-    identifiers: Union[list[GlobalAdvisoryPropIdentifiersItemsType], None]
-    references: Union[list[str], None]
+    identifiers: Union[builtins.list[GlobalAdvisoryPropIdentifiersItemsType], None]
+    references: Union[builtins.list[str], None]
     published_at: datetime
     updated_at: datetime
     github_reviewed_at: Union[datetime, None]
     nvd_published_at: Union[datetime, None]
     withdrawn_at: Union[datetime, None]
-    vulnerabilities: Union[list[VulnerabilityType], None]
+    vulnerabilities: Union[builtins.list[VulnerabilityType], None]
     cvss: Union[GlobalAdvisoryPropCvssType, None]
     cvss_severities: NotRequired[Union[CvssSeveritiesType, None]]
-    cwes: Union[list[GlobalAdvisoryPropCwesItemsType], None]
+    cwes: Union[builtins.list[GlobalAdvisoryPropCwesItemsType], None]
     epss: NotRequired[Union[GlobalAdvisoryPropEpssType, None]]
-    credits_: Union[list[GlobalAdvisoryPropCreditsItemsType], None]
+    credits_: Union[builtins.list[GlobalAdvisoryPropCreditsItemsType], None]
 
 
 class GlobalAdvisoryPropIdentifiersItemsType(TypedDict):
@@ -86,7 +87,7 @@ class VulnerabilityType(TypedDict):
     package: Union[VulnerabilityPropPackageType, None]
     vulnerable_version_range: Union[str, None]
     first_patched_version: Union[str, None]
-    vulnerable_functions: Union[list[str], None]
+    vulnerable_functions: Union[builtins.list[str], None]
 
 
 class VulnerabilityPropPackageType(TypedDict):

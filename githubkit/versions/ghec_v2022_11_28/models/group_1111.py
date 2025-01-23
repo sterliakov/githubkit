@@ -18,28 +18,27 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class ReposOwnerRepoImportPutBody(GitHubModel):
-    """ReposOwnerRepoImportPutBody"""
+class ReposOwnerRepoDependabotAlertsAlertNumberPatchBody(GitHubModel):
+    """ReposOwnerRepoDependabotAlertsAlertNumberPatchBody"""
 
-    vcs_url: str = Field(description="The URL of the originating repository.")
-    vcs: Missing[Literal["subversion", "git", "mercurial", "tfvc"]] = Field(
-        default=UNSET,
-        description="The originating VCS type. Without this parameter, the import job will take additional time to detect the VCS type before beginning the import. This detection step will be reflected in the response.",
+    state: Literal["dismissed", "open"] = Field(
+        description="The state of the Dependabot alert.\nA `dismissed_reason` must be provided when setting the state to `dismissed`."
     )
-    vcs_username: Missing[str] = Field(
+    dismissed_reason: Missing[
+        Literal[
+            "fix_started", "inaccurate", "no_bandwidth", "not_used", "tolerable_risk"
+        ]
+    ] = Field(
         default=UNSET,
-        description="If authentication is required, the username to provide to `vcs_url`.",
+        description="**Required when `state` is `dismissed`.** A reason for dismissing the alert.",
     )
-    vcs_password: Missing[str] = Field(
+    dismissed_comment: Missing[str] = Field(
+        max_length=280,
         default=UNSET,
-        description="If authentication is required, the password to provide to `vcs_url`.",
-    )
-    tfvc_project: Missing[str] = Field(
-        default=UNSET,
-        description="For a tfvc import, the name of the project that is being imported.",
+        description="An optional comment associated with dismissing the alert.",
     )
 
 
-model_rebuild(ReposOwnerRepoImportPutBody)
+model_rebuild(ReposOwnerRepoDependabotAlertsAlertNumberPatchBody)
 
-__all__ = ("ReposOwnerRepoImportPutBody",)
+__all__ = ("ReposOwnerRepoDependabotAlertsAlertNumberPatchBody",)

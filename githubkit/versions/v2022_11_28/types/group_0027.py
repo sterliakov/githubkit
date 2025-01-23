@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
@@ -92,7 +93,7 @@ class CodeSecurityConfigurationPropSecretScanningDelegatedBypassOptionsType(Type
     """
 
     reviewers: NotRequired[
-        list[
+        builtins.list[
             CodeSecurityConfigurationPropSecretScanningDelegatedBypassOptionsPropReviewersItemsType
         ]
     ]

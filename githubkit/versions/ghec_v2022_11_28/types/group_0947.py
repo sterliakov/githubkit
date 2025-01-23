@@ -9,32 +9,96 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Literal
+import builtins
+from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
-
-class OrgsOrgDependabotSecretsGetResponse200Type(TypedDict):
-    """OrgsOrgDependabotSecretsGetResponse200"""
-
-    total_count: int
-    secrets: list[OrganizationDependabotSecretType]
+from .group_0058 import CodeScanningDefaultSetupOptionsType
 
 
-class OrganizationDependabotSecretType(TypedDict):
-    """Dependabot Secret for an Organization
-
-    Secrets for GitHub Dependabot for an organization.
-    """
+class OrgsOrgCodeSecurityConfigurationsPostBodyType(TypedDict):
+    """OrgsOrgCodeSecurityConfigurationsPostBody"""
 
     name: str
-    created_at: datetime
-    updated_at: datetime
-    visibility: Literal["all", "private", "selected"]
-    selected_repositories_url: NotRequired[str]
+    description: str
+    advanced_security: NotRequired[Literal["enabled", "disabled"]]
+    dependency_graph: NotRequired[Literal["enabled", "disabled", "not_set"]]
+    dependency_graph_autosubmit_action: NotRequired[
+        Literal["enabled", "disabled", "not_set"]
+    ]
+    dependency_graph_autosubmit_action_options: NotRequired[
+        OrgsOrgCodeSecurityConfigurationsPostBodyPropDependencyGraphAutosubmitActionOptionsType
+    ]
+    dependabot_alerts: NotRequired[Literal["enabled", "disabled", "not_set"]]
+    dependabot_security_updates: NotRequired[Literal["enabled", "disabled", "not_set"]]
+    code_scanning_default_setup: NotRequired[Literal["enabled", "disabled", "not_set"]]
+    code_scanning_default_setup_options: NotRequired[
+        Union[CodeScanningDefaultSetupOptionsType, None]
+    ]
+    secret_scanning: NotRequired[Literal["enabled", "disabled", "not_set"]]
+    secret_scanning_push_protection: NotRequired[
+        Literal["enabled", "disabled", "not_set"]
+    ]
+    secret_scanning_delegated_bypass: NotRequired[
+        Literal["enabled", "disabled", "not_set"]
+    ]
+    secret_scanning_delegated_bypass_options: NotRequired[
+        OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOptionsType
+    ]
+    secret_scanning_validity_checks: NotRequired[
+        Literal["enabled", "disabled", "not_set"]
+    ]
+    secret_scanning_non_provider_patterns: NotRequired[
+        Literal["enabled", "disabled", "not_set"]
+    ]
+    private_vulnerability_reporting: NotRequired[
+        Literal["enabled", "disabled", "not_set"]
+    ]
+    enforcement: NotRequired[Literal["enforced", "unenforced"]]
+
+
+class OrgsOrgCodeSecurityConfigurationsPostBodyPropDependencyGraphAutosubmitActionOptionsType(
+    TypedDict
+):
+    """OrgsOrgCodeSecurityConfigurationsPostBodyPropDependencyGraphAutosubmitActionOpti
+    ons
+
+    Feature options for Automatic dependency submission
+    """
+
+    labeled_runners: NotRequired[bool]
+
+
+class OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOptionsType(
+    TypedDict
+):
+    """OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOption
+    s
+
+    Feature options for secret scanning delegated bypass
+    """
+
+    reviewers: NotRequired[
+        builtins.list[
+            OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOptionsPropReviewersItemsType
+        ]
+    ]
+
+
+class OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOptionsPropReviewersItemsType(
+    TypedDict
+):
+    """OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOption
+    sPropReviewersItems
+    """
+
+    reviewer_id: int
+    reviewer_type: Literal["TEAM", "ROLE"]
 
 
 __all__ = (
-    "OrganizationDependabotSecretType",
-    "OrgsOrgDependabotSecretsGetResponse200Type",
+    "OrgsOrgCodeSecurityConfigurationsPostBodyPropDependencyGraphAutosubmitActionOptionsType",
+    "OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOptionsPropReviewersItemsType",
+    "OrgsOrgCodeSecurityConfigurationsPostBodyPropSecretScanningDelegatedBypassOptionsType",
+    "OrgsOrgCodeSecurityConfigurationsPostBodyType",
 )

@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal, Union
 
 from pydantic import Field
@@ -17,35 +18,57 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_1144 import ReposOwnerRepoPagesPutBodyPropSourceAnyof1
 
+class ReposOwnerRepoIssuesIssueNumberPatchBody(GitHubModel):
+    """ReposOwnerRepoIssuesIssueNumberPatchBody"""
 
-class ReposOwnerRepoPagesPutBodyAnyof2(GitHubModel):
-    """ReposOwnerRepoPagesPutBodyAnyof2"""
-
-    cname: Union[str, None] = Field(
-        description='Specify a custom domain for the repository. Sending a `null` value will remove the custom domain. For more about custom domains, see "[Using a custom domain with GitHub Pages](https://docs.github.com/enterprise-cloud@latest//pages/configuring-a-custom-domain-for-your-github-pages-site)."'
+    title: Missing[Union[str, int, None]] = Field(
+        default=UNSET, description="The title of the issue."
     )
-    https_enforced: Missing[bool] = Field(
+    body: Missing[Union[str, None]] = Field(
+        default=UNSET, description="The contents of the issue."
+    )
+    assignee: Missing[Union[str, None]] = Field(
         default=UNSET,
-        description="Specify whether HTTPS should be enforced for the repository.",
+        description="Username to assign to this issue. **This field is closing down.**",
     )
-    build_type: Missing[Literal["legacy", "workflow"]] = Field(
+    state: Missing[Literal["open", "closed"]] = Field(
+        default=UNSET, description="The open or closed state of the issue."
+    )
+    state_reason: Missing[
+        Union[None, Literal["completed", "not_planned", "reopened"]]
+    ] = Field(
         default=UNSET,
-        description="The process by which the GitHub Pages site will be built. `workflow` means that the site is built by a custom GitHub Actions workflow. `legacy` means that the site is built by GitHub when changes are pushed to a specific branch.",
+        description="The reason for the state change. Ignored unless `state` is changed.",
     )
-    source: Missing[
-        Union[
-            Literal["gh-pages", "master", "master /docs"],
-            ReposOwnerRepoPagesPutBodyPropSourceAnyof1,
+    milestone: Missing[Union[str, int, None]] = Field(default=UNSET)
+    labels: Missing[
+        builtins.list[
+            Union[str, ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1]
         ]
-    ] = Field(default=UNSET)
-    public: Missing[bool] = Field(
+    ] = Field(
         default=UNSET,
-        description="Configures access controls for the GitHub Pages site. If public is set to `true`, the site is accessible to anyone on the internet. If set to `false`, the site will only be accessible to users who have at least `read` access to the repository that published the site. This includes anyone in your Enterprise if the repository is set to `internal` visibility.",
+        description="Labels to associate with this issue. Pass one or more labels to _replace_ the set of labels on this issue. Send an empty array (`[]`) to clear all labels from the issue. Only users with push access can set labels for issues. Without push access to the repository, label changes are silently dropped.",
+    )
+    assignees: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="Usernames to assign to this issue. Pass one or more user logins to _replace_ the set of assignees on this issue. Send an empty array (`[]`) to clear all assignees from the issue. Only users with push access can set assignees for new issues. Without push access to the repository, assignee changes are silently dropped.",
     )
 
 
-model_rebuild(ReposOwnerRepoPagesPutBodyAnyof2)
+class ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1(GitHubModel):
+    """ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1"""
 
-__all__ = ("ReposOwnerRepoPagesPutBodyAnyof2",)
+    id: Missing[int] = Field(default=UNSET)
+    name: Missing[str] = Field(default=UNSET)
+    description: Missing[Union[str, None]] = Field(default=UNSET)
+    color: Missing[Union[str, None]] = Field(default=UNSET)
+
+
+model_rebuild(ReposOwnerRepoIssuesIssueNumberPatchBody)
+model_rebuild(ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1)
+
+__all__ = (
+    "ReposOwnerRepoIssuesIssueNumberPatchBody",
+    "ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1",
+)

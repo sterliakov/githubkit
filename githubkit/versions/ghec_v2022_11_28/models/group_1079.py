@@ -9,23 +9,23 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
 
-class ReposOwnerRepoCommentsCommentIdReactionsPostBody(GitHubModel):
-    """ReposOwnerRepoCommentsCommentIdReactionsPostBody"""
+class ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody(GitHubModel):
+    """ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody
 
-    content: Literal[
-        "+1", "-1", "laugh", "confused", "heart", "hooray", "rocket", "eyes"
-    ] = Field(
-        description="The [reaction type](https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#about-reactions) to add to the commit comment."
-    )
+    Examples:
+        {'users': ['mona']}
+    """
+
+    users: builtins.list[str] = Field(description="The username for users")
 
 
-model_rebuild(ReposOwnerRepoCommentsCommentIdReactionsPostBody)
+model_rebuild(ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody)
 
-__all__ = ("ReposOwnerRepoCommentsCommentIdReactionsPostBody",)
+__all__ = ("ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody",)

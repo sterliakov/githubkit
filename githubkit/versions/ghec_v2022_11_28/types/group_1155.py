@@ -9,14 +9,27 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoProjectsPostBodyType(TypedDict):
-    """ReposOwnerRepoProjectsPostBody"""
+class ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type(TypedDict):
+    """ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2"""
+
+    labels: NotRequired[
+        builtins.list[
+            ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType
+        ]
+    ]
+
+
+class ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType(TypedDict):
+    """ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItems"""
 
     name: str
-    body: NotRequired[str]
 
 
-__all__ = ("ReposOwnerRepoProjectsPostBodyType",)
+__all__ = (
+    "ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType",
+    "ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type",
+)

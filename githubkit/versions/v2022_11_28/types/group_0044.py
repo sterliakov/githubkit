@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Any, Union
 from typing_extensions import NotRequired, TypeAlias, TypedDict
@@ -41,8 +42,8 @@ class BaseGistType(TypedDict):
     comments_url: str
     owner: NotRequired[SimpleUserType]
     truncated: NotRequired[bool]
-    forks: NotRequired[list[Any]]
-    history: NotRequired[list[Any]]
+    forks: NotRequired[builtins.list[Any]]
+    history: NotRequired[builtins.list[Any]]
 
 
 BaseGistPropFilesType: TypeAlias = dict[str, Any]

@@ -9,14 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 from typing_extensions import TypedDict
 
-
-class ReposOwnerRepoImportLfsPatchBodyType(TypedDict):
-    """ReposOwnerRepoImportLfsPatchBody"""
-
-    use_lfs: Literal["opt_in", "opt_out"]
+from .group_0185 import ActionsVariableType
 
 
-__all__ = ("ReposOwnerRepoImportLfsPatchBodyType",)
+class ReposOwnerRepoEnvironmentsEnvironmentNameVariablesGetResponse200Type(TypedDict):
+    """ReposOwnerRepoEnvironmentsEnvironmentNameVariablesGetResponse200"""
+
+    total_count: int
+    variables: builtins.list[ActionsVariableType]
+
+
+__all__ = ("ReposOwnerRepoEnvironmentsEnvironmentNameVariablesGetResponse200Type",)

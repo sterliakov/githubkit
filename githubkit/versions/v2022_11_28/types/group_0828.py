@@ -9,32 +9,20 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Literal
+import builtins
+from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class OrgsOrgActionsSecretsGetResponse200Type(TypedDict):
-    """OrgsOrgActionsSecretsGetResponse200"""
-
-    total_count: int
-    secrets: list[OrganizationActionsSecretType]
-
-
-class OrganizationActionsSecretType(TypedDict):
-    """Actions Secret for an Organization
-
-    Secrets for GitHub Actions for an organization.
-    """
+class OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBodyType(TypedDict):
+    """OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBody"""
 
     name: str
-    created_at: datetime
-    updated_at: datetime
-    visibility: Literal["all", "private", "selected"]
-    selected_repositories_url: NotRequired[str]
+    visibility: NotRequired[Literal["selected", "all", "private"]]
+    allows_public_repositories: NotRequired[bool]
+    restricted_to_workflows: NotRequired[bool]
+    selected_workflows: NotRequired[builtins.list[str]]
+    network_configuration_id: NotRequired[Union[str, None]]
 
 
-__all__ = (
-    "OrganizationActionsSecretType",
-    "OrgsOrgActionsSecretsGetResponse200Type",
-)
+__all__ = ("OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBodyType",)

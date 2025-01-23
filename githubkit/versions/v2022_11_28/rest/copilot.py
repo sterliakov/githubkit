@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Optional, overload
+from typing import TYPE_CHECKING, Any, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,8 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
     from githubkit.typing import Missing
@@ -82,7 +85,7 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -109,7 +112,7 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -146,7 +149,7 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -184,7 +187,7 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -217,7 +220,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_teams: list[str],
+        selected_teams: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201,
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201Type,
@@ -229,7 +232,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedTeamsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201,
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201Type,
@@ -250,14 +253,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedTeamsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -290,7 +293,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_teams: list[str],
+        selected_teams: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201,
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201Type,
@@ -302,7 +305,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedTeamsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201,
         OrgsOrgCopilotBillingSelectedTeamsPostResponse201Type,
@@ -323,14 +326,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedTeamsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -363,7 +366,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_teams: list[str],
+        selected_teams: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200,
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200Type,
@@ -375,7 +378,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedTeamsDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200,
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200Type,
@@ -396,14 +399,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedTeamsDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -436,7 +439,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_teams: list[str],
+        selected_teams: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200,
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200Type,
@@ -448,7 +451,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedTeamsDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200,
         OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200Type,
@@ -469,14 +472,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedTeamsDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -509,7 +512,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersPostResponse201,
         OrgsOrgCopilotBillingSelectedUsersPostResponse201Type,
@@ -521,7 +524,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedUsersPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersPostResponse201,
         OrgsOrgCopilotBillingSelectedUsersPostResponse201Type,
@@ -542,14 +545,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedUsersPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -582,7 +585,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersPostResponse201,
         OrgsOrgCopilotBillingSelectedUsersPostResponse201Type,
@@ -594,7 +597,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedUsersPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersPostResponse201,
         OrgsOrgCopilotBillingSelectedUsersPostResponse201Type,
@@ -615,14 +618,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedUsersPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -655,7 +658,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200,
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200Type,
@@ -667,7 +670,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedUsersDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200,
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200Type,
@@ -688,14 +691,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedUsersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -728,7 +731,7 @@ class CopilotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200,
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200Type,
@@ -740,7 +743,7 @@ class CopilotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCopilotBillingSelectedUsersDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200,
         OrgsOrgCopilotBillingSelectedUsersDeleteResponse200Type,
@@ -761,14 +764,14 @@ class CopilotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCopilotBillingSelectedUsersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -791,8 +794,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetricsDay], list[CopilotUsageMetricsDayType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetricsDay], builtins.list[CopilotUsageMetricsDayType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-metrics#get-copilot-metrics-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetricsDay
 
@@ -807,12 +814,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetricsDay],
+            response_model=builtins.list[CopilotUsageMetricsDay],
             error_models={
                 "500": BasicError,
                 "403": BasicError,
@@ -830,8 +837,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetricsDay], list[CopilotUsageMetricsDayType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetricsDay], builtins.list[CopilotUsageMetricsDayType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-metrics#get-copilot-metrics-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetricsDay
 
@@ -846,12 +857,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetricsDay],
+            response_model=builtins.list[CopilotUsageMetricsDay],
             error_models={
                 "500": BasicError,
                 "403": BasicError,
@@ -869,8 +880,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetrics], list[CopilotUsageMetricsType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetrics], builtins.list[CopilotUsageMetricsType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-usage#get-a-summary-of-copilot-usage-for-organization-members"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetrics
 
@@ -885,12 +900,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetrics],
+            response_model=builtins.list[CopilotUsageMetrics],
             error_models={
                 "500": BasicError,
                 "401": BasicError,
@@ -908,8 +923,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetrics], list[CopilotUsageMetricsType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetrics], builtins.list[CopilotUsageMetricsType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-usage#get-a-summary-of-copilot-usage-for-organization-members"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetrics
 
@@ -924,12 +943,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetrics],
+            response_model=builtins.list[CopilotUsageMetrics],
             error_models={
                 "500": BasicError,
                 "401": BasicError,
@@ -953,7 +972,7 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -981,7 +1000,7 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1004,8 +1023,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetricsDay], list[CopilotUsageMetricsDayType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetricsDay], builtins.list[CopilotUsageMetricsDayType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-metrics#get-copilot-metrics-for-a-team"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetricsDay
 
@@ -1020,12 +1043,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetricsDay],
+            response_model=builtins.list[CopilotUsageMetricsDay],
             error_models={
                 "500": BasicError,
                 "403": BasicError,
@@ -1044,8 +1067,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetricsDay], list[CopilotUsageMetricsDayType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetricsDay], builtins.list[CopilotUsageMetricsDayType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-metrics#get-copilot-metrics-for-a-team"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetricsDay
 
@@ -1060,12 +1087,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetricsDay],
+            response_model=builtins.list[CopilotUsageMetricsDay],
             error_models={
                 "500": BasicError,
                 "403": BasicError,
@@ -1084,8 +1111,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetrics], list[CopilotUsageMetricsType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetrics], builtins.list[CopilotUsageMetricsType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-usage#get-a-summary-of-copilot-usage-for-a-team"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetrics
 
@@ -1100,12 +1131,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetrics],
+            response_model=builtins.list[CopilotUsageMetrics],
             error_models={
                 "500": BasicError,
                 "401": BasicError,
@@ -1124,8 +1155,12 @@ class CopilotClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CopilotUsageMetrics], list[CopilotUsageMetricsType]]:
+    ) -> Response[
+        builtins.list[CopilotUsageMetrics], builtins.list[CopilotUsageMetricsType]
+    ]:
         """See also: https://docs.github.com/rest/copilot/copilot-usage#get-a-summary-of-copilot-usage-for-a-team"""
+
+        import builtins
 
         from ..models import BasicError, CopilotUsageMetrics
 
@@ -1140,12 +1175,12 @@ class CopilotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CopilotUsageMetrics],
+            response_model=builtins.list[CopilotUsageMetrics],
             error_models={
                 "500": BasicError,
                 "401": BasicError,

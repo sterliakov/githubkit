@@ -9,17 +9,34 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from datetime import datetime
+from typing import Literal
+from typing_extensions import NotRequired, TypedDict
 
 
-class OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200Type(TypedDict):
-    """OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200
+class OrgsOrgActionsVariablesGetResponse200Type(TypedDict):
+    """OrgsOrgActionsVariablesGetResponse200"""
 
-    The total number of seats set to "pending cancellation" for members of the
-    specified team(s).
+    total_count: int
+    variables: builtins.list[OrganizationActionsVariableType]
+
+
+class OrganizationActionsVariableType(TypedDict):
+    """Actions Variable for an Organization
+
+    Organization variable for GitHub Actions.
     """
 
-    seats_cancelled: int
+    name: str
+    value: str
+    created_at: datetime
+    updated_at: datetime
+    visibility: Literal["all", "private", "selected"]
+    selected_repositories_url: NotRequired[str]
 
 
-__all__ = ("OrgsOrgCopilotBillingSelectedTeamsDeleteResponse200Type",)
+__all__ = (
+    "OrganizationActionsVariableType",
+    "OrgsOrgActionsVariablesGetResponse200Type",
+)

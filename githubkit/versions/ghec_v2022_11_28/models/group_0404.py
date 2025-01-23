@@ -9,24 +9,20 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-from .group_0403 import Traffic
+
+class ParticipationStats(GitHubModel):
+    """Participation Stats"""
+
+    all_: builtins.list[int] = Field(alias="all")
+    owner: builtins.list[int] = Field()
 
 
-class CloneTraffic(GitHubModel):
-    """Clone Traffic
+model_rebuild(ParticipationStats)
 
-    Clone Traffic
-    """
-
-    count: int = Field()
-    uniques: int = Field()
-    clones: list[Traffic] = Field()
-
-
-model_rebuild(CloneTraffic)
-
-__all__ = ("CloneTraffic",)
+__all__ = ("ParticipationStats",)

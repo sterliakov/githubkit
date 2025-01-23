@@ -9,29 +9,20 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-
-class RepositoryRuleWorkflowsPropParametersType(TypedDict):
-    """RepositoryRuleWorkflowsPropParameters"""
-
-    do_not_enforce_on_create: NotRequired[bool]
-    workflows: list[RepositoryRuleParamsWorkflowFileReferenceType]
+from .group_0113 import RepositoryRuleBranchNamePatternPropParametersType
 
 
-class RepositoryRuleParamsWorkflowFileReferenceType(TypedDict):
-    """WorkflowFileReference
+class RepositoryRuleBranchNamePatternType(TypedDict):
+    """branch_name_pattern
 
-    A workflow that must run for this rule to pass
+    Parameters to be used for the branch_name_pattern rule
     """
 
-    path: str
-    ref: NotRequired[str]
-    repository_id: int
-    sha: NotRequired[str]
+    type: Literal["branch_name_pattern"]
+    parameters: NotRequired[RepositoryRuleBranchNamePatternPropParametersType]
 
 
-__all__ = (
-    "RepositoryRuleParamsWorkflowFileReferenceType",
-    "RepositoryRuleWorkflowsPropParametersType",
-)
+__all__ = ("RepositoryRuleBranchNamePatternType",)

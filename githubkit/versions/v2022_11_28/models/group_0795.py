@@ -9,7 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 
 from pydantic import Field
 
@@ -17,24 +17,38 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
+from .group_0016 import AppPermissions
 
-class EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBody(
-    GitHubModel
-):
-    """EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBody"""
 
-    default_for_new_repos: Missing[
-        Literal["all", "none", "private_and_internal", "public"]
-    ] = Field(
+class ApplicationsClientIdTokenScopedPostBody(GitHubModel):
+    """ApplicationsClientIdTokenScopedPostBody"""
+
+    access_token: str = Field(
+        description="The access token used to authenticate to the GitHub API."
+    )
+    target: Missing[str] = Field(
         default=UNSET,
-        description="Specify which types of repository this security configuration should be applied to by default.",
+        description="The name of the user or organization to scope the user access token to. **Required** unless `target_id` is specified.",
+    )
+    target_id: Missing[int] = Field(
+        default=UNSET,
+        description="The ID of the user or organization to scope the user access token to. **Required** unless `target` is specified.",
+    )
+    repositories: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="The list of repository names to scope the user access token to. `repositories` may not be specified if `repository_ids` is specified.",
+    )
+    repository_ids: Missing[builtins.list[int]] = Field(
+        default=UNSET,
+        description="The list of repository IDs to scope the user access token to. `repository_ids` may not be specified if `repositories` is specified.",
+    )
+    permissions: Missing[AppPermissions] = Field(
+        default=UNSET,
+        title="App Permissions",
+        description="The permissions granted to the user access token.",
     )
 
 
-model_rebuild(
-    EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBody
-)
+model_rebuild(ApplicationsClientIdTokenScopedPostBody)
 
-__all__ = (
-    "EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBody",
-)
+__all__ = ("ApplicationsClientIdTokenScopedPostBody",)

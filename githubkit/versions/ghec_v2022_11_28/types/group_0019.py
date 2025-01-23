@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
@@ -86,7 +87,7 @@ class RepositoryType(TypedDict):
     default_branch: str
     open_issues_count: int
     is_template: NotRequired[bool]
-    topics: NotRequired[list[str]]
+    topics: NotRequired[builtins.list[str]]
     has_issues: bool
     has_projects: bool
     has_wiki: bool

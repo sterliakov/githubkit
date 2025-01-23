@@ -32,6 +32,24 @@ if TYPE_CHECKING:
         ActionsGetDefaultWorkflowPermissions as ActionsGetDefaultWorkflowPermissions,
     )
     from githubkit.versions.v2022_11_28.models import (
+        ActionsHostedRunner as ActionsHostedRunner,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        ActionsHostedRunnerImage as ActionsHostedRunnerImage,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        ActionsHostedRunnerLimits as ActionsHostedRunnerLimits,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        ActionsHostedRunnerLimitsPropPublicIps as ActionsHostedRunnerLimitsPropPublicIps,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        ActionsHostedRunnerMachineSpec as ActionsHostedRunnerMachineSpec,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        ActionsHostedRunnerPoolImage as ActionsHostedRunnerPoolImage,
+    )
+    from githubkit.versions.v2022_11_28.models import (
         ActionsOrganizationPermissions as ActionsOrganizationPermissions,
     )
     from githubkit.versions.v2022_11_28.models import (
@@ -1040,6 +1058,10 @@ if TYPE_CHECKING:
         MovedColumnInProjectIssueEventPropProjectCard as MovedColumnInProjectIssueEventPropProjectCard,
     )
     from githubkit.versions.v2022_11_28.models import (
+        NetworkConfiguration as NetworkConfiguration,
+    )
+    from githubkit.versions.v2022_11_28.models import NetworkSettings as NetworkSettings
+    from githubkit.versions.v2022_11_28.models import (
         NotificationsPutBody as NotificationsPutBody,
     )
     from githubkit.versions.v2022_11_28.models import (
@@ -1142,6 +1164,30 @@ if TYPE_CHECKING:
         OrgsOrgActionsCacheUsageByRepositoryGetResponse200 as OrgsOrgActionsCacheUsageByRepositoryGetResponse200,
     )
     from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersGetResponse200 as OrgsOrgActionsHostedRunnersGetResponse200,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody as OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200 as OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200 as OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200 as OrgsOrgActionsHostedRunnersMachineSizesGetResponse200,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200 as OrgsOrgActionsHostedRunnersPlatformsGetResponse200,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersPostBody as OrgsOrgActionsHostedRunnersPostBody,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsHostedRunnersPostBodyPropImage as OrgsOrgActionsHostedRunnersPostBodyPropImage,
+    )
+    from githubkit.versions.v2022_11_28.models import (
         OrgsOrgActionsPermissionsPutBody as OrgsOrgActionsPermissionsPutBody,
     )
     from githubkit.versions.v2022_11_28.models import (
@@ -1155,6 +1201,9 @@ if TYPE_CHECKING:
     )
     from githubkit.versions.v2022_11_28.models import (
         OrgsOrgActionsRunnerGroupsPostBody as OrgsOrgActionsRunnerGroupsPostBody,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200 as OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
     )
     from githubkit.versions.v2022_11_28.models import (
         OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBody as OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBody,
@@ -1430,6 +1479,15 @@ if TYPE_CHECKING:
         OrgsOrgSecurityProductEnablementPostBody as OrgsOrgSecurityProductEnablementPostBody,
     )
     from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgSettingsNetworkConfigurationsGetResponse200 as OrgsOrgSettingsNetworkConfigurationsGetResponse200,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgSettingsNetworkConfigurationsNetworkConfigurationIdPatchBody as OrgsOrgSettingsNetworkConfigurationsNetworkConfigurationIdPatchBody,
+    )
+    from githubkit.versions.v2022_11_28.models import (
+        OrgsOrgSettingsNetworkConfigurationsPostBody as OrgsOrgSettingsNetworkConfigurationsPostBody,
+    )
+    from githubkit.versions.v2022_11_28.models import (
         OrgsOrgTeamsPostBody as OrgsOrgTeamsPostBody,
     )
     from githubkit.versions.v2022_11_28.models import (
@@ -1703,6 +1761,7 @@ if TYPE_CHECKING:
     from githubkit.versions.v2022_11_28.models import (
         ProtectedBranchRequiredStatusCheckPropChecksItems as ProtectedBranchRequiredStatusCheckPropChecksItems,
     )
+    from githubkit.versions.v2022_11_28.models import PublicIp as PublicIp
     from githubkit.versions.v2022_11_28.models import PublicUser as PublicUser
     from githubkit.versions.v2022_11_28.models import (
         PublicUserPropPlan as PublicUserPropPlan,
@@ -9641,6 +9700,7 @@ else:
             "GlobalAdvisoryPropCreditsItems",
             "BasicError",
             "ValidationErrorSimple",
+            "Enterprise",
             "IntegrationPropPermissions",
             "Integration",
             "WebhookConfig",
@@ -9654,7 +9714,6 @@ else:
             "HookDeliveryPropRequestPropPayload",
             "HookDeliveryPropResponse",
             "HookDeliveryPropResponsePropHeaders",
-            "Enterprise",
             "IntegrationInstallationRequest",
             "AppPermissions",
             "Installation",
@@ -9754,6 +9813,13 @@ else:
             "OrganizationFull",
             "OrganizationFullPropPlan",
             "ActionsCacheUsageOrgEnterprise",
+            "ActionsHostedRunnerMachineSpec",
+            "ActionsHostedRunner",
+            "ActionsHostedRunnerPoolImage",
+            "PublicIp",
+            "ActionsHostedRunnerImage",
+            "ActionsHostedRunnerLimits",
+            "ActionsHostedRunnerLimitsPropPublicIps",
             "OidcCustomSub",
             "ActionsOrganizationPermissions",
             "SelectedActions",
@@ -9920,6 +9986,7 @@ else:
             "ActionsBillingUsagePropMinutesUsedBreakdown",
             "PackagesBillingUsage",
             "CombinedBillingUsage",
+            "NetworkSettings",
             "TeamFull",
             "TeamOrganization",
             "TeamOrganizationPropPlan",
@@ -12536,6 +12603,14 @@ else:
             "OrgsOrgPatchBody",
             "OrgsOrgActionsCacheUsageByRepositoryGetResponse200",
             "ActionsCacheUsageByRepository",
+            "OrgsOrgActionsHostedRunnersGetResponse200",
+            "OrgsOrgActionsHostedRunnersPostBody",
+            "OrgsOrgActionsHostedRunnersPostBodyPropImage",
+            "OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200",
+            "OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200",
+            "OrgsOrgActionsHostedRunnersMachineSizesGetResponse200",
+            "OrgsOrgActionsHostedRunnersPlatformsGetResponse200",
+            "OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody",
             "OrgsOrgActionsPermissionsPutBody",
             "OrgsOrgActionsPermissionsRepositoriesGetResponse200",
             "OrgsOrgActionsPermissionsRepositoriesPutBody",
@@ -12543,6 +12618,7 @@ else:
             "RunnerGroupsOrg",
             "OrgsOrgActionsRunnerGroupsPostBody",
             "OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBody",
+            "OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200",
             "OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesGetResponse200",
             "OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesPutBody",
             "OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersGetResponse200",
@@ -12634,6 +12710,10 @@ else:
             "OrgsOrgReposPostBodyPropCustomProperties",
             "OrgsOrgRulesetsPostBody",
             "OrgsOrgRulesetsRulesetIdPutBody",
+            "OrgsOrgSettingsNetworkConfigurationsGetResponse200",
+            "NetworkConfiguration",
+            "OrgsOrgSettingsNetworkConfigurationsPostBody",
+            "OrgsOrgSettingsNetworkConfigurationsNetworkConfigurationIdPatchBody",
             "OrgsOrgTeamsPostBody",
             "OrgsOrgTeamsTeamSlugPatchBody",
             "OrgsOrgTeamsTeamSlugDiscussionsPostBody",

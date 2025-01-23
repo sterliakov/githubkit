@@ -9,16 +9,33 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
+from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0061 import CopilotSeatDetailsType
+
+class OrgsOrgActionsSecretsGetResponse200Type(TypedDict):
+    """OrgsOrgActionsSecretsGetResponse200"""
+
+    total_count: int
+    secrets: builtins.list[OrganizationActionsSecretType]
 
 
-class OrgsOrgCopilotBillingSeatsGetResponse200Type(TypedDict):
-    """OrgsOrgCopilotBillingSeatsGetResponse200"""
+class OrganizationActionsSecretType(TypedDict):
+    """Actions Secret for an Organization
 
-    total_seats: NotRequired[int]
-    seats: NotRequired[list[CopilotSeatDetailsType]]
+    Secrets for GitHub Actions for an organization.
+    """
+
+    name: str
+    created_at: datetime
+    updated_at: datetime
+    visibility: Literal["all", "private", "selected"]
+    selected_repositories_url: NotRequired[str]
 
 
-__all__ = ("OrgsOrgCopilotBillingSeatsGetResponse200Type",)
+__all__ = (
+    "OrganizationActionsSecretType",
+    "OrgsOrgActionsSecretsGetResponse200Type",
+)

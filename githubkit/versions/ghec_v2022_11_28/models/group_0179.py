@@ -12,18 +12,18 @@ from __future__ import annotations
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class OrganizationFineGrainedPermission(GitHubModel):
-    """Organization Fine-Grained Permission
+class ApiInsightsTimeStatsItems(GitHubModel):
+    """ApiInsightsTimeStatsItems"""
 
-    A fine-grained permission that protects organization resources.
-    """
-
-    name: str = Field()
-    description: str = Field()
+    timestamp: Missing[str] = Field(default=UNSET)
+    total_request_count: Missing[int] = Field(default=UNSET)
+    rate_limited_request_count: Missing[int] = Field(default=UNSET)
 
 
-model_rebuild(OrganizationFineGrainedPermission)
+model_rebuild(ApiInsightsTimeStatsItems)
 
-__all__ = ("OrganizationFineGrainedPermission",)
+__all__ = ("ApiInsightsTimeStatsItems",)

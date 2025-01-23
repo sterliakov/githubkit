@@ -9,16 +9,23 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
+from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType(
-    TypedDict
-):
-    """EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationName"""
+class NetworkConfigurationType(TypedDict):
+    """Hosted compute network configuration
 
-    include: NotRequired[list[str]]
-    exclude: NotRequired[list[str]]
+    A hosted compute network configuration.
+    """
+
+    id: str
+    name: str
+    compute_service: NotRequired[Literal["none", "actions", "codespaces"]]
+    network_settings_ids: NotRequired[builtins.list[str]]
+    created_on: Union[datetime, None]
 
 
-__all__ = ("EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType",)
+__all__ = ("NetworkConfigurationType",)

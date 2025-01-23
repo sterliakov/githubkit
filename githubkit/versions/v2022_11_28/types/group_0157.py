@@ -10,31 +10,27 @@ See https://github.com/github/rest-api-description for more information.
 from __future__ import annotations
 
 from typing import Literal
-from typing_extensions import TypedDict
-
-from .group_0002 import SimpleUserType
+from typing_extensions import NotRequired, TypedDict
 
 
-class RepositoryAdvisoryCreditType(TypedDict):
-    """RepositoryAdvisoryCredit
+class RepositoryRuleOneof18Type(TypedDict):
+    """max_file_size
 
-    A credit given to a user for a repository security advisory.
+    Prevent commits that exceed a specified file size limit from being pushed to the
+    commit.
     """
 
-    user: SimpleUserType
-    type: Literal[
-        "analyst",
-        "finder",
-        "reporter",
-        "coordinator",
-        "remediation_developer",
-        "remediation_reviewer",
-        "remediation_verifier",
-        "tool",
-        "sponsor",
-        "other",
-    ]
-    state: Literal["accepted", "declined", "pending"]
+    type: Literal["max_file_size"]
+    parameters: NotRequired[RepositoryRuleOneof18PropParametersType]
 
 
-__all__ = ("RepositoryAdvisoryCreditType",)
+class RepositoryRuleOneof18PropParametersType(TypedDict):
+    """RepositoryRuleOneof18PropParameters"""
+
+    max_file_size: int
+
+
+__all__ = (
+    "RepositoryRuleOneof18PropParametersType",
+    "RepositoryRuleOneof18Type",
+)

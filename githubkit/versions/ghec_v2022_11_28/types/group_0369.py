@@ -9,17 +9,21 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
+from .group_0002 import SimpleUserType
+from .group_0064 import TeamType
 
-class ReleaseNotesContentType(TypedDict):
-    """Generated Release Notes Content
 
-    Generated name and body describing a release
+class PullRequestReviewRequestType(TypedDict):
+    """Pull Request Review Request
+
+    Pull Request Review Request
     """
 
-    name: str
-    body: str
+    users: builtins.list[SimpleUserType]
+    teams: builtins.list[TeamType]
 
 
-__all__ = ("ReleaseNotesContentType",)
+__all__ = ("PullRequestReviewRequestType",)

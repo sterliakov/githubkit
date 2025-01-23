@@ -14,14 +14,10 @@ from .versions import RestVersionSwitcher, WebhooksVersionSwitcher
 if TYPE_CHECKING:
     import httpx
 
-    from .auth import TokenAuthStrategy, UnauthAuthStrategy
     from .cache import BaseCacheStrategy
     from .config import Config
     from .throttling import BaseThrottler
 
-
-A = TypeVar("A", bound=BaseAuthStrategy)
-AS = TypeVar("AS", bound=BaseAuthStrategy)
 
 CP = ParamSpec("CP")
 CT = TypeVar("CT")
@@ -33,12 +29,12 @@ R = Union[
 ]
 
 
-class GitHub(GitHubCore[A]):
+class GitHub(GitHubCore):
     if TYPE_CHECKING:
         # none auth with config
         @overload
         def __init__(
-            self: "GitHub[UnauthAuthStrategy]",
+            self: "GitHub",
             auth: None = None,
             *,
             config: Config,
@@ -47,7 +43,7 @@ class GitHub(GitHubCore[A]):
         # token auth with config
         @overload
         def __init__(
-            self: "GitHub[TokenAuthStrategy]",
+            self: "GitHub",
             auth: str,
             *,
             config: Config,
@@ -56,8 +52,8 @@ class GitHub(GitHubCore[A]):
         # other auth strategies with config
         @overload
         def __init__(
-            self: "GitHub[AS]",
-            auth: AS,
+            self: "GitHub",
+            auth: "BaseAuthStrategy",
             *,
             config: Config,
         ): ...
@@ -65,7 +61,7 @@ class GitHub(GitHubCore[A]):
         # none auth without config
         @overload
         def __init__(
-            self: "GitHub[UnauthAuthStrategy]",
+            self: "GitHub",
             auth: None = None,
             *,
             base_url: Optional[Union[str, httpx.URL]] = None,
@@ -84,7 +80,7 @@ class GitHub(GitHubCore[A]):
         # token auth without config
         @overload
         def __init__(
-            self: "GitHub[TokenAuthStrategy]",
+            self: "GitHub",
             auth: str,
             *,
             base_url: Optional[Union[str, httpx.URL]] = None,
@@ -103,8 +99,8 @@ class GitHub(GitHubCore[A]):
         # other auth strategies without config
         @overload
         def __init__(
-            self: "GitHub[AS]",
-            auth: AS,
+            self: "GitHub",
+            auth: "BaseAuthStrategy",
             *,
             base_url: Optional[Union[str, httpx.URL]] = None,
             accept_format: Optional[str] = None,
@@ -122,7 +118,7 @@ class GitHub(GitHubCore[A]):
         def __init__(self, *args, **kwargs): ...
 
     # copy github instance with other auth
-    def with_auth(self, auth: AS) -> "GitHub[AS]":
+    def with_auth(self, auth: BaseAuthStrategy) -> "GitHub":
         return GitHub(auth=auth, config=self.config.copy())
 
     # rest api

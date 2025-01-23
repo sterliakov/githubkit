@@ -9,13 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-
-class OrgsOrgCopilotBillingSelectedUsersDeleteBodyType(TypedDict):
-    """OrgsOrgCopilotBillingSelectedUsersDeleteBody"""
-
-    selected_usernames: list[str]
+from .group_0153 import MinimalRepositoryType
 
 
-__all__ = ("OrgsOrgCopilotBillingSelectedUsersDeleteBodyType",)
+class OrgsOrgActionsVariablesNameRepositoriesGetResponse200Type(TypedDict):
+    """OrgsOrgActionsVariablesNameRepositoriesGetResponse200"""
+
+    total_count: int
+    repositories: builtins.list[MinimalRepositoryType]
+
+
+__all__ = ("OrgsOrgActionsVariablesNameRepositoriesGetResponse200Type",)

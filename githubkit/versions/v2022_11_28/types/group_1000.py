@@ -9,13 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
+
+from .group_0081 import CodespaceMachineType
 
 
-class ReposOwnerRepoDeploymentsPostResponse202Type(TypedDict):
-    """ReposOwnerRepoDeploymentsPostResponse202"""
+class ReposOwnerRepoCodespacesMachinesGetResponse200Type(TypedDict):
+    """ReposOwnerRepoCodespacesMachinesGetResponse200"""
 
-    message: NotRequired[str]
+    total_count: int
+    machines: builtins.list[CodespaceMachineType]
 
 
-__all__ = ("ReposOwnerRepoDeploymentsPostResponse202Type",)
+__all__ = ("ReposOwnerRepoCodespacesMachinesGetResponse200Type",)

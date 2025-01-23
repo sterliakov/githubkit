@@ -9,15 +9,123 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from datetime import datetime
+from typing import Literal, Union
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0078 import RepositoryRulesetBypassActorType
+from .group_0083 import RepositoryRulesetConditionsType
+from .group_0093 import (
+    RepositoryRuleCreationType,
+    RepositoryRuleDeletionType,
+    RepositoryRuleNonFastForwardType,
+    RepositoryRuleOneof15Type,
+    RepositoryRuleOneof17Type,
+    RepositoryRuleRequiredSignaturesType,
+)
+from .group_0094 import RepositoryRuleUpdateType
+from .group_0096 import (
+    RepositoryRuleOneof16Type,
+    RepositoryRuleRequiredLinearHistoryType,
+)
+from .group_0097 import RepositoryRuleMergeQueueType
+from .group_0099 import RepositoryRuleRequiredDeploymentsType
+from .group_0102 import RepositoryRulePullRequestType
+from .group_0104 import RepositoryRuleRequiredStatusChecksType
+from .group_0106 import RepositoryRuleCommitMessagePatternType
+from .group_0108 import RepositoryRuleCommitAuthorEmailPatternType
+from .group_0110 import RepositoryRuleCommitterEmailPatternType
+from .group_0112 import RepositoryRuleBranchNamePatternType
+from .group_0114 import RepositoryRuleTagNamePatternType
+from .group_0117 import RepositoryRuleWorkflowsType
+from .group_0119 import RepositoryRuleCodeScanningType
+from .group_0121 import RepositoryRuleOneof18Type
+from .group_0124 import OrgRulesetConditionsOneof0Type
+from .group_0125 import OrgRulesetConditionsOneof1Type
+from .group_0126 import OrgRulesetConditionsOneof2Type
 
 
-class CombinedBillingUsageType(TypedDict):
-    """CombinedBillingUsage"""
+class RepositoryRulesetType(TypedDict):
+    """Repository ruleset
 
-    days_left_in_billing_cycle: int
-    estimated_paid_storage_for_month: int
-    estimated_storage_for_month: int
+    A set of rules to apply when specified conditions are met.
+    """
+
+    id: int
+    name: str
+    target: NotRequired[Literal["branch", "tag", "push", "repository"]]
+    source_type: NotRequired[Literal["Repository", "Organization", "Enterprise"]]
+    source: str
+    enforcement: Literal["disabled", "active", "evaluate"]
+    bypass_actors: NotRequired[builtins.list[RepositoryRulesetBypassActorType]]
+    current_user_can_bypass: NotRequired[
+        Literal["always", "pull_requests_only", "never"]
+    ]
+    node_id: NotRequired[str]
+    links: NotRequired[RepositoryRulesetPropLinksType]
+    conditions: NotRequired[
+        Union[
+            RepositoryRulesetConditionsType,
+            OrgRulesetConditionsOneof0Type,
+            OrgRulesetConditionsOneof1Type,
+            OrgRulesetConditionsOneof2Type,
+            None,
+        ]
+    ]
+    rules: NotRequired[
+        builtins.list[
+            Union[
+                RepositoryRuleCreationType,
+                RepositoryRuleUpdateType,
+                RepositoryRuleDeletionType,
+                RepositoryRuleRequiredLinearHistoryType,
+                RepositoryRuleMergeQueueType,
+                RepositoryRuleRequiredDeploymentsType,
+                RepositoryRuleRequiredSignaturesType,
+                RepositoryRulePullRequestType,
+                RepositoryRuleRequiredStatusChecksType,
+                RepositoryRuleNonFastForwardType,
+                RepositoryRuleCommitMessagePatternType,
+                RepositoryRuleCommitAuthorEmailPatternType,
+                RepositoryRuleCommitterEmailPatternType,
+                RepositoryRuleBranchNamePatternType,
+                RepositoryRuleTagNamePatternType,
+                RepositoryRuleOneof15Type,
+                RepositoryRuleOneof16Type,
+                RepositoryRuleOneof17Type,
+                RepositoryRuleOneof18Type,
+                RepositoryRuleWorkflowsType,
+                RepositoryRuleCodeScanningType,
+            ]
+        ]
+    ]
+    created_at: NotRequired[datetime]
+    updated_at: NotRequired[datetime]
 
 
-__all__ = ("CombinedBillingUsageType",)
+class RepositoryRulesetPropLinksType(TypedDict):
+    """RepositoryRulesetPropLinks"""
+
+    self_: NotRequired[RepositoryRulesetPropLinksPropSelfType]
+    html: NotRequired[Union[RepositoryRulesetPropLinksPropHtmlType, None]]
+
+
+class RepositoryRulesetPropLinksPropSelfType(TypedDict):
+    """RepositoryRulesetPropLinksPropSelf"""
+
+    href: NotRequired[str]
+
+
+class RepositoryRulesetPropLinksPropHtmlType(TypedDict):
+    """RepositoryRulesetPropLinksPropHtml"""
+
+    href: NotRequired[str]
+
+
+__all__ = (
+    "RepositoryRulesetPropLinksPropHtmlType",
+    "RepositoryRulesetPropLinksPropSelfType",
+    "RepositoryRulesetPropLinksType",
+    "RepositoryRulesetType",
+)

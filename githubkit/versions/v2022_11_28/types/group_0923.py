@@ -9,13 +9,30 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoActionsJobsJobIdRerunPostBodyType(TypedDict):
-    """ReposOwnerRepoActionsJobsJobIdRerunPostBody"""
+class ProjectsColumnsCardsCardIdMovesPostResponse403Type(TypedDict):
+    """ProjectsColumnsCardsCardIdMovesPostResponse403"""
 
-    enable_debug_logging: NotRequired[bool]
+    message: NotRequired[str]
+    documentation_url: NotRequired[str]
+    errors: NotRequired[
+        builtins.list[ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItemsType]
+    ]
 
 
-__all__ = ("ReposOwnerRepoActionsJobsJobIdRerunPostBodyType",)
+class ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItemsType(TypedDict):
+    """ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItems"""
+
+    code: NotRequired[str]
+    message: NotRequired[str]
+    resource: NotRequired[str]
+    field: NotRequired[str]
+
+
+__all__ = (
+    "ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItemsType",
+    "ProjectsColumnsCardsCardIdMovesPostResponse403Type",
+)

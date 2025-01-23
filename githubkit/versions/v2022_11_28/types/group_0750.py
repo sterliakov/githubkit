@@ -13,19 +13,17 @@ from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0393 import EnterpriseWebhooksType
-from .group_0394 import SimpleInstallationType
-from .group_0395 import OrganizationSimpleWebhooksType
-from .group_0396 import RepositoryWebhooksType
-from .group_0441 import WebhooksSponsorshipType
-from .group_0442 import WebhooksChanges8Type
+from .group_0398 import EnterpriseWebhooksType
+from .group_0399 import SimpleInstallationType
+from .group_0400 import OrganizationSimpleWebhooksType
+from .group_0401 import RepositoryWebhooksType
+from .group_0446 import WebhooksSponsorshipType
 
 
-class WebhookSponsorshipTierChangedType(TypedDict):
-    """sponsorship tier_changed event"""
+class WebhookSponsorshipCancelledType(TypedDict):
+    """sponsorship cancelled event"""
 
-    action: Literal["tier_changed"]
-    changes: WebhooksChanges8Type
+    action: Literal["cancelled"]
     enterprise: NotRequired[EnterpriseWebhooksType]
     installation: NotRequired[SimpleInstallationType]
     organization: NotRequired[OrganizationSimpleWebhooksType]
@@ -34,4 +32,4 @@ class WebhookSponsorshipTierChangedType(TypedDict):
     sponsorship: WebhooksSponsorshipType
 
 
-__all__ = ("WebhookSponsorshipTierChangedType",)
+__all__ = ("WebhookSponsorshipCancelledType",)

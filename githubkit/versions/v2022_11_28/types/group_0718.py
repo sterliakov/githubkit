@@ -13,25 +13,21 @@ from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0154 import RepositoryRulesetType
-from .group_0393 import EnterpriseWebhooksType
-from .group_0394 import SimpleInstallationType
-from .group_0395 import OrganizationSimpleWebhooksType
-from .group_0396 import RepositoryWebhooksType
-from .group_0719 import WebhookRepositoryRulesetEditedPropChangesType
+from .group_0398 import EnterpriseWebhooksType
+from .group_0399 import SimpleInstallationType
+from .group_0400 import OrganizationSimpleWebhooksType
+from .group_0401 import RepositoryWebhooksType
 
 
-class WebhookRepositoryRulesetEditedType(TypedDict):
-    """repository ruleset edited event"""
+class WebhookRepositoryPrivatizedType(TypedDict):
+    """repository privatized event"""
 
-    action: Literal["edited"]
+    action: Literal["privatized"]
     enterprise: NotRequired[EnterpriseWebhooksType]
     installation: NotRequired[SimpleInstallationType]
     organization: NotRequired[OrganizationSimpleWebhooksType]
-    repository: NotRequired[RepositoryWebhooksType]
-    repository_ruleset: RepositoryRulesetType
-    changes: NotRequired[WebhookRepositoryRulesetEditedPropChangesType]
+    repository: RepositoryWebhooksType
     sender: SimpleUserType
 
 
-__all__ = ("WebhookRepositoryRulesetEditedType",)
+__all__ = ("WebhookRepositoryPrivatizedType",)

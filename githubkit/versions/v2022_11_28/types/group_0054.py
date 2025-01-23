@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -20,20 +21,20 @@ class ApiOverviewType(TypedDict):
 
     verifiable_password_authentication: bool
     ssh_key_fingerprints: NotRequired[ApiOverviewPropSshKeyFingerprintsType]
-    ssh_keys: NotRequired[list[str]]
-    hooks: NotRequired[list[str]]
-    github_enterprise_importer: NotRequired[list[str]]
-    web: NotRequired[list[str]]
-    api: NotRequired[list[str]]
-    git: NotRequired[list[str]]
-    packages: NotRequired[list[str]]
-    pages: NotRequired[list[str]]
-    importer: NotRequired[list[str]]
-    actions: NotRequired[list[str]]
-    actions_macos: NotRequired[list[str]]
-    codespaces: NotRequired[list[str]]
-    dependabot: NotRequired[list[str]]
-    copilot: NotRequired[list[str]]
+    ssh_keys: NotRequired[builtins.list[str]]
+    hooks: NotRequired[builtins.list[str]]
+    github_enterprise_importer: NotRequired[builtins.list[str]]
+    web: NotRequired[builtins.list[str]]
+    api: NotRequired[builtins.list[str]]
+    git: NotRequired[builtins.list[str]]
+    packages: NotRequired[builtins.list[str]]
+    pages: NotRequired[builtins.list[str]]
+    importer: NotRequired[builtins.list[str]]
+    actions: NotRequired[builtins.list[str]]
+    actions_macos: NotRequired[builtins.list[str]]
+    codespaces: NotRequired[builtins.list[str]]
+    dependabot: NotRequired[builtins.list[str]]
+    copilot: NotRequired[builtins.list[str]]
     domains: NotRequired[ApiOverviewPropDomainsType]
 
 
@@ -49,11 +50,11 @@ class ApiOverviewPropSshKeyFingerprintsType(TypedDict):
 class ApiOverviewPropDomainsType(TypedDict):
     """ApiOverviewPropDomains"""
 
-    website: NotRequired[list[str]]
-    codespaces: NotRequired[list[str]]
-    copilot: NotRequired[list[str]]
-    packages: NotRequired[list[str]]
-    actions: NotRequired[list[str]]
+    website: NotRequired[builtins.list[str]]
+    codespaces: NotRequired[builtins.list[str]]
+    copilot: NotRequired[builtins.list[str]]
+    packages: NotRequired[builtins.list[str]]
+    actions: NotRequired[builtins.list[str]]
     actions_inbound: NotRequired[ApiOverviewPropDomainsPropActionsInboundType]
     artifact_attestations: NotRequired[
         ApiOverviewPropDomainsPropArtifactAttestationsType
@@ -63,15 +64,15 @@ class ApiOverviewPropDomainsType(TypedDict):
 class ApiOverviewPropDomainsPropActionsInboundType(TypedDict):
     """ApiOverviewPropDomainsPropActionsInbound"""
 
-    full_domains: NotRequired[list[str]]
-    wildcard_domains: NotRequired[list[str]]
+    full_domains: NotRequired[builtins.list[str]]
+    wildcard_domains: NotRequired[builtins.list[str]]
 
 
 class ApiOverviewPropDomainsPropArtifactAttestationsType(TypedDict):
     """ApiOverviewPropDomainsPropArtifactAttestations"""
 
     trust_domain: NotRequired[str]
-    services: NotRequired[list[str]]
+    services: NotRequired[builtins.list[str]]
 
 
 __all__ = (

@@ -9,33 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Literal, Union
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
+
+from .group_0017 import InstallationType
 
 
-class OrgsOrgPrivateRegistriesGetResponse200Type(TypedDict):
-    """OrgsOrgPrivateRegistriesGetResponse200"""
+class OrgsOrgInstallationsGetResponse200Type(TypedDict):
+    """OrgsOrgInstallationsGetResponse200"""
 
     total_count: int
-    configurations: list[OrgPrivateRegistryConfigurationType]
+    installations: builtins.list[InstallationType]
 
 
-class OrgPrivateRegistryConfigurationType(TypedDict):
-    """Organization private registry
-
-    Private registry configuration for an organization
-    """
-
-    name: str
-    registry_type: Literal["maven_repository"]
-    username: NotRequired[Union[str, None]]
-    visibility: Literal["all", "private", "selected"]
-    created_at: datetime
-    updated_at: datetime
-
-
-__all__ = (
-    "OrgPrivateRegistryConfigurationType",
-    "OrgsOrgPrivateRegistriesGetResponse200Type",
-)
+__all__ = ("OrgsOrgInstallationsGetResponse200Type",)

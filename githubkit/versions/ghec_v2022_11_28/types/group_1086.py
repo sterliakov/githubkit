@@ -9,14 +9,71 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoDependabotSecretsSecretNamePutBodyType(TypedDict):
-    """ReposOwnerRepoDependabotSecretsSecretNamePutBody"""
+class ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputType(TypedDict):
+    """ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutput
 
-    encrypted_value: NotRequired[str]
-    key_id: NotRequired[str]
+    Check runs can accept a variety of data in the `output` object, including a
+    `title` and `summary` and can optionally provide descriptive details about the
+    run.
+    """
+
+    title: NotRequired[str]
+    summary: str
+    text: NotRequired[str]
+    annotations: NotRequired[
+        builtins.list[
+            ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropAnnotationsItemsType
+        ]
+    ]
+    images: NotRequired[
+        builtins.list[
+            ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropImagesItemsType
+        ]
+    ]
 
 
-__all__ = ("ReposOwnerRepoDependabotSecretsSecretNamePutBodyType",)
+class ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropAnnotationsItemsType(
+    TypedDict
+):
+    """ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropAnnotationsItems"""
+
+    path: str
+    start_line: int
+    end_line: int
+    start_column: NotRequired[int]
+    end_column: NotRequired[int]
+    annotation_level: Literal["notice", "warning", "failure"]
+    message: str
+    title: NotRequired[str]
+    raw_details: NotRequired[str]
+
+
+class ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropImagesItemsType(
+    TypedDict
+):
+    """ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropImagesItems"""
+
+    alt: str
+    image_url: str
+    caption: NotRequired[str]
+
+
+class ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType(TypedDict):
+    """ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItems"""
+
+    label: str
+    description: str
+    identifier: str
+
+
+__all__ = (
+    "ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType",
+    "ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropAnnotationsItemsType",
+    "ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputPropImagesItemsType",
+    "ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputType",
+)

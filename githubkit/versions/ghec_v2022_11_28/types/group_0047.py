@@ -14,19 +14,16 @@ from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class GetAuditLogStreamConfigType(TypedDict):
-    """Get an audit log streaming configuration
+class GetAuditLogStreamConfigsItemsType(TypedDict):
+    """GetAuditLogStreamConfigsItems"""
 
-    Get an audit log streaming configuration for an enterprise.
-    """
-
-    id: int
-    stream_type: str
-    stream_details: str
-    enabled: bool
-    created_at: datetime
-    updated_at: datetime
+    id: NotRequired[int]
+    stream_type: NotRequired[str]
+    stream_details: NotRequired[str]
+    enabled: NotRequired[bool]
+    created_at: NotRequired[datetime]
+    updated_at: NotRequired[datetime]
     paused_at: NotRequired[Union[datetime, None]]
 
 
-__all__ = ("GetAuditLogStreamConfigType",)
+__all__ = ("GetAuditLogStreamConfigsItemsType",)

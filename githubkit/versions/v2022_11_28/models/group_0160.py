@@ -9,25 +9,101 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
+from typing import Literal, Union
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class PackagesBillingUsage(GitHubModel):
-    """PackagesBillingUsage"""
+class RuleSuite(GitHubModel):
+    """Rule Suite
 
-    total_gigabytes_bandwidth_used: int = Field(
-        description="Sum of the free and paid storage space (GB) for GitHuub Packages."
+    Response
+    """
+
+    id: Missing[int] = Field(
+        default=UNSET, description="The unique identifier of the rule insight."
     )
-    total_paid_gigabytes_bandwidth_used: int = Field(
-        description="Total paid storage space (GB) for GitHuub Packages."
+    actor_id: Missing[Union[int, None]] = Field(
+        default=UNSET, description="The number that identifies the user."
     )
-    included_gigabytes_bandwidth: int = Field(
-        description="Free storage space (GB) for GitHub Packages."
+    actor_name: Missing[Union[str, None]] = Field(
+        default=UNSET, description="The handle for the GitHub user account."
+    )
+    before_sha: Missing[str] = Field(
+        default=UNSET, description="The first commit sha before the push evaluation."
+    )
+    after_sha: Missing[str] = Field(
+        default=UNSET, description="The last commit sha in the push evaluation."
+    )
+    ref: Missing[str] = Field(
+        default=UNSET, description="The ref name that the evaluation ran on."
+    )
+    repository_id: Missing[int] = Field(
+        default=UNSET,
+        description="The ID of the repository associated with the rule evaluation.",
+    )
+    repository_name: Missing[str] = Field(
+        default=UNSET,
+        description="The name of the repository without the `.git` extension.",
+    )
+    pushed_at: Missing[datetime] = Field(default=UNSET)
+    result: Missing[Literal["pass", "fail", "bypass"]] = Field(
+        default=UNSET,
+        description="The result of the rule evaluations for rules with the `active` enforcement status.",
+    )
+    evaluation_result: Missing[Union[None, Literal["pass", "fail", "bypass"]]] = Field(
+        default=UNSET,
+        description="The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`. Null if no rules with `evaluate` enforcement status were run.",
+    )
+    rule_evaluations: Missing[builtins.list[RuleSuitePropRuleEvaluationsItems]] = Field(
+        default=UNSET, description="Details on the evaluated rules."
     )
 
 
-model_rebuild(PackagesBillingUsage)
+class RuleSuitePropRuleEvaluationsItems(GitHubModel):
+    """RuleSuitePropRuleEvaluationsItems"""
 
-__all__ = ("PackagesBillingUsage",)
+    rule_source: Missing[RuleSuitePropRuleEvaluationsItemsPropRuleSource] = Field(
+        default=UNSET
+    )
+    enforcement: Missing[Literal["active", "evaluate", "deleted ruleset"]] = Field(
+        default=UNSET, description="The enforcement level of this rule source."
+    )
+    result: Missing[Literal["pass", "fail"]] = Field(
+        default=UNSET,
+        description="The result of the evaluation of the individual rule.",
+    )
+    rule_type: Missing[str] = Field(default=UNSET, description="The type of rule.")
+    details: Missing[Union[str, None]] = Field(
+        default=UNSET,
+        description="The detailed failure message for the rule. Null if the rule passed.",
+    )
+
+
+class RuleSuitePropRuleEvaluationsItemsPropRuleSource(GitHubModel):
+    """RuleSuitePropRuleEvaluationsItemsPropRuleSource"""
+
+    type: Missing[str] = Field(default=UNSET, description="The type of rule source.")
+    id: Missing[Union[int, None]] = Field(
+        default=UNSET, description="The ID of the rule source."
+    )
+    name: Missing[Union[str, None]] = Field(
+        default=UNSET, description="The name of the rule source."
+    )
+
+
+model_rebuild(RuleSuite)
+model_rebuild(RuleSuitePropRuleEvaluationsItems)
+model_rebuild(RuleSuitePropRuleEvaluationsItemsPropRuleSource)
+
+__all__ = (
+    "RuleSuite",
+    "RuleSuitePropRuleEvaluationsItems",
+    "RuleSuitePropRuleEvaluationsItemsPropRuleSource",
+)

@@ -9,13 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-
-class ReposOwnerRepoBranchesBranchRenamePostBodyType(TypedDict):
-    """ReposOwnerRepoBranchesBranchRenamePostBody"""
-
-    new_name: str
+from .group_0222 import ActionsSecretType
 
 
-__all__ = ("ReposOwnerRepoBranchesBranchRenamePostBodyType",)
+class ReposOwnerRepoActionsSecretsGetResponse200Type(TypedDict):
+    """ReposOwnerRepoActionsSecretsGetResponse200"""
+
+    total_count: int
+    secrets: builtins.list[ActionsSecretType]
+
+
+__all__ = ("ReposOwnerRepoActionsSecretsGetResponse200Type",)

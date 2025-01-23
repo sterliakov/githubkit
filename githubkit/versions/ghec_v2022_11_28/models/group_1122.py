@@ -9,22 +9,37 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
+from .group_0316 import CustomDeploymentRuleApp
 
-class ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBody(GitHubModel):
-    """ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBody"""
 
-    assignees: Missing[list[str]] = Field(
+class ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesAppsGetResponse200(
+    GitHubModel
+):
+    """ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesAppsGetRespons
+    e200
+    """
+
+    total_count: Missing[int] = Field(
         default=UNSET,
-        description="Usernames of assignees to remove from an issue. _NOTE: Only users with push access can remove assignees from an issue. Assignees are silently ignored otherwise._",
+        description="The total number of custom deployment protection rule integrations available for this environment.",
     )
+    available_custom_deployment_protection_rule_integrations: Missing[
+        builtins.list[CustomDeploymentRuleApp]
+    ] = Field(default=UNSET)
 
 
-model_rebuild(ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBody)
+model_rebuild(
+    ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesAppsGetResponse200
+)
 
-__all__ = ("ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBody",)
+__all__ = (
+    "ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesAppsGetResponse200",
+)

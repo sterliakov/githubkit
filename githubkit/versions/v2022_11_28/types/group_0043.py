@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -24,7 +25,7 @@ class FeedType(TypedDict):
     current_user_url: NotRequired[str]
     current_user_actor_url: NotRequired[str]
     current_user_organization_url: NotRequired[str]
-    current_user_organization_urls: NotRequired[list[str]]
+    current_user_organization_urls: NotRequired[builtins.list[str]]
     security_advisories_url: NotRequired[str]
     repository_discussions_url: NotRequired[str]
     repository_discussions_category_url: NotRequired[str]
@@ -41,7 +42,7 @@ class FeedPropLinksType(TypedDict):
     current_user_public: NotRequired[LinkWithTypeType]
     current_user_actor: NotRequired[LinkWithTypeType]
     current_user_organization: NotRequired[LinkWithTypeType]
-    current_user_organizations: NotRequired[list[LinkWithTypeType]]
+    current_user_organizations: NotRequired[builtins.list[LinkWithTypeType]]
     repository_discussions: NotRequired[LinkWithTypeType]
     repository_discussions_category: NotRequired[LinkWithTypeType]
 

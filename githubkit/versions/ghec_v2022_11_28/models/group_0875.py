@@ -9,39 +9,24 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
-
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
-from .group_0053 import CodeSecurityConfiguration
+from .group_0040 import Runner
 
 
-class EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200(
-    GitHubModel
-):
-    """EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutRespons
-    e200
-    """
+class EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201(GitHubModel):
+    """EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201"""
 
-    default_for_new_repos: Missing[
-        Literal["all", "none", "private_and_internal", "public"]
-    ] = Field(
-        default=UNSET,
-        description="Specifies which types of repository this security configuration is applied to by default.",
+    runner: Runner = Field(
+        title="Self hosted runners", description="A self hosted runner"
     )
-    configuration: Missing[CodeSecurityConfiguration] = Field(
-        default=UNSET, description="A code security configuration"
+    encoded_jit_config: str = Field(
+        description="The base64 encoded runner configuration."
     )
 
 
-model_rebuild(
-    EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200
-)
+model_rebuild(EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201)
 
-__all__ = (
-    "EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200",
-)
+__all__ = ("EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201",)

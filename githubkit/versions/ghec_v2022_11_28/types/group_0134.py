@@ -9,55 +9,33 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class FeedType(TypedDict):
-    """Feed
+class BillingUsageReportType(TypedDict):
+    """BillingUsageReport"""
 
-    Feed
-    """
-
-    timeline_url: str
-    user_url: str
-    current_user_public_url: NotRequired[str]
-    current_user_url: NotRequired[str]
-    current_user_actor_url: NotRequired[str]
-    current_user_organization_url: NotRequired[str]
-    current_user_organization_urls: NotRequired[list[str]]
-    security_advisories_url: NotRequired[str]
-    repository_discussions_url: NotRequired[str]
-    repository_discussions_category_url: NotRequired[str]
-    links: FeedPropLinksType
+    usage_items: NotRequired[builtins.list[BillingUsageReportPropUsageItemsItemsType]]
 
 
-class FeedPropLinksType(TypedDict):
-    """FeedPropLinks"""
+class BillingUsageReportPropUsageItemsItemsType(TypedDict):
+    """BillingUsageReportPropUsageItemsItems"""
 
-    timeline: LinkWithTypeType
-    user: LinkWithTypeType
-    security_advisories: NotRequired[LinkWithTypeType]
-    current_user: NotRequired[LinkWithTypeType]
-    current_user_public: NotRequired[LinkWithTypeType]
-    current_user_actor: NotRequired[LinkWithTypeType]
-    current_user_organization: NotRequired[LinkWithTypeType]
-    current_user_organizations: NotRequired[list[LinkWithTypeType]]
-    repository_discussions: NotRequired[LinkWithTypeType]
-    repository_discussions_category: NotRequired[LinkWithTypeType]
-
-
-class LinkWithTypeType(TypedDict):
-    """Link With Type
-
-    Hypermedia Link with Type
-    """
-
-    href: str
-    type: str
+    date: str
+    product: str
+    sku: str
+    quantity: int
+    unit_type: str
+    price_per_unit: float
+    gross_amount: float
+    discount_amount: float
+    net_amount: float
+    organization_name: str
+    repository_name: NotRequired[str]
 
 
 __all__ = (
-    "FeedPropLinksType",
-    "FeedType",
-    "LinkWithTypeType",
+    "BillingUsageReportPropUsageItemsItemsType",
+    "BillingUsageReportType",
 )

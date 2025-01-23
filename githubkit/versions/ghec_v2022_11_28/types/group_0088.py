@@ -9,20 +9,14 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0089 import RepositoryRuleUpdatePropParametersType
+
+class EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType(TypedDict):
+    """EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId"""
+
+    organization_ids: NotRequired[builtins.list[int]]
 
 
-class RepositoryRuleUpdateType(TypedDict):
-    """update
-
-    Only allow users with bypass permission to update matching refs.
-    """
-
-    type: Literal["update"]
-    parameters: NotRequired[RepositoryRuleUpdatePropParametersType]
-
-
-__all__ = ("RepositoryRuleUpdateType",)
+__all__ = ("EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType",)

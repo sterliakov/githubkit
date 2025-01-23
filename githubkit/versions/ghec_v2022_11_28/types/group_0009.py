@@ -9,20 +9,42 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
+from .group_0002 import SimpleUserType
+from .group_0007 import EnterpriseType
+from .group_0008 import IntegrationPropPermissionsType
 
-class WebhookConfigType(TypedDict):
-    """Webhook Configuration
 
-    Configuration object of the webhook
+class IntegrationType(TypedDict):
+    """GitHub app
+
+    GitHub apps are a new way to extend GitHub. They can be installed directly on
+    organizations and user accounts and granted access to specific repositories.
+    They come with granular permissions and built-in webhooks. GitHub apps are first
+    class actors within GitHub.
     """
 
-    url: NotRequired[str]
-    content_type: NotRequired[str]
-    secret: NotRequired[str]
-    insecure_ssl: NotRequired[Union[str, float]]
+    id: int
+    slug: NotRequired[str]
+    node_id: str
+    client_id: NotRequired[str]
+    owner: Union[SimpleUserType, EnterpriseType]
+    name: str
+    description: Union[str, None]
+    external_url: str
+    html_url: str
+    created_at: datetime
+    updated_at: datetime
+    permissions: IntegrationPropPermissionsType
+    events: builtins.list[str]
+    installations_count: NotRequired[int]
+    client_secret: NotRequired[str]
+    webhook_secret: NotRequired[Union[str, None]]
+    pem: NotRequired[str]
 
 
-__all__ = ("WebhookConfigType",)
+__all__ = ("IntegrationType",)

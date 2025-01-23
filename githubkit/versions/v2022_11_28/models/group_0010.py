@@ -9,7 +9,6 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Union
 
 from pydantic import Field
@@ -19,42 +18,26 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class HookDeliveryItem(GitHubModel):
-    """Simple webhook delivery
+class WebhookConfig(GitHubModel):
+    """Webhook Configuration
 
-    Delivery made by a webhook, without request and response information.
+    Configuration object of the webhook
     """
 
-    id: int = Field(description="Unique identifier of the webhook delivery.")
-    guid: str = Field(
-        description="Unique identifier for the event (shared with all deliveries for all webhooks that subscribe to this event)."
+    url: Missing[str] = Field(
+        default=UNSET, description="The URL to which the payloads will be delivered."
     )
-    delivered_at: datetime = Field(
-        description="Time when the webhook delivery occurred."
+    content_type: Missing[str] = Field(
+        default=UNSET,
+        description="The media type used to serialize the payloads. Supported values include `json` and `form`. The default is `form`.",
     )
-    redelivery: bool = Field(
-        description="Whether the webhook delivery is a redelivery."
+    secret: Missing[str] = Field(
+        default=UNSET,
+        description="If provided, the `secret` will be used as the `key` to generate the HMAC hex digest value for [delivery signature headers](https://docs.github.com/webhooks/event-payloads/#delivery-headers).",
     )
-    duration: float = Field(description="Time spent delivering.")
-    status: str = Field(
-        description="Describes the response returned after attempting the delivery."
-    )
-    status_code: int = Field(description="Status code received when delivery was made.")
-    event: str = Field(description="The event that triggered the delivery.")
-    action: Union[str, None] = Field(
-        description="The type of activity for the event that triggered the delivery."
-    )
-    installation_id: Union[int, None] = Field(
-        description="The id of the GitHub App installation associated with this event."
-    )
-    repository_id: Union[int, None] = Field(
-        description="The id of the repository associated with this event."
-    )
-    throttled_at: Missing[Union[datetime, None]] = Field(
-        default=UNSET, description="Time when the webhook delivery was throttled."
-    )
+    insecure_ssl: Missing[Union[str, float]] = Field(default=UNSET)
 
 
-model_rebuild(HookDeliveryItem)
+model_rebuild(WebhookConfig)
 
-__all__ = ("HookDeliveryItem",)
+__all__ = ("WebhookConfig",)

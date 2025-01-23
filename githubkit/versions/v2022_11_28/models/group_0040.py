@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 
@@ -19,7 +20,7 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
-from .group_0008 import Integration
+from .group_0009 import Integration
 from .group_0019 import Repository
 from .group_0038 import Milestone
 from .group_0039 import ReactionRollup
@@ -52,11 +53,11 @@ class Issue(GitHubModel):
         default=UNSET, description="Contents of the issue"
     )
     user: Union[None, SimpleUser] = Field()
-    labels: list[Union[str, IssuePropLabelsItemsOneof1]] = Field(
+    labels: builtins.list[Union[str, IssuePropLabelsItemsOneof1]] = Field(
         description="Labels to associate with this issue; pass one or more label names to replace the set of labels on this issue; send an empty array to clear all labels from the issue; note that the labels are silently dropped for users without push access to the repository"
     )
     assignee: Union[None, SimpleUser] = Field()
-    assignees: Missing[Union[list[SimpleUser], None]] = Field(default=UNSET)
+    assignees: Missing[Union[builtins.list[SimpleUser], None]] = Field(default=UNSET)
     milestone: Union[None, Milestone] = Field()
     locked: bool = Field()
     active_lock_reason: Missing[Union[str, None]] = Field(default=UNSET)

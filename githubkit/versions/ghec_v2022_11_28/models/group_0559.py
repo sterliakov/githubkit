@@ -18,19 +18,17 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
-from .group_0444 import EnterpriseWebhooks
-from .group_0445 import SimpleInstallation
-from .group_0446 import OrganizationSimpleWebhooks
-from .group_0447 import RepositoryWebhooks
-from .group_0459 import Discussion
-from .group_0560 import WebhookDiscussionTransferredPropChanges
+from .group_0450 import EnterpriseWebhooks
+from .group_0451 import SimpleInstallation
+from .group_0452 import OrganizationSimpleWebhooks
+from .group_0453 import RepositoryWebhooks
+from .group_0465 import Discussion
 
 
-class WebhookDiscussionTransferred(GitHubModel):
-    """discussion transferred event"""
+class WebhookDiscussionDeleted(GitHubModel):
+    """discussion deleted event"""
 
-    action: Literal["transferred"] = Field()
-    changes: WebhookDiscussionTransferredPropChanges = Field()
+    action: Literal["deleted"] = Field()
     discussion: Discussion = Field(
         title="Discussion", description="A Discussion in a repository."
     )
@@ -56,6 +54,6 @@ class WebhookDiscussionTransferred(GitHubModel):
     sender: SimpleUser = Field(title="Simple User", description="A GitHub user.")
 
 
-model_rebuild(WebhookDiscussionTransferred)
+model_rebuild(WebhookDiscussionDeleted)
 
-__all__ = ("WebhookDiscussionTransferred",)
+__all__ = ("WebhookDiscussionDeleted",)

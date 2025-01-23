@@ -9,19 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
-from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
+from githubkit.compat import PYDANTIC_V2, GitHubModel, model_rebuild
+
+from .group_0076 import CustomProperty
 
 
-class NotificationsPutResponse202(GitHubModel):
-    """NotificationsPutResponse202"""
+class EnterprisesEnterprisePropertiesSchemaPatchBody(GitHubModel):
+    """EnterprisesEnterprisePropertiesSchemaPatchBody"""
 
-    message: Missing[str] = Field(default=UNSET)
+    properties: builtins.list[CustomProperty] = Field(
+        max_length=100 if PYDANTIC_V2 else None,
+        min_length=1 if PYDANTIC_V2 else None,
+        description="The array of custom properties to create or update.",
+    )
 
 
-model_rebuild(NotificationsPutResponse202)
+model_rebuild(EnterprisesEnterprisePropertiesSchemaPatchBody)
 
-__all__ = ("NotificationsPutResponse202",)
+__all__ = ("EnterprisesEnterprisePropertiesSchemaPatchBody",)

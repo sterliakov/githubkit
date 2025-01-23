@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Any, Union
 from typing_extensions import NotRequired, TypeAlias, TypedDict
@@ -23,8 +24,8 @@ class GistSimpleType(TypedDict):
     Gist Simple
     """
 
-    forks: NotRequired[Union[list[GistSimplePropForksItemsType], None]]
-    history: NotRequired[Union[list[GistHistoryType], None]]
+    forks: NotRequired[Union[builtins.list[GistSimplePropForksItemsType], None]]
+    history: NotRequired[Union[builtins.list[GistHistoryType], None]]
     fork_of: NotRequired[Union[GistSimplePropForkOfType, None]]
     url: NotRequired[str]
     forks_url: NotRequired[str]

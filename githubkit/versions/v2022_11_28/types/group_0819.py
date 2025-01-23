@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0069 import RunnerType
+from .group_0065 import ActionsHostedRunnerImageType
 
 
-class OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersGetResponse200Type(TypedDict):
-    """OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersGetResponse200"""
+class OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200Type(TypedDict):
+    """OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200"""
 
-    total_count: float
-    runners: list[RunnerType]
+    total_count: int
+    images: builtins.list[ActionsHostedRunnerImageType]
 
 
-__all__ = ("OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersGetResponse200Type",)
+__all__ = ("OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200Type",)

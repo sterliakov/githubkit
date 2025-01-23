@@ -13,35 +13,35 @@ from typing import Literal, Union
 from typing_extensions import TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0008 import IntegrationType
+from .group_0009 import IntegrationType
 
 
-class RenamedIssueEventType(TypedDict):
-    """Renamed Issue Event
+class LabeledIssueEventType(TypedDict):
+    """Labeled Issue Event
 
-    Renamed Issue Event
+    Labeled Issue Event
     """
 
     id: int
     node_id: str
     url: str
     actor: SimpleUserType
-    event: Literal["renamed"]
+    event: Literal["labeled"]
     commit_id: Union[str, None]
     commit_url: Union[str, None]
     created_at: str
     performed_via_github_app: Union[None, IntegrationType, None]
-    rename: RenamedIssueEventPropRenameType
+    label: LabeledIssueEventPropLabelType
 
 
-class RenamedIssueEventPropRenameType(TypedDict):
-    """RenamedIssueEventPropRename"""
+class LabeledIssueEventPropLabelType(TypedDict):
+    """LabeledIssueEventPropLabel"""
 
-    from_: str
-    to: str
+    name: str
+    color: str
 
 
 __all__ = (
-    "RenamedIssueEventPropRenameType",
-    "RenamedIssueEventType",
+    "LabeledIssueEventPropLabelType",
+    "LabeledIssueEventType",
 )

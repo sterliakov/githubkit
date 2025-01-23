@@ -9,29 +9,47 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Literal
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
-
-from .group_0409 import Meta
-from .group_0419 import ScimEnterpriseUserResponseAllof1PropGroupsItems
 
 
-class ScimEnterpriseUserResponseAllof1(GitHubModel):
-    """ScimEnterpriseUserResponseAllof1"""
+class Group(GitHubModel):
+    """Group"""
 
-    id: str = Field(description="The internally generated id for the user object.")
-    groups: Missing[list[ScimEnterpriseUserResponseAllof1PropGroupsItems]] = Field(
-        default=UNSET,
-        description="Provisioned SCIM groups that the user is a member of.",
+    schemas: builtins.list[Literal["urn:ietf:params:scim:schemas:core:2.0:Group"]] = (
+        Field(
+            description="The URIs that are used to indicate the namespaces of the SCIM schemas."
+        )
     )
-    meta: Meta = Field(
-        description="The metadata associated with the creation/updates to the user."
+    external_id: str = Field(
+        alias="externalId",
+        description="A unique identifier for the resource as defined by the provisioning client.",
+    )
+    display_name: str = Field(
+        alias="displayName", description="A human-readable name for a security group."
+    )
+    members: builtins.list[GroupPropMembersItems] = Field(
+        description="The group members."
     )
 
 
-model_rebuild(ScimEnterpriseUserResponseAllof1)
+class GroupPropMembersItems(GitHubModel):
+    """GroupPropMembersItems"""
 
-__all__ = ("ScimEnterpriseUserResponseAllof1",)
+    value: str = Field(description="The local unique identifier for the member")
+    display_name: str = Field(
+        alias="displayName", description="The display name associated with the member"
+    )
+
+
+model_rebuild(Group)
+model_rebuild(GroupPropMembersItems)
+
+__all__ = (
+    "Group",
+    "GroupPropMembersItems",
+)

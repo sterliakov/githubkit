@@ -9,41 +9,20 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal, Union
-from typing_extensions import TypedDict
-
-from .group_0044 import (
-    AmazonS3AccessKeysConfigType,
-    AzureBlobConfigType,
-    AzureHubConfigType,
-    GoogleCloudConfigType,
-)
-from .group_0045 import AmazonS3OidcConfigType, SplunkConfigType
-from .group_0046 import DatadogConfigType
+from typing_extensions import NotRequired, TypedDict
 
 
-class EnterprisesEnterpriseAuditLogStreamsStreamIdPutBodyType(TypedDict):
-    """EnterprisesEnterpriseAuditLogStreamsStreamIdPutBody"""
+class EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdPatchBodyType(TypedDict):
+    """EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdPatchBody"""
 
-    enabled: bool
-    stream_type: Literal[
-        "Azure Blob Storage",
-        "Azure Event Hubs",
-        "Amazon S3",
-        "Splunk",
-        "HTTPS Event Collector",
-        "Google Cloud Storage",
-        "Datadog",
-    ]
-    vendor_specific: Union[
-        AzureBlobConfigType,
-        AzureHubConfigType,
-        AmazonS3OidcConfigType,
-        AmazonS3AccessKeysConfigType,
-        SplunkConfigType,
-        GoogleCloudConfigType,
-        DatadogConfigType,
-    ]
+    name: NotRequired[str]
+    visibility: NotRequired[Literal["selected", "all"]]
+    allows_public_repositories: NotRequired[bool]
+    restricted_to_workflows: NotRequired[bool]
+    selected_workflows: NotRequired[builtins.list[str]]
+    network_configuration_id: NotRequired[Union[str, None]]
 
 
-__all__ = ("EnterprisesEnterpriseAuditLogStreamsStreamIdPutBodyType",)
+__all__ = ("EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdPatchBodyType",)

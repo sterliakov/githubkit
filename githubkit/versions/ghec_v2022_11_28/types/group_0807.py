@@ -9,30 +9,15 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0002 import SimpleUserType
-from .group_0444 import EnterpriseWebhooksType
-from .group_0445 import SimpleInstallationType
-from .group_0446 import OrganizationSimpleWebhooksType
-from .group_0447 import RepositoryWebhooksType
-from .group_0494 import WebhooksSponsorshipType
-from .group_0495 import WebhooksChanges8Type
+from .group_0808 import WebhookSecurityAndAnalysisPropChangesPropFromType
 
 
-class WebhookSponsorshipPendingTierChangeType(TypedDict):
-    """sponsorship pending_tier_change event"""
+class WebhookSecurityAndAnalysisPropChangesType(TypedDict):
+    """WebhookSecurityAndAnalysisPropChanges"""
 
-    action: Literal["pending_tier_change"]
-    changes: WebhooksChanges8Type
-    effective_date: NotRequired[str]
-    enterprise: NotRequired[EnterpriseWebhooksType]
-    installation: NotRequired[SimpleInstallationType]
-    organization: NotRequired[OrganizationSimpleWebhooksType]
-    repository: NotRequired[RepositoryWebhooksType]
-    sender: SimpleUserType
-    sponsorship: WebhooksSponsorshipType
+    from_: NotRequired[WebhookSecurityAndAnalysisPropChangesPropFromType]
 
 
-__all__ = ("WebhookSponsorshipPendingTierChangeType",)
+__all__ = ("WebhookSecurityAndAnalysisPropChangesType",)

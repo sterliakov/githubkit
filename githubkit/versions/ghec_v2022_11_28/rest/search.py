@@ -90,7 +90,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -134,7 +134,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -173,7 +173,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -207,7 +207,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -260,7 +260,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -318,7 +318,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -359,7 +359,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -400,7 +400,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -447,7 +447,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -493,7 +493,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -527,7 +527,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -557,7 +557,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -595,7 +595,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -637,7 +637,7 @@ class SearchClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),

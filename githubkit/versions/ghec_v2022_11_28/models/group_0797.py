@@ -18,17 +18,18 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
-from .group_0444 import EnterpriseWebhooks
-from .group_0445 import SimpleInstallation
-from .group_0446 import OrganizationSimpleWebhooks
-from .group_0447 import RepositoryWebhooks
-from .group_0493 import WebhooksSecurityAdvisory
+from .group_0450 import EnterpriseWebhooks
+from .group_0451 import SimpleInstallation
+from .group_0452 import OrganizationSimpleWebhooks
+from .group_0453 import RepositoryWebhooks
+from .group_0498 import SecretScanningAlertWebhook
 
 
-class WebhookSecurityAdvisoryUpdated(GitHubModel):
-    """security_advisory updated event"""
+class WebhookSecretScanningAlertPubliclyLeaked(GitHubModel):
+    """secret_scanning_alert publicly leaked event"""
 
-    action: Literal["updated"] = Field()
+    action: Literal["publicly_leaked"] = Field()
+    alert: SecretScanningAlertWebhook = Field()
     enterprise: Missing[EnterpriseWebhooks] = Field(
         default=UNSET,
         title="Enterprise",
@@ -44,19 +45,15 @@ class WebhookSecurityAdvisoryUpdated(GitHubModel):
         title="Organization Simple",
         description="A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.",
     )
-    repository: Missing[RepositoryWebhooks] = Field(
-        default=UNSET,
+    repository: RepositoryWebhooks = Field(
         title="Repository",
         description="The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property\nwhen the event occurs from activity in a repository.",
-    )
-    security_advisory: WebhooksSecurityAdvisory = Field(
-        description="The details of the security advisory, including summary, description, and severity."
     )
     sender: Missing[SimpleUser] = Field(
         default=UNSET, title="Simple User", description="A GitHub user."
     )
 
 
-model_rebuild(WebhookSecurityAdvisoryUpdated)
+model_rebuild(WebhookSecretScanningAlertPubliclyLeaked)
 
-__all__ = ("WebhookSecurityAdvisoryUpdated",)
+__all__ = ("WebhookSecretScanningAlertPubliclyLeaked",)

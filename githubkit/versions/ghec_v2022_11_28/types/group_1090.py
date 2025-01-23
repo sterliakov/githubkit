@@ -9,22 +9,30 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBodyType(TypedDict):
-    """ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody"""
+class ReposOwnerRepoCheckSuitesPreferencesPatchBodyType(TypedDict):
+    """ReposOwnerRepoCheckSuitesPreferencesPatchBody"""
 
-    state: Literal[
-        "error", "failure", "inactive", "in_progress", "queued", "pending", "success"
+    auto_trigger_checks: NotRequired[
+        builtins.list[
+            ReposOwnerRepoCheckSuitesPreferencesPatchBodyPropAutoTriggerChecksItemsType
+        ]
     ]
-    target_url: NotRequired[str]
-    log_url: NotRequired[str]
-    description: NotRequired[str]
-    environment: NotRequired[str]
-    environment_url: NotRequired[str]
-    auto_inactive: NotRequired[bool]
 
 
-__all__ = ("ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBodyType",)
+class ReposOwnerRepoCheckSuitesPreferencesPatchBodyPropAutoTriggerChecksItemsType(
+    TypedDict
+):
+    """ReposOwnerRepoCheckSuitesPreferencesPatchBodyPropAutoTriggerChecksItems"""
+
+    app_id: int
+    setting: bool
+
+
+__all__ = (
+    "ReposOwnerRepoCheckSuitesPreferencesPatchBodyPropAutoTriggerChecksItemsType",
+    "ReposOwnerRepoCheckSuitesPreferencesPatchBodyType",
+)

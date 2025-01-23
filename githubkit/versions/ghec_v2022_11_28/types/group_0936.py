@@ -9,13 +9,14 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
 
-class OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBodyType(TypedDict):
-    """OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBody"""
+class OrgsOrgActionsRunnersRunnerIdLabelsPostBodyType(TypedDict):
+    """OrgsOrgActionsRunnersRunnerIdLabelsPostBody"""
 
-    selected_repository_ids: list[int]
+    labels: builtins.list[str]
 
 
-__all__ = ("OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBodyType",)
+__all__ = ("OrgsOrgActionsRunnersRunnerIdLabelsPostBodyType",)

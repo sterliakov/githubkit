@@ -12,21 +12,32 @@ from __future__ import annotations
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-
-from .group_0076 import (
-    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName,
-)
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class RepositoryRulesetConditionsRepositoryNameTarget(GitHubModel):
-    """Repository ruleset conditions for repository names
+class NetworkSettings(GitHubModel):
+    """Hosted compute network settings resource
 
-    Parameters for a repository name condition
+    A hosted compute network settings resource.
     """
 
-    repository_name: RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName = Field()
+    id: str = Field(
+        description="The unique identifier of the network settings resource."
+    )
+    network_configuration_id: Missing[str] = Field(
+        default=UNSET,
+        description="The identifier of the network configuration that is using this settings resource.",
+    )
+    name: str = Field(description="The name of the network settings resource.")
+    subnet_id: str = Field(
+        description="The subnet this network settings resource is configured for."
+    )
+    region: str = Field(
+        description="The location of the subnet this network settings resource is configured for."
+    )
 
 
-model_rebuild(RepositoryRulesetConditionsRepositoryNameTarget)
+model_rebuild(NetworkSettings)
 
-__all__ = ("RepositoryRulesetConditionsRepositoryNameTarget",)
+__all__ = ("NetworkSettings",)

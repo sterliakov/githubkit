@@ -9,17 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0313 import EnvironmentPropProtectionRulesItemsAnyof1PropReviewersItemsType
 
 
-class ShortBlobType(TypedDict):
-    """Short Blob
+class EnvironmentPropProtectionRulesItemsAnyof1Type(TypedDict):
+    """EnvironmentPropProtectionRulesItemsAnyof1"""
 
-    Short Blob
-    """
+    id: int
+    node_id: str
+    prevent_self_review: NotRequired[bool]
+    type: str
+    reviewers: NotRequired[
+        builtins.list[EnvironmentPropProtectionRulesItemsAnyof1PropReviewersItemsType]
+    ]
 
-    url: str
-    sha: str
 
-
-__all__ = ("ShortBlobType",)
+__all__ = ("EnvironmentPropProtectionRulesItemsAnyof1Type",)

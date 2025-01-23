@@ -12,19 +12,24 @@ from __future__ import annotations
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
 
-class ActionsOidcCustomIssuerPolicyForEnterprise(GitHubModel):
-    """ActionsOidcCustomIssuerPolicyForEnterprise"""
+class ActionsHostedRunnerMachineSpec(GitHubModel):
+    """Github-owned VM details.
 
-    include_enterprise_slug: Missing[bool] = Field(
-        default=UNSET,
-        description="Whether the enterprise customer requested a custom issuer URL.",
+    Provides details of a particular machine spec.
+    """
+
+    id: str = Field(
+        description="The ID used for the `size` parameter when creating a new runner."
+    )
+    cpu_cores: int = Field(description="The number of cores.")
+    memory_gb: int = Field(description="The available RAM for the machine spec.")
+    storage_gb: int = Field(
+        description="The available SSD storage for the machine spec."
     )
 
 
-model_rebuild(ActionsOidcCustomIssuerPolicyForEnterprise)
+model_rebuild(ActionsHostedRunnerMachineSpec)
 
-__all__ = ("ActionsOidcCustomIssuerPolicyForEnterprise",)
+__all__ = ("ActionsHostedRunnerMachineSpec",)

@@ -9,20 +9,15 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0403 import TrafficType
+
+class ParticipationStatsType(TypedDict):
+    """Participation Stats"""
+
+    all_: builtins.list[int]
+    owner: builtins.list[int]
 
 
-class CloneTrafficType(TypedDict):
-    """Clone Traffic
-
-    Clone Traffic
-    """
-
-    count: int
-    uniques: int
-    clones: list[TrafficType]
-
-
-__all__ = ("CloneTrafficType",)
+__all__ = ("ParticipationStatsType",)

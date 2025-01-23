@@ -9,27 +9,24 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
+
+from .group_0040 import Runner
 
 
-class EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBody(
-    GitHubModel
-):
-    """EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBody"""
+class EnterprisesEnterpriseActionsRunnersGetResponse200(GitHubModel):
+    """EnterprisesEnterpriseActionsRunnersGetResponse200"""
 
-    scope: Literal["all", "all_without_configurations"] = Field(
-        description="The type of repositories to attach the configuration to. `selected` means the configuration will be attached to only the repositories specified by `selected_repository_ids`"
-    )
+    total_count: Missing[float] = Field(default=UNSET)
+    runners: Missing[builtins.list[Runner]] = Field(default=UNSET)
 
 
-model_rebuild(
-    EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBody
-)
+model_rebuild(EnterprisesEnterpriseActionsRunnersGetResponse200)
 
-__all__ = (
-    "EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBody",
-)
+__all__ = ("EnterprisesEnterpriseActionsRunnersGetResponse200",)

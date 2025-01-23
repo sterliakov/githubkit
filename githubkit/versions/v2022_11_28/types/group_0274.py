@@ -9,37 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0273 import CustomDeploymentRuleAppType
+from .group_0275 import EnvironmentPropProtectionRulesItemsAnyof1PropReviewersItemsType
 
 
-class DeploymentProtectionRuleType(TypedDict):
-    """Deployment protection rule
-
-    Deployment protection rule
-    """
+class EnvironmentPropProtectionRulesItemsAnyof1Type(TypedDict):
+    """EnvironmentPropProtectionRulesItemsAnyof1"""
 
     id: int
     node_id: str
-    enabled: bool
-    app: CustomDeploymentRuleAppType
+    prevent_self_review: NotRequired[bool]
+    type: str
+    reviewers: NotRequired[
+        builtins.list[EnvironmentPropProtectionRulesItemsAnyof1PropReviewersItemsType]
+    ]
 
 
-class ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesGetResponse200Type(
-    TypedDict
-):
-    """ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesGetResponse200
-
-    Examples:
-        {'$ref': '#/components/examples/deployment-protection-rules'}
-    """
-
-    total_count: NotRequired[int]
-    custom_deployment_protection_rules: NotRequired[list[DeploymentProtectionRuleType]]
-
-
-__all__ = (
-    "DeploymentProtectionRuleType",
-    "ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesGetResponse200Type",
-)
+__all__ = ("EnvironmentPropProtectionRulesItemsAnyof1Type",)

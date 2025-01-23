@@ -9,14 +9,82 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import TypedDict
+import builtins
+from typing import Literal, Union
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0078 import RepositoryRulesetBypassActorType
+from .group_0093 import (
+    RepositoryRuleCreationType,
+    RepositoryRuleDeletionType,
+    RepositoryRuleNonFastForwardType,
+    RepositoryRuleOneof15Type,
+    RepositoryRuleOneof17Type,
+    RepositoryRuleRequiredSignaturesType,
+)
+from .group_0094 import RepositoryRuleUpdateType
+from .group_0096 import (
+    RepositoryRuleOneof16Type,
+    RepositoryRuleRequiredLinearHistoryType,
+)
+from .group_0097 import RepositoryRuleMergeQueueType
+from .group_0099 import RepositoryRuleRequiredDeploymentsType
+from .group_0102 import RepositoryRulePullRequestType
+from .group_0104 import RepositoryRuleRequiredStatusChecksType
+from .group_0106 import RepositoryRuleCommitMessagePatternType
+from .group_0108 import RepositoryRuleCommitAuthorEmailPatternType
+from .group_0110 import RepositoryRuleCommitterEmailPatternType
+from .group_0112 import RepositoryRuleBranchNamePatternType
+from .group_0114 import RepositoryRuleTagNamePatternType
+from .group_0117 import RepositoryRuleWorkflowsType
+from .group_0119 import RepositoryRuleCodeScanningType
+from .group_0121 import RepositoryRuleOneof18Type
+from .group_0124 import OrgRulesetConditionsOneof0Type
+from .group_0125 import OrgRulesetConditionsOneof1Type
+from .group_0126 import OrgRulesetConditionsOneof2Type
 
 
-class ProjectsColumnsColumnIdCardsPostBodyOneof0Type(TypedDict):
-    """ProjectsColumnsColumnIdCardsPostBodyOneof0"""
+class OrgsOrgRulesetsPostBodyType(TypedDict):
+    """OrgsOrgRulesetsPostBody"""
 
-    note: Union[str, None]
+    name: str
+    target: NotRequired[Literal["branch", "tag", "push", "repository"]]
+    enforcement: Literal["disabled", "active", "evaluate"]
+    bypass_actors: NotRequired[builtins.list[RepositoryRulesetBypassActorType]]
+    conditions: NotRequired[
+        Union[
+            OrgRulesetConditionsOneof0Type,
+            OrgRulesetConditionsOneof1Type,
+            OrgRulesetConditionsOneof2Type,
+        ]
+    ]
+    rules: NotRequired[
+        builtins.list[
+            Union[
+                RepositoryRuleCreationType,
+                RepositoryRuleUpdateType,
+                RepositoryRuleDeletionType,
+                RepositoryRuleRequiredLinearHistoryType,
+                RepositoryRuleMergeQueueType,
+                RepositoryRuleRequiredDeploymentsType,
+                RepositoryRuleRequiredSignaturesType,
+                RepositoryRulePullRequestType,
+                RepositoryRuleRequiredStatusChecksType,
+                RepositoryRuleNonFastForwardType,
+                RepositoryRuleCommitMessagePatternType,
+                RepositoryRuleCommitAuthorEmailPatternType,
+                RepositoryRuleCommitterEmailPatternType,
+                RepositoryRuleBranchNamePatternType,
+                RepositoryRuleTagNamePatternType,
+                RepositoryRuleOneof15Type,
+                RepositoryRuleOneof16Type,
+                RepositoryRuleOneof17Type,
+                RepositoryRuleOneof18Type,
+                RepositoryRuleWorkflowsType,
+                RepositoryRuleCodeScanningType,
+            ]
+        ]
+    ]
 
 
-__all__ = ("ProjectsColumnsColumnIdCardsPostBodyOneof0Type",)
+__all__ = ("OrgsOrgRulesetsPostBodyType",)

@@ -13,14 +13,16 @@ from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoImportPutBodyType(TypedDict):
-    """ReposOwnerRepoImportPutBody"""
+class ReposOwnerRepoDependabotAlertsAlertNumberPatchBodyType(TypedDict):
+    """ReposOwnerRepoDependabotAlertsAlertNumberPatchBody"""
 
-    vcs_url: str
-    vcs: NotRequired[Literal["subversion", "git", "mercurial", "tfvc"]]
-    vcs_username: NotRequired[str]
-    vcs_password: NotRequired[str]
-    tfvc_project: NotRequired[str]
+    state: Literal["dismissed", "open"]
+    dismissed_reason: NotRequired[
+        Literal[
+            "fix_started", "inaccurate", "no_bandwidth", "not_used", "tolerable_risk"
+        ]
+    ]
+    dismissed_comment: NotRequired[str]
 
 
-__all__ = ("ReposOwnerRepoImportPutBodyType",)
+__all__ = ("ReposOwnerRepoDependabotAlertsAlertNumberPatchBodyType",)

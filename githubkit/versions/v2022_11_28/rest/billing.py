@@ -80,7 +80,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -123,7 +123,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -151,7 +151,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -172,7 +172,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -193,7 +193,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -214,7 +214,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -235,7 +235,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -256,7 +256,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -277,7 +277,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -298,7 +298,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -319,7 +319,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -340,7 +340,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -361,7 +361,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -382,7 +382,7 @@ class BillingClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

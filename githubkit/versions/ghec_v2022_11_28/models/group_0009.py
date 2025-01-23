@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
 from typing import Union
 
 from pydantic import Field
@@ -17,27 +19,48 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
+from .group_0002 import SimpleUser
+from .group_0007 import Enterprise
+from .group_0008 import IntegrationPropPermissions
 
-class WebhookConfig(GitHubModel):
-    """Webhook Configuration
 
-    Configuration object of the webhook
+class Integration(GitHubModel):
+    """GitHub app
+
+    GitHub apps are a new way to extend GitHub. They can be installed directly on
+    organizations and user accounts and granted access to specific repositories.
+    They come with granular permissions and built-in webhooks. GitHub apps are first
+    class actors within GitHub.
     """
 
-    url: Missing[str] = Field(
-        default=UNSET, description="The URL to which the payloads will be delivered."
+    id: int = Field(description="Unique identifier of the GitHub app")
+    slug: Missing[str] = Field(
+        default=UNSET, description="The slug name of the GitHub app"
     )
-    content_type: Missing[str] = Field(
+    node_id: str = Field()
+    client_id: Missing[str] = Field(default=UNSET)
+    owner: Union[SimpleUser, Enterprise] = Field()
+    name: str = Field(description="The name of the GitHub app")
+    description: Union[str, None] = Field()
+    external_url: str = Field()
+    html_url: str = Field()
+    created_at: datetime = Field()
+    updated_at: datetime = Field()
+    permissions: IntegrationPropPermissions = Field(
+        description="The set of permissions for the GitHub app"
+    )
+    events: builtins.list[str] = Field(
+        description="The list of events for the GitHub app"
+    )
+    installations_count: Missing[int] = Field(
         default=UNSET,
-        description="The media type used to serialize the payloads. Supported values include `json` and `form`. The default is `form`.",
+        description="The number of installations associated with the GitHub app",
     )
-    secret: Missing[str] = Field(
-        default=UNSET,
-        description="If provided, the `secret` will be used as the `key` to generate the HMAC hex digest value for [delivery signature headers](https://docs.github.com/enterprise-cloud@latest//webhooks/event-payloads/#delivery-headers).",
-    )
-    insecure_ssl: Missing[Union[str, float]] = Field(default=UNSET)
+    client_secret: Missing[str] = Field(default=UNSET)
+    webhook_secret: Missing[Union[str, None]] = Field(default=UNSET)
+    pem: Missing[str] = Field(default=UNSET)
 
 
-model_rebuild(WebhookConfig)
+model_rebuild(Integration)
 
-__all__ = ("WebhookConfig",)
+__all__ = ("Integration",)

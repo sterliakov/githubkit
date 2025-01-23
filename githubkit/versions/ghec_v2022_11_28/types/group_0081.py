@@ -12,19 +12,19 @@ from __future__ import annotations
 from typing_extensions import TypedDict
 
 from .group_0082 import (
-    EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType,
+    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType,
 )
 
 
-class EnterpriseRulesetConditionsOrganizationIdTargetType(TypedDict):
-    """Repository ruleset conditions for organization IDs
+class RepositoryRulesetConditionsRepositoryNameTargetType(TypedDict):
+    """Repository ruleset conditions for repository names
 
-    Parameters for an organization ID condition
+    Parameters for a repository name condition
     """
 
-    organization_id: (
-        EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType
+    repository_name: (
+        RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType
     )
 
 
-__all__ = ("EnterpriseRulesetConditionsOrganizationIdTargetType",)
+__all__ = ("RepositoryRulesetConditionsRepositoryNameTargetType",)

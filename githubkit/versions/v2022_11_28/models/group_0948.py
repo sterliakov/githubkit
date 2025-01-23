@@ -9,19 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
+
+from .group_0190 import WorkflowRun
 
 
-class ReposOwnerRepoAttestationsPostResponse201(GitHubModel):
-    """ReposOwnerRepoAttestationsPostResponse201"""
+class ReposOwnerRepoActionsRunsGetResponse200(GitHubModel):
+    """ReposOwnerRepoActionsRunsGetResponse200"""
 
-    id: Missing[int] = Field(default=UNSET, description="The ID of the attestation.")
+    total_count: int = Field()
+    workflow_runs: builtins.list[WorkflowRun] = Field()
 
 
-model_rebuild(ReposOwnerRepoAttestationsPostResponse201)
+model_rebuild(ReposOwnerRepoActionsRunsGetResponse200)
 
-__all__ = ("ReposOwnerRepoAttestationsPostResponse201",)
+__all__ = ("ReposOwnerRepoActionsRunsGetResponse200",)

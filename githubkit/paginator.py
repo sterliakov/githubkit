@@ -41,7 +41,10 @@ class Paginator(Generic[RT]):
         **kwargs: CP.kwargs,
     ): ...
 
-    def __init__(
+    # The signatures are actually incompatible, but proper overloads are impossible
+    # to write (can't put a keyword arg after CP.args). Implementation signature
+    # isn't externally visible, ignore for now.
+    def __init__(  # type: ignore[misc]
         self,
         request: R[CP, CT],
         page: int = 1,

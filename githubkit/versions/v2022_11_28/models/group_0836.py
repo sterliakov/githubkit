@@ -13,15 +13,20 @@ from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
+from .group_0073 import Runner
 
-class OrgsOrgActionsVariablesNameRepositoriesPutBody(GitHubModel):
-    """OrgsOrgActionsVariablesNameRepositoriesPutBody"""
 
-    selected_repository_ids: list[int] = Field(
-        description="The IDs of the repositories that can access the organization variable."
+class OrgsOrgActionsRunnersGenerateJitconfigPostResponse201(GitHubModel):
+    """OrgsOrgActionsRunnersGenerateJitconfigPostResponse201"""
+
+    runner: Runner = Field(
+        title="Self hosted runners", description="A self hosted runner"
+    )
+    encoded_jit_config: str = Field(
+        description="The base64 encoded runner configuration."
     )
 
 
-model_rebuild(OrgsOrgActionsVariablesNameRepositoriesPutBody)
+model_rebuild(OrgsOrgActionsRunnersGenerateJitconfigPostResponse201)
 
-__all__ = ("OrgsOrgActionsVariablesNameRepositoriesPutBody",)
+__all__ = ("OrgsOrgActionsRunnersGenerateJitconfigPostResponse201",)

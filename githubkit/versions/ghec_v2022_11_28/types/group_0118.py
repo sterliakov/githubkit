@@ -9,24 +9,30 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0076 import (
-    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType,
-)
-from .group_0078 import RepositoryRulesetConditionsPropRefNameType
+
+class RepositoryRuleWorkflowsPropParametersType(TypedDict):
+    """RepositoryRuleWorkflowsPropParameters"""
+
+    do_not_enforce_on_create: NotRequired[bool]
+    workflows: builtins.list[RepositoryRuleParamsWorkflowFileReferenceType]
 
 
-class OrgRulesetConditionsOneof0Type(TypedDict):
-    """repository_name_and_ref_name
+class RepositoryRuleParamsWorkflowFileReferenceType(TypedDict):
+    """WorkflowFileReference
 
-    Conditions to target repositories by name and refs by name
+    A workflow that must run for this rule to pass
     """
 
-    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
-    repository_name: (
-        RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType
-    )
+    path: str
+    ref: NotRequired[str]
+    repository_id: int
+    sha: NotRequired[str]
 
 
-__all__ = ("OrgRulesetConditionsOneof0Type",)
+__all__ = (
+    "RepositoryRuleParamsWorkflowFileReferenceType",
+    "RepositoryRuleWorkflowsPropParametersType",
+)

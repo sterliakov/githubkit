@@ -9,7 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
+import builtins
 
 from pydantic import Field
 
@@ -18,41 +18,46 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class ReposOwnerRepoCodeScanningSarifsPostBody(GitHubModel):
-    """ReposOwnerRepoCodeScanningSarifsPostBody"""
+class ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBody(GitHubModel):
+    """ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBody"""
 
-    commit_sha: str = Field(
-        min_length=40,
-        max_length=40,
-        pattern="^[0-9a-fA-F]+$",
-        description="The SHA of the commit to which the analysis you are uploading relates.",
+    strict: Missing[bool] = Field(
+        default=UNSET, description="Require branches to be up to date before merging."
     )
-    ref: str = Field(
-        pattern="^refs/(heads|tags|pull)/.*$",
-        description="The full Git reference, formatted as `refs/heads/<branch name>`,\n`refs/tags/<tag>`, `refs/pull/<number>/merge`, or `refs/pull/<number>/head`.",
-    )
-    sarif: str = Field(
-        description='A Base64 string representing the SARIF file to upload. You must first compress your SARIF file using [`gzip`](http://www.gnu.org/software/gzip/manual/gzip.html) and then translate the contents of the file into a Base64 encoding string. For more information, see "[SARIF support for code scanning](https://docs.github.com/enterprise-cloud@latest//code-security/secure-coding/sarif-support-for-code-scanning)."'
-    )
-    checkout_uri: Missing[str] = Field(
+    contexts: Missing[builtins.list[str]] = Field(
         default=UNSET,
-        description="The base directory used in the analysis, as it appears in the SARIF file.\nThis property is used to convert file paths from absolute to relative, so that alerts can be mapped to their correct location in the repository.",
+        description="**Closing down notice**: The list of status checks to require in order to merge into this branch. If any of these checks have recently been set by a particular GitHub App, they will be required to come from that app in future for the branch to merge. Use `checks` instead of `contexts` for more fine-grained control.",
     )
-    started_at: Missing[datetime] = Field(
+    checks: Missing[
+        builtins.list[
+            ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksItems
+        ]
+    ] = Field(
         default=UNSET,
-        description="The time that the analysis run began. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.",
-    )
-    tool_name: Missing[str] = Field(
-        default=UNSET,
-        description='The name of the tool used to generate the code scanning analysis. If this parameter is not used, the tool name defaults to "API". If the uploaded SARIF contains a tool GUID, this will be available for filtering using the `tool_guid` parameter of operations such as `GET /repos/{owner}/{repo}/code-scanning/alerts`.',
-    )
-    validate_: Missing[bool] = Field(
-        default=UNSET,
-        alias="validate",
-        description="Whether the SARIF file will be validated according to the code scanning specifications.\nThis parameter is intended to help integrators ensure that the uploaded SARIF files are correctly rendered by code scanning.",
+        description="The list of status checks to require in order to merge into this branch.",
     )
 
 
-model_rebuild(ReposOwnerRepoCodeScanningSarifsPostBody)
+class ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksItems(
+    GitHubModel
+):
+    """ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksIte
+    ms
+    """
 
-__all__ = ("ReposOwnerRepoCodeScanningSarifsPostBody",)
+    context: str = Field(description="The name of the required check")
+    app_id: Missing[int] = Field(
+        default=UNSET,
+        description="The ID of the GitHub App that must provide this check. Omit this field to automatically select the GitHub App that has recently provided this check, or any app if it was not set by a GitHub App. Pass -1 to explicitly allow any app to set the status.",
+    )
+
+
+model_rebuild(ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBody)
+model_rebuild(
+    ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksItems
+)
+
+__all__ = (
+    "ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBody",
+    "ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksItems",
+)

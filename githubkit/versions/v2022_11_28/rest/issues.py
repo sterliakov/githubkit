@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Annotated, Literal, Optional, overload
+from typing import TYPE_CHECKING, Annotated, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel, Field
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -151,8 +153,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-issues-assigned-to-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Issue, ValidationError
 
@@ -175,12 +179,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -205,8 +209,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-issues-assigned-to-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Issue, ValidationError
 
@@ -229,12 +235,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -256,8 +262,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-organization-issues-assigned-to-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Issue
 
@@ -276,12 +284,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "404": BasicError,
             },
@@ -302,8 +310,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-organization-issues-assigned-to-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Issue
 
@@ -322,12 +332,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "404": BasicError,
             },
@@ -341,8 +351,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/issues/assignees#list-assignees"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -355,12 +367,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
             },
@@ -374,8 +386,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/issues/assignees#list-assignees"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -388,12 +402,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
             },
@@ -415,7 +429,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -440,7 +454,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -466,8 +480,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-repository-issues"""
+
+        import builtins
 
         from ..models import BasicError, Issue, ValidationError
 
@@ -489,12 +505,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -518,8 +534,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-repository-issues"""
+
+        import builtins
 
         from ..models import BasicError, Issue, ValidationError
 
@@ -541,12 +559,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -576,9 +594,11 @@ class IssuesClient:
         assignee: Missing[Union[str, None]] = UNSET,
         milestone: Missing[Union[str, int, None]] = UNSET,
         labels: Missing[
-            list[Union[str, ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type]]
+            builtins.list[
+                Union[str, ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type]
+            ]
         ] = UNSET,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     def create(
@@ -588,7 +608,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/issues#create-an-issue"""
 
@@ -608,12 +628,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoIssuesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -652,9 +672,11 @@ class IssuesClient:
         assignee: Missing[Union[str, None]] = UNSET,
         milestone: Missing[Union[str, int, None]] = UNSET,
         labels: Missing[
-            list[Union[str, ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type]]
+            builtins.list[
+                Union[str, ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type]
+            ]
         ] = UNSET,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     async def async_create(
@@ -664,7 +686,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/issues#create-an-issue"""
 
@@ -684,12 +706,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoIssuesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -716,8 +738,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[IssueComment], list[IssueCommentType]]:
+    ) -> Response[builtins.list[IssueComment], builtins.list[IssueCommentType]]:
         """See also: https://docs.github.com/rest/issues/comments#list-issue-comments-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, IssueComment, ValidationError
 
@@ -733,12 +757,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IssueComment],
+            response_model=builtins.list[IssueComment],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -756,8 +780,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[IssueComment], list[IssueCommentType]]:
+    ) -> Response[builtins.list[IssueComment], builtins.list[IssueCommentType]]:
         """See also: https://docs.github.com/rest/issues/comments#list-issue-comments-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, IssueComment, ValidationError
 
@@ -773,12 +799,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IssueComment],
+            response_model=builtins.list[IssueComment],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -801,7 +827,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -827,7 +853,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -851,7 +877,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -871,7 +897,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -908,7 +934,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[IssueComment, IssueCommentType]:
         """See also: https://docs.github.com/rest/issues/comments#update-an-issue-comment"""
 
@@ -926,14 +952,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesCommentsCommentIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -975,7 +1001,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[IssueComment, IssueCommentType]:
         """See also: https://docs.github.com/rest/issues/comments#update-an-issue-comment"""
 
@@ -993,14 +1019,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesCommentsCommentIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1019,8 +1045,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[IssueEvent], list[IssueEventType]]:
+    ) -> Response[builtins.list[IssueEvent], builtins.list[IssueEventType]]:
         """See also: https://docs.github.com/rest/issues/events#list-issue-events-for-a-repository"""
+
+        import builtins
 
         from ..models import IssueEvent, ValidationError
 
@@ -1033,12 +1061,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IssueEvent],
+            response_model=builtins.list[IssueEvent],
             error_models={
                 "422": ValidationError,
             },
@@ -1052,8 +1080,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[IssueEvent], list[IssueEventType]]:
+    ) -> Response[builtins.list[IssueEvent], builtins.list[IssueEventType]]:
         """See also: https://docs.github.com/rest/issues/events#list-issue-events-for-a-repository"""
+
+        import builtins
 
         from ..models import IssueEvent, ValidationError
 
@@ -1066,12 +1096,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IssueEvent],
+            response_model=builtins.list[IssueEvent],
             error_models={
                 "422": ValidationError,
             },
@@ -1093,7 +1123,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1121,7 +1151,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1149,7 +1179,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1176,7 +1206,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1216,14 +1246,14 @@ class IssuesClient:
         ] = UNSET,
         milestone: Missing[Union[str, int, None]] = UNSET,
         labels: Missing[
-            list[
+            builtins.list[
                 Union[
                     str,
                     ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1Type,
                 ]
             ]
         ] = UNSET,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     def update(
@@ -1234,7 +1264,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/issues#update-an-issue"""
 
@@ -1254,12 +1284,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoIssuesIssueNumberPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1303,14 +1333,14 @@ class IssuesClient:
         ] = UNSET,
         milestone: Missing[Union[str, int, None]] = UNSET,
         labels: Missing[
-            list[
+            builtins.list[
                 Union[
                     str,
                     ReposOwnerRepoIssuesIssueNumberPatchBodyPropLabelsItemsOneof1Type,
                 ]
             ]
         ] = UNSET,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     async def async_update(
@@ -1321,7 +1351,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/issues#update-an-issue"""
 
@@ -1341,12 +1371,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoIssuesIssueNumberPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1381,7 +1411,7 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     def add_assignees(
@@ -1392,7 +1422,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberAssigneesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/assignees#add-assignees-to-an-issue"""
 
@@ -1406,14 +1436,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberAssigneesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1441,7 +1471,7 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     async def async_add_assignees(
@@ -1452,7 +1482,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberAssigneesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/assignees#add-assignees-to-an-issue"""
 
@@ -1466,14 +1496,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberAssigneesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1501,7 +1531,7 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     def remove_assignees(
@@ -1512,7 +1542,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/assignees#remove-assignees-from-an-issue"""
 
@@ -1526,14 +1556,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1561,7 +1591,7 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        assignees: Missing[list[str]] = UNSET,
+        assignees: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Issue, IssueType]: ...
 
     async def async_remove_assignees(
@@ -1572,7 +1602,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/assignees#remove-assignees-from-an-issue"""
 
@@ -1586,14 +1616,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberAssigneesDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1618,7 +1648,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1644,7 +1674,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1663,8 +1693,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[IssueComment], list[IssueCommentType]]:
+    ) -> Response[builtins.list[IssueComment], builtins.list[IssueCommentType]]:
         """See also: https://docs.github.com/rest/issues/comments#list-issue-comments"""
+
+        import builtins
 
         from ..models import BasicError, IssueComment
 
@@ -1678,12 +1710,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IssueComment],
+            response_model=builtins.list[IssueComment],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -1700,8 +1732,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[IssueComment], list[IssueCommentType]]:
+    ) -> Response[builtins.list[IssueComment], builtins.list[IssueCommentType]]:
         """See also: https://docs.github.com/rest/issues/comments#list-issue-comments"""
+
+        import builtins
 
         from ..models import BasicError, IssueComment
 
@@ -1715,12 +1749,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IssueComment],
+            response_model=builtins.list[IssueComment],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -1758,7 +1792,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[IssueComment, IssueCommentType]:
         """See also: https://docs.github.com/rest/issues/comments#create-an-issue-comment"""
 
@@ -1777,14 +1811,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1829,7 +1863,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[IssueComment, IssueCommentType]:
         """See also: https://docs.github.com/rest/issues/comments#create-an-issue-comment"""
 
@@ -1848,14 +1882,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1879,7 +1913,7 @@ class IssuesClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEvent,
                 UnlabeledIssueEvent,
@@ -1898,7 +1932,7 @@ class IssuesClient:
                 ConvertedNoteToIssueIssueEvent,
             ]
         ],
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEventType,
                 UnlabeledIssueEventType,
@@ -1920,6 +1954,7 @@ class IssuesClient:
     ]:
         """See also: https://docs.github.com/rest/issues/events#list-issue-events"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -1950,12 +1985,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[
+            response_model=builtins.list[
                 Union[
                     LabeledIssueEvent,
                     UnlabeledIssueEvent,
@@ -1989,7 +2024,7 @@ class IssuesClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEvent,
                 UnlabeledIssueEvent,
@@ -2008,7 +2043,7 @@ class IssuesClient:
                 ConvertedNoteToIssueIssueEvent,
             ]
         ],
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEventType,
                 UnlabeledIssueEventType,
@@ -2030,6 +2065,7 @@ class IssuesClient:
     ]:
         """See also: https://docs.github.com/rest/issues/events#list-issue-events"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -2060,12 +2096,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[
+            response_model=builtins.list[
                 Union[
                     LabeledIssueEvent,
                     UnlabeledIssueEvent,
@@ -2098,8 +2134,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#list-labels-for-an-issue"""
+
+        import builtins
 
         from ..models import BasicError, Label
 
@@ -2112,12 +2150,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2133,8 +2171,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#list-labels-for-an-issue"""
+
+        import builtins
 
         from ..models import BasicError, Label
 
@@ -2147,12 +2187,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2170,13 +2210,15 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     def set_labels(
@@ -2187,8 +2229,8 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: Missing[list[str]] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+        labels: Missing[builtins.list[str]] = UNSET,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     def set_labels(
@@ -2200,9 +2242,11 @@ class IssuesClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         labels: Missing[
-            list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2PropLabelsItemsType]
+            builtins.list[
+                ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2PropLabelsItemsType
+            ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     def set_labels(
         self,
@@ -2214,16 +2258,19 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Label], list[LabelType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#set-labels-for-an-issue"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -2245,15 +2292,19 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2,
                     Annotated[
-                        list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3Items],
+                        builtins.list[
+                            ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3Items
+                        ],
                         Field(min_length=1 if PYDANTIC_V2 else None),
                     ],
                     str,
@@ -2262,12 +2313,12 @@ class IssuesClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2286,13 +2337,15 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     async def async_set_labels(
@@ -2303,8 +2356,8 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: Missing[list[str]] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+        labels: Missing[builtins.list[str]] = UNSET,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     async def async_set_labels(
@@ -2316,9 +2369,11 @@ class IssuesClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         labels: Missing[
-            list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2PropLabelsItemsType]
+            builtins.list[
+                ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2PropLabelsItemsType
+            ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     async def async_set_labels(
         self,
@@ -2330,16 +2385,19 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Label], list[LabelType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#set-labels-for-an-issue"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -2361,15 +2419,19 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof2,
                     Annotated[
-                        list[ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3Items],
+                        builtins.list[
+                            ReposOwnerRepoIssuesIssueNumberLabelsPutBodyOneof3Items
+                        ],
                         Field(min_length=1 if PYDANTIC_V2 else None),
                     ],
                     str,
@@ -2378,12 +2440,12 @@ class IssuesClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2402,13 +2464,15 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     def add_labels(
@@ -2419,8 +2483,8 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: Missing[list[str]] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+        labels: Missing[builtins.list[str]] = UNSET,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     def add_labels(
@@ -2432,9 +2496,11 @@ class IssuesClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         labels: Missing[
-            list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType]
+            builtins.list[
+                ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType
+            ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     def add_labels(
         self,
@@ -2446,16 +2512,19 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Label], list[LabelType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#add-labels-to-an-issue"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -2477,15 +2546,19 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2,
                     Annotated[
-                        list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3Items],
+                        builtins.list[
+                            ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3Items
+                        ],
                         Field(min_length=1 if PYDANTIC_V2 else None),
                     ],
                     str,
@@ -2494,12 +2567,12 @@ class IssuesClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2518,13 +2591,15 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     async def async_add_labels(
@@ -2535,8 +2610,8 @@ class IssuesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: Missing[list[str]] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+        labels: Missing[builtins.list[str]] = UNSET,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     @overload
     async def async_add_labels(
@@ -2548,9 +2623,11 @@ class IssuesClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         labels: Missing[
-            list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType]
+            builtins.list[
+                ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType
+            ]
         ] = UNSET,
-    ) -> Response[list[Label], list[LabelType]]: ...
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]: ...
 
     async def async_add_labels(
         self,
@@ -2562,16 +2639,19 @@ class IssuesClient:
         data: Missing[
             Union[
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
                 ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type,
-                list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType],
+                builtins.list[
+                    ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3ItemsType
+                ],
                 str,
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Label], list[LabelType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#add-labels-to-an-issue"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -2593,15 +2673,19 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2,
                     Annotated[
-                        list[ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3Items],
+                        builtins.list[
+                            ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof3Items
+                        ],
                         Field(min_length=1 if PYDANTIC_V2 else None),
                     ],
                     str,
@@ -2610,12 +2694,12 @@ class IssuesClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2639,7 +2723,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2665,7 +2749,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2683,8 +2767,10 @@ class IssuesClient:
         name: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#remove-a-label-from-an-issue"""
+
+        import builtins
 
         from ..models import BasicError, Label
 
@@ -2692,11 +2778,11 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2711,8 +2797,10 @@ class IssuesClient:
         name: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#remove-a-label-from-an-issue"""
+
+        import builtins
 
         from ..models import BasicError, Label
 
@@ -2720,11 +2808,11 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -2768,7 +2856,7 @@ class IssuesClient:
         data: Missing[
             Union[ReposOwnerRepoIssuesIssueNumberLockPutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/issues/issues#lock-an-issue"""
 
@@ -2788,14 +2876,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoIssuesIssueNumberLockPutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2845,7 +2933,7 @@ class IssuesClient:
         data: Missing[
             Union[ReposOwnerRepoIssuesIssueNumberLockPutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/issues/issues#lock-an-issue"""
 
@@ -2865,14 +2953,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoIssuesIssueNumberLockPutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2901,7 +2989,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2927,7 +3015,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2968,7 +3056,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberSubIssueDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/sub-issues#remove-sub-issue"""
 
@@ -2986,14 +3074,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberSubIssueDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -3036,7 +3124,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberSubIssueDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/sub-issues#remove-sub-issue"""
 
@@ -3054,14 +3142,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberSubIssueDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -3082,8 +3170,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/sub-issues#list-sub-issues"""
+
+        import builtins
 
         from ..models import BasicError, Issue
 
@@ -3096,12 +3186,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -3117,8 +3207,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/sub-issues#list-sub-issues"""
+
+        import builtins
 
         from ..models import BasicError, Issue
 
@@ -3131,12 +3223,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -3175,7 +3267,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberSubIssuesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/sub-issues#add-sub-issue"""
 
@@ -3194,14 +3286,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberSubIssuesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3247,7 +3339,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberSubIssuesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/sub-issues#add-sub-issue"""
 
@@ -3266,14 +3358,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberSubIssuesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3322,7 +3414,7 @@ class IssuesClient:
         data: Missing[
             ReposOwnerRepoIssuesIssueNumberSubIssuesPriorityPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/sub-issues#reprioritize-sub-issue"""
 
@@ -3342,14 +3434,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberSubIssuesPriorityPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3398,7 +3490,7 @@ class IssuesClient:
         data: Missing[
             ReposOwnerRepoIssuesIssueNumberSubIssuesPriorityPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Issue, IssueType]:
         """See also: https://docs.github.com/rest/issues/sub-issues#reprioritize-sub-issue"""
 
@@ -3418,14 +3510,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberSubIssuesPriorityPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3449,7 +3541,7 @@ class IssuesClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEvent,
                 UnlabeledIssueEvent,
@@ -3475,7 +3567,7 @@ class IssuesClient:
                 StateChangeIssueEvent,
             ]
         ],
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEventType,
                 UnlabeledIssueEventType,
@@ -3504,6 +3596,7 @@ class IssuesClient:
     ]:
         """See also: https://docs.github.com/rest/issues/timeline#list-timeline-events-for-an-issue"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -3541,12 +3634,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[
+            response_model=builtins.list[
                 Union[
                     LabeledIssueEvent,
                     UnlabeledIssueEvent,
@@ -3588,7 +3681,7 @@ class IssuesClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEvent,
                 UnlabeledIssueEvent,
@@ -3614,7 +3707,7 @@ class IssuesClient:
                 StateChangeIssueEvent,
             ]
         ],
-        list[
+        builtins.list[
             Union[
                 LabeledIssueEventType,
                 UnlabeledIssueEventType,
@@ -3643,6 +3736,7 @@ class IssuesClient:
     ]:
         """See also: https://docs.github.com/rest/issues/timeline#list-timeline-events-for-an-issue"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -3680,12 +3774,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[
+            response_model=builtins.list[
                 Union[
                     LabeledIssueEvent,
                     UnlabeledIssueEvent,
@@ -3725,8 +3819,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#list-labels-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, Label
 
@@ -3739,12 +3835,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
             },
@@ -3758,8 +3854,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#list-labels-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, Label
 
@@ -3772,12 +3870,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
             error_models={
                 "404": BasicError,
             },
@@ -3813,7 +3911,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoLabelsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Label, LabelType]:
         """See also: https://docs.github.com/rest/issues/labels#create-a-label"""
 
@@ -3832,12 +3930,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoLabelsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3879,7 +3977,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoLabelsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Label, LabelType]:
         """See also: https://docs.github.com/rest/issues/labels#create-a-label"""
 
@@ -3898,12 +3996,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoLabelsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3931,7 +4029,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3957,7 +4055,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3981,7 +4079,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4001,7 +4099,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4040,7 +4138,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoLabelsNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Label, LabelType]:
         """See also: https://docs.github.com/rest/issues/labels#update-a-label"""
 
@@ -4054,12 +4152,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoLabelsNamePatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4100,7 +4198,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoLabelsNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Label, LabelType]:
         """See also: https://docs.github.com/rest/issues/labels#update-a-label"""
 
@@ -4114,12 +4212,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoLabelsNamePatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4138,8 +4236,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Milestone], list[MilestoneType]]:
+    ) -> Response[builtins.list[Milestone], builtins.list[MilestoneType]]:
         """See also: https://docs.github.com/rest/issues/milestones#list-milestones"""
+
+        import builtins
 
         from ..models import BasicError, Milestone
 
@@ -4155,12 +4255,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Milestone],
+            response_model=builtins.list[Milestone],
             error_models={
                 "404": BasicError,
             },
@@ -4177,8 +4277,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Milestone], list[MilestoneType]]:
+    ) -> Response[builtins.list[Milestone], builtins.list[MilestoneType]]:
         """See also: https://docs.github.com/rest/issues/milestones#list-milestones"""
+
+        import builtins
 
         from ..models import BasicError, Milestone
 
@@ -4194,12 +4296,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Milestone],
+            response_model=builtins.list[Milestone],
             error_models={
                 "404": BasicError,
             },
@@ -4236,7 +4338,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMilestonesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Milestone, MilestoneType]:
         """See also: https://docs.github.com/rest/issues/milestones#create-a-milestone"""
 
@@ -4255,12 +4357,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoMilestonesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -4303,7 +4405,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMilestonesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Milestone, MilestoneType]:
         """See also: https://docs.github.com/rest/issues/milestones#create-a-milestone"""
 
@@ -4322,12 +4424,12 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoMilestonesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -4355,7 +4457,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4381,7 +4483,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4407,7 +4509,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4432,7 +4534,7 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4475,7 +4577,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMilestonesMilestoneNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Milestone, MilestoneType]:
         """See also: https://docs.github.com/rest/issues/milestones#update-a-milestone"""
 
@@ -4489,14 +4591,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoMilestonesMilestoneNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4538,7 +4640,7 @@ class IssuesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMilestonesMilestoneNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Milestone, MilestoneType]:
         """See also: https://docs.github.com/rest/issues/milestones#update-a-milestone"""
 
@@ -4552,14 +4654,14 @@ class IssuesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoMilestonesMilestoneNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4576,8 +4678,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#list-labels-for-issues-in-a-milestone"""
+
+        import builtins
 
         from ..models import Label
 
@@ -4590,12 +4694,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
         )
 
     async def async_list_labels_for_milestone(
@@ -4607,8 +4711,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Label], list[LabelType]]:
+    ) -> Response[builtins.list[Label], builtins.list[LabelType]]:
         """See also: https://docs.github.com/rest/issues/labels#list-labels-for-issues-in-a-milestone"""
+
+        import builtins
 
         from ..models import Label
 
@@ -4621,12 +4727,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Label],
+            response_model=builtins.list[Label],
         )
 
     def list_for_authenticated_user(
@@ -4643,8 +4749,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-user-account-issues-assigned-to-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Issue
 
@@ -4663,12 +4771,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "404": BasicError,
             },
@@ -4688,8 +4796,10 @@ class IssuesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Issue], list[IssueType]]:
+    ) -> Response[builtins.list[Issue], builtins.list[IssueType]]:
         """See also: https://docs.github.com/rest/issues/issues#list-user-account-issues-assigned-to-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Issue
 
@@ -4708,12 +4818,12 @@ class IssuesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Issue],
+            response_model=builtins.list[Issue],
             error_models={
                 "404": BasicError,
             },

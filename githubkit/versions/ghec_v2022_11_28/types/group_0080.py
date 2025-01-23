@@ -9,31 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType(
+class EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType(
     TypedDict
 ):
-    """RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty"""
+    """EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationName"""
 
-    include: NotRequired[list[RepositoryRulesetConditionsRepositoryPropertySpecType]]
-    exclude: NotRequired[list[RepositoryRulesetConditionsRepositoryPropertySpecType]]
-
-
-class RepositoryRulesetConditionsRepositoryPropertySpecType(TypedDict):
-    """Repository ruleset property targeting definition
-
-    Parameters for a targeting a repository property
-    """
-
-    name: str
-    property_values: list[str]
-    source: NotRequired[Literal["custom", "system"]]
+    include: NotRequired[builtins.list[str]]
+    exclude: NotRequired[builtins.list[str]]
 
 
-__all__ = (
-    "RepositoryRulesetConditionsRepositoryPropertySpecType",
-    "RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType",
-)
+__all__ = ("EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType",)

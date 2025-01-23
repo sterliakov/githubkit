@@ -13,7 +13,7 @@ VERSIONS = {
     "2022-11-28": "v2022_11_28",
     "ghec-2022-11-28": "ghec_v2022_11_28",
 }
-LATEST_VERSION = "2022-11-28"
+LATEST_VERSION: Literal["2022-11-28"] = "2022-11-28"
 VERSION_TYPE = Literal["2022-11-28", "ghec-2022-11-28"]
 
 from .rest import RestVersionSwitcher as RestVersionSwitcher

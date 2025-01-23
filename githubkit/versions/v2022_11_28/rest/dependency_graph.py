@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Optional, overload
+from typing import TYPE_CHECKING, Any, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
 
     from githubkit import GitHubCore
@@ -67,8 +69,13 @@ class DependencyGraphClient:
         *,
         name: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DependencyGraphDiffItems], list[DependencyGraphDiffItemsType]]:
+    ) -> Response[
+        builtins.list[DependencyGraphDiffItems],
+        builtins.list[DependencyGraphDiffItemsType],
+    ]:
         """See also: https://docs.github.com/rest/dependency-graph/dependency-review#get-a-diff-of-the-dependencies-between-commits"""
+
+        import builtins
 
         from ..models import BasicError, DependencyGraphDiffItems
 
@@ -80,12 +87,12 @@ class DependencyGraphClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependencyGraphDiffItems],
+            response_model=builtins.list[DependencyGraphDiffItems],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -100,8 +107,13 @@ class DependencyGraphClient:
         *,
         name: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DependencyGraphDiffItems], list[DependencyGraphDiffItemsType]]:
+    ) -> Response[
+        builtins.list[DependencyGraphDiffItems],
+        builtins.list[DependencyGraphDiffItemsType],
+    ]:
         """See also: https://docs.github.com/rest/dependency-graph/dependency-review#get-a-diff-of-the-dependencies-between-commits"""
+
+        import builtins
 
         from ..models import BasicError, DependencyGraphDiffItems
 
@@ -113,12 +125,12 @@ class DependencyGraphClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependencyGraphDiffItems],
+            response_model=builtins.list[DependencyGraphDiffItems],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -140,7 +152,7 @@ class DependencyGraphClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -166,7 +178,7 @@ class DependencyGraphClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -218,7 +230,7 @@ class DependencyGraphClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[SnapshotType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoDependencyGraphSnapshotsPostResponse201,
         ReposOwnerRepoDependencyGraphSnapshotsPostResponse201Type,
@@ -238,12 +250,12 @@ class DependencyGraphClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Snapshot, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -292,7 +304,7 @@ class DependencyGraphClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[SnapshotType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoDependencyGraphSnapshotsPostResponse201,
         ReposOwnerRepoDependencyGraphSnapshotsPostResponse201Type,
@@ -312,12 +324,12 @@ class DependencyGraphClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Snapshot, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),

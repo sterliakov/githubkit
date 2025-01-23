@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -19,7 +21,7 @@ from githubkit.utils import UNSET
 class BillingUsageReport(GitHubModel):
     """BillingUsageReport"""
 
-    usage_items: Missing[list[BillingUsageReportPropUsageItemsItems]] = Field(
+    usage_items: Missing[builtins.list[BillingUsageReportPropUsageItemsItems]] = Field(
         default=UNSET, alias="usageItems"
     )
 

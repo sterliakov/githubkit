@@ -14,7 +14,7 @@ from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0008 import IntegrationType
+from .group_0009 import IntegrationType
 from .group_0039 import ReactionRollupType
 
 

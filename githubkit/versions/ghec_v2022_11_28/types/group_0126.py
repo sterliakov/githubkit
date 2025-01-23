@@ -9,15 +9,24 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0084 import RepositoryRulesetConditionsPropRefNameType
+from .group_0086 import (
+    RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType,
+)
 
 
-class PackagesBillingUsageType(TypedDict):
-    """PackagesBillingUsage"""
+class OrgRulesetConditionsOneof2Type(TypedDict):
+    """repository_property_and_ref_name
 
-    total_gigabytes_bandwidth_used: int
-    total_paid_gigabytes_bandwidth_used: int
-    included_gigabytes_bandwidth: int
+    Conditions to target repositories by property and refs by name
+    """
+
+    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
+    repository_property: (
+        RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType
+    )
 
 
-__all__ = ("PackagesBillingUsageType",)
+__all__ = ("OrgRulesetConditionsOneof2Type",)

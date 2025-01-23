@@ -9,22 +9,20 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
-from .group_0076 import (
-    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType,
-)
+from typing_extensions import NotRequired, TypedDict
 
 
-class RepositoryRulesetConditionsRepositoryNameTargetType(TypedDict):
-    """Repository ruleset conditions for repository names
+class NetworkSettingsType(TypedDict):
+    """Hosted compute network settings resource
 
-    Parameters for a repository name condition
+    A hosted compute network settings resource.
     """
 
-    repository_name: (
-        RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType
-    )
+    id: str
+    network_configuration_id: NotRequired[str]
+    name: str
+    subnet_id: str
+    region: str
 
 
-__all__ = ("RepositoryRulesetConditionsRepositoryNameTargetType",)
+__all__ = ("NetworkSettingsType",)

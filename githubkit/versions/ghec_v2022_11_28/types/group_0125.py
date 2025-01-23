@@ -11,30 +11,20 @@ from __future__ import annotations
 
 from typing_extensions import NotRequired, TypedDict
 
-
-class GetAllCostCentersType(TypedDict):
-    """GetAllCostCenters"""
-
-    cost_centers: NotRequired[list[GetAllCostCentersPropCostCentersItemsType]]
-
-
-class GetAllCostCentersPropCostCentersItemsType(TypedDict):
-    """GetAllCostCentersPropCostCentersItems"""
-
-    id: str
-    name: str
-    resources: list[GetAllCostCentersPropCostCentersItemsPropResourcesItemsType]
-
-
-class GetAllCostCentersPropCostCentersItemsPropResourcesItemsType(TypedDict):
-    """GetAllCostCentersPropCostCentersItemsPropResourcesItems"""
-
-    type: str
-    name: str
-
-
-__all__ = (
-    "GetAllCostCentersPropCostCentersItemsPropResourcesItemsType",
-    "GetAllCostCentersPropCostCentersItemsType",
-    "GetAllCostCentersType",
+from .group_0084 import RepositoryRulesetConditionsPropRefNameType
+from .group_0123 import (
+    RepositoryRulesetConditionsRepositoryIdTargetPropRepositoryIdType,
 )
+
+
+class OrgRulesetConditionsOneof1Type(TypedDict):
+    """repository_id_and_ref_name
+
+    Conditions to target repositories by id and refs by name
+    """
+
+    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
+    repository_id: RepositoryRulesetConditionsRepositoryIdTargetPropRepositoryIdType
+
+
+__all__ = ("OrgRulesetConditionsOneof1Type",)

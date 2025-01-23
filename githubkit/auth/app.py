@@ -17,7 +17,7 @@ from .oauth import OAuthAppAuthStrategy
 try:
     import jwt
 except ImportError:
-    jwt = None
+    jwt = None  # type: ignore[assignment]
 
 if TYPE_CHECKING:
     from githubkit import GitHubCore, Response

@@ -9,13 +9,14 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
 
 
-class OrgsOrgCodeSecurityConfigurationsDetachDeleteBodyType(TypedDict):
-    """OrgsOrgCodeSecurityConfigurationsDetachDeleteBody"""
+class OrgsOrgActionsPermissionsRepositoriesPutBodyType(TypedDict):
+    """OrgsOrgActionsPermissionsRepositoriesPutBody"""
 
-    selected_repository_ids: NotRequired[list[int]]
+    selected_repository_ids: builtins.list[int]
 
 
-__all__ = ("OrgsOrgCodeSecurityConfigurationsDetachDeleteBodyType",)
+__all__ = ("OrgsOrgActionsPermissionsRepositoriesPutBodyType",)

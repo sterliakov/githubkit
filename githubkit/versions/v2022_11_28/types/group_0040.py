@@ -9,12 +9,13 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0008 import IntegrationType
+from .group_0009 import IntegrationType
 from .group_0019 import RepositoryType
 from .group_0038 import MilestoneType
 from .group_0039 import ReactionRollupType
@@ -43,9 +44,9 @@ class IssueType(TypedDict):
     title: str
     body: NotRequired[Union[str, None]]
     user: Union[None, SimpleUserType]
-    labels: list[Union[str, IssuePropLabelsItemsOneof1Type]]
+    labels: builtins.list[Union[str, IssuePropLabelsItemsOneof1Type]]
     assignee: Union[None, SimpleUserType]
-    assignees: NotRequired[Union[list[SimpleUserType], None]]
+    assignees: NotRequired[Union[builtins.list[SimpleUserType], None]]
     milestone: Union[None, MilestoneType]
     locked: bool
     active_lock_reason: NotRequired[Union[str, None]]

@@ -13,23 +13,23 @@ from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0444 import EnterpriseWebhooksType
-from .group_0445 import SimpleInstallationType
-from .group_0446 import OrganizationSimpleWebhooksType
-from .group_0447 import RepositoryWebhooksType
-from .group_0673 import WebhookPackagePublishedPropPackageType
+from .group_0450 import EnterpriseWebhooksType
+from .group_0451 import SimpleInstallationType
+from .group_0452 import OrganizationSimpleWebhooksType
+from .group_0453 import RepositoryWebhooksType
+from .group_0481 import WebhooksMembershipType
 
 
-class WebhookPackagePublishedType(TypedDict):
-    """package published event"""
+class WebhookOrganizationDeletedType(TypedDict):
+    """organization deleted event"""
 
-    action: Literal["published"]
+    action: Literal["deleted"]
     enterprise: NotRequired[EnterpriseWebhooksType]
     installation: NotRequired[SimpleInstallationType]
-    organization: NotRequired[OrganizationSimpleWebhooksType]
-    package: WebhookPackagePublishedPropPackageType
+    membership: NotRequired[WebhooksMembershipType]
+    organization: OrganizationSimpleWebhooksType
     repository: NotRequired[RepositoryWebhooksType]
     sender: SimpleUserType
 
 
-__all__ = ("WebhookPackagePublishedType",)
+__all__ = ("WebhookOrganizationDeletedType",)

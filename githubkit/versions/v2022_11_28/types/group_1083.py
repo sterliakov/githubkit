@@ -9,15 +9,16 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
+
+from .group_0113 import CustomPropertyValueType
 
 
-class ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBodyType(TypedDict):
-    """ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBody"""
+class ReposOwnerRepoPropertiesValuesPatchBodyType(TypedDict):
+    """ReposOwnerRepoPropertiesValuesPatchBody"""
 
-    message: str
-    event: NotRequired[Literal["DISMISS"]]
+    properties: builtins.list[CustomPropertyValueType]
 
 
-__all__ = ("ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBodyType",)
+__all__ = ("ReposOwnerRepoPropertiesValuesPatchBodyType",)

@@ -9,20 +9,41 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
+from .group_1083 import (
+    ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType,
+    ReposOwnerRepoCheckRunsPostBodyPropOutputType,
+)
 
-class ReposOwnerRepoDependabotAlertsAlertNumberPatchBodyType(TypedDict):
-    """ReposOwnerRepoDependabotAlertsAlertNumberPatchBody"""
 
-    state: Literal["dismissed", "open"]
-    dismissed_reason: NotRequired[
-        Literal[
-            "fix_started", "inaccurate", "no_bandwidth", "not_used", "tolerable_risk"
-        ]
+class ReposOwnerRepoCheckRunsPostBodyOneof0Type(TypedDict):
+    """ReposOwnerRepoCheckRunsPostBodyOneof0"""
+
+    name: str
+    head_sha: str
+    details_url: NotRequired[str]
+    external_id: NotRequired[str]
+    status: Literal["completed"]
+    started_at: NotRequired[datetime]
+    conclusion: Literal[
+        "action_required",
+        "cancelled",
+        "failure",
+        "neutral",
+        "success",
+        "skipped",
+        "stale",
+        "timed_out",
     ]
-    dismissed_comment: NotRequired[str]
+    completed_at: NotRequired[datetime]
+    output: NotRequired[ReposOwnerRepoCheckRunsPostBodyPropOutputType]
+    actions: NotRequired[
+        builtins.list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
+    ]
 
 
-__all__ = ("ReposOwnerRepoDependabotAlertsAlertNumberPatchBodyType",)
+__all__ = ("ReposOwnerRepoCheckRunsPostBodyOneof0Type",)

@@ -9,13 +9,16 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType(TypedDict):
-    """EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId"""
+class RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType(TypedDict):
+    """RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName"""
 
-    organization_ids: NotRequired[list[int]]
+    include: NotRequired[builtins.list[str]]
+    exclude: NotRequired[builtins.list[str]]
+    protected: NotRequired[bool]
 
 
-__all__ = ("EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType",)
+__all__ = ("RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType",)

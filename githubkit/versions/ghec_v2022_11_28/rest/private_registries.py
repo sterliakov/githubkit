@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -82,7 +84,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -118,7 +120,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -154,7 +156,7 @@ class PrivateRegistriesClient:
         encrypted_value: str,
         key_id: str,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[
         OrgPrivateRegistryConfigurationWithSelectedRepositories,
         OrgPrivateRegistryConfigurationWithSelectedRepositoriesType,
@@ -166,7 +168,7 @@ class PrivateRegistriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPrivateRegistriesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgPrivateRegistryConfigurationWithSelectedRepositories,
         OrgPrivateRegistryConfigurationWithSelectedRepositoriesType,
@@ -188,12 +190,12 @@ class PrivateRegistriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPrivateRegistriesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -229,7 +231,7 @@ class PrivateRegistriesClient:
         encrypted_value: str,
         key_id: str,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[
         OrgPrivateRegistryConfigurationWithSelectedRepositories,
         OrgPrivateRegistryConfigurationWithSelectedRepositoriesType,
@@ -241,7 +243,7 @@ class PrivateRegistriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPrivateRegistriesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgPrivateRegistryConfigurationWithSelectedRepositories,
         OrgPrivateRegistryConfigurationWithSelectedRepositoriesType,
@@ -263,12 +265,12 @@ class PrivateRegistriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgPrivateRegistriesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -297,7 +299,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -324,7 +326,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -349,7 +351,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -374,7 +376,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -399,7 +401,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -424,7 +426,7 @@ class PrivateRegistriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -457,7 +459,7 @@ class PrivateRegistriesClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Missing[Literal["all", "private", "selected"]] = UNSET,
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response: ...
 
     def update_org_private_registry(
@@ -467,7 +469,7 @@ class PrivateRegistriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPrivateRegistriesSecretNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization"""
 
@@ -485,14 +487,14 @@ class PrivateRegistriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgPrivateRegistriesSecretNamePatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -526,7 +528,7 @@ class PrivateRegistriesClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Missing[Literal["all", "private", "selected"]] = UNSET,
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response: ...
 
     async def async_update_org_private_registry(
@@ -536,7 +538,7 @@ class PrivateRegistriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgPrivateRegistriesSecretNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization"""
 
@@ -554,14 +556,14 @@ class PrivateRegistriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgPrivateRegistriesSecretNamePatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),

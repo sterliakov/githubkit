@@ -9,48 +9,19 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal, Union
-from typing_extensions import NotRequired, TypedDict
+from typing import Literal
+from typing_extensions import TypedDict
 
 
-class CodeScanningAlertInstanceType(TypedDict):
-    """CodeScanningAlertInstance"""
+class DatadogConfigType(TypedDict):
+    """DatadogConfig
 
-    ref: NotRequired[str]
-    analysis_key: NotRequired[str]
-    environment: NotRequired[str]
-    category: NotRequired[str]
-    state: NotRequired[Union[None, Literal["open", "dismissed", "fixed"]]]
-    commit_sha: NotRequired[str]
-    message: NotRequired[CodeScanningAlertInstancePropMessageType]
-    location: NotRequired[CodeScanningAlertLocationType]
-    html_url: NotRequired[str]
-    classifications: NotRequired[
-        list[Union[None, Literal["source", "generated", "test", "library"]]]
-    ]
-
-
-class CodeScanningAlertLocationType(TypedDict):
-    """CodeScanningAlertLocation
-
-    Describe a region within a file for the alert.
+    Datadog Config for audit log streaming configuration.
     """
 
-    path: NotRequired[str]
-    start_line: NotRequired[int]
-    end_line: NotRequired[int]
-    start_column: NotRequired[int]
-    end_column: NotRequired[int]
+    encrypted_token: str
+    site: Literal["US", "US3", "US5", "EU1", "US1-FED", "AP1"]
+    key_id: str
 
 
-class CodeScanningAlertInstancePropMessageType(TypedDict):
-    """CodeScanningAlertInstancePropMessage"""
-
-    text: NotRequired[str]
-
-
-__all__ = (
-    "CodeScanningAlertInstancePropMessageType",
-    "CodeScanningAlertInstanceType",
-    "CodeScanningAlertLocationType",
-)
+__all__ = ("DatadogConfigType",)

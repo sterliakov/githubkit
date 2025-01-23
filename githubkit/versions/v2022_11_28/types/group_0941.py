@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0180 import ActionsVariableType
+from .group_0184 import ActionsSecretType
 
 
-class ReposOwnerRepoActionsVariablesGetResponse200Type(TypedDict):
-    """ReposOwnerRepoActionsVariablesGetResponse200"""
+class ReposOwnerRepoActionsOrganizationSecretsGetResponse200Type(TypedDict):
+    """ReposOwnerRepoActionsOrganizationSecretsGetResponse200"""
 
     total_count: int
-    variables: list[ActionsVariableType]
+    secrets: builtins.list[ActionsSecretType]
 
 
-__all__ = ("ReposOwnerRepoActionsVariablesGetResponse200Type",)
+__all__ = ("ReposOwnerRepoActionsOrganizationSecretsGetResponse200Type",)

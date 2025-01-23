@@ -9,16 +9,41 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from datetime import datetime
+from typing import Literal
+from typing_extensions import NotRequired, TypedDict
 
-from .group_0077 import CodespaceMachineType
+from .group_0983 import (
+    ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType,
+    ReposOwnerRepoCheckRunsPostBodyPropOutputType,
+)
 
 
-class ReposOwnerRepoCodespacesMachinesGetResponse200Type(TypedDict):
-    """ReposOwnerRepoCodespacesMachinesGetResponse200"""
+class ReposOwnerRepoCheckRunsPostBodyOneof0Type(TypedDict):
+    """ReposOwnerRepoCheckRunsPostBodyOneof0"""
 
-    total_count: int
-    machines: list[CodespaceMachineType]
+    name: str
+    head_sha: str
+    details_url: NotRequired[str]
+    external_id: NotRequired[str]
+    status: Literal["completed"]
+    started_at: NotRequired[datetime]
+    conclusion: Literal[
+        "action_required",
+        "cancelled",
+        "failure",
+        "neutral",
+        "success",
+        "skipped",
+        "stale",
+        "timed_out",
+    ]
+    completed_at: NotRequired[datetime]
+    output: NotRequired[ReposOwnerRepoCheckRunsPostBodyPropOutputType]
+    actions: NotRequired[
+        builtins.list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
+    ]
 
 
-__all__ = ("ReposOwnerRepoCodespacesMachinesGetResponse200Type",)
+__all__ = ("ReposOwnerRepoCheckRunsPostBodyOneof0Type",)

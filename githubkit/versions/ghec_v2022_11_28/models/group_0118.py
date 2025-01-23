@@ -9,28 +9,49 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0076 import (
-    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName,
-)
-from .group_0078 import RepositoryRulesetConditionsPropRefName
+
+class RepositoryRuleWorkflowsPropParameters(GitHubModel):
+    """RepositoryRuleWorkflowsPropParameters"""
+
+    do_not_enforce_on_create: Missing[bool] = Field(
+        default=UNSET,
+        description="Allow repositories and branches to be created if a check would otherwise prohibit it.",
+    )
+    workflows: builtins.list[RepositoryRuleParamsWorkflowFileReference] = Field(
+        description="Workflows that must pass for this rule to pass."
+    )
 
 
-class OrgRulesetConditionsOneof0(GitHubModel):
-    """repository_name_and_ref_name
+class RepositoryRuleParamsWorkflowFileReference(GitHubModel):
+    """WorkflowFileReference
 
-    Conditions to target repositories by name and refs by name
+    A workflow that must run for this rule to pass
     """
 
-    ref_name: Missing[RepositoryRulesetConditionsPropRefName] = Field(default=UNSET)
-    repository_name: RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName = Field()
+    path: str = Field(description="The path to the workflow file")
+    ref: Missing[str] = Field(
+        default=UNSET, description="The ref (branch or tag) of the workflow file to use"
+    )
+    repository_id: int = Field(
+        description="The ID of the repository where the workflow is defined"
+    )
+    sha: Missing[str] = Field(
+        default=UNSET, description="The commit SHA of the workflow file to use"
+    )
 
 
-model_rebuild(OrgRulesetConditionsOneof0)
+model_rebuild(RepositoryRuleWorkflowsPropParameters)
+model_rebuild(RepositoryRuleParamsWorkflowFileReference)
 
-__all__ = ("OrgRulesetConditionsOneof0",)
+__all__ = (
+    "RepositoryRuleParamsWorkflowFileReference",
+    "RepositoryRuleWorkflowsPropParameters",
+)

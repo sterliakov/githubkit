@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -26,20 +28,20 @@ class ApiOverview(GitHubModel):
     ssh_key_fingerprints: Missing[ApiOverviewPropSshKeyFingerprints] = Field(
         default=UNSET
     )
-    ssh_keys: Missing[list[str]] = Field(default=UNSET)
-    hooks: Missing[list[str]] = Field(default=UNSET)
-    github_enterprise_importer: Missing[list[str]] = Field(default=UNSET)
-    web: Missing[list[str]] = Field(default=UNSET)
-    api: Missing[list[str]] = Field(default=UNSET)
-    git: Missing[list[str]] = Field(default=UNSET)
-    packages: Missing[list[str]] = Field(default=UNSET)
-    pages: Missing[list[str]] = Field(default=UNSET)
-    importer: Missing[list[str]] = Field(default=UNSET)
-    actions: Missing[list[str]] = Field(default=UNSET)
-    actions_macos: Missing[list[str]] = Field(default=UNSET)
-    codespaces: Missing[list[str]] = Field(default=UNSET)
-    dependabot: Missing[list[str]] = Field(default=UNSET)
-    copilot: Missing[list[str]] = Field(default=UNSET)
+    ssh_keys: Missing[builtins.list[str]] = Field(default=UNSET)
+    hooks: Missing[builtins.list[str]] = Field(default=UNSET)
+    github_enterprise_importer: Missing[builtins.list[str]] = Field(default=UNSET)
+    web: Missing[builtins.list[str]] = Field(default=UNSET)
+    api: Missing[builtins.list[str]] = Field(default=UNSET)
+    git: Missing[builtins.list[str]] = Field(default=UNSET)
+    packages: Missing[builtins.list[str]] = Field(default=UNSET)
+    pages: Missing[builtins.list[str]] = Field(default=UNSET)
+    importer: Missing[builtins.list[str]] = Field(default=UNSET)
+    actions: Missing[builtins.list[str]] = Field(default=UNSET)
+    actions_macos: Missing[builtins.list[str]] = Field(default=UNSET)
+    codespaces: Missing[builtins.list[str]] = Field(default=UNSET)
+    dependabot: Missing[builtins.list[str]] = Field(default=UNSET)
+    copilot: Missing[builtins.list[str]] = Field(default=UNSET)
     domains: Missing[ApiOverviewPropDomains] = Field(default=UNSET)
 
 
@@ -55,11 +57,11 @@ class ApiOverviewPropSshKeyFingerprints(GitHubModel):
 class ApiOverviewPropDomains(GitHubModel):
     """ApiOverviewPropDomains"""
 
-    website: Missing[list[str]] = Field(default=UNSET)
-    codespaces: Missing[list[str]] = Field(default=UNSET)
-    copilot: Missing[list[str]] = Field(default=UNSET)
-    packages: Missing[list[str]] = Field(default=UNSET)
-    actions: Missing[list[str]] = Field(default=UNSET)
+    website: Missing[builtins.list[str]] = Field(default=UNSET)
+    codespaces: Missing[builtins.list[str]] = Field(default=UNSET)
+    copilot: Missing[builtins.list[str]] = Field(default=UNSET)
+    packages: Missing[builtins.list[str]] = Field(default=UNSET)
+    actions: Missing[builtins.list[str]] = Field(default=UNSET)
     actions_inbound: Missing[ApiOverviewPropDomainsPropActionsInbound] = Field(
         default=UNSET
     )
@@ -71,15 +73,15 @@ class ApiOverviewPropDomains(GitHubModel):
 class ApiOverviewPropDomainsPropActionsInbound(GitHubModel):
     """ApiOverviewPropDomainsPropActionsInbound"""
 
-    full_domains: Missing[list[str]] = Field(default=UNSET)
-    wildcard_domains: Missing[list[str]] = Field(default=UNSET)
+    full_domains: Missing[builtins.list[str]] = Field(default=UNSET)
+    wildcard_domains: Missing[builtins.list[str]] = Field(default=UNSET)
 
 
 class ApiOverviewPropDomainsPropArtifactAttestations(GitHubModel):
     """ApiOverviewPropDomainsPropArtifactAttestations"""
 
     trust_domain: Missing[str] = Field(default=UNSET)
-    services: Missing[list[str]] = Field(default=UNSET)
+    services: Missing[builtins.list[str]] = Field(default=UNSET)
 
 
 model_rebuild(ApiOverview)

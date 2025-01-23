@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
-from .group_0056 import MinimalRepositoryType
-
-
-class OrgsOrgActionsVariablesNameRepositoriesGetResponse200Type(TypedDict):
-    """OrgsOrgActionsVariablesNameRepositoriesGetResponse200"""
-
-    total_count: int
-    repositories: list[MinimalRepositoryType]
+import builtins
+from typing_extensions import NotRequired, TypedDict
 
 
-__all__ = ("OrgsOrgActionsVariablesNameRepositoriesGetResponse200Type",)
+class OrgsOrgActionsRunnersGenerateJitconfigPostBodyType(TypedDict):
+    """OrgsOrgActionsRunnersGenerateJitconfigPostBody"""
+
+    name: str
+    runner_group_id: int
+    labels: builtins.list[str]
+    work_folder: NotRequired[str]
+
+
+__all__ = ("OrgsOrgActionsRunnersGenerateJitconfigPostBodyType",)

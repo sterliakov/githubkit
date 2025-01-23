@@ -9,13 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-
-class EnterprisesEnterpriseActionsRunnersRunnerIdLabelsPutBodyType(TypedDict):
-    """EnterprisesEnterpriseActionsRunnersRunnerIdLabelsPutBody"""
-
-    labels: list[str]
+from .group_0035 import OrganizationSimpleType
 
 
-__all__ = ("EnterprisesEnterpriseActionsRunnersRunnerIdLabelsPutBodyType",)
+class EnterprisesEnterpriseActionsPermissionsOrganizationsGetResponse200Type(TypedDict):
+    """EnterprisesEnterpriseActionsPermissionsOrganizationsGetResponse200"""
+
+    total_count: float
+    organizations: builtins.list[OrganizationSimpleType]
+
+
+__all__ = ("EnterprisesEnterpriseActionsPermissionsOrganizationsGetResponse200Type",)

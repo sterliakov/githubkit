@@ -9,28 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
+
+from .group_0074 import NetworkConfigurationType
 
 
-class ProjectsColumnsColumnIdCardsPostResponse503Type(TypedDict):
-    """ProjectsColumnsColumnIdCardsPostResponse503"""
+class OrgsOrgSettingsNetworkConfigurationsGetResponse200Type(TypedDict):
+    """OrgsOrgSettingsNetworkConfigurationsGetResponse200"""
 
-    code: NotRequired[str]
-    message: NotRequired[str]
-    documentation_url: NotRequired[str]
-    errors: NotRequired[
-        list[ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItemsType]
-    ]
+    total_count: int
+    network_configurations: builtins.list[NetworkConfigurationType]
 
 
-class ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItemsType(TypedDict):
-    """ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems"""
-
-    code: NotRequired[str]
-    message: NotRequired[str]
-
-
-__all__ = (
-    "ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItemsType",
-    "ProjectsColumnsColumnIdCardsPostResponse503Type",
-)
+__all__ = ("OrgsOrgSettingsNetworkConfigurationsGetResponse200Type",)

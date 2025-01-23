@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Optional, overload
+from typing import TYPE_CHECKING, Any, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,8 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
 
@@ -56,7 +59,7 @@ class OidcClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -77,7 +80,7 @@ class OidcClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -100,7 +103,7 @@ class OidcClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        include_claim_keys: list[str],
+        include_claim_keys: builtins.list[str],
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def update_oidc_custom_sub_template_for_org(
@@ -109,7 +112,7 @@ class OidcClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OidcCustomSubType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-an-organization"""
 
@@ -123,12 +126,12 @@ class OidcClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OidcCustomSub, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -156,7 +159,7 @@ class OidcClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        include_claim_keys: list[str],
+        include_claim_keys: builtins.list[str],
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_update_oidc_custom_sub_template_for_org(
@@ -165,7 +168,7 @@ class OidcClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OidcCustomSubType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-an-organization"""
 
@@ -179,12 +182,12 @@ class OidcClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OidcCustomSub, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),

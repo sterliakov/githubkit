@@ -19,21 +19,18 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class GetAuditLogStreamConfig(GitHubModel):
-    """Get an audit log streaming configuration
+class GetAuditLogStreamConfigsItems(GitHubModel):
+    """GetAuditLogStreamConfigsItems"""
 
-    Get an audit log streaming configuration for an enterprise.
-    """
-
-    id: int = Field()
-    stream_type: str = Field()
-    stream_details: str = Field()
-    enabled: bool = Field()
-    created_at: datetime = Field()
-    updated_at: datetime = Field()
+    id: Missing[int] = Field(default=UNSET)
+    stream_type: Missing[str] = Field(default=UNSET)
+    stream_details: Missing[str] = Field(default=UNSET)
+    enabled: Missing[bool] = Field(default=UNSET)
+    created_at: Missing[datetime] = Field(default=UNSET)
+    updated_at: Missing[datetime] = Field(default=UNSET)
     paused_at: Missing[Union[datetime, None]] = Field(default=UNSET)
 
 
-model_rebuild(GetAuditLogStreamConfig)
+model_rebuild(GetAuditLogStreamConfigsItems)
 
-__all__ = ("GetAuditLogStreamConfig",)
+__all__ = ("GetAuditLogStreamConfigsItems",)

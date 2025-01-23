@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -83,8 +85,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -101,12 +105,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
             error_models={
                 "403": BasicError,
                 "503": EnterprisesEnterpriseCodeScanningAlertsGetResponse503,
@@ -119,8 +123,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -137,12 +143,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
             error_models={
                 "403": BasicError,
                 "503": EnterprisesEnterpriseCodeScanningAlertsGetResponse503,
@@ -162,7 +168,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -182,7 +188,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -197,8 +203,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events-for-a-network-of-repositories"""
+
+        import builtins
 
         from ..models import BasicError, Event
 
@@ -211,12 +219,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -231,8 +239,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events-for-a-network-of-repositories"""
+
+        import builtins
 
         from ..models import BasicError, Event
 
@@ -245,12 +255,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -267,8 +277,10 @@ class ActivityClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Thread], list[ThreadType]]:
+    ) -> Response[builtins.list[Thread], builtins.list[ThreadType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#list-notifications-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Thread, ValidationError
 
@@ -285,12 +297,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Thread],
+            response_model=builtins.list[Thread],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -308,8 +320,10 @@ class ActivityClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Thread], list[ThreadType]]:
+    ) -> Response[builtins.list[Thread], builtins.list[ThreadType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#list-notifications-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Thread, ValidationError
 
@@ -326,12 +340,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Thread],
+            response_model=builtins.list[Thread],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -362,7 +376,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[NotificationsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[NotificationsPutResponse202, NotificationsPutResponse202Type]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#mark-notifications-as-read"""
 
@@ -380,12 +394,12 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(NotificationsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -420,7 +434,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[NotificationsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[NotificationsPutResponse202, NotificationsPutResponse202Type]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#mark-notifications-as-read"""
 
@@ -438,12 +452,12 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(NotificationsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -469,7 +483,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -494,7 +508,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -517,7 +531,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -535,7 +549,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -555,7 +569,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             headers=exclude_unset(headers),
@@ -578,7 +592,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             headers=exclude_unset(headers),
@@ -601,7 +615,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -626,7 +640,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -662,7 +676,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[NotificationsThreadsThreadIdSubscriptionPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ThreadSubscription, ThreadSubscriptionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#set-a-thread-subscription"""
 
@@ -680,14 +694,14 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 NotificationsThreadsThreadIdSubscriptionPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -724,7 +738,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[NotificationsThreadsThreadIdSubscriptionPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ThreadSubscription, ThreadSubscriptionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#set-a-thread-subscription"""
 
@@ -742,14 +756,14 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 NotificationsThreadsThreadIdSubscriptionPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -775,7 +789,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -799,7 +813,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -816,8 +830,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-organization-events"""
+
+        import builtins
 
         from ..models import Event
 
@@ -830,12 +846,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_public_org_events(
@@ -845,8 +861,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-organization-events"""
+
+        import builtins
 
         from ..models import Event
 
@@ -859,12 +877,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_repo_events(
@@ -875,8 +893,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-repository-events"""
+
+        import builtins
 
         from ..models import Event
 
@@ -889,12 +909,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_repo_events(
@@ -905,8 +925,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-repository-events"""
+
+        import builtins
 
         from ..models import Event
 
@@ -919,12 +941,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_repo_notifications_for_authenticated_user(
@@ -939,8 +961,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Thread], list[ThreadType]]:
+    ) -> Response[builtins.list[Thread], builtins.list[ThreadType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#list-repository-notifications-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Thread
 
@@ -957,12 +981,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Thread],
+            response_model=builtins.list[Thread],
         )
 
     async def async_list_repo_notifications_for_authenticated_user(
@@ -977,8 +1001,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Thread], list[ThreadType]]:
+    ) -> Response[builtins.list[Thread], builtins.list[ThreadType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/notifications#list-repository-notifications-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Thread
 
@@ -995,12 +1021,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Thread],
+            response_model=builtins.list[Thread],
         )
 
     @overload
@@ -1037,7 +1063,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoNotificationsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoNotificationsPutResponse202,
         ReposOwnerRepoNotificationsPutResponse202Type,
@@ -1057,12 +1083,12 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoNotificationsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1104,7 +1130,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoNotificationsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoNotificationsPutResponse202,
         ReposOwnerRepoNotificationsPutResponse202Type,
@@ -1124,12 +1150,12 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoNotificationsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1146,11 +1172,12 @@ class ActivityClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        Union[list[SimpleUser], list[Stargazer]],
-        Union[list[SimpleUserType], list[StargazerType]],
+        Union[builtins.list[SimpleUser], builtins.list[Stargazer]],
+        Union[builtins.list[SimpleUserType], builtins.list[StargazerType]],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/starring#list-stargazers"""
 
+        import builtins
         from typing import Union
 
         from ..models import SimpleUser, Stargazer, ValidationError
@@ -1164,12 +1191,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=Union[list[SimpleUser], list[Stargazer]],
+            response_model=Union[builtins.list[SimpleUser], builtins.list[Stargazer]],
             error_models={
                 "422": ValidationError,
             },
@@ -1184,11 +1211,12 @@ class ActivityClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        Union[list[SimpleUser], list[Stargazer]],
-        Union[list[SimpleUserType], list[StargazerType]],
+        Union[builtins.list[SimpleUser], builtins.list[Stargazer]],
+        Union[builtins.list[SimpleUserType], builtins.list[StargazerType]],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/starring#list-stargazers"""
 
+        import builtins
         from typing import Union
 
         from ..models import SimpleUser, Stargazer, ValidationError
@@ -1202,12 +1230,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=Union[list[SimpleUser], list[Stargazer]],
+            response_model=Union[builtins.list[SimpleUser], builtins.list[Stargazer]],
             error_models={
                 "422": ValidationError,
             },
@@ -1221,8 +1249,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#list-watchers"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -1235,12 +1265,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_watchers_for_repo(
@@ -1251,8 +1281,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#list-watchers"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -1265,12 +1297,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def get_repo_subscription(
@@ -1288,7 +1320,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1313,7 +1345,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1352,7 +1384,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoSubscriptionPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositorySubscription, RepositorySubscriptionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#set-a-repository-subscription"""
 
@@ -1366,12 +1398,12 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoSubscriptionPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1408,7 +1440,7 @@ class ActivityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoSubscriptionPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositorySubscription, RepositorySubscriptionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#set-a-repository-subscription"""
 
@@ -1422,12 +1454,12 @@ class ActivityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoSubscriptionPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1448,7 +1480,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1467,7 +1499,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1481,8 +1513,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Repository], list[RepositoryType]]:
+    ) -> Response[builtins.list[Repository], builtins.list[RepositoryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/starring#list-repositories-starred-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Repository
 
@@ -1497,12 +1531,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Repository],
+            response_model=builtins.list[Repository],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1517,8 +1551,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Repository], list[RepositoryType]]:
+    ) -> Response[builtins.list[Repository], builtins.list[RepositoryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/starring#list-repositories-starred-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Repository
 
@@ -1533,12 +1569,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Repository],
+            response_model=builtins.list[Repository],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1560,7 +1596,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1586,7 +1622,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1612,7 +1648,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1638,7 +1674,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1664,7 +1700,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1690,7 +1726,7 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1707,8 +1743,12 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#list-repositories-watched-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -1721,12 +1761,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1739,8 +1779,12 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#list-repositories-watched-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -1753,12 +1797,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1772,8 +1816,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-events-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1786,12 +1832,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_events_for_authenticated_user(
@@ -1801,8 +1847,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-events-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1815,12 +1863,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_org_events_for_authenticated_user(
@@ -1831,8 +1879,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-organization-events-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1845,12 +1895,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_org_events_for_authenticated_user(
@@ -1861,8 +1911,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-organization-events-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1875,12 +1927,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_public_events_for_user(
@@ -1890,8 +1942,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events-for-a-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1904,12 +1958,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_public_events_for_user(
@@ -1919,8 +1973,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events-for-a-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1933,12 +1989,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_received_events_for_user(
@@ -1948,8 +2004,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-events-received-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1962,12 +2020,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_received_events_for_user(
@@ -1977,8 +2035,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-events-received-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -1991,12 +2051,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_received_public_events_for_user(
@@ -2006,8 +2066,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events-received-by-a-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -2020,12 +2082,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     async def async_list_received_public_events_for_user(
@@ -2035,8 +2097,10 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Event], list[EventType]]:
+    ) -> Response[builtins.list[Event], builtins.list[EventType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/events#list-public-events-received-by-a-user"""
+
+        import builtins
 
         from ..models import Event
 
@@ -2049,12 +2113,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Event],
+            response_model=builtins.list[Event],
         )
 
     def list_repos_starred_by_user(
@@ -2067,11 +2131,12 @@ class ActivityClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        Union[list[StarredRepository], list[Repository]],
-        Union[list[StarredRepositoryType], list[RepositoryType]],
+        Union[builtins.list[StarredRepository], builtins.list[Repository]],
+        Union[builtins.list[StarredRepositoryType], builtins.list[RepositoryType]],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/starring#list-repositories-starred-by-a-user"""
 
+        import builtins
         from typing import Union
 
         from ..models import Repository, StarredRepository
@@ -2087,12 +2152,14 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=Union[list[StarredRepository], list[Repository]],
+            response_model=Union[
+                builtins.list[StarredRepository], builtins.list[Repository]
+            ],
         )
 
     async def async_list_repos_starred_by_user(
@@ -2105,11 +2172,12 @@ class ActivityClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        Union[list[StarredRepository], list[Repository]],
-        Union[list[StarredRepositoryType], list[RepositoryType]],
+        Union[builtins.list[StarredRepository], builtins.list[Repository]],
+        Union[builtins.list[StarredRepositoryType], builtins.list[RepositoryType]],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/starring#list-repositories-starred-by-a-user"""
 
+        import builtins
         from typing import Union
 
         from ..models import Repository, StarredRepository
@@ -2125,12 +2193,14 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=Union[list[StarredRepository], list[Repository]],
+            response_model=Union[
+                builtins.list[StarredRepository], builtins.list[Repository]
+            ],
         )
 
     def list_repos_watched_by_user(
@@ -2140,8 +2210,12 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#list-repositories-watched-by-a-user"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -2154,12 +2228,12 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
 
     async def async_list_repos_watched_by_user(
@@ -2169,8 +2243,12 @@ class ActivityClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/activity/watching#list-repositories-watched-by-a-user"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -2183,10 +2261,10 @@ class ActivityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )

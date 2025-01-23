@@ -16,17 +16,17 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class TeamsTeamIdDiscussionsDiscussionNumberPatchBody(GitHubModel):
-    """TeamsTeamIdDiscussionsDiscussionNumberPatchBody"""
+class ReposOwnerRepoReleasesAssetsAssetIdPatchBody(GitHubModel):
+    """ReposOwnerRepoReleasesAssetsAssetIdPatchBody"""
 
-    title: Missing[str] = Field(
-        default=UNSET, description="The discussion post's title."
+    name: Missing[str] = Field(default=UNSET, description="The file name of the asset.")
+    label: Missing[str] = Field(
+        default=UNSET,
+        description="An alternate short description of the asset. Used in place of the filename.",
     )
-    body: Missing[str] = Field(
-        default=UNSET, description="The discussion post's body text."
-    )
+    state: Missing[str] = Field(default=UNSET)
 
 
-model_rebuild(TeamsTeamIdDiscussionsDiscussionNumberPatchBody)
+model_rebuild(ReposOwnerRepoReleasesAssetsAssetIdPatchBody)
 
-__all__ = ("TeamsTeamIdDiscussionsDiscussionNumberPatchBody",)
+__all__ = ("ReposOwnerRepoReleasesAssetsAssetIdPatchBody",)

@@ -9,17 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
 
-from .group_0019 import RepositoryType
+from .group_0074 import NetworkConfigurationType
 
 
-class InstallationRepositoriesGetResponse200Type(TypedDict):
-    """InstallationRepositoriesGetResponse200"""
+class EnterprisesEnterpriseNetworkConfigurationsGetResponse200Type(TypedDict):
+    """EnterprisesEnterpriseNetworkConfigurationsGetResponse200"""
 
     total_count: int
-    repositories: list[RepositoryType]
-    repository_selection: NotRequired[str]
+    network_configurations: builtins.list[NetworkConfigurationType]
 
 
-__all__ = ("InstallationRepositoriesGetResponse200Type",)
+__all__ = ("EnterprisesEnterpriseNetworkConfigurationsGetResponse200Type",)

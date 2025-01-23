@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal, Union
 from typing_extensions import TypedDict
 
@@ -31,7 +32,7 @@ class MarketplaceListingPlanType(TypedDict):
     has_free_trial: bool
     unit_name: Union[str, None]
     state: str
-    bullets: list[str]
+    bullets: builtins.list[str]
 
 
 __all__ = ("MarketplaceListingPlanType",)

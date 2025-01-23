@@ -9,16 +9,18 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0248 import CheckRunType
+
+class ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBodyType(TypedDict):
+    """ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBody
+
+    Examples:
+        {'users': ['mona']}
+    """
+
+    users: builtins.list[str]
 
 
-class ReposOwnerRepoCommitsRefCheckRunsGetResponse200Type(TypedDict):
-    """ReposOwnerRepoCommitsRefCheckRunsGetResponse200"""
-
-    total_count: int
-    check_runs: list[CheckRunType]
-
-
-__all__ = ("ReposOwnerRepoCommitsRefCheckRunsGetResponse200Type",)
+__all__ = ("ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBodyType",)

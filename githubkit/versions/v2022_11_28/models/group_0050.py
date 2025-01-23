@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 
 from pydantic import Field
@@ -30,9 +31,9 @@ class License(GitHubModel):
     html_url: str = Field()
     description: str = Field()
     implementation: str = Field()
-    permissions: list[str] = Field()
-    conditions: list[str] = Field()
-    limitations: list[str] = Field()
+    permissions: builtins.list[str] = Field()
+    conditions: builtins.list[str] = Field()
+    limitations: builtins.list[str] = Field()
     body: str = Field()
     featured: bool = Field()
 

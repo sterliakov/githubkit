@@ -9,38 +9,30 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-
-class RepositoryRuleRequiredLinearHistoryType(TypedDict):
-    """required_linear_history
-
-    Prevent merge commits from being pushed to matching refs.
-    """
-
-    type: Literal["required_linear_history"]
-
-
-class RepositoryRuleOneof16Type(TypedDict):
-    """max_file_path_length
-
-    Prevent commits that include file paths that exceed a specified character limit
-    from being pushed to the commit graph.
-    """
-
-    type: Literal["max_file_path_length"]
-    parameters: NotRequired[RepositoryRuleOneof16PropParametersType]
-
-
-class RepositoryRuleOneof16PropParametersType(TypedDict):
-    """RepositoryRuleOneof16PropParameters"""
-
-    max_file_path_length: int
-
-
-__all__ = (
-    "RepositoryRuleOneof16PropParametersType",
-    "RepositoryRuleOneof16Type",
-    "RepositoryRuleRequiredLinearHistoryType",
+from .group_0080 import (
+    EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType,
 )
+from .group_0084 import RepositoryRulesetConditionsPropRefNameType
+from .group_0086 import (
+    RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType,
+)
+
+
+class EnterpriseRulesetConditionsOneof1Type(TypedDict):
+    """organization_name_and_repository_property
+
+    Conditions to target organizations by name and repositories by property
+    """
+
+    organization_name: (
+        EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType
+    )
+    repository_property: (
+        RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType
+    )
+    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
+
+
+__all__ = ("EnterpriseRulesetConditionsOneof1Type",)

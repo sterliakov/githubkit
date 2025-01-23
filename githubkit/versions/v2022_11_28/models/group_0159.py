@@ -9,6 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from datetime import datetime
+from typing import Literal
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -16,92 +19,46 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class ActionsBillingUsage(GitHubModel):
-    """ActionsBillingUsage"""
+class RuleSuitesItems(GitHubModel):
+    """RuleSuitesItems"""
 
-    total_minutes_used: int = Field(
-        description="The sum of the free and paid GitHub Actions minutes used."
+    id: Missing[int] = Field(
+        default=UNSET, description="The unique identifier of the rule insight."
     )
-    total_paid_minutes_used: int = Field(
-        description="The total paid GitHub Actions minutes used."
+    actor_id: Missing[int] = Field(
+        default=UNSET, description="The number that identifies the user."
     )
-    included_minutes: int = Field(
-        description="The amount of free GitHub Actions minutes available."
+    actor_name: Missing[str] = Field(
+        default=UNSET, description="The handle for the GitHub user account."
     )
-    minutes_used_breakdown: ActionsBillingUsagePropMinutesUsedBreakdown = Field()
-
-
-class ActionsBillingUsagePropMinutesUsedBreakdown(GitHubModel):
-    """ActionsBillingUsagePropMinutesUsedBreakdown"""
-
-    ubuntu: Missing[int] = Field(
+    before_sha: Missing[str] = Field(
+        default=UNSET, description="The first commit sha before the push evaluation."
+    )
+    after_sha: Missing[str] = Field(
+        default=UNSET, description="The last commit sha in the push evaluation."
+    )
+    ref: Missing[str] = Field(
+        default=UNSET, description="The ref name that the evaluation ran on."
+    )
+    repository_id: Missing[int] = Field(
         default=UNSET,
-        alias="UBUNTU",
-        description="Total minutes used on Ubuntu runner machines.",
+        description="The ID of the repository associated with the rule evaluation.",
     )
-    macos: Missing[int] = Field(
+    repository_name: Missing[str] = Field(
         default=UNSET,
-        alias="MACOS",
-        description="Total minutes used on macOS runner machines.",
+        description="The name of the repository without the `.git` extension.",
     )
-    windows: Missing[int] = Field(
+    pushed_at: Missing[datetime] = Field(default=UNSET)
+    result: Missing[Literal["pass", "fail", "bypass"]] = Field(
         default=UNSET,
-        alias="WINDOWS",
-        description="Total minutes used on Windows runner machines.",
+        description="The result of the rule evaluations for rules with the `active` enforcement status.",
     )
-    ubuntu_4_core: Missing[int] = Field(
+    evaluation_result: Missing[Literal["pass", "fail", "bypass"]] = Field(
         default=UNSET,
-        description="Total minutes used on Ubuntu 4 core runner machines.",
-    )
-    ubuntu_8_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Ubuntu 8 core runner machines.",
-    )
-    ubuntu_16_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Ubuntu 16 core runner machines.",
-    )
-    ubuntu_32_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Ubuntu 32 core runner machines.",
-    )
-    ubuntu_64_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Ubuntu 64 core runner machines.",
-    )
-    windows_4_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Windows 4 core runner machines.",
-    )
-    windows_8_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Windows 8 core runner machines.",
-    )
-    windows_16_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Windows 16 core runner machines.",
-    )
-    windows_32_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Windows 32 core runner machines.",
-    )
-    windows_64_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on Windows 64 core runner machines.",
-    )
-    macos_12_core: Missing[int] = Field(
-        default=UNSET,
-        description="Total minutes used on macOS 12 core runner machines.",
-    )
-    total: Missing[int] = Field(
-        default=UNSET, description="Total minutes used on all runner machines."
+        description="The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`.",
     )
 
 
-model_rebuild(ActionsBillingUsage)
-model_rebuild(ActionsBillingUsagePropMinutesUsedBreakdown)
+model_rebuild(RuleSuitesItems)
 
-__all__ = (
-    "ActionsBillingUsage",
-    "ActionsBillingUsagePropMinutesUsedBreakdown",
-)
+__all__ = ("RuleSuitesItems",)

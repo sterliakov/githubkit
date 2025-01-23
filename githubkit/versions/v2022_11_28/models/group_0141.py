@@ -9,7 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
 
 from pydantic import Field
 
@@ -18,21 +18,40 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class RepositoryRuleCommitAuthorEmailPatternPropParameters(GitHubModel):
-    """RepositoryRuleCommitAuthorEmailPatternPropParameters"""
+class RepositoryRuleRequiredStatusChecksPropParameters(GitHubModel):
+    """RepositoryRuleRequiredStatusChecksPropParameters"""
 
-    name: Missing[str] = Field(
-        default=UNSET, description="How this rule will appear to users."
+    do_not_enforce_on_create: Missing[bool] = Field(
+        default=UNSET,
+        description="Allow repositories and branches to be created if a check would otherwise prohibit it.",
     )
-    negate: Missing[bool] = Field(
-        default=UNSET, description="If true, the rule will fail if the pattern matches."
+    required_status_checks: builtins.list[
+        RepositoryRuleParamsStatusCheckConfiguration
+    ] = Field(description="Status checks that are required.")
+    strict_required_status_checks_policy: bool = Field(
+        description="Whether pull requests targeting a matching branch must be tested with the latest code. This setting will not take effect unless at least one status check is enabled."
     )
-    operator: Literal["starts_with", "ends_with", "contains", "regex"] = Field(
-        description="The operator to use for matching."
+
+
+class RepositoryRuleParamsStatusCheckConfiguration(GitHubModel):
+    """StatusCheckConfiguration
+
+    Required status check
+    """
+
+    context: str = Field(
+        description="The status check context name that must be present on the commit."
     )
-    pattern: str = Field(description="The pattern to match with.")
+    integration_id: Missing[int] = Field(
+        default=UNSET,
+        description="The optional integration ID that this status check must originate from.",
+    )
 
 
-model_rebuild(RepositoryRuleCommitAuthorEmailPatternPropParameters)
+model_rebuild(RepositoryRuleRequiredStatusChecksPropParameters)
+model_rebuild(RepositoryRuleParamsStatusCheckConfiguration)
 
-__all__ = ("RepositoryRuleCommitAuthorEmailPatternPropParameters",)
+__all__ = (
+    "RepositoryRuleParamsStatusCheckConfiguration",
+    "RepositoryRuleRequiredStatusChecksPropParameters",
+)

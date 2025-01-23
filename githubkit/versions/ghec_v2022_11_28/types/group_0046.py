@@ -9,19 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
 from typing_extensions import TypedDict
 
 
-class DatadogConfigType(TypedDict):
-    """DatadogConfig
+class AuditLogStreamKeyType(TypedDict):
+    """stream-key
 
-    Datadog Config for audit log streaming configuration.
+    Audit Log Streaming Public Key
     """
 
-    encrypted_token: str
-    site: Literal["US", "US3", "US5", "EU1", "US1-FED", "AP1"]
     key_id: str
+    key: str
 
 
-__all__ = ("DatadogConfigType",)
+__all__ = ("AuditLogStreamKeyType",)

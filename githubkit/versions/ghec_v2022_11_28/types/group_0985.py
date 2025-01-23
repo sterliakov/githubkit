@@ -12,10 +12,8 @@ from __future__ import annotations
 from typing_extensions import TypedDict
 
 
-class OrgsOrgTeamsTeamSlugExternalGroupsPatchBodyType(TypedDict):
-    """OrgsOrgTeamsTeamSlugExternalGroupsPatchBody"""
-
-    group_id: int
+class OrgsOrgOutsideCollaboratorsUsernamePutResponse202Type(TypedDict):
+    """OrgsOrgOutsideCollaboratorsUsernamePutResponse202"""
 
 
-__all__ = ("OrgsOrgTeamsTeamSlugExternalGroupsPatchBodyType",)
+__all__ = ("OrgsOrgOutsideCollaboratorsUsernamePutResponse202Type",)

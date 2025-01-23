@@ -9,18 +9,48 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from datetime import datetime
+from typing import Union
+from typing_extensions import NotRequired, TypedDict
 
 
-class CommitActivityType(TypedDict):
-    """Commit Activity
+class SecretScanningScanHistoryType(TypedDict):
+    """SecretScanningScanHistory"""
 
-    Commit Activity
+    incremental_scans: NotRequired[builtins.list[SecretScanningScanType]]
+    pattern_update_scans: NotRequired[builtins.list[SecretScanningScanType]]
+    backfill_scans: NotRequired[builtins.list[SecretScanningScanType]]
+    custom_pattern_backfill_scans: NotRequired[
+        builtins.list[SecretScanningScanHistoryPropCustomPatternBackfillScansItemsType]
+    ]
+
+
+class SecretScanningScanType(TypedDict):
+    """SecretScanningScan
+
+    Information on a single scan performed by secret scanning on the repository
     """
 
-    days: list[int]
-    total: int
-    week: int
+    type: NotRequired[str]
+    status: NotRequired[str]
+    completed_at: NotRequired[Union[datetime, None]]
+    started_at: NotRequired[Union[datetime, None]]
 
 
-__all__ = ("CommitActivityType",)
+class SecretScanningScanHistoryPropCustomPatternBackfillScansItemsType(TypedDict):
+    """SecretScanningScanHistoryPropCustomPatternBackfillScansItems"""
+
+    type: NotRequired[str]
+    status: NotRequired[str]
+    completed_at: NotRequired[Union[datetime, None]]
+    started_at: NotRequired[Union[datetime, None]]
+    pattern_name: NotRequired[str]
+    pattern_scope: NotRequired[str]
+
+
+__all__ = (
+    "SecretScanningScanHistoryPropCustomPatternBackfillScansItemsType",
+    "SecretScanningScanHistoryType",
+    "SecretScanningScanType",
+)

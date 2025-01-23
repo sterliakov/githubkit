@@ -8,9 +8,10 @@
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from weakref import ref
-from typing import TYPE_CHECKING, Literal, Optional, Annotated, overload
+from typing import Any, TYPE_CHECKING, Literal, Optional, Annotated, overload
 
 from pydantic import BaseModel, Field
 
@@ -103,7 +104,7 @@ class {{ pascal_case(tag) }}Client:
 
         {% endif %}
         {{ build_request(endpoint) | indent(8) }}
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             {{ build_request_params(endpoint) | indent(12) }}
         )
 
@@ -136,7 +137,7 @@ class {{ pascal_case(tag) }}Client:
 
         {% endif %}
         {{ build_request(endpoint) | indent(8) }}
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             {{ build_request_params(endpoint) | indent(12) }}
         )
 

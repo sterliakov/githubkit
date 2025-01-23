@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -116,7 +118,7 @@ class ChecksClient:
         completed_at: Missing[datetime] = UNSET,
         output: Missing[ReposOwnerRepoCheckRunsPostBodyPropOutputType] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
+            builtins.list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -151,7 +153,7 @@ class ChecksClient:
         completed_at: Missing[datetime] = UNSET,
         output: Missing[ReposOwnerRepoCheckRunsPostBodyPropOutputType] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
+            builtins.list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -167,7 +169,7 @@ class ChecksClient:
                 ReposOwnerRepoCheckRunsPostBodyOneof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckRun, CheckRunType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/runs#create-a-check-run"""
 
@@ -187,7 +189,7 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -198,7 +200,7 @@ class ChecksClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -246,7 +248,7 @@ class ChecksClient:
         completed_at: Missing[datetime] = UNSET,
         output: Missing[ReposOwnerRepoCheckRunsPostBodyPropOutputType] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
+            builtins.list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -281,7 +283,7 @@ class ChecksClient:
         completed_at: Missing[datetime] = UNSET,
         output: Missing[ReposOwnerRepoCheckRunsPostBodyPropOutputType] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
+            builtins.list[ReposOwnerRepoCheckRunsPostBodyPropActionsItemsType]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -297,7 +299,7 @@ class ChecksClient:
                 ReposOwnerRepoCheckRunsPostBodyOneof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckRun, CheckRunType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/runs#create-a-check-run"""
 
@@ -317,7 +319,7 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -328,7 +330,7 @@ class ChecksClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -352,7 +354,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -375,7 +377,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -425,7 +427,9 @@ class ChecksClient:
             ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputType
         ] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType]
+            builtins.list[
+                ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType
+            ]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -460,7 +464,9 @@ class ChecksClient:
             ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputType
         ] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType]
+            builtins.list[
+                ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType
+            ]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -477,7 +483,7 @@ class ChecksClient:
                 ReposOwnerRepoCheckRunsCheckRunIdPatchBodyAnyof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckRun, CheckRunType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/runs#update-a-check-run"""
 
@@ -497,7 +503,7 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -508,7 +514,7 @@ class ChecksClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -559,7 +565,9 @@ class ChecksClient:
             ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputType
         ] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType]
+            builtins.list[
+                ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType
+            ]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -594,7 +602,9 @@ class ChecksClient:
             ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropOutputType
         ] = UNSET,
         actions: Missing[
-            list[ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType]
+            builtins.list[
+                ReposOwnerRepoCheckRunsCheckRunIdPatchBodyPropActionsItemsType
+            ]
         ] = UNSET,
     ) -> Response[CheckRun, CheckRunType]: ...
 
@@ -611,7 +621,7 @@ class ChecksClient:
                 ReposOwnerRepoCheckRunsCheckRunIdPatchBodyAnyof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckRun, CheckRunType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/runs#update-a-check-run"""
 
@@ -631,7 +641,7 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -642,7 +652,7 @@ class ChecksClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -659,8 +669,10 @@ class ChecksClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CheckAnnotation], list[CheckAnnotationType]]:
+    ) -> Response[builtins.list[CheckAnnotation], builtins.list[CheckAnnotationType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/runs#list-check-run-annotations"""
+
+        import builtins
 
         from ..models import CheckAnnotation
 
@@ -673,12 +685,12 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CheckAnnotation],
+            response_model=builtins.list[CheckAnnotation],
         )
 
     async def async_list_annotations(
@@ -690,8 +702,10 @@ class ChecksClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CheckAnnotation], list[CheckAnnotationType]]:
+    ) -> Response[builtins.list[CheckAnnotation], builtins.list[CheckAnnotationType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/runs#list-check-run-annotations"""
+
+        import builtins
 
         from ..models import CheckAnnotation
 
@@ -704,12 +718,12 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CheckAnnotation],
+            response_model=builtins.list[CheckAnnotation],
         )
 
     def rerequest_run(
@@ -728,7 +742,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -756,7 +770,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -796,7 +810,7 @@ class ChecksClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCheckSuitesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckSuite, CheckSuiteType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/suites#create-a-check-suite"""
 
@@ -810,12 +824,12 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoCheckSuitesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -851,7 +865,7 @@ class ChecksClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCheckSuitesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckSuite, CheckSuiteType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/suites#create-a-check-suite"""
 
@@ -865,12 +879,12 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoCheckSuitesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -897,7 +911,7 @@ class ChecksClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         auto_trigger_checks: Missing[
-            list[
+            builtins.list[
                 ReposOwnerRepoCheckSuitesPreferencesPatchBodyPropAutoTriggerChecksItemsType
             ]
         ] = UNSET,
@@ -910,7 +924,7 @@ class ChecksClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCheckSuitesPreferencesPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckSuitePreference, CheckSuitePreferenceType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/suites#update-repository-preferences-for-check-suites"""
 
@@ -927,14 +941,14 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCheckSuitesPreferencesPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -961,7 +975,7 @@ class ChecksClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         auto_trigger_checks: Missing[
-            list[
+            builtins.list[
                 ReposOwnerRepoCheckSuitesPreferencesPatchBodyPropAutoTriggerChecksItemsType
             ]
         ] = UNSET,
@@ -974,7 +988,7 @@ class ChecksClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCheckSuitesPreferencesPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CheckSuitePreference, CheckSuitePreferenceType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/checks/suites#update-repository-preferences-for-check-suites"""
 
@@ -991,14 +1005,14 @@ class ChecksClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCheckSuitesPreferencesPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1022,7 +1036,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1045,7 +1059,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1086,7 +1100,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1128,7 +1142,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1152,7 +1166,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1175,7 +1189,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1216,7 +1230,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1258,7 +1272,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1296,7 +1310,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1334,7 +1348,7 @@ class ChecksClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),

@@ -9,17 +9,33 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class OrgsOrgDependabotSecretsSecretNamePutBodyType(TypedDict):
-    """OrgsOrgDependabotSecretsSecretNamePutBody"""
+class OrgsOrgCodespacesSecretsGetResponse200Type(TypedDict):
+    """OrgsOrgCodespacesSecretsGetResponse200"""
 
-    encrypted_value: NotRequired[str]
-    key_id: NotRequired[str]
+    total_count: int
+    secrets: builtins.list[CodespacesOrgSecretType]
+
+
+class CodespacesOrgSecretType(TypedDict):
+    """Codespaces Secret
+
+    Secrets for a GitHub Codespace.
+    """
+
+    name: str
+    created_at: datetime
+    updated_at: datetime
     visibility: Literal["all", "private", "selected"]
-    selected_repository_ids: NotRequired[list[str]]
+    selected_repositories_url: NotRequired[str]
 
 
-__all__ = ("OrgsOrgDependabotSecretsSecretNamePutBodyType",)
+__all__ = (
+    "CodespacesOrgSecretType",
+    "OrgsOrgCodespacesSecretsGetResponse200Type",
+)

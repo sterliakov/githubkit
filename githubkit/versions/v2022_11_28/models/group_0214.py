@@ -9,48 +9,49 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Union
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0056 import MinimalRepository
+from .group_0002 import SimpleUser
+from .group_0009 import Integration
+from .group_0086 import Team
 
 
-class CheckSuitePreference(GitHubModel):
-    """Check Suite Preference
+class ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictions(
+    GitHubModel
+):
+    """ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictions"""
 
-    Check suite configuration preferences for a repository.
-    """
-
-    preferences: CheckSuitePreferencePropPreferences = Field()
-    repository: MinimalRepository = Field(
-        title="Minimal Repository", description="Minimal Repository"
-    )
-
-
-class CheckSuitePreferencePropPreferences(GitHubModel):
-    """CheckSuitePreferencePropPreferences"""
-
-    auto_trigger_checks: Missing[
-        list[CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItems]
-    ] = Field(default=UNSET)
+    url: str = Field()
+    users_url: str = Field()
+    teams_url: str = Field()
+    users: builtins.list[SimpleUser] = Field()
+    teams: builtins.list[Team] = Field()
+    apps: Missing[builtins.list[Union[Integration, None]]] = Field(default=UNSET)
 
 
-class CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItems(GitHubModel):
-    """CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItems"""
+class ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowances(
+    GitHubModel
+):
+    """ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowances"""
 
-    app_id: int = Field()
-    setting: bool = Field()
+    users: builtins.list[SimpleUser] = Field()
+    teams: builtins.list[Team] = Field()
+    apps: Missing[builtins.list[Union[Integration, None]]] = Field(default=UNSET)
 
 
-model_rebuild(CheckSuitePreference)
-model_rebuild(CheckSuitePreferencePropPreferences)
-model_rebuild(CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItems)
+model_rebuild(ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictions)
+model_rebuild(
+    ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowances
+)
 
 __all__ = (
-    "CheckSuitePreference",
-    "CheckSuitePreferencePropPreferences",
-    "CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItems",
+    "ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowances",
+    "ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictions",
 )

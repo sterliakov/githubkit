@@ -9,17 +9,28 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class ApiInsightsSummaryStatsType(TypedDict):
-    """Summary Stats
+class ExternalGroupsType(TypedDict):
+    """ExternalGroups
 
-    API Insights usage summary stats for an organization
+    A list of external groups available to be connected to a team
     """
 
-    total_request_count: NotRequired[int]
-    rate_limited_request_count: NotRequired[int]
+    groups: NotRequired[builtins.list[ExternalGroupsPropGroupsItemsType]]
 
 
-__all__ = ("ApiInsightsSummaryStatsType",)
+class ExternalGroupsPropGroupsItemsType(TypedDict):
+    """ExternalGroupsPropGroupsItems"""
+
+    group_id: int
+    group_name: str
+    updated_at: str
+
+
+__all__ = (
+    "ExternalGroupsPropGroupsItemsType",
+    "ExternalGroupsType",
+)

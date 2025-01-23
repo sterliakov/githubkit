@@ -9,21 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-
-class ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0(GitHubModel):
-    """ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0
-
-    Examples:
-        {'teams': ['justice-league']}
-    """
-
-    teams: list[str] = Field(description="The slug values for teams")
+from .group_0218 import Artifact
 
 
-model_rebuild(ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0)
+class ReposOwnerRepoActionsRunsRunIdArtifactsGetResponse200(GitHubModel):
+    """ReposOwnerRepoActionsRunsRunIdArtifactsGetResponse200"""
 
-__all__ = ("ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0",)
+    total_count: int = Field()
+    artifacts: builtins.list[Artifact] = Field()
+
+
+model_rebuild(ReposOwnerRepoActionsRunsRunIdArtifactsGetResponse200)
+
+__all__ = ("ReposOwnerRepoActionsRunsRunIdArtifactsGetResponse200",)

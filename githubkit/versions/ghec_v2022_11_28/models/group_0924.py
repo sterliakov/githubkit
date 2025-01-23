@@ -9,22 +9,21 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
 
-class OrgsOrgCodeSecurityConfigurationsDetachDeleteBody(GitHubModel):
-    """OrgsOrgCodeSecurityConfigurationsDetachDeleteBody"""
+class OrgsOrgActionsPermissionsRepositoriesPutBody(GitHubModel):
+    """OrgsOrgActionsPermissionsRepositoriesPutBody"""
 
-    selected_repository_ids: Missing[list[int]] = Field(
-        default=UNSET,
-        description="An array of repository IDs to detach from configurations.",
+    selected_repository_ids: builtins.list[int] = Field(
+        description="List of repository IDs to enable for GitHub Actions."
     )
 
 
-model_rebuild(OrgsOrgCodeSecurityConfigurationsDetachDeleteBody)
+model_rebuild(OrgsOrgActionsPermissionsRepositoriesPutBody)
 
-__all__ = ("OrgsOrgCodeSecurityConfigurationsDetachDeleteBody",)
+__all__ = ("OrgsOrgActionsPermissionsRepositoriesPutBody",)

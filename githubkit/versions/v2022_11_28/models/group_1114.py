@@ -13,16 +13,15 @@ from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-from .group_0078 import Codespace
+
+class ReposOwnerRepoTagsProtectionPostBody(GitHubModel):
+    """ReposOwnerRepoTagsProtectionPostBody"""
+
+    pattern: str = Field(
+        description="An optional glob pattern to match against when enforcing tag protection."
+    )
 
 
-class UserCodespacesGetResponse200(GitHubModel):
-    """UserCodespacesGetResponse200"""
+model_rebuild(ReposOwnerRepoTagsProtectionPostBody)
 
-    total_count: int = Field()
-    codespaces: list[Codespace] = Field()
-
-
-model_rebuild(UserCodespacesGetResponse200)
-
-__all__ = ("UserCodespacesGetResponse200",)
+__all__ = ("ReposOwnerRepoTagsProtectionPostBody",)

@@ -29,6 +29,8 @@ pre-commit = "^4.0.0"
 jsonpointer = "^3.0.0"
 openapi-pydantic = "^0.5.0"
 tomli = { version = "^2.0.1", python = "<3.11" }
+pyright = "^1.1.392.post0"
+mypy = "^1.14.1"
 
 [tool.poetry.group.test.dependencies]
 githubkit-test = { path = "./envs/test", develop = false }
@@ -141,6 +143,20 @@ executionEnvironments = [
     "./",
   ] },
 ]
+
+[tool.mypy]
+always_true = ["PYDANTIC_V2"]
+disable_error_code = [
+  "no-any-return",
+]
+python_version = "3.9"
+allow_redefinition = true
+check_untyped_defs = true
+strict = false  # TODO: fix remaining type errors and enable strict mode
+
+[[tool.mypy.overrides]]
+module = "githubkit.versions.*"
+disable_error_code = ["unused-ignore"]
 
 [tool.codegen]
 output_dir = "githubkit/versions/"

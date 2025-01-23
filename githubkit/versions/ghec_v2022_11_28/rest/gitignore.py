@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Optional
 from weakref import ref
@@ -16,6 +17,8 @@ from weakref import ref
 from githubkit.utils import exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
 
@@ -42,36 +45,40 @@ class GitignoreClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[str], list[str]]:
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/gitignore/gitignore#get-all-gitignore-templates"""
+
+        import builtins
 
         url = "/gitignore/templates"
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
         )
 
     async def async_get_all_templates(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[str], list[str]]:
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/gitignore/gitignore#get-all-gitignore-templates"""
+
+        import builtins
 
         url = "/gitignore/templates"
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
         )
 
     def get_template(
@@ -88,7 +95,7 @@ class GitignoreClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -109,7 +116,7 @@ class GitignoreClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -77,9 +79,12 @@ class SecretScanningClient:
         is_multi_repo: Missing[bool] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationSecretScanningAlert], list[OrganizationSecretScanningAlertType]
+        builtins.list[OrganizationSecretScanningAlert],
+        builtins.list[OrganizationSecretScanningAlertType],
     ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-an-enterprise"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -105,12 +110,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSecretScanningAlert],
+            response_model=builtins.list[OrganizationSecretScanningAlert],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -134,9 +139,12 @@ class SecretScanningClient:
         is_multi_repo: Missing[bool] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationSecretScanningAlert], list[OrganizationSecretScanningAlertType]
+        builtins.list[OrganizationSecretScanningAlert],
+        builtins.list[OrganizationSecretScanningAlertType],
     ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-an-enterprise"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -162,12 +170,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSecretScanningAlert],
+            response_model=builtins.list[OrganizationSecretScanningAlert],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -192,9 +200,12 @@ class SecretScanningClient:
         is_multi_repo: Missing[bool] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationSecretScanningAlert], list[OrganizationSecretScanningAlertType]
+        builtins.list[OrganizationSecretScanningAlert],
+        builtins.list[OrganizationSecretScanningAlertType],
     ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -221,12 +232,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSecretScanningAlert],
+            response_model=builtins.list[OrganizationSecretScanningAlert],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -251,9 +262,12 @@ class SecretScanningClient:
         is_multi_repo: Missing[bool] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[OrganizationSecretScanningAlert], list[OrganizationSecretScanningAlertType]
+        builtins.list[OrganizationSecretScanningAlert],
+        builtins.list[OrganizationSecretScanningAlertType],
     ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -280,12 +294,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationSecretScanningAlert],
+            response_model=builtins.list[OrganizationSecretScanningAlert],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -310,8 +324,12 @@ class SecretScanningClient:
         is_publicly_leaked: Missing[bool] = UNSET,
         is_multi_repo: Missing[bool] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SecretScanningAlert], list[SecretScanningAlertType]]:
+    ) -> Response[
+        builtins.list[SecretScanningAlert], builtins.list[SecretScanningAlertType]
+    ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -337,12 +355,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SecretScanningAlert],
+            response_model=builtins.list[SecretScanningAlert],
             error_models={
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
             },
@@ -366,8 +384,12 @@ class SecretScanningClient:
         is_publicly_leaked: Missing[bool] = UNSET,
         is_multi_repo: Missing[bool] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SecretScanningAlert], list[SecretScanningAlertType]]:
+    ) -> Response[
+        builtins.list[SecretScanningAlert], builtins.list[SecretScanningAlertType]
+    ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -393,12 +415,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SecretScanningAlert],
+            response_model=builtins.list[SecretScanningAlert],
             error_models={
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
             },
@@ -423,7 +445,7 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -452,7 +474,7 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -501,7 +523,7 @@ class SecretScanningClient:
         data: Missing[
             ReposOwnerRepoSecretScanningAlertsAlertNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[SecretScanningAlert, SecretScanningAlertType]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#update-a-secret-scanning-alert"""
 
@@ -519,14 +541,14 @@ class SecretScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoSecretScanningAlertsAlertNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -576,7 +598,7 @@ class SecretScanningClient:
         data: Missing[
             ReposOwnerRepoSecretScanningAlertsAlertNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[SecretScanningAlert, SecretScanningAlertType]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#update-a-secret-scanning-alert"""
 
@@ -594,14 +616,14 @@ class SecretScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoSecretScanningAlertsAlertNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -621,8 +643,12 @@ class SecretScanningClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SecretScanningLocation], list[SecretScanningLocationType]]:
+    ) -> Response[
+        builtins.list[SecretScanningLocation], builtins.list[SecretScanningLocationType]
+    ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-locations-for-a-secret-scanning-alert"""
+
+        import builtins
 
         from ..models import (
             EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -638,12 +664,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SecretScanningLocation],
+            response_model=builtins.list[SecretScanningLocation],
             error_models={
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
             },
@@ -658,8 +684,12 @@ class SecretScanningClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SecretScanningLocation], list[SecretScanningLocationType]]:
+    ) -> Response[
+        builtins.list[SecretScanningLocation], builtins.list[SecretScanningLocationType]
+    ]:
         """See also: https://docs.github.com/rest/secret-scanning/secret-scanning#list-locations-for-a-secret-scanning-alert"""
+
+        import builtins
 
         from ..models import (
             EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
@@ -675,12 +705,12 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SecretScanningLocation],
+            response_model=builtins.list[SecretScanningLocation],
             error_models={
                 "503": EnterprisesEnterpriseSecretScanningAlertsGetResponse503,
             },
@@ -721,7 +751,7 @@ class SecretScanningClient:
         data: Missing[
             ReposOwnerRepoSecretScanningPushProtectionBypassesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         SecretScanningPushProtectionBypass, SecretScanningPushProtectionBypassType
     ]:
@@ -741,14 +771,14 @@ class SecretScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoSecretScanningPushProtectionBypassesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -794,7 +824,7 @@ class SecretScanningClient:
         data: Missing[
             ReposOwnerRepoSecretScanningPushProtectionBypassesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         SecretScanningPushProtectionBypass, SecretScanningPushProtectionBypassType
     ]:
@@ -814,14 +844,14 @@ class SecretScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoSecretScanningPushProtectionBypassesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -850,7 +880,7 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -878,7 +908,7 @@ class SecretScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

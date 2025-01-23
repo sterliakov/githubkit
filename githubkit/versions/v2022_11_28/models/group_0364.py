@@ -9,26 +9,24 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
 
-class TagProtection(GitHubModel):
-    """Tag protection
+class CommitActivity(GitHubModel):
+    """Commit Activity
 
-    Tag protection
+    Commit Activity
     """
 
-    id: Missing[int] = Field(default=UNSET)
-    created_at: Missing[str] = Field(default=UNSET)
-    updated_at: Missing[str] = Field(default=UNSET)
-    enabled: Missing[bool] = Field(default=UNSET)
-    pattern: str = Field()
+    days: builtins.list[int] = Field()
+    total: int = Field()
+    week: int = Field()
 
 
-model_rebuild(TagProtection)
+model_rebuild(CommitActivity)
 
-__all__ = ("TagProtection",)
+__all__ = ("CommitActivity",)

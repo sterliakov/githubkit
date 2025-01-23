@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -132,7 +134,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -167,7 +169,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -203,7 +205,7 @@ class CodespacesClient:
             "all_members",
             "all_members_and_outside_collaborators",
         ],
-        selected_usernames: Missing[list[str]] = UNSET,
+        selected_usernames: Missing[builtins.list[str]] = UNSET,
     ) -> Response: ...
 
     def set_codespaces_access(
@@ -212,7 +214,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesAccessPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organizations#manage-access-control-for-organization-codespaces"""
 
@@ -226,12 +228,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgCodespacesAccessPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -265,7 +267,7 @@ class CodespacesClient:
             "all_members",
             "all_members_and_outside_collaborators",
         ],
-        selected_usernames: Missing[list[str]] = UNSET,
+        selected_usernames: Missing[builtins.list[str]] = UNSET,
     ) -> Response: ...
 
     async def async_set_codespaces_access(
@@ -274,7 +276,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesAccessPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organizations#manage-access-control-for-organization-codespaces"""
 
@@ -288,12 +290,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgCodespacesAccessPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -321,7 +323,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response: ...
 
     def set_codespaces_access_users(
@@ -330,7 +332,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesAccessSelectedUsersPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organizations#add-users-to-codespaces-access-for-an-organization"""
 
@@ -348,14 +350,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodespacesAccessSelectedUsersPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -383,7 +385,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response: ...
 
     async def async_set_codespaces_access_users(
@@ -392,7 +394,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesAccessSelectedUsersPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organizations#add-users-to-codespaces-access-for-an-organization"""
 
@@ -410,14 +412,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodespacesAccessSelectedUsersPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -445,7 +447,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response: ...
 
     def delete_codespaces_access_users(
@@ -454,7 +456,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesAccessSelectedUsersDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organizations#remove-users-from-codespaces-access-for-an-organization"""
 
@@ -472,14 +474,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodespacesAccessSelectedUsersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -507,7 +509,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_usernames: list[str],
+        selected_usernames: builtins.list[str],
     ) -> Response: ...
 
     async def async_delete_codespaces_access_users(
@@ -516,7 +518,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesAccessSelectedUsersDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organizations#remove-users-from-codespaces-access-for-an-organization"""
 
@@ -534,14 +536,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodespacesAccessSelectedUsersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -577,7 +579,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -609,7 +611,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -631,7 +633,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -652,7 +654,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -674,7 +676,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -696,7 +698,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -724,7 +726,7 @@ class CodespacesClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def create_or_update_org_secret(
@@ -734,7 +736,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/codespaces/organization-secrets#create-or-update-an-organization-secret"""
 
@@ -753,12 +755,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgCodespacesSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -791,7 +793,7 @@ class CodespacesClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_create_or_update_org_secret(
@@ -801,7 +803,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodespacesSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/codespaces/organization-secrets#create-or-update-an-organization-secret"""
 
@@ -820,12 +822,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgCodespacesSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -852,7 +854,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -876,7 +878,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -913,7 +915,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -952,7 +954,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -981,7 +983,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_selected_repos_for_org_secret(
@@ -993,7 +995,7 @@ class CodespacesClient:
         data: Missing[
             OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret"""
 
@@ -1010,14 +1012,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1045,7 +1047,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_selected_repos_for_org_secret(
@@ -1057,7 +1059,7 @@ class CodespacesClient:
         data: Missing[
             OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret"""
 
@@ -1074,14 +1076,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodespacesSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1109,7 +1111,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1137,7 +1139,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1165,7 +1167,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1193,7 +1195,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1228,7 +1230,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1267,7 +1269,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1303,7 +1305,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1338,7 +1340,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1367,7 +1369,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1396,7 +1398,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1434,7 +1436,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1473,7 +1475,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1527,7 +1529,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoCodespacesPostBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-codespace-in-a-repository"""
 
@@ -1548,14 +1550,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoCodespacesPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1610,7 +1612,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoCodespacesPostBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-codespace-in-a-repository"""
 
@@ -1631,14 +1633,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoCodespacesPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1681,7 +1683,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1724,7 +1726,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1766,7 +1768,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1807,7 +1809,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1846,7 +1848,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1884,7 +1886,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1927,7 +1929,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1972,7 +1974,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2012,7 +2014,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2045,7 +2047,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2068,7 +2070,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2090,7 +2092,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2113,7 +2115,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2136,7 +2138,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2175,7 +2177,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCodespacesSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/codespaces/repository-secrets#create-or-update-a-repository-secret"""
 
@@ -2192,14 +2194,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCodespacesSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2239,7 +2241,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCodespacesSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/codespaces/repository-secrets#create-or-update-a-repository-secret"""
 
@@ -2256,14 +2258,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCodespacesSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2285,7 +2287,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2305,7 +2307,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2355,7 +2357,7 @@ class CodespacesClient:
         data: Missing[
             Union[ReposOwnerRepoPullsPullNumberCodespacesPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-codespace-from-a-pull-request"""
 
@@ -2376,14 +2378,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoPullsPullNumberCodespacesPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2441,7 +2443,7 @@ class CodespacesClient:
         data: Missing[
             Union[ReposOwnerRepoPullsPullNumberCodespacesPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-codespace-from-a-pull-request"""
 
@@ -2462,14 +2464,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoPullsPullNumberCodespacesPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2505,7 +2507,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2541,7 +2543,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2609,7 +2611,7 @@ class CodespacesClient:
         data: Missing[
             Union[UserCodespacesPostBodyOneof0Type, UserCodespacesPostBodyOneof1Type]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-codespace-for-the-authenticated-user"""
 
@@ -2631,14 +2633,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[UserCodespacesPostBodyOneof0, UserCodespacesPostBodyOneof1], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2706,7 +2708,7 @@ class CodespacesClient:
         data: Missing[
             Union[UserCodespacesPostBodyOneof0Type, UserCodespacesPostBodyOneof1Type]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-codespace-for-the-authenticated-user"""
 
@@ -2728,14 +2730,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[UserCodespacesPostBodyOneof0, UserCodespacesPostBodyOneof1], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2771,7 +2773,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2801,7 +2803,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2822,7 +2824,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2842,7 +2844,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2863,7 +2865,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2884,7 +2886,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2909,7 +2911,7 @@ class CodespacesClient:
         headers: Optional[Mapping[str, str]] = None,
         encrypted_value: Missing[str] = UNSET,
         key_id: str,
-        selected_repository_ids: Missing[list[Union[int, str]]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[Union[int, str]]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def create_or_update_secret_for_authenticated_user(
@@ -2918,7 +2920,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/codespaces/secrets#create-or-update-a-secret-for-the-authenticated-user"""
 
@@ -2937,12 +2939,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserCodespacesSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2972,7 +2974,7 @@ class CodespacesClient:
         headers: Optional[Mapping[str, str]] = None,
         encrypted_value: Missing[str] = UNSET,
         key_id: str,
-        selected_repository_ids: Missing[list[Union[int, str]]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[Union[int, str]]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_create_or_update_secret_for_authenticated_user(
@@ -2981,7 +2983,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/codespaces/secrets#create-or-update-a-secret-for-the-authenticated-user"""
 
@@ -3000,12 +3002,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserCodespacesSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3029,7 +3031,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3047,7 +3049,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3073,7 +3075,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3106,7 +3108,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3135,7 +3137,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_repositories_for_secret_for_authenticated_user(
@@ -3144,7 +3146,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesSecretsSecretNameRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/secrets#set-selected-repositories-for-a-user-secret"""
 
@@ -3161,14 +3163,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 UserCodespacesSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3197,7 +3199,7 @@ class CodespacesClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_repositories_for_secret_for_authenticated_user(
@@ -3206,7 +3208,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesSecretsSecretNameRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/codespaces/secrets#set-selected-repositories-for-a-user-secret"""
 
@@ -3223,14 +3225,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 UserCodespacesSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3258,7 +3260,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -3285,7 +3287,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -3312,7 +3314,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3339,7 +3341,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3365,7 +3367,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3392,7 +3394,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3425,7 +3427,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3458,7 +3460,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3489,7 +3491,7 @@ class CodespacesClient:
         headers: Optional[Mapping[str, str]] = None,
         machine: Missing[str] = UNSET,
         display_name: Missing[str] = UNSET,
-        recent_folders: Missing[list[str]] = UNSET,
+        recent_folders: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Codespace, CodespaceType]: ...
 
     def update_for_authenticated_user(
@@ -3498,7 +3500,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesCodespaceNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#update-a-codespace-for-the-authenticated-user"""
 
@@ -3512,12 +3514,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserCodespacesCodespaceNamePatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3548,7 +3550,7 @@ class CodespacesClient:
         headers: Optional[Mapping[str, str]] = None,
         machine: Missing[str] = UNSET,
         display_name: Missing[str] = UNSET,
-        recent_folders: Missing[list[str]] = UNSET,
+        recent_folders: Missing[builtins.list[str]] = UNSET,
     ) -> Response[Codespace, CodespaceType]: ...
 
     async def async_update_for_authenticated_user(
@@ -3557,7 +3559,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesCodespaceNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Codespace, CodespaceType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#update-a-codespace-for-the-authenticated-user"""
 
@@ -3571,12 +3573,12 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserCodespacesCodespaceNamePatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3603,7 +3605,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3631,7 +3633,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3660,7 +3662,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3685,7 +3687,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3715,7 +3717,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3748,7 +3750,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3787,7 +3789,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesCodespaceNamePublishPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodespaceWithFullRepository, CodespaceWithFullRepositoryType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-repository-from-an-unpublished-codespace"""
 
@@ -3806,14 +3808,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 UserCodespacesCodespaceNamePublishPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3853,7 +3855,7 @@ class CodespacesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserCodespacesCodespaceNamePublishPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodespaceWithFullRepository, CodespaceWithFullRepositoryType]:
         """See also: https://docs.github.com/rest/codespaces/codespaces#create-a-repository-from-an-unpublished-codespace"""
 
@@ -3872,14 +3874,14 @@ class CodespacesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 UserCodespacesCodespaceNamePublishPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3907,7 +3909,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3937,7 +3939,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3967,7 +3969,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3994,7 +3996,7 @@ class CodespacesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),

@@ -9,35 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal, Union
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
+
+from .group_0266 import CodeScanningVariantAnalysisRepositoryType
 
 
-class CodeScanningDefaultSetupUpdateType(TypedDict):
-    """CodeScanningDefaultSetupUpdate
+class CodeScanningVariantAnalysisSkippedRepoGroupType(TypedDict):
+    """CodeScanningVariantAnalysisSkippedRepoGroup"""
 
-    Configuration for code scanning default setup.
-    """
-
-    state: NotRequired[Literal["configured", "not-configured"]]
-    runner_type: NotRequired[Literal["standard", "labeled"]]
-    runner_label: NotRequired[Union[str, None]]
-    query_suite: NotRequired[Literal["default", "extended"]]
-    languages: NotRequired[
-        list[
-            Literal[
-                "actions",
-                "c-cpp",
-                "csharp",
-                "go",
-                "java-kotlin",
-                "javascript-typescript",
-                "python",
-                "ruby",
-                "swift",
-            ]
-        ]
-    ]
+    repository_count: int
+    repositories: builtins.list[CodeScanningVariantAnalysisRepositoryType]
 
 
-__all__ = ("CodeScanningDefaultSetupUpdateType",)
+__all__ = ("CodeScanningVariantAnalysisSkippedRepoGroupType",)

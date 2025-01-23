@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Any, Union
 
@@ -48,8 +49,8 @@ class BaseGist(GitHubModel):
         default=UNSET, title="Simple User", description="A GitHub user."
     )
     truncated: Missing[bool] = Field(default=UNSET)
-    forks: Missing[list[Any]] = Field(default=UNSET)
-    history: Missing[list[Any]] = Field(default=UNSET)
+    forks: Missing[builtins.list[Any]] = Field(default=UNSET)
+    history: Missing[builtins.list[Any]] = Field(default=UNSET)
 
 
 class BaseGistPropFiles(ExtraGitHubModel):

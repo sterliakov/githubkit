@@ -9,18 +9,27 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
-from typing_extensions import TypedDict
+import builtins
+from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoPagesPutBodyPropSourceAnyof1Type(TypedDict):
-    """ReposOwnerRepoPagesPutBodyPropSourceAnyof1
+class ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type(TypedDict):
+    """ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2"""
 
-    Update the source for the repository. Must include the branch name and path.
-    """
+    labels: NotRequired[
+        builtins.list[
+            ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType
+        ]
+    ]
 
-    branch: str
-    path: Literal["/", "/docs"]
+
+class ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType(TypedDict):
+    """ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItems"""
+
+    name: str
 
 
-__all__ = ("ReposOwnerRepoPagesPutBodyPropSourceAnyof1Type",)
+__all__ = (
+    "ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2PropLabelsItemsType",
+    "ReposOwnerRepoIssuesIssueNumberLabelsPostBodyOneof2Type",
+)

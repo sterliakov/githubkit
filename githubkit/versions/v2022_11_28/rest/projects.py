@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -82,8 +84,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Project], list[ProjectType]]:
+    ) -> Response[builtins.list[Project], builtins.list[ProjectType]]:
         """See also: https://docs.github.com/rest/projects/projects#list-organization-projects"""
+
+        import builtins
 
         from ..models import Project, ValidationErrorSimple
 
@@ -97,12 +101,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Project],
+            response_model=builtins.list[Project],
             error_models={
                 "422": ValidationErrorSimple,
             },
@@ -116,8 +120,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Project], list[ProjectType]]:
+    ) -> Response[builtins.list[Project], builtins.list[ProjectType]]:
         """See also: https://docs.github.com/rest/projects/projects#list-organization-projects"""
+
+        import builtins
 
         from ..models import Project, ValidationErrorSimple
 
@@ -131,12 +137,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Project],
+            response_model=builtins.list[Project],
             error_models={
                 "422": ValidationErrorSimple,
             },
@@ -168,7 +174,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgProjectsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#create-an-organization-project"""
 
@@ -187,12 +193,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgProjectsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -233,7 +239,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgProjectsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#create-an-organization-project"""
 
@@ -252,12 +258,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgProjectsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -286,7 +292,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -312,7 +318,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -338,7 +344,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -363,7 +369,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -400,7 +406,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsCardsCardIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectCard, ProjectCardType]:
         """See also: https://docs.github.com/rest/projects/cards#update-an-existing-project-card"""
 
@@ -419,12 +425,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsCardsCardIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -464,7 +470,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsCardsCardIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectCard, ProjectCardType]:
         """See also: https://docs.github.com/rest/projects/cards#update-an-existing-project-card"""
 
@@ -483,12 +489,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsCardsCardIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -534,7 +540,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsCardsCardIdMovesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ProjectsColumnsCardsCardIdMovesPostResponse201,
         ProjectsColumnsCardsCardIdMovesPostResponse201Type,
@@ -558,12 +564,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsCardsCardIdMovesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -609,7 +615,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsCardsCardIdMovesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ProjectsColumnsCardsCardIdMovesPostResponse201,
         ProjectsColumnsCardsCardIdMovesPostResponse201Type,
@@ -633,12 +639,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsCardsCardIdMovesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -666,7 +672,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -692,7 +698,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -718,7 +724,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -742,7 +748,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -777,7 +783,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsColumnIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectColumn, ProjectColumnType]:
         """See also: https://docs.github.com/rest/projects/columns#update-an-existing-project-column"""
 
@@ -791,12 +797,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsColumnIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -833,7 +839,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsColumnIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectColumn, ProjectColumnType]:
         """See also: https://docs.github.com/rest/projects/columns#update-an-existing-project-column"""
 
@@ -847,12 +853,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsColumnIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -872,8 +878,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ProjectCard], list[ProjectCardType]]:
+    ) -> Response[builtins.list[ProjectCard], builtins.list[ProjectCardType]]:
         """See also: https://docs.github.com/rest/projects/cards#list-project-cards"""
+
+        import builtins
 
         from ..models import BasicError, ProjectCard
 
@@ -887,12 +895,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ProjectCard],
+            response_model=builtins.list[ProjectCard],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -907,8 +915,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ProjectCard], list[ProjectCardType]]:
+    ) -> Response[builtins.list[ProjectCard], builtins.list[ProjectCardType]]:
         """See also: https://docs.github.com/rest/projects/cards#list-project-cards"""
+
+        import builtins
 
         from ..models import BasicError, ProjectCard
 
@@ -922,12 +932,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ProjectCard],
+            response_model=builtins.list[ProjectCard],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -978,7 +988,7 @@ class ProjectsClient:
                 ProjectsColumnsColumnIdCardsPostBodyOneof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectCard, ProjectCardType]:
         """See also: https://docs.github.com/rest/projects/cards#create-a-project-card"""
 
@@ -1002,7 +1012,7 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -1013,7 +1023,7 @@ class ProjectsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1071,7 +1081,7 @@ class ProjectsClient:
                 ProjectsColumnsColumnIdCardsPostBodyOneof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectCard, ProjectCardType]:
         """See also: https://docs.github.com/rest/projects/cards#create-a-project-card"""
 
@@ -1095,7 +1105,7 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -1106,7 +1116,7 @@ class ProjectsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1151,7 +1161,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsColumnIdMovesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ProjectsColumnsColumnIdMovesPostResponse201,
         ProjectsColumnsColumnIdMovesPostResponse201Type,
@@ -1173,12 +1183,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsColumnIdMovesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1222,7 +1232,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsColumnsColumnIdMovesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ProjectsColumnsColumnIdMovesPostResponse201,
         ProjectsColumnsColumnIdMovesPostResponse201Type,
@@ -1244,12 +1254,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsColumnsColumnIdMovesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1276,7 +1286,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1301,7 +1311,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1326,7 +1336,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1352,7 +1362,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1395,7 +1405,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsProjectIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#update-a-project"""
 
@@ -1415,12 +1425,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsProjectIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1465,7 +1475,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsProjectIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#update-a-project"""
 
@@ -1485,12 +1495,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsProjectIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1512,8 +1522,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/projects/collaborators#list-project-collaborators"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser, ValidationError
 
@@ -1527,12 +1539,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -1549,8 +1561,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/projects/collaborators#list-project-collaborators"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser, ValidationError
 
@@ -1564,12 +1578,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -1610,7 +1624,7 @@ class ProjectsClient:
         data: Missing[
             Union[ProjectsProjectIdCollaboratorsUsernamePutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/projects/collaborators#add-project-collaborator"""
 
@@ -1630,14 +1644,14 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ProjectsProjectIdCollaboratorsUsernamePutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1682,7 +1696,7 @@ class ProjectsClient:
         data: Missing[
             Union[ProjectsProjectIdCollaboratorsUsernamePutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/projects/collaborators#add-project-collaborator"""
 
@@ -1702,14 +1716,14 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ProjectsProjectIdCollaboratorsUsernamePutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1737,7 +1751,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1764,7 +1778,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1791,7 +1805,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1819,7 +1833,7 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1839,8 +1853,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ProjectColumn], list[ProjectColumnType]]:
+    ) -> Response[builtins.list[ProjectColumn], builtins.list[ProjectColumnType]]:
         """See also: https://docs.github.com/rest/projects/columns#list-project-columns"""
+
+        import builtins
 
         from ..models import BasicError, ProjectColumn
 
@@ -1853,12 +1869,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ProjectColumn],
+            response_model=builtins.list[ProjectColumn],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1872,8 +1888,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ProjectColumn], list[ProjectColumnType]]:
+    ) -> Response[builtins.list[ProjectColumn], builtins.list[ProjectColumnType]]:
         """See also: https://docs.github.com/rest/projects/columns#list-project-columns"""
+
+        import builtins
 
         from ..models import BasicError, ProjectColumn
 
@@ -1886,12 +1904,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ProjectColumn],
+            response_model=builtins.list[ProjectColumn],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1923,7 +1941,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsProjectIdColumnsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectColumn, ProjectColumnType]:
         """See also: https://docs.github.com/rest/projects/columns#create-a-project-column"""
 
@@ -1942,12 +1960,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsProjectIdColumnsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1985,7 +2003,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ProjectsProjectIdColumnsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProjectColumn, ProjectColumnType]:
         """See also: https://docs.github.com/rest/projects/columns#create-a-project-column"""
 
@@ -2004,12 +2022,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ProjectsProjectIdColumnsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2031,8 +2049,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Project], list[ProjectType]]:
+    ) -> Response[builtins.list[Project], builtins.list[ProjectType]]:
         """See also: https://docs.github.com/rest/projects/projects#list-repository-projects"""
+
+        import builtins
 
         from ..models import BasicError, Project, ValidationErrorSimple
 
@@ -2046,12 +2066,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Project],
+            response_model=builtins.list[Project],
             error_models={
                 "401": BasicError,
                 "403": BasicError,
@@ -2070,8 +2090,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Project], list[ProjectType]]:
+    ) -> Response[builtins.list[Project], builtins.list[ProjectType]]:
         """See also: https://docs.github.com/rest/projects/projects#list-repository-projects"""
+
+        import builtins
 
         from ..models import BasicError, Project, ValidationErrorSimple
 
@@ -2085,12 +2107,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Project],
+            response_model=builtins.list[Project],
             error_models={
                 "401": BasicError,
                 "403": BasicError,
@@ -2129,7 +2151,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoProjectsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#create-a-repository-project"""
 
@@ -2148,12 +2170,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoProjectsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2197,7 +2219,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoProjectsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#create-a-repository-project"""
 
@@ -2216,12 +2238,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoProjectsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2259,7 +2281,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserProjectsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#create-a-user-project"""
 
@@ -2278,12 +2300,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserProjectsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2319,7 +2341,7 @@ class ProjectsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserProjectsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Project, ProjectType]:
         """See also: https://docs.github.com/rest/projects/projects#create-a-user-project"""
 
@@ -2338,12 +2360,12 @@ class ProjectsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserProjectsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2364,8 +2386,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Project], list[ProjectType]]:
+    ) -> Response[builtins.list[Project], builtins.list[ProjectType]]:
         """See also: https://docs.github.com/rest/projects/projects#list-user-projects"""
+
+        import builtins
 
         from ..models import Project, ValidationError
 
@@ -2379,12 +2403,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Project],
+            response_model=builtins.list[Project],
             error_models={
                 "422": ValidationError,
             },
@@ -2398,8 +2422,10 @@ class ProjectsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Project], list[ProjectType]]:
+    ) -> Response[builtins.list[Project], builtins.list[ProjectType]]:
         """See also: https://docs.github.com/rest/projects/projects#list-user-projects"""
+
+        import builtins
 
         from ..models import Project, ValidationError
 
@@ -2413,12 +2439,12 @@ class ProjectsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Project],
+            response_model=builtins.list[Project],
             error_models={
                 "422": ValidationError,
             },

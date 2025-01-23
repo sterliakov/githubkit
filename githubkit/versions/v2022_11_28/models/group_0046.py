@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Union
 
@@ -28,8 +29,10 @@ class GistSimple(GitHubModel):
     Gist Simple
     """
 
-    forks: Missing[Union[list[GistSimplePropForksItems], None]] = Field(default=UNSET)
-    history: Missing[Union[list[GistHistory], None]] = Field(default=UNSET)
+    forks: Missing[Union[builtins.list[GistSimplePropForksItems], None]] = Field(
+        default=UNSET
+    )
+    history: Missing[Union[builtins.list[GistHistory], None]] = Field(default=UNSET)
     fork_of: Missing[Union[GistSimplePropForkOf, None]] = Field(
         default=UNSET, title="Gist", description="Gist"
     )

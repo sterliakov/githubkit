@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 
@@ -34,7 +35,7 @@ class ClassroomAcceptedAssignment(GitHubModel):
     passing: bool = Field(description="Whether a submission passed.")
     commit_count: int = Field(description="Count of student commits.")
     grade: str = Field(description="Most recent grade.")
-    students: list[SimpleClassroomUser] = Field()
+    students: builtins.list[SimpleClassroomUser] = Field()
     repository: SimpleClassroomRepository = Field(
         title="Simple Classroom Repository",
         description="A GitHub repository view for Classroom",

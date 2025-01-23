@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
@@ -25,7 +26,7 @@ class AuthorizationType(TypedDict):
 
     id: int
     url: str
-    scopes: Union[list[str], None]
+    scopes: Union[builtins.list[str], None]
     token: str
     token_last_eight: Union[str, None]
     hashed_token: Union[str, None]

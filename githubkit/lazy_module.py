@@ -114,10 +114,11 @@ class LazyModuleFinder(MetaPathFinder):
         if any(re.match(pattern, fullname) for pattern in LAZY_MODULES):
             module_spec = PathFinder.find_spec(fullname, path, target)
             if not module_spec or not module_spec.origin:
-                return
+                return None
 
             module_spec.loader = LazyModuleLoader(module_spec.name, module_spec.origin)
             return module_spec
+        return None
 
 
 def apply():

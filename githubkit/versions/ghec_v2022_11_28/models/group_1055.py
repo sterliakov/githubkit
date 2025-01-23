@@ -9,17 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-
-class ReposOwnerRepoBranchesBranchRenamePostBody(GitHubModel):
-    """ReposOwnerRepoBranchesBranchRenamePostBody"""
-
-    new_name: str = Field(description="The new name of the branch.")
+from .group_0222 import ActionsSecret
 
 
-model_rebuild(ReposOwnerRepoBranchesBranchRenamePostBody)
+class ReposOwnerRepoActionsSecretsGetResponse200(GitHubModel):
+    """ReposOwnerRepoActionsSecretsGetResponse200"""
 
-__all__ = ("ReposOwnerRepoBranchesBranchRenamePostBody",)
+    total_count: int = Field()
+    secrets: builtins.list[ActionsSecret] = Field()
+
+
+model_rebuild(ReposOwnerRepoActionsSecretsGetResponse200)
+
+__all__ = ("ReposOwnerRepoActionsSecretsGetResponse200",)

@@ -9,21 +9,48 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Union
-from typing_extensions import TypedDict
-
-from .group_0002 import SimpleUserType
+from typing_extensions import NotRequired, TypedDict
 
 
-class StargazerType(TypedDict):
-    """Stargazer
+class SecretScanningScanHistoryType(TypedDict):
+    """SecretScanningScanHistory"""
 
-    Stargazer
+    incremental_scans: NotRequired[builtins.list[SecretScanningScanType]]
+    pattern_update_scans: NotRequired[builtins.list[SecretScanningScanType]]
+    backfill_scans: NotRequired[builtins.list[SecretScanningScanType]]
+    custom_pattern_backfill_scans: NotRequired[
+        builtins.list[SecretScanningScanHistoryPropCustomPatternBackfillScansItemsType]
+    ]
+
+
+class SecretScanningScanType(TypedDict):
+    """SecretScanningScan
+
+    Information on a single scan performed by secret scanning on the repository
     """
 
-    starred_at: datetime
-    user: Union[None, SimpleUserType]
+    type: NotRequired[str]
+    status: NotRequired[str]
+    completed_at: NotRequired[Union[datetime, None]]
+    started_at: NotRequired[Union[datetime, None]]
 
 
-__all__ = ("StargazerType",)
+class SecretScanningScanHistoryPropCustomPatternBackfillScansItemsType(TypedDict):
+    """SecretScanningScanHistoryPropCustomPatternBackfillScansItems"""
+
+    type: NotRequired[str]
+    status: NotRequired[str]
+    completed_at: NotRequired[Union[datetime, None]]
+    started_at: NotRequired[Union[datetime, None]]
+    pattern_name: NotRequired[str]
+    pattern_scope: NotRequired[str]
+
+
+__all__ = (
+    "SecretScanningScanHistoryPropCustomPatternBackfillScansItemsType",
+    "SecretScanningScanHistoryType",
+    "SecretScanningScanType",
+)

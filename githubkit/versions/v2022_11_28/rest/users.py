@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Annotated, Literal, Optional, overload
+from typing import TYPE_CHECKING, Annotated, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel, Field
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -96,7 +98,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -124,7 +126,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -164,7 +166,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PrivateUser, PrivateUserType]:
         """See also: https://docs.github.com/rest/users/users#update-the-authenticated-user"""
 
@@ -178,12 +180,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -226,7 +228,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PrivateUser, PrivateUserType]:
         """See also: https://docs.github.com/rest/users/users#update-the-authenticated-user"""
 
@@ -240,12 +242,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -265,8 +267,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/blocking#list-users-blocked-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -279,12 +283,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -298,8 +302,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/blocking#list-users-blocked-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -312,12 +318,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -339,7 +345,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -364,7 +370,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -389,7 +395,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -415,7 +421,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -441,7 +447,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -466,7 +472,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -483,7 +489,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: UserEmailVisibilityPatchBodyType,
-    ) -> Response[list[Email], list[EmailType]]: ...
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     @overload
     def set_primary_email_visibility_for_authenticated_user(
@@ -492,16 +498,18 @@ class UsersClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         visibility: Literal["public", "private"],
-    ) -> Response[list[Email], list[EmailType]]: ...
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     def set_primary_email_visibility_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserEmailVisibilityPatchBodyType] = UNSET,
-        **kwargs,
-    ) -> Response[list[Email], list[EmailType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#set-primary-email-visibility-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -518,17 +526,17 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserEmailVisibilityPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -543,7 +551,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: UserEmailVisibilityPatchBodyType,
-    ) -> Response[list[Email], list[EmailType]]: ...
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     @overload
     async def async_set_primary_email_visibility_for_authenticated_user(
@@ -552,16 +560,18 @@ class UsersClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         visibility: Literal["public", "private"],
-    ) -> Response[list[Email], list[EmailType]]: ...
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     async def async_set_primary_email_visibility_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserEmailVisibilityPatchBodyType] = UNSET,
-        **kwargs,
-    ) -> Response[list[Email], list[EmailType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#set-primary-email-visibility-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -578,17 +588,17 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserEmailVisibilityPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -603,8 +613,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Email], list[EmailType]]:
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#list-email-addresses-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Email
 
@@ -617,12 +629,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -636,8 +648,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Email], list[EmailType]]:
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#list-email-addresses-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Email
 
@@ -650,12 +664,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -668,8 +682,10 @@ class UsersClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsPostBodyOneof0Type, list[str], str]] = UNSET,
-    ) -> Response[list[Email], list[EmailType]]: ...
+        data: Missing[
+            Union[UserEmailsPostBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     @overload
     def add_email_for_authenticated_user(
@@ -677,18 +693,21 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        emails: list[str],
-    ) -> Response[list[Email], list[EmailType]]: ...
+        emails: builtins.list[str],
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     def add_email_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsPostBodyOneof0Type, list[str], str]] = UNSET,
-        **kwargs,
-    ) -> Response[list[Email], list[EmailType]]:
+        data: Missing[
+            Union[UserEmailsPostBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
+        **kwargs: Any,
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#add-an-email-address-for-the-authenticated-user"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -708,24 +727,26 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     UserEmailsPostBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     str,
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -739,8 +760,10 @@ class UsersClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsPostBodyOneof0Type, list[str], str]] = UNSET,
-    ) -> Response[list[Email], list[EmailType]]: ...
+        data: Missing[
+            Union[UserEmailsPostBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     @overload
     async def async_add_email_for_authenticated_user(
@@ -748,18 +771,21 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        emails: list[str],
-    ) -> Response[list[Email], list[EmailType]]: ...
+        emails: builtins.list[str],
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]: ...
 
     async def async_add_email_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsPostBodyOneof0Type, list[str], str]] = UNSET,
-        **kwargs,
-    ) -> Response[list[Email], list[EmailType]]:
+        data: Missing[
+            Union[UserEmailsPostBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
+        **kwargs: Any,
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#add-an-email-address-for-the-authenticated-user"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -779,24 +805,26 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     UserEmailsPostBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     str,
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -810,7 +838,9 @@ class UsersClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsDeleteBodyOneof0Type, list[str], str]] = UNSET,
+        data: Missing[
+            Union[UserEmailsDeleteBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
     ) -> Response: ...
 
     @overload
@@ -819,18 +849,21 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        emails: list[str],
+        emails: builtins.list[str],
     ) -> Response: ...
 
     def delete_email_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsDeleteBodyOneof0Type, list[str], str]] = UNSET,
-        **kwargs,
+        data: Missing[
+            Union[UserEmailsDeleteBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/users/emails#delete-an-email-address-for-the-authenticated-user"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -845,19 +878,21 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     UserEmailsDeleteBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     str,
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -875,7 +910,9 @@ class UsersClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsDeleteBodyOneof0Type, list[str], str]] = UNSET,
+        data: Missing[
+            Union[UserEmailsDeleteBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
     ) -> Response: ...
 
     @overload
@@ -884,18 +921,21 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        emails: list[str],
+        emails: builtins.list[str],
     ) -> Response: ...
 
     async def async_delete_email_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-        data: Missing[Union[UserEmailsDeleteBodyOneof0Type, list[str], str]] = UNSET,
-        **kwargs,
+        data: Missing[
+            Union[UserEmailsDeleteBodyOneof0Type, builtins.list[str], str]
+        ] = UNSET,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/users/emails#delete-an-email-address-for-the-authenticated-user"""
 
+        import builtins
         from typing import Union
 
         from githubkit.compat import PYDANTIC_V2
@@ -910,19 +950,21 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     UserEmailsDeleteBodyOneof0,
-                    Annotated[list[str], Field(min_length=1 if PYDANTIC_V2 else None)],
+                    Annotated[
+                        builtins.list[str], Field(min_length=1 if PYDANTIC_V2 else None)
+                    ],
                     str,
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -941,8 +983,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-followers-of-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -955,12 +999,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -973,8 +1017,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-followers-of-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -987,12 +1033,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1005,8 +1051,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-the-people-the-authenticated-user-follows"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -1019,12 +1067,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1037,8 +1085,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-the-people-the-authenticated-user-follows"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -1051,12 +1101,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1077,7 +1127,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1102,7 +1152,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1127,7 +1177,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1153,7 +1203,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1179,7 +1229,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1204,7 +1254,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1221,8 +1271,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GpgKey], list[GpgKeyType]]:
+    ) -> Response[builtins.list[GpgKey], builtins.list[GpgKeyType]]:
         """See also: https://docs.github.com/rest/users/gpg-keys#list-gpg-keys-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, GpgKey
 
@@ -1235,12 +1287,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GpgKey],
+            response_model=builtins.list[GpgKey],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1254,8 +1306,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GpgKey], list[GpgKeyType]]:
+    ) -> Response[builtins.list[GpgKey], builtins.list[GpgKeyType]]:
         """See also: https://docs.github.com/rest/users/gpg-keys#list-gpg-keys-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, GpgKey
 
@@ -1268,12 +1322,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GpgKey],
+            response_model=builtins.list[GpgKey],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1304,7 +1358,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserGpgKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GpgKey, GpgKeyType]:
         """See also: https://docs.github.com/rest/users/gpg-keys#create-a-gpg-key-for-the-authenticated-user"""
 
@@ -1318,12 +1372,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserGpgKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1360,7 +1414,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserGpgKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GpgKey, GpgKeyType]:
         """See also: https://docs.github.com/rest/users/gpg-keys#create-a-gpg-key-for-the-authenticated-user"""
 
@@ -1374,12 +1428,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserGpgKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1407,7 +1461,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1433,7 +1487,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1459,7 +1513,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1485,7 +1539,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1503,8 +1557,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Key], list[KeyType]]:
+    ) -> Response[builtins.list[Key], builtins.list[KeyType]]:
         """See also: https://docs.github.com/rest/users/keys#list-public-ssh-keys-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Key
 
@@ -1517,12 +1573,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Key],
+            response_model=builtins.list[Key],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1536,8 +1592,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Key], list[KeyType]]:
+    ) -> Response[builtins.list[Key], builtins.list[KeyType]]:
         """See also: https://docs.github.com/rest/users/keys#list-public-ssh-keys-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Key
 
@@ -1550,12 +1608,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Key],
+            response_model=builtins.list[Key],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1583,7 +1641,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Key, KeyType]:
         """See also: https://docs.github.com/rest/users/keys#create-a-public-ssh-key-for-the-authenticated-user"""
 
@@ -1597,12 +1655,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1636,7 +1694,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Key, KeyType]:
         """See also: https://docs.github.com/rest/users/keys#create-a-public-ssh-key-for-the-authenticated-user"""
 
@@ -1650,12 +1708,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1683,7 +1741,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1709,7 +1767,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1735,7 +1793,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1760,7 +1818,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1777,8 +1835,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Email], list[EmailType]]:
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#list-public-email-addresses-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Email
 
@@ -1791,12 +1851,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1810,8 +1870,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Email], list[EmailType]]:
+    ) -> Response[builtins.list[Email], builtins.list[EmailType]]:
         """See also: https://docs.github.com/rest/users/emails#list-public-email-addresses-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Email
 
@@ -1824,12 +1886,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Email],
+            response_model=builtins.list[Email],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1843,8 +1905,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]:
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]:
         """See also: https://docs.github.com/rest/users/social-accounts#list-social-accounts-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SocialAccount
 
@@ -1857,12 +1921,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SocialAccount],
+            response_model=builtins.list[SocialAccount],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1876,8 +1940,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]:
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]:
         """See also: https://docs.github.com/rest/users/social-accounts#list-social-accounts-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SocialAccount
 
@@ -1890,12 +1956,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SocialAccount],
+            response_model=builtins.list[SocialAccount],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1909,7 +1975,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: UserSocialAccountsPostBodyType,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]: ...
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]: ...
 
     @overload
     def add_social_account_for_authenticated_user(
@@ -1917,17 +1983,19 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        account_urls: list[str],
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]: ...
+        account_urls: builtins.list[str],
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]: ...
 
     def add_social_account_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserSocialAccountsPostBodyType] = UNSET,
-        **kwargs,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]:
         """See also: https://docs.github.com/rest/users/social-accounts#add-social-accounts-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1944,17 +2012,17 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserSocialAccountsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SocialAccount],
+            response_model=builtins.list[SocialAccount],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -1969,7 +2037,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: UserSocialAccountsPostBodyType,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]: ...
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]: ...
 
     @overload
     async def async_add_social_account_for_authenticated_user(
@@ -1977,17 +2045,19 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        account_urls: list[str],
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]: ...
+        account_urls: builtins.list[str],
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]: ...
 
     async def async_add_social_account_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserSocialAccountsPostBodyType] = UNSET,
-        **kwargs,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]:
         """See also: https://docs.github.com/rest/users/social-accounts#add-social-accounts-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -2004,17 +2074,17 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserSocialAccountsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SocialAccount],
+            response_model=builtins.list[SocialAccount],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -2037,7 +2107,7 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        account_urls: list[str],
+        account_urls: builtins.list[str],
     ) -> Response: ...
 
     def delete_social_account_for_authenticated_user(
@@ -2045,7 +2115,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserSocialAccountsDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/users/social-accounts#delete-social-accounts-for-the-authenticated-user"""
 
@@ -2059,12 +2129,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserSocialAccountsDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -2091,7 +2161,7 @@ class UsersClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        account_urls: list[str],
+        account_urls: builtins.list[str],
     ) -> Response: ...
 
     async def async_delete_social_account_for_authenticated_user(
@@ -2099,7 +2169,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserSocialAccountsDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/users/social-accounts#delete-social-accounts-for-the-authenticated-user"""
 
@@ -2113,12 +2183,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserSocialAccountsDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -2137,8 +2207,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SshSigningKey], list[SshSigningKeyType]]:
+    ) -> Response[builtins.list[SshSigningKey], builtins.list[SshSigningKeyType]]:
         """See also: https://docs.github.com/rest/users/ssh-signing-keys#list-ssh-signing-keys-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SshSigningKey
 
@@ -2151,12 +2223,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SshSigningKey],
+            response_model=builtins.list[SshSigningKey],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -2170,8 +2242,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SshSigningKey], list[SshSigningKeyType]]:
+    ) -> Response[builtins.list[SshSigningKey], builtins.list[SshSigningKeyType]]:
         """See also: https://docs.github.com/rest/users/ssh-signing-keys#list-ssh-signing-keys-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, SshSigningKey
 
@@ -2184,12 +2258,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SshSigningKey],
+            response_model=builtins.list[SshSigningKey],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -2220,7 +2294,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserSshSigningKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[SshSigningKey, SshSigningKeyType]:
         """See also: https://docs.github.com/rest/users/ssh-signing-keys#create-a-ssh-signing-key-for-the-authenticated-user"""
 
@@ -2239,12 +2313,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserSshSigningKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2281,7 +2355,7 @@ class UsersClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserSshSigningKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[SshSigningKey, SshSigningKeyType]:
         """See also: https://docs.github.com/rest/users/ssh-signing-keys#create-a-ssh-signing-key-for-the-authenticated-user"""
 
@@ -2300,12 +2374,12 @@ class UsersClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserSshSigningKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2333,7 +2407,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2359,7 +2433,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2385,7 +2459,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2410,7 +2484,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2439,7 +2513,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2467,7 +2541,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2483,8 +2557,10 @@ class UsersClient:
         since: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/users#list-users"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -2497,12 +2573,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list(
@@ -2511,8 +2587,10 @@ class UsersClient:
         since: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/users#list-users"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -2525,12 +2603,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def get_by_username(
@@ -2551,7 +2629,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2579,7 +2657,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2619,7 +2697,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2660,7 +2738,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2678,8 +2756,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-followers-of-a-user"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -2692,12 +2772,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_followers_for_user(
@@ -2707,8 +2787,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-followers-of-a-user"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -2721,12 +2803,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def list_following_for_user(
@@ -2736,8 +2818,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-the-people-a-user-follows"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -2750,12 +2834,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_following_for_user(
@@ -2765,8 +2849,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/users/followers#list-the-people-a-user-follows"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -2779,12 +2865,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def check_following_for_user(
@@ -2800,7 +2886,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2820,7 +2906,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2834,8 +2920,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GpgKey], list[GpgKeyType]]:
+    ) -> Response[builtins.list[GpgKey], builtins.list[GpgKeyType]]:
         """See also: https://docs.github.com/rest/users/gpg-keys#list-gpg-keys-for-a-user"""
+
+        import builtins
 
         from ..models import GpgKey
 
@@ -2848,12 +2936,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GpgKey],
+            response_model=builtins.list[GpgKey],
         )
 
     async def async_list_gpg_keys_for_user(
@@ -2863,8 +2951,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GpgKey], list[GpgKeyType]]:
+    ) -> Response[builtins.list[GpgKey], builtins.list[GpgKeyType]]:
         """See also: https://docs.github.com/rest/users/gpg-keys#list-gpg-keys-for-a-user"""
+
+        import builtins
 
         from ..models import GpgKey
 
@@ -2877,12 +2967,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GpgKey],
+            response_model=builtins.list[GpgKey],
         )
 
     def get_context_for_user(
@@ -2908,7 +2998,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2943,7 +3033,7 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2962,8 +3052,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[KeySimple], list[KeySimpleType]]:
+    ) -> Response[builtins.list[KeySimple], builtins.list[KeySimpleType]]:
         """See also: https://docs.github.com/rest/users/keys#list-public-keys-for-a-user"""
+
+        import builtins
 
         from ..models import KeySimple
 
@@ -2976,12 +3068,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[KeySimple],
+            response_model=builtins.list[KeySimple],
         )
 
     async def async_list_public_keys_for_user(
@@ -2991,8 +3083,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[KeySimple], list[KeySimpleType]]:
+    ) -> Response[builtins.list[KeySimple], builtins.list[KeySimpleType]]:
         """See also: https://docs.github.com/rest/users/keys#list-public-keys-for-a-user"""
+
+        import builtins
 
         from ..models import KeySimple
 
@@ -3005,12 +3099,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[KeySimple],
+            response_model=builtins.list[KeySimple],
         )
 
     def list_social_accounts_for_user(
@@ -3020,8 +3114,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]:
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]:
         """See also: https://docs.github.com/rest/users/social-accounts#list-social-accounts-for-a-user"""
+
+        import builtins
 
         from ..models import SocialAccount
 
@@ -3034,12 +3130,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SocialAccount],
+            response_model=builtins.list[SocialAccount],
         )
 
     async def async_list_social_accounts_for_user(
@@ -3049,8 +3145,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SocialAccount], list[SocialAccountType]]:
+    ) -> Response[builtins.list[SocialAccount], builtins.list[SocialAccountType]]:
         """See also: https://docs.github.com/rest/users/social-accounts#list-social-accounts-for-a-user"""
+
+        import builtins
 
         from ..models import SocialAccount
 
@@ -3063,12 +3161,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SocialAccount],
+            response_model=builtins.list[SocialAccount],
         )
 
     def list_ssh_signing_keys_for_user(
@@ -3078,8 +3176,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SshSigningKey], list[SshSigningKeyType]]:
+    ) -> Response[builtins.list[SshSigningKey], builtins.list[SshSigningKeyType]]:
         """See also: https://docs.github.com/rest/users/ssh-signing-keys#list-ssh-signing-keys-for-a-user"""
+
+        import builtins
 
         from ..models import SshSigningKey
 
@@ -3092,12 +3192,12 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SshSigningKey],
+            response_model=builtins.list[SshSigningKey],
         )
 
     async def async_list_ssh_signing_keys_for_user(
@@ -3107,8 +3207,10 @@ class UsersClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SshSigningKey], list[SshSigningKeyType]]:
+    ) -> Response[builtins.list[SshSigningKey], builtins.list[SshSigningKeyType]]:
         """See also: https://docs.github.com/rest/users/ssh-signing-keys#list-ssh-signing-keys-for-a-user"""
+
+        import builtins
 
         from ..models import SshSigningKey
 
@@ -3121,10 +3223,10 @@ class UsersClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SshSigningKey],
+            response_model=builtins.list[SshSigningKey],
         )

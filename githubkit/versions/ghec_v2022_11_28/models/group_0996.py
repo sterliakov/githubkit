@@ -9,36 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
-from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
+from githubkit.compat import PYDANTIC_V2, GitHubModel, model_rebuild
+
+from .group_0076 import CustomProperty
 
 
-class ProjectsColumnsCardsCardIdMovesPostResponse403(GitHubModel):
-    """ProjectsColumnsCardsCardIdMovesPostResponse403"""
+class OrgsOrgPropertiesSchemaPatchBody(GitHubModel):
+    """OrgsOrgPropertiesSchemaPatchBody"""
 
-    message: Missing[str] = Field(default=UNSET)
-    documentation_url: Missing[str] = Field(default=UNSET)
-    errors: Missing[
-        list[ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItems]
-    ] = Field(default=UNSET)
-
-
-class ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItems(GitHubModel):
-    """ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItems"""
-
-    code: Missing[str] = Field(default=UNSET)
-    message: Missing[str] = Field(default=UNSET)
-    resource: Missing[str] = Field(default=UNSET)
-    field: Missing[str] = Field(default=UNSET)
+    properties: builtins.list[CustomProperty] = Field(
+        max_length=100 if PYDANTIC_V2 else None,
+        min_length=1 if PYDANTIC_V2 else None,
+        description="The array of custom properties to create or update.",
+    )
 
 
-model_rebuild(ProjectsColumnsCardsCardIdMovesPostResponse403)
-model_rebuild(ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItems)
+model_rebuild(OrgsOrgPropertiesSchemaPatchBody)
 
-__all__ = (
-    "ProjectsColumnsCardsCardIdMovesPostResponse403",
-    "ProjectsColumnsCardsCardIdMovesPostResponse403PropErrorsItems",
-)
+__all__ = ("OrgsOrgPropertiesSchemaPatchBody",)

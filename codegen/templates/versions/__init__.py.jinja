@@ -9,7 +9,7 @@ VERSIONS = {
     "{{ version }}": "{{ module }}",
     {% endfor %}
 }
-LATEST_VERSION = "{{ latest_version }}"
+LATEST_VERSION: Literal["{{ latest_version }}"] = "{{ latest_version }}"
 VERSION_TYPE = Literal[{{ versions.keys()|map("repr")|join(", ")}}]
 
 from .rest import RestVersionSwitcher as RestVersionSwitcher

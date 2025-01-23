@@ -9,15 +9,15 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class TeamsTeamIdDiscussionsPostBodyType(TypedDict):
-    """TeamsTeamIdDiscussionsPostBody"""
+class ReposOwnerRepoPullsPullNumberRequestedReviewersPostBodyAnyof1Type(TypedDict):
+    """ReposOwnerRepoPullsPullNumberRequestedReviewersPostBodyAnyof1"""
 
-    title: str
-    body: str
-    private: NotRequired[bool]
+    reviewers: NotRequired[builtins.list[str]]
+    team_reviewers: builtins.list[str]
 
 
-__all__ = ("TeamsTeamIdDiscussionsPostBodyType",)
+__all__ = ("ReposOwnerRepoPullsPullNumberRequestedReviewersPostBodyAnyof1Type",)

@@ -9,32 +9,28 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0074 import (
-    EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationName,
-)
-from .group_0078 import RepositoryRulesetConditionsPropRefName
-from .group_0080 import (
-    RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty,
-)
+
+class RepositoryRulesetConditionsPropRefName(GitHubModel):
+    """RepositoryRulesetConditionsPropRefName"""
+
+    include: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="Array of ref names or patterns to include. One of these patterns must match for the condition to pass. Also accepts `~DEFAULT_BRANCH` to include the default branch or `~ALL` to include all branches.",
+    )
+    exclude: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="Array of ref names or patterns to exclude. The condition will not pass if any of these patterns match.",
+    )
 
 
-class EnterpriseRulesetConditionsOneof1(GitHubModel):
-    """organization_name_and_repository_property
+model_rebuild(RepositoryRulesetConditionsPropRefName)
 
-    Conditions to target organizations by name and repositories by property
-    """
-
-    organization_name: EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationName = Field()
-    repository_property: RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty = Field()
-    ref_name: Missing[RepositoryRulesetConditionsPropRefName] = Field(default=UNSET)
-
-
-model_rebuild(EnterpriseRulesetConditionsOneof1)
-
-__all__ = ("EnterpriseRulesetConditionsOneof1",)
+__all__ = ("RepositoryRulesetConditionsPropRefName",)

@@ -18,17 +18,16 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
-from .group_0444 import EnterpriseWebhooks
-from .group_0445 import SimpleInstallation
-from .group_0446 import OrganizationSimpleWebhooks
-from .group_0447 import RepositoryWebhooks
-from .group_0450 import ExemptionRequest
+from .group_0450 import EnterpriseWebhooks
+from .group_0451 import SimpleInstallation
+from .group_0452 import OrganizationSimpleWebhooks
+from .group_0453 import RepositoryWebhooks
 
 
-class WebhookExemptionRequestCompleted(GitHubModel):
-    """Exemption request completed event"""
+class WebhookBranchProtectionConfigurationDisabled(GitHubModel):
+    """branch protection configuration disabled event"""
 
-    action: Literal["completed"] = Field()
+    action: Literal["disabled"] = Field()
     enterprise: Missing[EnterpriseWebhooks] = Field(
         default=UNSET,
         title="Enterprise",
@@ -44,18 +43,13 @@ class WebhookExemptionRequestCompleted(GitHubModel):
         title="Organization Simple",
         description="A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.",
     )
-    repository: Missing[RepositoryWebhooks] = Field(
-        default=UNSET,
+    repository: RepositoryWebhooks = Field(
         title="Repository",
         description="The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property\nwhen the event occurs from activity in a repository.",
-    )
-    exemption_request: ExemptionRequest = Field(
-        title="Exemption Request",
-        description="A request from a user to be exempted from a set of rules.",
     )
     sender: SimpleUser = Field(title="Simple User", description="A GitHub user.")
 
 
-model_rebuild(WebhookExemptionRequestCompleted)
+model_rebuild(WebhookBranchProtectionConfigurationDisabled)
 
-__all__ = ("WebhookExemptionRequestCompleted",)
+__all__ = ("WebhookBranchProtectionConfigurationDisabled",)

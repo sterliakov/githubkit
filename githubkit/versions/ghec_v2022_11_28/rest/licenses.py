@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Optional
 from weakref import ref
@@ -17,6 +18,8 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
     from githubkit.typing import Missing
@@ -48,8 +51,10 @@ class LicensesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[LicenseSimple], list[LicenseSimpleType]]:
+    ) -> Response[builtins.list[LicenseSimple], builtins.list[LicenseSimpleType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/licenses/licenses#get-all-commonly-used-licenses"""
+
+        import builtins
 
         from ..models import LicenseSimple
 
@@ -63,12 +68,12 @@ class LicensesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[LicenseSimple],
+            response_model=builtins.list[LicenseSimple],
         )
 
     async def async_get_all_commonly_used(
@@ -78,8 +83,10 @@ class LicensesClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[LicenseSimple], list[LicenseSimpleType]]:
+    ) -> Response[builtins.list[LicenseSimple], builtins.list[LicenseSimpleType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/licenses/licenses#get-all-commonly-used-licenses"""
+
+        import builtins
 
         from ..models import LicenseSimple
 
@@ -93,12 +100,12 @@ class LicensesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[LicenseSimple],
+            response_model=builtins.list[LicenseSimple],
         )
 
     def get(
@@ -115,7 +122,7 @@ class LicensesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -140,7 +147,7 @@ class LicensesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -171,7 +178,7 @@ class LicensesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -202,7 +209,7 @@ class LicensesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),

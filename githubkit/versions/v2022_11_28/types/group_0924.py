@@ -9,17 +9,29 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoActionsOidcCustomizationSubPutBodyType(TypedDict):
-    """Actions OIDC subject customization for a repository
+class ProjectsColumnsCardsCardIdMovesPostResponse503Type(TypedDict):
+    """ProjectsColumnsCardsCardIdMovesPostResponse503"""
 
-    Actions OIDC subject customization for a repository
-    """
+    code: NotRequired[str]
+    message: NotRequired[str]
+    documentation_url: NotRequired[str]
+    errors: NotRequired[
+        builtins.list[ProjectsColumnsCardsCardIdMovesPostResponse503PropErrorsItemsType]
+    ]
 
-    use_default: bool
-    include_claim_keys: NotRequired[list[str]]
+
+class ProjectsColumnsCardsCardIdMovesPostResponse503PropErrorsItemsType(TypedDict):
+    """ProjectsColumnsCardsCardIdMovesPostResponse503PropErrorsItems"""
+
+    code: NotRequired[str]
+    message: NotRequired[str]
 
 
-__all__ = ("ReposOwnerRepoActionsOidcCustomizationSubPutBodyType",)
+__all__ = (
+    "ProjectsColumnsCardsCardIdMovesPostResponse503PropErrorsItemsType",
+    "ProjectsColumnsCardsCardIdMovesPostResponse503Type",
+)

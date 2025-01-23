@@ -9,16 +9,29 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Literal
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0002 import SimpleUserType
+from .group_0450 import EnterpriseWebhooksType
+from .group_0451 import SimpleInstallationType
+from .group_0452 import OrganizationSimpleWebhooksType
+from .group_0453 import RepositoryWebhooksType
+from .group_0455 import ExemptionResponseType
+from .group_0456 import ExemptionRequestType
 
 
-class WebhookCheckRunRequestedActionFormEncodedType(TypedDict):
-    """Check Run Requested Action Event
+class WebhookExemptionRequestResponseSubmittedType(TypedDict):
+    """Exemption response submitted event"""
 
-    The check_run.requested_action webhook encoded with URL encoding
-    """
+    action: Literal["response_submitted"]
+    enterprise: NotRequired[EnterpriseWebhooksType]
+    installation: NotRequired[SimpleInstallationType]
+    organization: NotRequired[OrganizationSimpleWebhooksType]
+    repository: NotRequired[RepositoryWebhooksType]
+    exemption_request: ExemptionRequestType
+    exemption_response: ExemptionResponseType
+    sender: SimpleUserType
 
-    payload: str
 
-
-__all__ = ("WebhookCheckRunRequestedActionFormEncodedType",)
+__all__ = ("WebhookExemptionRequestResponseSubmittedType",)

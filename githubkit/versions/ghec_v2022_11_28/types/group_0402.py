@@ -9,16 +9,19 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
 
-class TopicType(TypedDict):
-    """Topic
+class CommitActivityType(TypedDict):
+    """Commit Activity
 
-    A topic aggregates entities that are related to a subject.
+    Commit Activity
     """
 
-    names: list[str]
+    days: builtins.list[int]
+    total: int
+    week: int
 
 
-__all__ = ("TopicType",)
+__all__ = ("CommitActivityType",)

@@ -9,15 +9,18 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
-from .group_0109 import CustomPropertyValueType
-
-
-class ReposOwnerRepoPropertiesValuesPatchBodyType(TypedDict):
-    """ReposOwnerRepoPropertiesValuesPatchBody"""
-
-    properties: list[CustomPropertyValueType]
+from datetime import datetime
+from typing import Literal
+from typing_extensions import NotRequired, TypedDict
 
 
-__all__ = ("ReposOwnerRepoPropertiesValuesPatchBodyType",)
+class ReposOwnerRepoMilestonesPostBodyType(TypedDict):
+    """ReposOwnerRepoMilestonesPostBody"""
+
+    title: str
+    state: NotRequired[Literal["open", "closed"]]
+    description: NotRequired[str]
+    due_on: NotRequired[datetime]
+
+
+__all__ = ("ReposOwnerRepoMilestonesPostBodyType",)

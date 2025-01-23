@@ -12,22 +12,18 @@ from __future__ import annotations
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourceDeleteBody(
-    GitHubModel
-):
-    """EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourceDeleteBody"""
+class EnterprisesEnterpriseCodeScanningAlertsGetResponse503(GitHubModel):
+    """EnterprisesEnterpriseCodeScanningAlertsGetResponse503"""
 
-    users: list[str] = Field(
-        description="The usernames of the users to remove from the cost center."
-    )
+    code: Missing[str] = Field(default=UNSET)
+    message: Missing[str] = Field(default=UNSET)
+    documentation_url: Missing[str] = Field(default=UNSET)
 
 
-model_rebuild(
-    EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourceDeleteBody
-)
+model_rebuild(EnterprisesEnterpriseCodeScanningAlertsGetResponse503)
 
-__all__ = (
-    "EnterprisesEnterpriseSettingsBillingCostCentersCostCenterIdResourceDeleteBody",
-)
+__all__ = ("EnterprisesEnterpriseCodeScanningAlertsGetResponse503",)

@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal
 
     from githubkit import GitHubCore
@@ -72,8 +74,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion-comment"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -87,12 +91,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     async def async_list_for_team_discussion_comment_in_org(
@@ -110,8 +114,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion-comment"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -125,12 +131,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     @overload
@@ -171,7 +177,7 @@ class ReactionsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion-comment"""
 
@@ -188,7 +194,7 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBody,
@@ -196,7 +202,7 @@ class ReactionsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -242,7 +248,7 @@ class ReactionsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion-comment"""
 
@@ -259,7 +265,7 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBody,
@@ -267,7 +273,7 @@ class ReactionsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -291,7 +297,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -313,7 +319,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -333,8 +339,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -348,12 +356,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     async def async_list_for_team_discussion_in_org(
@@ -370,8 +378,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -385,12 +395,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     @overload
@@ -428,7 +438,7 @@ class ReactionsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion"""
 
@@ -445,14 +455,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -495,7 +505,7 @@ class ReactionsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion"""
 
@@ -512,14 +522,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -542,7 +552,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -563,7 +573,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -583,8 +593,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-commit-comment"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -598,12 +610,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -623,8 +635,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-commit-comment"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -638,12 +652,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -682,7 +696,7 @@ class ReactionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCommentsCommentIdReactionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-commit-comment"""
 
@@ -700,14 +714,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCommentsCommentIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -751,7 +765,7 @@ class ReactionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCommentsCommentIdReactionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-commit-comment"""
 
@@ -769,14 +783,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCommentsCommentIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -802,7 +816,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -823,7 +837,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -843,8 +857,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-an-issue-comment"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -858,12 +874,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -883,8 +899,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-an-issue-comment"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -898,12 +916,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -944,7 +962,7 @@ class ReactionsClient:
         data: Missing[
             ReposOwnerRepoIssuesCommentsCommentIdReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-an-issue-comment"""
 
@@ -962,14 +980,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesCommentsCommentIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1015,7 +1033,7 @@ class ReactionsClient:
         data: Missing[
             ReposOwnerRepoIssuesCommentsCommentIdReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-an-issue-comment"""
 
@@ -1033,14 +1051,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesCommentsCommentIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1066,7 +1084,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1087,7 +1105,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1107,8 +1125,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-an-issue"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -1122,12 +1142,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -1148,8 +1168,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-an-issue"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -1163,12 +1185,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
                 "410": BasicError,
@@ -1208,7 +1230,7 @@ class ReactionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberReactionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-an-issue"""
 
@@ -1226,14 +1248,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1277,7 +1299,7 @@ class ReactionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoIssuesIssueNumberReactionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-an-issue"""
 
@@ -1295,14 +1317,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoIssuesIssueNumberReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1328,7 +1350,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1349,7 +1371,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1369,8 +1391,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-pull-request-review-comment"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -1384,12 +1408,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -1409,8 +1433,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-pull-request-review-comment"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -1424,12 +1450,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -1470,7 +1496,7 @@ class ReactionsClient:
         data: Missing[
             ReposOwnerRepoPullsCommentsCommentIdReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-pull-request-review-comment"""
 
@@ -1488,14 +1514,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsCommentsCommentIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1541,7 +1567,7 @@ class ReactionsClient:
         data: Missing[
             ReposOwnerRepoPullsCommentsCommentIdReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-pull-request-review-comment"""
 
@@ -1559,14 +1585,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsCommentsCommentIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1594,7 +1620,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1617,7 +1643,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1635,8 +1661,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-release"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -1650,12 +1678,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -1673,8 +1701,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-release"""
+
+        import builtins
 
         from ..models import BasicError, Reaction
 
@@ -1688,12 +1718,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
             error_models={
                 "404": BasicError,
             },
@@ -1730,7 +1760,7 @@ class ReactionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesReleaseIdReactionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-release"""
 
@@ -1748,14 +1778,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoReleasesReleaseIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1797,7 +1827,7 @@ class ReactionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesReleaseIdReactionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-release"""
 
@@ -1815,14 +1845,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoReleasesReleaseIdReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1848,7 +1878,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1869,7 +1899,7 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1889,8 +1919,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion-comment-legacy"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -1904,12 +1936,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     async def async_list_for_team_discussion_comment_legacy(
@@ -1926,8 +1958,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion-comment-legacy"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -1941,12 +1975,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     @overload
@@ -1984,7 +2018,7 @@ class ReactionsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion-comment-legacy"""
 
@@ -2001,7 +2035,7 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBody,
@@ -2009,7 +2043,7 @@ class ReactionsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2052,7 +2086,7 @@ class ReactionsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion-comment-legacy"""
 
@@ -2069,7 +2103,7 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberReactionsPostBody,
@@ -2077,7 +2111,7 @@ class ReactionsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2098,8 +2132,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion-legacy"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -2113,12 +2149,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     async def async_list_for_team_discussion_legacy(
@@ -2134,8 +2170,10 @@ class ReactionsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Reaction], list[ReactionType]]:
+    ) -> Response[builtins.list[Reaction], builtins.list[ReactionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#list-reactions-for-a-team-discussion-legacy"""
+
+        import builtins
 
         from ..models import Reaction
 
@@ -2149,12 +2187,12 @@ class ReactionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Reaction],
+            response_model=builtins.list[Reaction],
         )
 
     @overload
@@ -2189,7 +2227,7 @@ class ReactionsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion-legacy"""
 
@@ -2206,14 +2244,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2253,7 +2291,7 @@ class ReactionsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Reaction, ReactionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/reactions/reactions#create-reaction-for-a-team-discussion-legacy"""
 
@@ -2270,14 +2308,14 @@ class ReactionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberReactionsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),

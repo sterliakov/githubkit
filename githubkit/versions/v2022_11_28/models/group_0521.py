@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 
 from pydantic import Field
@@ -19,16 +20,16 @@ from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
 from .group_0017 import Installation
-from .group_0393 import EnterpriseWebhooks
-from .group_0395 import OrganizationSimpleWebhooks
-from .group_0396 import RepositoryWebhooks
-from .group_0409 import WebhooksRepositoriesItems
+from .group_0398 import EnterpriseWebhooks
+from .group_0400 import OrganizationSimpleWebhooks
+from .group_0401 import RepositoryWebhooks
+from .group_0414 import WebhooksRepositoriesItems
 
 
-class WebhookInstallationUnsuspend(GitHubModel):
-    """installation unsuspend event"""
+class WebhookInstallationNewPermissionsAccepted(GitHubModel):
+    """installation new_permissions_accepted event"""
 
-    action: Literal["unsuspend"] = Field()
+    action: Literal["new_permissions_accepted"] = Field()
     enterprise: Missing[EnterpriseWebhooks] = Field(
         default=UNSET,
         title="Enterprise",
@@ -40,7 +41,7 @@ class WebhookInstallationUnsuspend(GitHubModel):
         title="Organization Simple",
         description="A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.",
     )
-    repositories: Missing[list[WebhooksRepositoriesItems]] = Field(
+    repositories: Missing[builtins.list[WebhooksRepositoriesItems]] = Field(
         default=UNSET,
         description="An array of repository objects that the installation can access.",
     )
@@ -53,6 +54,6 @@ class WebhookInstallationUnsuspend(GitHubModel):
     sender: SimpleUser = Field(title="Simple User", description="A GitHub user.")
 
 
-model_rebuild(WebhookInstallationUnsuspend)
+model_rebuild(WebhookInstallationNewPermissionsAccepted)
 
-__all__ = ("WebhookInstallationUnsuspend",)
+__all__ = ("WebhookInstallationNewPermissionsAccepted",)

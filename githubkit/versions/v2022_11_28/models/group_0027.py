@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 
@@ -162,7 +163,7 @@ class CodeSecurityConfigurationPropSecretScanningDelegatedBypassOptions(GitHubMo
     """
 
     reviewers: Missing[
-        list[
+        builtins.list[
             CodeSecurityConfigurationPropSecretScanningDelegatedBypassOptionsPropReviewersItems
         ]
     ] = Field(

@@ -9,20 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0031 import OrganizationSimpleType
+from .group_0030 import ActionsHostedRunnerType
 
 
-class EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200Type(
-    TypedDict
-):
-    """EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200"""
+class EnterprisesEnterpriseActionsHostedRunnersGetResponse200Type(TypedDict):
+    """EnterprisesEnterpriseActionsHostedRunnersGetResponse200"""
 
-    total_count: float
-    organizations: list[OrganizationSimpleType]
+    total_count: int
+    runners: builtins.list[ActionsHostedRunnerType]
 
 
-__all__ = (
-    "EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200Type",
-)
+__all__ = ("EnterprisesEnterpriseActionsHostedRunnersGetResponse200Type",)

@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0190 import CustomPropertyValueType
+from .group_0153 import MinimalRepositoryType
 
 
-class OrgsOrgPropertiesValuesPatchBodyType(TypedDict):
-    """OrgsOrgPropertiesValuesPatchBody"""
+class OrgsOrgDependabotSecretsSecretNameRepositoriesGetResponse200Type(TypedDict):
+    """OrgsOrgDependabotSecretsSecretNameRepositoriesGetResponse200"""
 
-    repository_names: list[str]
-    properties: list[CustomPropertyValueType]
+    total_count: int
+    repositories: builtins.list[MinimalRepositoryType]
 
 
-__all__ = ("OrgsOrgPropertiesValuesPatchBodyType",)
+__all__ = ("OrgsOrgDependabotSecretsSecretNameRepositoriesGetResponse200Type",)

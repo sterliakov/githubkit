@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -70,10 +72,12 @@ class MigrationsClient:
         *,
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Migration], list[MigrationType]]:
+    ) -> Response[builtins.list[Migration], builtins.list[MigrationType]]:
         """See also: https://docs.github.com/rest/migrations/orgs#list-organization-migrations"""
+
+        import builtins
 
         from ..models import Migration
 
@@ -87,12 +91,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Migration],
+            response_model=builtins.list[Migration],
         )
 
     async def async_list_for_org(
@@ -101,10 +105,12 @@ class MigrationsClient:
         *,
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Migration], list[MigrationType]]:
+    ) -> Response[builtins.list[Migration], builtins.list[MigrationType]]:
         """See also: https://docs.github.com/rest/migrations/orgs#list-organization-migrations"""
+
+        import builtins
 
         from ..models import Migration
 
@@ -118,12 +124,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Migration],
+            response_model=builtins.list[Migration],
         )
 
     @overload
@@ -142,7 +148,7 @@ class MigrationsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        repositories: list[str],
+        repositories: builtins.list[str],
         lock_repositories: Missing[bool] = UNSET,
         exclude_metadata: Missing[bool] = UNSET,
         exclude_git_data: Missing[bool] = UNSET,
@@ -150,7 +156,7 @@ class MigrationsClient:
         exclude_releases: Missing[bool] = UNSET,
         exclude_owner_projects: Missing[bool] = UNSET,
         org_metadata_only: Missing[bool] = UNSET,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
     ) -> Response[Migration, MigrationType]: ...
 
     def start_for_org(
@@ -159,7 +165,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgMigrationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/orgs#start-an-organization-migration"""
 
@@ -178,12 +184,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgMigrationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -211,7 +217,7 @@ class MigrationsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        repositories: list[str],
+        repositories: builtins.list[str],
         lock_repositories: Missing[bool] = UNSET,
         exclude_metadata: Missing[bool] = UNSET,
         exclude_git_data: Missing[bool] = UNSET,
@@ -219,7 +225,7 @@ class MigrationsClient:
         exclude_releases: Missing[bool] = UNSET,
         exclude_owner_projects: Missing[bool] = UNSET,
         org_metadata_only: Missing[bool] = UNSET,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
     ) -> Response[Migration, MigrationType]: ...
 
     async def async_start_for_org(
@@ -228,7 +234,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgMigrationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/orgs#start-an-organization-migration"""
 
@@ -247,12 +253,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgMigrationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -269,7 +275,7 @@ class MigrationsClient:
         org: str,
         migration_id: int,
         *,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/orgs#get-an-organization-migration-status"""
@@ -284,7 +290,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -300,7 +306,7 @@ class MigrationsClient:
         org: str,
         migration_id: int,
         *,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/orgs#get-an-organization-migration-status"""
@@ -315,7 +321,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -341,7 +347,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -365,7 +371,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -389,7 +395,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -413,7 +419,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -438,7 +444,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -463,7 +469,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -480,8 +486,12 @@ class MigrationsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/migrations/orgs#list-repositories-in-an-organization-migration"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -494,12 +504,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "404": BasicError,
             },
@@ -513,8 +523,12 @@ class MigrationsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/migrations/orgs#list-repositories-in-an-organization-migration"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -527,12 +541,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "404": BasicError,
             },
@@ -553,7 +567,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -579,7 +593,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -622,7 +636,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoImportPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Import, ImportType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#start-an-import"""
 
@@ -641,12 +655,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoImportPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -691,7 +705,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoImportPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Import, ImportType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#start-an-import"""
 
@@ -710,12 +724,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoImportPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -743,7 +757,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -767,7 +781,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -807,7 +821,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoImportPatchBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Import, ImportType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#update-an-import"""
 
@@ -823,14 +837,14 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoImportPatchBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -872,7 +886,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoImportPatchBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Import, ImportType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#update-an-import"""
 
@@ -888,14 +902,14 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoImportPatchBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -913,8 +927,10 @@ class MigrationsClient:
         *,
         since: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PorterAuthor], list[PorterAuthorType]]:
+    ) -> Response[builtins.list[PorterAuthor], builtins.list[PorterAuthorType]]:
         """See also: https://docs.github.com/rest/migrations/source-imports#get-commit-authors"""
+
+        import builtins
 
         from ..models import BasicError, PorterAuthor
 
@@ -926,12 +942,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PorterAuthor],
+            response_model=builtins.list[PorterAuthor],
             error_models={
                 "404": BasicError,
                 "503": BasicError,
@@ -945,8 +961,10 @@ class MigrationsClient:
         *,
         since: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PorterAuthor], list[PorterAuthorType]]:
+    ) -> Response[builtins.list[PorterAuthor], builtins.list[PorterAuthorType]]:
         """See also: https://docs.github.com/rest/migrations/source-imports#get-commit-authors"""
+
+        import builtins
 
         from ..models import BasicError, PorterAuthor
 
@@ -958,12 +976,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PorterAuthor],
+            response_model=builtins.list[PorterAuthor],
             error_models={
                 "404": BasicError,
                 "503": BasicError,
@@ -1002,7 +1020,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoImportAuthorsAuthorIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PorterAuthor, PorterAuthorType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#map-a-commit-author"""
 
@@ -1021,14 +1039,14 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoImportAuthorsAuthorIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1073,7 +1091,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoImportAuthorsAuthorIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PorterAuthor, PorterAuthorType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#map-a-commit-author"""
 
@@ -1092,14 +1110,14 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoImportAuthorsAuthorIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1118,8 +1136,10 @@ class MigrationsClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PorterLargeFile], list[PorterLargeFileType]]:
+    ) -> Response[builtins.list[PorterLargeFile], builtins.list[PorterLargeFileType]]:
         """See also: https://docs.github.com/rest/migrations/source-imports#get-large-files"""
+
+        import builtins
 
         from ..models import BasicError, PorterLargeFile
 
@@ -1127,11 +1147,11 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[PorterLargeFile],
+            response_model=builtins.list[PorterLargeFile],
             error_models={
                 "503": BasicError,
             },
@@ -1143,8 +1163,10 @@ class MigrationsClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PorterLargeFile], list[PorterLargeFileType]]:
+    ) -> Response[builtins.list[PorterLargeFile], builtins.list[PorterLargeFileType]]:
         """See also: https://docs.github.com/rest/migrations/source-imports#get-large-files"""
+
+        import builtins
 
         from ..models import BasicError, PorterLargeFile
 
@@ -1152,11 +1174,11 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[PorterLargeFile],
+            response_model=builtins.list[PorterLargeFile],
             error_models={
                 "503": BasicError,
             },
@@ -1190,7 +1212,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoImportLfsPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Import, ImportType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#update-git-lfs-preference"""
 
@@ -1209,12 +1231,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoImportLfsPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1254,7 +1276,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoImportLfsPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Import, ImportType]:
         """See also: https://docs.github.com/rest/migrations/source-imports#update-git-lfs-preference"""
 
@@ -1273,12 +1295,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoImportLfsPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1296,8 +1318,10 @@ class MigrationsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Migration], list[MigrationType]]:
+    ) -> Response[builtins.list[Migration], builtins.list[MigrationType]]:
         """See also: https://docs.github.com/rest/migrations/users#list-user-migrations"""
+
+        import builtins
 
         from ..models import BasicError, Migration
 
@@ -1310,12 +1334,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Migration],
+            response_model=builtins.list[Migration],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1328,8 +1352,10 @@ class MigrationsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Migration], list[MigrationType]]:
+    ) -> Response[builtins.list[Migration], builtins.list[MigrationType]]:
         """See also: https://docs.github.com/rest/migrations/users#list-user-migrations"""
+
+        import builtins
 
         from ..models import BasicError, Migration
 
@@ -1342,12 +1368,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Migration],
+            response_model=builtins.list[Migration],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1375,8 +1401,8 @@ class MigrationsClient:
         exclude_releases: Missing[bool] = UNSET,
         exclude_owner_projects: Missing[bool] = UNSET,
         org_metadata_only: Missing[bool] = UNSET,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
-        repositories: list[str],
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
+        repositories: builtins.list[str],
     ) -> Response[Migration, MigrationType]: ...
 
     def start_for_authenticated_user(
@@ -1384,7 +1410,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserMigrationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/users#start-a-user-migration"""
 
@@ -1403,12 +1429,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserMigrationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1442,8 +1468,8 @@ class MigrationsClient:
         exclude_releases: Missing[bool] = UNSET,
         exclude_owner_projects: Missing[bool] = UNSET,
         org_metadata_only: Missing[bool] = UNSET,
-        exclude: Missing[list[Literal["repositories"]]] = UNSET,
-        repositories: list[str],
+        exclude: Missing[builtins.list[Literal["repositories"]]] = UNSET,
+        repositories: builtins.list[str],
     ) -> Response[Migration, MigrationType]: ...
 
     async def async_start_for_authenticated_user(
@@ -1451,7 +1477,7 @@ class MigrationsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserMigrationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/users#start-a-user-migration"""
 
@@ -1470,12 +1496,12 @@ class MigrationsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserMigrationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1492,7 +1518,7 @@ class MigrationsClient:
         self,
         migration_id: int,
         *,
-        exclude: Missing[list[str]] = UNSET,
+        exclude: Missing[builtins.list[str]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/users#get-a-user-migration-status"""
@@ -1507,7 +1533,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1524,7 +1550,7 @@ class MigrationsClient:
         self,
         migration_id: int,
         *,
-        exclude: Missing[list[str]] = UNSET,
+        exclude: Missing[builtins.list[str]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[Migration, MigrationType]:
         """See also: https://docs.github.com/rest/migrations/users#get-a-user-migration-status"""
@@ -1539,7 +1565,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1566,7 +1592,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1590,7 +1616,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1614,7 +1640,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1639,7 +1665,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1665,7 +1691,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1691,7 +1717,7 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1709,8 +1735,12 @@ class MigrationsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/migrations/users#list-repositories-for-a-user-migration"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -1723,12 +1753,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "404": BasicError,
             },
@@ -1741,8 +1771,12 @@ class MigrationsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/migrations/users#list-repositories-for-a-user-migration"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -1755,12 +1789,12 @@ class MigrationsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "404": BasicError,
             },

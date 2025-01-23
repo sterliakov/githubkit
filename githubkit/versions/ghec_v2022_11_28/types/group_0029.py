@@ -9,13 +9,19 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import TypedDict
 
 
-class ActionsOidcCustomIssuerPolicyForEnterpriseType(TypedDict):
-    """ActionsOidcCustomIssuerPolicyForEnterprise"""
+class ActionsHostedRunnerMachineSpecType(TypedDict):
+    """Github-owned VM details.
 
-    include_enterprise_slug: NotRequired[bool]
+    Provides details of a particular machine spec.
+    """
+
+    id: str
+    cpu_cores: int
+    memory_gb: int
+    storage_gb: int
 
 
-__all__ = ("ActionsOidcCustomIssuerPolicyForEnterpriseType",)
+__all__ = ("ActionsHostedRunnerMachineSpecType",)

@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Optional
 from weakref import ref
@@ -17,6 +18,8 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
     from githubkit.typing import Missing
@@ -48,8 +51,12 @@ class ServerStatisticsClient:
         date_start: Missing[str] = UNSET,
         date_end: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ServerStatisticsItems], list[ServerStatisticsItemsType]]:
+    ) -> Response[
+        builtins.list[ServerStatisticsItems], builtins.list[ServerStatisticsItemsType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/admin-stats#get-github-enterprise-server-statistics"""
+
+        import builtins
 
         from ..models import ServerStatisticsItems
 
@@ -62,12 +69,12 @@ class ServerStatisticsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ServerStatisticsItems],
+            response_model=builtins.list[ServerStatisticsItems],
         )
 
     async def async_get_server_statistics(
@@ -77,8 +84,12 @@ class ServerStatisticsClient:
         date_start: Missing[str] = UNSET,
         date_end: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ServerStatisticsItems], list[ServerStatisticsItemsType]]:
+    ) -> Response[
+        builtins.list[ServerStatisticsItems], builtins.list[ServerStatisticsItemsType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/admin-stats#get-github-enterprise-server-statistics"""
+
+        import builtins
 
         from ..models import ServerStatisticsItems
 
@@ -91,10 +102,10 @@ class ServerStatisticsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ServerStatisticsItems],
+            response_model=builtins.list[ServerStatisticsItems],
         )

@@ -9,8 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Literal, Union
+import builtins
 
 from pydantic import Field
 
@@ -18,136 +17,41 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0113 import RepositoryRulesetBypassActor
-from .group_0114 import RepositoryRulesetConditions
-from .group_0122 import OrgRulesetConditionsOneof0
-from .group_0123 import OrgRulesetConditionsOneof1
-from .group_0124 import OrgRulesetConditionsOneof2
-from .group_0125 import (
-    RepositoryRuleCreation,
-    RepositoryRuleDeletion,
-    RepositoryRuleNonFastForward,
-    RepositoryRuleOneof15,
-    RepositoryRuleOneof17,
-    RepositoryRuleRequiredSignatures,
-)
-from .group_0126 import RepositoryRuleUpdate
-from .group_0128 import RepositoryRuleOneof16, RepositoryRuleRequiredLinearHistory
-from .group_0129 import RepositoryRuleMergeQueue
-from .group_0131 import RepositoryRuleRequiredDeployments
-from .group_0134 import RepositoryRulePullRequest
-from .group_0136 import RepositoryRuleRequiredStatusChecks
-from .group_0138 import RepositoryRuleCommitMessagePattern
-from .group_0140 import RepositoryRuleCommitAuthorEmailPattern
-from .group_0142 import RepositoryRuleCommitterEmailPattern
-from .group_0144 import RepositoryRuleBranchNamePattern
-from .group_0146 import RepositoryRuleTagNamePattern
-from .group_0149 import RepositoryRuleWorkflows
-from .group_0151 import RepositoryRuleCodeScanning
-from .group_0153 import RepositoryRuleOneof18
+
+class RepositoryRuleWorkflowsPropParameters(GitHubModel):
+    """RepositoryRuleWorkflowsPropParameters"""
+
+    do_not_enforce_on_create: Missing[bool] = Field(
+        default=UNSET,
+        description="Allow repositories and branches to be created if a check would otherwise prohibit it.",
+    )
+    workflows: builtins.list[RepositoryRuleParamsWorkflowFileReference] = Field(
+        description="Workflows that must pass for this rule to pass."
+    )
 
 
-class RepositoryRuleset(GitHubModel):
-    """Repository ruleset
+class RepositoryRuleParamsWorkflowFileReference(GitHubModel):
+    """WorkflowFileReference
 
-    A set of rules to apply when specified conditions are met.
+    A workflow that must run for this rule to pass
     """
 
-    id: int = Field(description="The ID of the ruleset")
-    name: str = Field(description="The name of the ruleset")
-    target: Missing[Literal["branch", "tag", "push", "repository"]] = Field(
-        default=UNSET, description="The target of the ruleset"
+    path: str = Field(description="The path to the workflow file")
+    ref: Missing[str] = Field(
+        default=UNSET, description="The ref (branch or tag) of the workflow file to use"
     )
-    source_type: Missing[Literal["Repository", "Organization", "Enterprise"]] = Field(
-        default=UNSET, description="The type of the source of the ruleset"
+    repository_id: int = Field(
+        description="The ID of the repository where the workflow is defined"
     )
-    source: str = Field(description="The name of the source")
-    enforcement: Literal["disabled", "active", "evaluate"] = Field(
-        description="The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate` is only available with GitHub Enterprise)."
-    )
-    bypass_actors: Missing[list[RepositoryRulesetBypassActor]] = Field(
-        default=UNSET,
-        description="The actors that can bypass the rules in this ruleset",
-    )
-    current_user_can_bypass: Missing[
-        Literal["always", "pull_requests_only", "never"]
-    ] = Field(
-        default=UNSET,
-        description="The bypass type of the user making the API request for this ruleset. This field is only returned when\nquerying the repository-level endpoint.",
-    )
-    node_id: Missing[str] = Field(default=UNSET)
-    links: Missing[RepositoryRulesetPropLinks] = Field(default=UNSET, alias="_links")
-    conditions: Missing[
-        Union[
-            RepositoryRulesetConditions,
-            OrgRulesetConditionsOneof0,
-            OrgRulesetConditionsOneof1,
-            OrgRulesetConditionsOneof2,
-            None,
-        ]
-    ] = Field(default=UNSET)
-    rules: Missing[
-        list[
-            Union[
-                RepositoryRuleCreation,
-                RepositoryRuleUpdate,
-                RepositoryRuleDeletion,
-                RepositoryRuleRequiredLinearHistory,
-                RepositoryRuleMergeQueue,
-                RepositoryRuleRequiredDeployments,
-                RepositoryRuleRequiredSignatures,
-                RepositoryRulePullRequest,
-                RepositoryRuleRequiredStatusChecks,
-                RepositoryRuleNonFastForward,
-                RepositoryRuleCommitMessagePattern,
-                RepositoryRuleCommitAuthorEmailPattern,
-                RepositoryRuleCommitterEmailPattern,
-                RepositoryRuleBranchNamePattern,
-                RepositoryRuleTagNamePattern,
-                RepositoryRuleOneof15,
-                RepositoryRuleOneof16,
-                RepositoryRuleOneof17,
-                RepositoryRuleOneof18,
-                RepositoryRuleWorkflows,
-                RepositoryRuleCodeScanning,
-            ]
-        ]
-    ] = Field(default=UNSET)
-    created_at: Missing[datetime] = Field(default=UNSET)
-    updated_at: Missing[datetime] = Field(default=UNSET)
-
-
-class RepositoryRulesetPropLinks(GitHubModel):
-    """RepositoryRulesetPropLinks"""
-
-    self_: Missing[RepositoryRulesetPropLinksPropSelf] = Field(
-        default=UNSET, alias="self"
-    )
-    html: Missing[Union[RepositoryRulesetPropLinksPropHtml, None]] = Field(
-        default=UNSET
+    sha: Missing[str] = Field(
+        default=UNSET, description="The commit SHA of the workflow file to use"
     )
 
 
-class RepositoryRulesetPropLinksPropSelf(GitHubModel):
-    """RepositoryRulesetPropLinksPropSelf"""
-
-    href: Missing[str] = Field(default=UNSET, description="The URL of the ruleset")
-
-
-class RepositoryRulesetPropLinksPropHtml(GitHubModel):
-    """RepositoryRulesetPropLinksPropHtml"""
-
-    href: Missing[str] = Field(default=UNSET, description="The html URL of the ruleset")
-
-
-model_rebuild(RepositoryRuleset)
-model_rebuild(RepositoryRulesetPropLinks)
-model_rebuild(RepositoryRulesetPropLinksPropSelf)
-model_rebuild(RepositoryRulesetPropLinksPropHtml)
+model_rebuild(RepositoryRuleWorkflowsPropParameters)
+model_rebuild(RepositoryRuleParamsWorkflowFileReference)
 
 __all__ = (
-    "RepositoryRuleset",
-    "RepositoryRulesetPropLinks",
-    "RepositoryRulesetPropLinksPropHtml",
-    "RepositoryRulesetPropLinksPropSelf",
+    "RepositoryRuleParamsWorkflowFileReference",
+    "RepositoryRuleWorkflowsPropParameters",
 )

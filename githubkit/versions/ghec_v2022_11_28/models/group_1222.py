@@ -15,17 +15,18 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0019 import Repository
+
+class TeamsTeamIdDiscussionsPostBody(GitHubModel):
+    """TeamsTeamIdDiscussionsPostBody"""
+
+    title: str = Field(description="The discussion post's title.")
+    body: str = Field(description="The discussion post's body text.")
+    private: Missing[bool] = Field(
+        default=UNSET,
+        description="Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post.",
+    )
 
 
-class UserInstallationsInstallationIdRepositoriesGetResponse200(GitHubModel):
-    """UserInstallationsInstallationIdRepositoriesGetResponse200"""
+model_rebuild(TeamsTeamIdDiscussionsPostBody)
 
-    total_count: int = Field()
-    repository_selection: Missing[str] = Field(default=UNSET)
-    repositories: list[Repository] = Field()
-
-
-model_rebuild(UserInstallationsInstallationIdRepositoriesGetResponse200)
-
-__all__ = ("UserInstallationsInstallationIdRepositoriesGetResponse200",)
+__all__ = ("TeamsTeamIdDiscussionsPostBody",)

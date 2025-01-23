@@ -9,15 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Union
+import builtins
+from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class ProjectsColumnsCardsCardIdPatchBodyType(TypedDict):
-    """ProjectsColumnsCardsCardIdPatchBody"""
+class OrgsOrgSettingsNetworkConfigurationsPostBodyType(TypedDict):
+    """OrgsOrgSettingsNetworkConfigurationsPostBody"""
 
-    note: NotRequired[Union[str, None]]
-    archived: NotRequired[bool]
+    name: str
+    compute_service: NotRequired[Literal["none", "actions"]]
+    network_settings_ids: builtins.list[str]
 
 
-__all__ = ("ProjectsColumnsCardsCardIdPatchBodyType",)
+__all__ = ("OrgsOrgSettingsNetworkConfigurationsPostBodyType",)

@@ -9,13 +9,16 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing import Literal
+from typing_extensions import TypedDict
 
 
-class OrgsOrgTeamsTeamSlugReposOwnerRepoPutBodyType(TypedDict):
-    """OrgsOrgTeamsTeamSlugReposOwnerRepoPutBody"""
+class OrgsOrgPersonalAccessTokensPostBodyType(TypedDict):
+    """OrgsOrgPersonalAccessTokensPostBody"""
 
-    permission: NotRequired[str]
+    action: Literal["revoke"]
+    pat_ids: builtins.list[int]
 
 
-__all__ = ("OrgsOrgTeamsTeamSlugReposOwnerRepoPutBodyType",)
+__all__ = ("OrgsOrgPersonalAccessTokensPostBodyType",)

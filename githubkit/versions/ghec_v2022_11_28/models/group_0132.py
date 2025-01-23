@@ -9,58 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Literal, Union
-
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
-
-from .group_0002 import SimpleUser
-from .group_0008 import Integration
-from .group_0130 import ReactionRollup
 
 
-class IssueComment(GitHubModel):
-    """Issue Comment
+class PackagesBillingUsage(GitHubModel):
+    """PackagesBillingUsage"""
 
-    Comments provide a way for people to collaborate on an issue.
-    """
-
-    id: int = Field(description="Unique identifier of the issue comment")
-    node_id: str = Field()
-    url: str = Field(description="URL for the issue comment")
-    body: Missing[str] = Field(
-        default=UNSET, description="Contents of the issue comment"
+    total_gigabytes_bandwidth_used: int = Field(
+        description="Sum of the free and paid storage space (GB) for GitHuub Packages."
     )
-    body_text: Missing[str] = Field(default=UNSET)
-    body_html: Missing[str] = Field(default=UNSET)
-    html_url: str = Field()
-    user: Union[None, SimpleUser] = Field()
-    created_at: datetime = Field()
-    updated_at: datetime = Field()
-    issue_url: str = Field()
-    author_association: Literal[
-        "COLLABORATOR",
-        "CONTRIBUTOR",
-        "FIRST_TIMER",
-        "FIRST_TIME_CONTRIBUTOR",
-        "MANNEQUIN",
-        "MEMBER",
-        "NONE",
-        "OWNER",
-    ] = Field(
-        title="author_association",
-        description="How the author is associated with the repository.",
+    total_paid_gigabytes_bandwidth_used: int = Field(
+        description="Total paid storage space (GB) for GitHuub Packages."
     )
-    performed_via_github_app: Missing[Union[None, Integration, None]] = Field(
-        default=UNSET
+    included_gigabytes_bandwidth: int = Field(
+        description="Free storage space (GB) for GitHub Packages."
     )
-    reactions: Missing[ReactionRollup] = Field(default=UNSET, title="Reaction Rollup")
 
 
-model_rebuild(IssueComment)
+model_rebuild(PackagesBillingUsage)
 
-__all__ = ("IssueComment",)
+__all__ = ("PackagesBillingUsage",)

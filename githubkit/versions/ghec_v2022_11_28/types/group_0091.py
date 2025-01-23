@@ -9,20 +9,30 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0092 import RepositoryRuleMergeQueuePropParametersType
+from .group_0082 import (
+    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType,
+)
+from .group_0084 import RepositoryRulesetConditionsPropRefNameType
+from .group_0088 import (
+    EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType,
+)
 
 
-class RepositoryRuleMergeQueueType(TypedDict):
-    """merge_queue
+class EnterpriseRulesetConditionsOneof2Type(TypedDict):
+    """organization_id_and_repository_name
 
-    Merges must be performed via a merge queue.
+    Conditions to target organizations by id and all repositories
     """
 
-    type: Literal["merge_queue"]
-    parameters: NotRequired[RepositoryRuleMergeQueuePropParametersType]
+    organization_id: (
+        EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType
+    )
+    repository_name: (
+        RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType
+    )
+    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
 
 
-__all__ = ("RepositoryRuleMergeQueueType",)
+__all__ = ("EnterpriseRulesetConditionsOneof2Type",)

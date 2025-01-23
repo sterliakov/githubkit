@@ -13,18 +13,17 @@ from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0444 import EnterpriseWebhooksType
-from .group_0445 import SimpleInstallationType
-from .group_0446 import OrganizationSimpleWebhooksType
-from .group_0447 import RepositoryWebhooksType
-from .group_0459 import DiscussionType
+from .group_0450 import EnterpriseWebhooksType
+from .group_0451 import SimpleInstallationType
+from .group_0452 import OrganizationSimpleWebhooksType
+from .group_0453 import RepositoryWebhooksType
+from .group_0465 import DiscussionType
 
 
-class WebhookDiscussionEditedType(TypedDict):
-    """discussion edited event"""
+class WebhookDiscussionClosedType(TypedDict):
+    """discussion closed event"""
 
-    action: Literal["edited"]
-    changes: NotRequired[WebhookDiscussionEditedPropChangesType]
+    action: Literal["closed"]
     discussion: DiscussionType
     enterprise: NotRequired[EnterpriseWebhooksType]
     installation: NotRequired[SimpleInstallationType]
@@ -33,28 +32,4 @@ class WebhookDiscussionEditedType(TypedDict):
     sender: SimpleUserType
 
 
-class WebhookDiscussionEditedPropChangesType(TypedDict):
-    """WebhookDiscussionEditedPropChanges"""
-
-    body: NotRequired[WebhookDiscussionEditedPropChangesPropBodyType]
-    title: NotRequired[WebhookDiscussionEditedPropChangesPropTitleType]
-
-
-class WebhookDiscussionEditedPropChangesPropBodyType(TypedDict):
-    """WebhookDiscussionEditedPropChangesPropBody"""
-
-    from_: str
-
-
-class WebhookDiscussionEditedPropChangesPropTitleType(TypedDict):
-    """WebhookDiscussionEditedPropChangesPropTitle"""
-
-    from_: str
-
-
-__all__ = (
-    "WebhookDiscussionEditedPropChangesPropBodyType",
-    "WebhookDiscussionEditedPropChangesPropTitleType",
-    "WebhookDiscussionEditedPropChangesType",
-    "WebhookDiscussionEditedType",
-)
+__all__ = ("WebhookDiscussionClosedType",)

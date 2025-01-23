@@ -9,18 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0078 import RepositoryRulesetConditionsPropRefNameType
 
+class CustomPropertySetPayloadType(TypedDict):
+    """Custom Property Set Payload
 
-class RepositoryRulesetConditionsType(TypedDict):
-    """Repository ruleset conditions for ref names
-
-    Parameters for a repository ruleset ref name condition
+    Custom property set payload
     """
 
-    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
+    value_type: Literal["string", "single_select", "multi_select", "true_false"]
+    required: NotRequired[bool]
+    default_value: NotRequired[Union[str, builtins.list[str], None]]
+    description: NotRequired[Union[str, None]]
+    allowed_values: NotRequired[Union[builtins.list[str], None]]
 
 
-__all__ = ("RepositoryRulesetConditionsType",)
+__all__ = ("CustomPropertySetPayloadType",)

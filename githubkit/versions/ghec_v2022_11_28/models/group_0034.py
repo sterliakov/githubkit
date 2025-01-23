@@ -18,19 +18,26 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class ActionsSetDefaultWorkflowPermissions(GitHubModel):
-    """ActionsSetDefaultWorkflowPermissions"""
+class ActionsEnterprisePermissions(GitHubModel):
+    """ActionsEnterprisePermissions"""
 
-    default_workflow_permissions: Missing[Literal["read", "write"]] = Field(
-        default=UNSET,
-        description="The default workflow permissions granted to the GITHUB_TOKEN when running workflows.",
+    enabled_organizations: Literal["all", "none", "selected"] = Field(
+        description="The policy that controls the organizations in the enterprise that are allowed to run GitHub Actions."
     )
-    can_approve_pull_request_reviews: Missing[bool] = Field(
+    selected_organizations_url: Missing[str] = Field(
         default=UNSET,
-        description="Whether GitHub Actions can approve pull requests. Enabling this can be a security risk.",
+        description="The API URL to use to get or set the selected organizations that are allowed to run GitHub Actions, when `enabled_organizations` is set to `selected`.",
+    )
+    allowed_actions: Missing[Literal["all", "local_only", "selected"]] = Field(
+        default=UNSET,
+        description="The permissions policy that controls the actions and reusable workflows that are allowed to run.",
+    )
+    selected_actions_url: Missing[str] = Field(
+        default=UNSET,
+        description="The API URL to use to get or set the actions and reusable workflows that are allowed to run, when `allowed_actions` is set to `selected`.",
     )
 
 
-model_rebuild(ActionsSetDefaultWorkflowPermissions)
+model_rebuild(ActionsEnterprisePermissions)
 
-__all__ = ("ActionsSetDefaultWorkflowPermissions",)
+__all__ = ("ActionsEnterprisePermissions",)

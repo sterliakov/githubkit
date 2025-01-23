@@ -9,24 +9,59 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal, Union
-from typing_extensions import NotRequired, TypedDict
+from typing import Literal
+from typing_extensions import TypedDict
 
 
-class CodeScanningAlertRuleSummaryType(TypedDict):
-    """CodeScanningAlertRuleSummary"""
+class AzureBlobConfigType(TypedDict):
+    """AzureBlobConfig
 
-    id: NotRequired[Union[str, None]]
-    name: NotRequired[str]
-    severity: NotRequired[Union[None, Literal["none", "note", "warning", "error"]]]
-    security_severity_level: NotRequired[
-        Union[None, Literal["low", "medium", "high", "critical"]]
-    ]
-    description: NotRequired[str]
-    full_description: NotRequired[str]
-    tags: NotRequired[Union[list[str], None]]
-    help_: NotRequired[Union[str, None]]
-    help_uri: NotRequired[Union[str, None]]
+    Azure Blob Config for audit log streaming configuration.
+    """
+
+    key_id: str
+    encrypted_sas_url: str
 
 
-__all__ = ("CodeScanningAlertRuleSummaryType",)
+class AzureHubConfigType(TypedDict):
+    """AzureHubConfig
+
+    Azure Event Hubs Config for audit log streaming configuration.
+    """
+
+    name: str
+    encrypted_connstring: str
+    key_id: str
+
+
+class AmazonS3AccessKeysConfigType(TypedDict):
+    """AmazonS3AccessKeysConfig
+
+    Amazon S3 Access Keys Config for audit log streaming configuration.
+    """
+
+    bucket: str
+    region: str
+    key_id: str
+    authentication_type: Literal["access_keys"]
+    encrypted_secret_key: str
+    encrypted_access_key_id: str
+
+
+class GoogleCloudConfigType(TypedDict):
+    """GoogleCloudConfig
+
+    Google Cloud Config for audit log streaming configuration.
+    """
+
+    bucket: str
+    key_id: str
+    encrypted_json_credentials: str
+
+
+__all__ = (
+    "AmazonS3AccessKeysConfigType",
+    "AzureBlobConfigType",
+    "AzureHubConfigType",
+    "GoogleCloudConfigType",
+)

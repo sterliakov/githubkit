@@ -12,22 +12,25 @@ from __future__ import annotations
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
+
+from .group_0084 import RepositoryRulesetConditionsPropRefName
+from .group_0086 import (
+    RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty,
+)
 
 
-class PackagesBillingUsage(GitHubModel):
-    """PackagesBillingUsage"""
+class OrgRulesetConditionsOneof2(GitHubModel):
+    """repository_property_and_ref_name
 
-    total_gigabytes_bandwidth_used: int = Field(
-        description="Sum of the free and paid storage space (GB) for GitHuub Packages."
-    )
-    total_paid_gigabytes_bandwidth_used: int = Field(
-        description="Total paid storage space (GB) for GitHuub Packages."
-    )
-    included_gigabytes_bandwidth: int = Field(
-        description="Free storage space (GB) for GitHub Packages."
-    )
+    Conditions to target repositories by property and refs by name
+    """
+
+    ref_name: Missing[RepositoryRulesetConditionsPropRefName] = Field(default=UNSET)
+    repository_property: RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty = Field()
 
 
-model_rebuild(PackagesBillingUsage)
+model_rebuild(OrgRulesetConditionsOneof2)
 
-__all__ = ("PackagesBillingUsage",)
+__all__ = ("OrgRulesetConditionsOneof2",)

@@ -9,24 +9,100 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Literal, Union
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0150 import OrganizationCustomRepositoryRole
+from .group_0078 import RepositoryRulesetBypassActor
+from .group_0089 import EnterpriseRulesetConditionsOneof0
+from .group_0090 import EnterpriseRulesetConditionsOneof1
+from .group_0091 import EnterpriseRulesetConditionsOneof2
+from .group_0092 import EnterpriseRulesetConditionsOneof3
+from .group_0093 import (
+    RepositoryRuleCreation,
+    RepositoryRuleDeletion,
+    RepositoryRuleNonFastForward,
+    RepositoryRuleOneof15,
+    RepositoryRuleOneof17,
+    RepositoryRuleRequiredSignatures,
+)
+from .group_0094 import RepositoryRuleUpdate
+from .group_0096 import RepositoryRuleOneof16, RepositoryRuleRequiredLinearHistory
+from .group_0097 import RepositoryRuleMergeQueue
+from .group_0099 import RepositoryRuleRequiredDeployments
+from .group_0102 import RepositoryRulePullRequest
+from .group_0104 import RepositoryRuleRequiredStatusChecks
+from .group_0106 import RepositoryRuleCommitMessagePattern
+from .group_0108 import RepositoryRuleCommitAuthorEmailPattern
+from .group_0110 import RepositoryRuleCommitterEmailPattern
+from .group_0112 import RepositoryRuleBranchNamePattern
+from .group_0114 import RepositoryRuleTagNamePattern
+from .group_0117 import RepositoryRuleWorkflows
+from .group_0119 import RepositoryRuleCodeScanning
+from .group_0121 import RepositoryRuleOneof18
 
 
-class OrganizationsOrganizationIdCustomRolesGetResponse200(GitHubModel):
-    """OrganizationsOrganizationIdCustomRolesGetResponse200"""
+class EnterprisesEnterpriseRulesetsRulesetIdPutBody(GitHubModel):
+    """EnterprisesEnterpriseRulesetsRulesetIdPutBody"""
 
-    total_count: Missing[int] = Field(
-        default=UNSET, description="The number of custom roles in this organization"
+    name: Missing[str] = Field(default=UNSET, description="The name of the ruleset.")
+    target: Missing[Literal["branch", "tag", "push", "repository"]] = Field(
+        default=UNSET, description="The target of the ruleset"
     )
-    custom_roles: Missing[list[OrganizationCustomRepositoryRole]] = Field(default=UNSET)
+    enforcement: Missing[Literal["disabled", "active", "evaluate"]] = Field(
+        default=UNSET,
+        description="The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing them. Admins can view insights on the Rule Insights page. `evaluate` is not available for the `repository` target.",
+    )
+    bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActor]] = Field(
+        default=UNSET,
+        description="The actors that can bypass the rules in this ruleset",
+    )
+    conditions: Missing[
+        Union[
+            EnterpriseRulesetConditionsOneof0,
+            EnterpriseRulesetConditionsOneof1,
+            EnterpriseRulesetConditionsOneof2,
+            EnterpriseRulesetConditionsOneof3,
+        ]
+    ] = Field(
+        default=UNSET,
+        title="Enterprise ruleset conditions",
+        description="Conditions for an enterprise ruleset. The conditions object should contain either the `organization_id` or `organization_name` property and the `repository_name` or `repository_property` property. For branch and tag rulesets, the conditions object should also contain the `ref_name` property.",
+    )
+    rules: Missing[
+        builtins.list[
+            Union[
+                RepositoryRuleCreation,
+                RepositoryRuleUpdate,
+                RepositoryRuleDeletion,
+                RepositoryRuleRequiredLinearHistory,
+                RepositoryRuleMergeQueue,
+                RepositoryRuleRequiredDeployments,
+                RepositoryRuleRequiredSignatures,
+                RepositoryRulePullRequest,
+                RepositoryRuleRequiredStatusChecks,
+                RepositoryRuleNonFastForward,
+                RepositoryRuleCommitMessagePattern,
+                RepositoryRuleCommitAuthorEmailPattern,
+                RepositoryRuleCommitterEmailPattern,
+                RepositoryRuleBranchNamePattern,
+                RepositoryRuleTagNamePattern,
+                RepositoryRuleOneof15,
+                RepositoryRuleOneof16,
+                RepositoryRuleOneof17,
+                RepositoryRuleOneof18,
+                RepositoryRuleWorkflows,
+                RepositoryRuleCodeScanning,
+            ]
+        ]
+    ] = Field(default=UNSET, description="An array of rules within the ruleset.")
 
 
-model_rebuild(OrganizationsOrganizationIdCustomRolesGetResponse200)
+model_rebuild(EnterprisesEnterpriseRulesetsRulesetIdPutBody)
 
-__all__ = ("OrganizationsOrganizationIdCustomRolesGetResponse200",)
+__all__ = ("EnterprisesEnterpriseRulesetsRulesetIdPutBody",)

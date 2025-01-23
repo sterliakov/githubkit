@@ -9,45 +9,36 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Literal, Union
 
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
 
-class TeamSimple(GitHubModel):
-    """Team Simple
+class CodespaceMachine(GitHubModel):
+    """Codespace machine
 
-    Groups of organization members that gives permissions on specified repositories.
+    A description of the machine powering a codespace.
     """
 
-    id: int = Field(description="Unique identifier of the team")
-    node_id: str = Field()
-    url: str = Field(description="URL for the team")
-    members_url: str = Field()
-    name: str = Field(description="Name of the team")
-    description: Union[str, None] = Field(description="Description of the team")
-    permission: str = Field(
-        description="Permission that the team will have for its repositories"
+    name: str = Field(description="The name of the machine.")
+    display_name: str = Field(
+        description="The display name of the machine includes cores, memory, and storage."
     )
-    privacy: Missing[str] = Field(
-        default=UNSET, description="The level of privacy this team should have"
+    operating_system: str = Field(description="The operating system of the machine.")
+    storage_in_bytes: int = Field(
+        description="How much storage is available to the codespace."
     )
-    notification_setting: Missing[str] = Field(
-        default=UNSET, description="The notification setting the team has set"
+    memory_in_bytes: int = Field(
+        description="How much memory is available to the codespace."
     )
-    html_url: str = Field()
-    repositories_url: str = Field()
-    slug: str = Field()
-    ldap_dn: Missing[str] = Field(
-        default=UNSET,
-        description="Distinguished Name (DN) that team maps to within LDAP environment",
+    cpus: int = Field(description="How many cores are available to the codespace.")
+    prebuild_availability: Union[None, Literal["none", "ready", "in_progress"]] = Field(
+        description='Whether a prebuild is currently available when creating a codespace for this machine and repository. If a branch was not specified as a ref, the default branch will be assumed. Value will be "null" if prebuilds are not supported or prebuild availability could not be determined. Value will be "none" if no prebuild is available. Latest values "ready" and "in_progress" indicate the prebuild availability status.'
     )
 
 
-model_rebuild(TeamSimple)
+model_rebuild(CodespaceMachine)
 
-__all__ = ("TeamSimple",)
+__all__ = ("CodespaceMachine",)

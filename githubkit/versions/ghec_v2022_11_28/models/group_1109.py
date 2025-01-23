@@ -15,35 +15,67 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0009 import WebhookConfig
 
+class ReposOwnerRepoContentsPathPutBody(GitHubModel):
+    """ReposOwnerRepoContentsPathPutBody"""
 
-class ReposOwnerRepoHooksHookIdPatchBody(GitHubModel):
-    """ReposOwnerRepoHooksHookIdPatchBody"""
-
-    config: Missing[WebhookConfig] = Field(
+    message: str = Field(description="The commit message.")
+    content: str = Field(description="The new file content, using Base64 encoding.")
+    sha: Missing[str] = Field(
         default=UNSET,
-        title="Webhook Configuration",
-        description="Configuration object of the webhook",
+        description="**Required if you are updating a file**. The blob SHA of the file being replaced.",
     )
-    events: Missing[list[str]] = Field(
+    branch: Missing[str] = Field(
         default=UNSET,
-        description="Determines what [events](https://docs.github.com/enterprise-cloud@latest//webhooks/event-payloads) the hook is triggered for. This replaces the entire array of events.",
+        description="The branch name. Default: the repository’s default branch.",
     )
-    add_events: Missing[list[str]] = Field(
+    committer: Missing[ReposOwnerRepoContentsPathPutBodyPropCommitter] = Field(
         default=UNSET,
-        description="Determines a list of events to be added to the list of events that the Hook triggers for.",
+        description="The person that committed the file. Default: the authenticated user.",
     )
-    remove_events: Missing[list[str]] = Field(
+    author: Missing[ReposOwnerRepoContentsPathPutBodyPropAuthor] = Field(
         default=UNSET,
-        description="Determines a list of events to be removed from the list of events that the Hook triggers for.",
-    )
-    active: Missing[bool] = Field(
-        default=UNSET,
-        description="Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications.",
+        description="The author of the file. Default: The `committer` or the authenticated user if you omit `committer`.",
     )
 
 
-model_rebuild(ReposOwnerRepoHooksHookIdPatchBody)
+class ReposOwnerRepoContentsPathPutBodyPropCommitter(GitHubModel):
+    """ReposOwnerRepoContentsPathPutBodyPropCommitter
 
-__all__ = ("ReposOwnerRepoHooksHookIdPatchBody",)
+    The person that committed the file. Default: the authenticated user.
+    """
+
+    name: str = Field(
+        description="The name of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted."
+    )
+    email: str = Field(
+        description="The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted."
+    )
+    date: Missing[str] = Field(default=UNSET)
+
+
+class ReposOwnerRepoContentsPathPutBodyPropAuthor(GitHubModel):
+    """ReposOwnerRepoContentsPathPutBodyPropAuthor
+
+    The author of the file. Default: The `committer` or the authenticated user if
+    you omit `committer`.
+    """
+
+    name: str = Field(
+        description="The name of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted."
+    )
+    email: str = Field(
+        description="The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted."
+    )
+    date: Missing[str] = Field(default=UNSET)
+
+
+model_rebuild(ReposOwnerRepoContentsPathPutBody)
+model_rebuild(ReposOwnerRepoContentsPathPutBodyPropCommitter)
+model_rebuild(ReposOwnerRepoContentsPathPutBodyPropAuthor)
+
+__all__ = (
+    "ReposOwnerRepoContentsPathPutBody",
+    "ReposOwnerRepoContentsPathPutBodyPropAuthor",
+    "ReposOwnerRepoContentsPathPutBodyPropCommitter",
+)

@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 
 from pydantic import Field
@@ -61,7 +62,7 @@ class ServerStatisticsActions(GitHubModel):
 class ServerStatisticsItemsPropGithubConnect(GitHubModel):
     """ServerStatisticsItemsPropGithubConnect"""
 
-    features_enabled: Missing[list[str]] = Field(default=UNSET)
+    features_enabled: Missing[builtins.list[str]] = Field(default=UNSET)
 
 
 class ServerStatisticsItemsPropDormantUsers(GitHubModel):
@@ -86,9 +87,11 @@ class ServerStatisticsPackages(GitHubModel):
         default=UNSET,
         description="Whether a beta registry is enabled in a GHES installation",
     )
-    ecosystems: Missing[list[ServerStatisticsPackagesPropEcosystemsItems]] = Field(
-        default=UNSET,
-        description="The details of the package ecosystems that are enabled in a GHES installation",
+    ecosystems: Missing[builtins.list[ServerStatisticsPackagesPropEcosystemsItems]] = (
+        Field(
+            default=UNSET,
+            description="The details of the package ecosystems that are enabled in a GHES installation",
+        )
     )
 
 

@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Optional, overload
+from typing import TYPE_CHECKING, Any, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,8 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
     from githubkit.typing import Missing
@@ -78,7 +81,7 @@ class ScimClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -115,7 +118,7 @@ class ScimClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -148,10 +151,10 @@ class ScimClient:
         user_name: str,
         display_name: Missing[str] = UNSET,
         name: ScimV2OrganizationsOrgUsersPostBodyPropNameType,
-        emails: list[ScimV2OrganizationsOrgUsersPostBodyPropEmailsItemsType],
-        schemas: Missing[list[str]] = UNSET,
+        emails: builtins.list[ScimV2OrganizationsOrgUsersPostBodyPropEmailsItemsType],
+        schemas: Missing[builtins.list[str]] = UNSET,
         external_id: Missing[str] = UNSET,
-        groups: Missing[list[str]] = UNSET,
+        groups: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[ScimUser, ScimUserType]: ...
 
@@ -161,7 +164,7 @@ class ScimClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ScimV2OrganizationsOrgUsersPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ScimUser, ScimUserType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/scim/scim#provision-and-invite-a-scim-user"""
 
@@ -175,12 +178,12 @@ class ScimClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ScimV2OrganizationsOrgUsersPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -214,10 +217,10 @@ class ScimClient:
         user_name: str,
         display_name: Missing[str] = UNSET,
         name: ScimV2OrganizationsOrgUsersPostBodyPropNameType,
-        emails: list[ScimV2OrganizationsOrgUsersPostBodyPropEmailsItemsType],
-        schemas: Missing[list[str]] = UNSET,
+        emails: builtins.list[ScimV2OrganizationsOrgUsersPostBodyPropEmailsItemsType],
+        schemas: Missing[builtins.list[str]] = UNSET,
         external_id: Missing[str] = UNSET,
-        groups: Missing[list[str]] = UNSET,
+        groups: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[ScimUser, ScimUserType]: ...
 
@@ -227,7 +230,7 @@ class ScimClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ScimV2OrganizationsOrgUsersPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ScimUser, ScimUserType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/scim/scim#provision-and-invite-a-scim-user"""
 
@@ -241,12 +244,12 @@ class ScimClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ScimV2OrganizationsOrgUsersPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -276,7 +279,7 @@ class ScimClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -302,7 +305,7 @@ class ScimClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -331,14 +334,16 @@ class ScimClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        schemas: Missing[list[str]] = UNSET,
+        schemas: Missing[builtins.list[str]] = UNSET,
         display_name: Missing[str] = UNSET,
         external_id: Missing[str] = UNSET,
-        groups: Missing[list[str]] = UNSET,
+        groups: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
         user_name: str,
         name: ScimV2OrganizationsOrgUsersScimUserIdPutBodyPropNameType,
-        emails: list[ScimV2OrganizationsOrgUsersScimUserIdPutBodyPropEmailsItemsType],
+        emails: builtins.list[
+            ScimV2OrganizationsOrgUsersScimUserIdPutBodyPropEmailsItemsType
+        ],
     ) -> Response[ScimUser, ScimUserType]: ...
 
     def set_information_for_provisioned_user(
@@ -348,7 +353,7 @@ class ScimClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ScimV2OrganizationsOrgUsersScimUserIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ScimUser, ScimUserType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/scim/scim#update-a-provisioned-organization-membership"""
 
@@ -366,14 +371,14 @@ class ScimClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ScimV2OrganizationsOrgUsersScimUserIdPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -403,14 +408,16 @@ class ScimClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        schemas: Missing[list[str]] = UNSET,
+        schemas: Missing[builtins.list[str]] = UNSET,
         display_name: Missing[str] = UNSET,
         external_id: Missing[str] = UNSET,
-        groups: Missing[list[str]] = UNSET,
+        groups: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
         user_name: str,
         name: ScimV2OrganizationsOrgUsersScimUserIdPutBodyPropNameType,
-        emails: list[ScimV2OrganizationsOrgUsersScimUserIdPutBodyPropEmailsItemsType],
+        emails: builtins.list[
+            ScimV2OrganizationsOrgUsersScimUserIdPutBodyPropEmailsItemsType
+        ],
     ) -> Response[ScimUser, ScimUserType]: ...
 
     async def async_set_information_for_provisioned_user(
@@ -420,7 +427,7 @@ class ScimClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ScimV2OrganizationsOrgUsersScimUserIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ScimUser, ScimUserType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/scim/scim#update-a-provisioned-organization-membership"""
 
@@ -438,14 +445,14 @@ class ScimClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ScimV2OrganizationsOrgUsersScimUserIdPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -472,7 +479,7 @@ class ScimClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -497,7 +504,7 @@ class ScimClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -525,8 +532,8 @@ class ScimClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        schemas: Missing[list[str]] = UNSET,
-        operations: list[
+        schemas: Missing[builtins.list[str]] = UNSET,
+        operations: builtins.list[
             ScimV2OrganizationsOrgUsersScimUserIdPatchBodyPropOperationsItemsType
         ],
     ) -> Response[ScimUser, ScimUserType]: ...
@@ -538,7 +545,7 @@ class ScimClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ScimV2OrganizationsOrgUsersScimUserIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ScimUser, ScimUserType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/scim/scim#update-an-attribute-for-a-scim-user"""
 
@@ -557,14 +564,14 @@ class ScimClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ScimV2OrganizationsOrgUsersScimUserIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -596,8 +603,8 @@ class ScimClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        schemas: Missing[list[str]] = UNSET,
-        operations: list[
+        schemas: Missing[builtins.list[str]] = UNSET,
+        operations: builtins.list[
             ScimV2OrganizationsOrgUsersScimUserIdPatchBodyPropOperationsItemsType
         ],
     ) -> Response[ScimUser, ScimUserType]: ...
@@ -609,7 +616,7 @@ class ScimClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ScimV2OrganizationsOrgUsersScimUserIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ScimUser, ScimUserType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/scim/scim#update-an-attribute-for-a-scim-user"""
 
@@ -628,14 +635,14 @@ class ScimClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ScimV2OrganizationsOrgUsersScimUserIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),

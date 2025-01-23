@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -104,7 +106,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -126,7 +128,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -154,7 +156,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -186,7 +188,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -210,7 +212,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -230,7 +232,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -262,7 +264,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[AppHookConfigPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[WebhookConfig, WebhookConfigType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/webhooks#update-a-webhook-configuration-for-an-app"""
 
@@ -276,12 +278,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(AppHookConfigPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -314,7 +316,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[AppHookConfigPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[WebhookConfig, WebhookConfigType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/webhooks#update-a-webhook-configuration-for-an-app"""
 
@@ -328,12 +330,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(AppHookConfigPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -347,8 +349,10 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         cursor: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[HookDeliveryItem], list[HookDeliveryItemType]]:
+    ) -> Response[builtins.list[HookDeliveryItem], builtins.list[HookDeliveryItemType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/webhooks#list-deliveries-for-an-app-webhook"""
+
+        import builtins
 
         from ..models import BasicError, HookDeliveryItem, ValidationError
 
@@ -361,12 +365,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[HookDeliveryItem],
+            response_model=builtins.list[HookDeliveryItem],
             error_models={
                 "400": BasicError,
                 "422": ValidationError,
@@ -379,8 +383,10 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         cursor: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[HookDeliveryItem], list[HookDeliveryItemType]]:
+    ) -> Response[builtins.list[HookDeliveryItem], builtins.list[HookDeliveryItemType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/webhooks#list-deliveries-for-an-app-webhook"""
+
+        import builtins
 
         from ..models import BasicError, HookDeliveryItem, ValidationError
 
@@ -393,12 +399,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[HookDeliveryItem],
+            response_model=builtins.list[HookDeliveryItem],
             error_models={
                 "400": BasicError,
                 "422": ValidationError,
@@ -419,7 +425,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -444,7 +450,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -476,7 +482,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -508,7 +514,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -526,9 +532,12 @@ class AppsClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[IntegrationInstallationRequest], list[IntegrationInstallationRequestType]
+        builtins.list[IntegrationInstallationRequest],
+        builtins.list[IntegrationInstallationRequestType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#list-installation-requests-for-the-authenticated-app"""
+
+        import builtins
 
         from ..models import BasicError, IntegrationInstallationRequest
 
@@ -541,12 +550,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IntegrationInstallationRequest],
+            response_model=builtins.list[IntegrationInstallationRequest],
             error_models={
                 "401": BasicError,
             },
@@ -559,9 +568,12 @@ class AppsClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[IntegrationInstallationRequest], list[IntegrationInstallationRequestType]
+        builtins.list[IntegrationInstallationRequest],
+        builtins.list[IntegrationInstallationRequestType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#list-installation-requests-for-the-authenticated-app"""
+
+        import builtins
 
         from ..models import BasicError, IntegrationInstallationRequest
 
@@ -574,12 +586,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[IntegrationInstallationRequest],
+            response_model=builtins.list[IntegrationInstallationRequest],
             error_models={
                 "401": BasicError,
             },
@@ -593,8 +605,10 @@ class AppsClient:
         since: Missing[datetime] = UNSET,
         outdated: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Installation], list[InstallationType]]:
+    ) -> Response[builtins.list[Installation], builtins.list[InstallationType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#list-installations-for-the-authenticated-app"""
+
+        import builtins
 
         from ..models import Installation
 
@@ -609,12 +623,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Installation],
+            response_model=builtins.list[Installation],
         )
 
     async def async_list_installations(
@@ -625,8 +639,10 @@ class AppsClient:
         since: Missing[datetime] = UNSET,
         outdated: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Installation], list[InstallationType]]:
+    ) -> Response[builtins.list[Installation], builtins.list[InstallationType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#list-installations-for-the-authenticated-app"""
+
+        import builtins
 
         from ..models import Installation
 
@@ -641,12 +657,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Installation],
+            response_model=builtins.list[Installation],
         )
 
     def get_installation(
@@ -663,7 +679,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -687,7 +703,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -711,7 +727,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -734,7 +750,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -759,8 +775,8 @@ class AppsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        repositories: Missing[list[str]] = UNSET,
-        repository_ids: Missing[list[int]] = UNSET,
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_ids: Missing[builtins.list[int]] = UNSET,
         permissions: Missing[AppPermissionsType] = UNSET,
     ) -> Response[InstallationToken, InstallationTokenType]: ...
 
@@ -770,7 +786,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[AppInstallationsInstallationIdAccessTokensPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[InstallationToken, InstallationTokenType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#create-an-installation-access-token-for-an-app"""
 
@@ -789,14 +805,14 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 AppInstallationsInstallationIdAccessTokensPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -826,8 +842,8 @@ class AppsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        repositories: Missing[list[str]] = UNSET,
-        repository_ids: Missing[list[int]] = UNSET,
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_ids: Missing[builtins.list[int]] = UNSET,
         permissions: Missing[AppPermissionsType] = UNSET,
     ) -> Response[InstallationToken, InstallationTokenType]: ...
 
@@ -837,7 +853,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[AppInstallationsInstallationIdAccessTokensPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[InstallationToken, InstallationTokenType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#create-an-installation-access-token-for-an-app"""
 
@@ -856,14 +872,14 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 AppInstallationsInstallationIdAccessTokensPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -891,7 +907,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -914,7 +930,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -937,7 +953,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -960,7 +976,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -994,7 +1010,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdGrantDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#delete-an-app-authorization"""
 
@@ -1008,12 +1024,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdGrantDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1048,7 +1064,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdGrantDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#delete-an-app-authorization"""
 
@@ -1062,12 +1078,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdGrantDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1102,7 +1118,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Authorization, AuthorizationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#check-a-token"""
 
@@ -1121,12 +1137,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1163,7 +1179,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Authorization, AuthorizationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#check-a-token"""
 
@@ -1182,12 +1198,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1224,7 +1240,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#delete-an-app-token"""
 
@@ -1238,12 +1254,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1278,7 +1294,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#delete-an-app-token"""
 
@@ -1292,12 +1308,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1332,7 +1348,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Authorization, AuthorizationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#reset-a-token"""
 
@@ -1350,12 +1366,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1391,7 +1407,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Authorization, AuthorizationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/oauth-applications#reset-a-token"""
 
@@ -1409,12 +1425,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1444,8 +1460,8 @@ class AppsClient:
         access_token: str,
         target: Missing[str] = UNSET,
         target_id: Missing[int] = UNSET,
-        repositories: Missing[list[str]] = UNSET,
-        repository_ids: Missing[list[int]] = UNSET,
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_ids: Missing[builtins.list[int]] = UNSET,
         permissions: Missing[AppPermissionsType] = UNSET,
     ) -> Response[Authorization, AuthorizationType]: ...
 
@@ -1455,7 +1471,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenScopedPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Authorization, AuthorizationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#create-a-scoped-access-token"""
 
@@ -1474,12 +1490,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenScopedPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1512,8 +1528,8 @@ class AppsClient:
         access_token: str,
         target: Missing[str] = UNSET,
         target_id: Missing[int] = UNSET,
-        repositories: Missing[list[str]] = UNSET,
-        repository_ids: Missing[list[int]] = UNSET,
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_ids: Missing[builtins.list[int]] = UNSET,
         permissions: Missing[AppPermissionsType] = UNSET,
     ) -> Response[Authorization, AuthorizationType]: ...
 
@@ -1523,7 +1539,7 @@ class AppsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ApplicationsClientIdTokenScopedPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Authorization, AuthorizationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/apps#create-a-scoped-access-token"""
 
@@ -1542,12 +1558,12 @@ class AppsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ApplicationsClientIdTokenScopedPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1577,7 +1593,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1604,7 +1620,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1638,7 +1654,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1673,7 +1689,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1696,7 +1712,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1713,7 +1729,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1733,7 +1749,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1758,7 +1774,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1775,8 +1791,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplaceListingPlan], list[MarketplaceListingPlanType]]:
+    ) -> Response[
+        builtins.list[MarketplaceListingPlan], builtins.list[MarketplaceListingPlanType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-plans"""
+
+        import builtins
 
         from ..models import BasicError, MarketplaceListingPlan
 
@@ -1789,12 +1809,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplaceListingPlan],
+            response_model=builtins.list[MarketplaceListingPlan],
             error_models={
                 "404": BasicError,
                 "401": BasicError,
@@ -1807,8 +1827,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplaceListingPlan], list[MarketplaceListingPlanType]]:
+    ) -> Response[
+        builtins.list[MarketplaceListingPlan], builtins.list[MarketplaceListingPlanType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-plans"""
+
+        import builtins
 
         from ..models import BasicError, MarketplaceListingPlan
 
@@ -1821,12 +1845,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplaceListingPlan],
+            response_model=builtins.list[MarketplaceListingPlan],
             error_models={
                 "404": BasicError,
                 "401": BasicError,
@@ -1842,8 +1866,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplacePurchase], list[MarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[MarketplacePurchase], builtins.list[MarketplacePurchaseType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-accounts-for-a-plan"""
+
+        import builtins
 
         from ..models import BasicError, MarketplacePurchase, ValidationError
 
@@ -1858,12 +1886,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplacePurchase],
+            response_model=builtins.list[MarketplacePurchase],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -1880,8 +1908,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplacePurchase], list[MarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[MarketplacePurchase], builtins.list[MarketplacePurchaseType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-accounts-for-a-plan"""
+
+        import builtins
 
         from ..models import BasicError, MarketplacePurchase, ValidationError
 
@@ -1896,12 +1928,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplacePurchase],
+            response_model=builtins.list[MarketplacePurchase],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -1923,7 +1955,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1947,7 +1979,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1963,8 +1995,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplaceListingPlan], list[MarketplaceListingPlanType]]:
+    ) -> Response[
+        builtins.list[MarketplaceListingPlan], builtins.list[MarketplaceListingPlanType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-plans-stubbed"""
+
+        import builtins
 
         from ..models import BasicError, MarketplaceListingPlan
 
@@ -1977,12 +2013,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplaceListingPlan],
+            response_model=builtins.list[MarketplaceListingPlan],
             error_models={
                 "401": BasicError,
             },
@@ -1994,8 +2030,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplaceListingPlan], list[MarketplaceListingPlanType]]:
+    ) -> Response[
+        builtins.list[MarketplaceListingPlan], builtins.list[MarketplaceListingPlanType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-plans-stubbed"""
+
+        import builtins
 
         from ..models import BasicError, MarketplaceListingPlan
 
@@ -2008,12 +2048,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplaceListingPlan],
+            response_model=builtins.list[MarketplaceListingPlan],
             error_models={
                 "401": BasicError,
             },
@@ -2028,8 +2068,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplacePurchase], list[MarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[MarketplacePurchase], builtins.list[MarketplacePurchaseType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-accounts-for-a-plan-stubbed"""
+
+        import builtins
 
         from ..models import BasicError, MarketplacePurchase
 
@@ -2044,12 +2088,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplacePurchase],
+            response_model=builtins.list[MarketplacePurchase],
             error_models={
                 "401": BasicError,
             },
@@ -2064,8 +2108,12 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MarketplacePurchase], list[MarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[MarketplacePurchase], builtins.list[MarketplacePurchaseType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-accounts-for-a-plan-stubbed"""
+
+        import builtins
 
         from ..models import BasicError, MarketplacePurchase
 
@@ -2080,12 +2128,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MarketplacePurchase],
+            response_model=builtins.list[MarketplacePurchase],
             error_models={
                 "401": BasicError,
             },
@@ -2105,7 +2153,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2126,7 +2174,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2148,7 +2196,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2173,7 +2221,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2203,7 +2251,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2235,7 +2283,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2274,7 +2322,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2313,7 +2361,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2340,7 +2388,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2365,7 +2413,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2390,7 +2438,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2415,7 +2463,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2431,8 +2479,13 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[UserMarketplacePurchase], list[UserMarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[UserMarketplacePurchase],
+        builtins.list[UserMarketplacePurchaseType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-subscriptions-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, UserMarketplacePurchase
 
@@ -2445,12 +2498,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[UserMarketplacePurchase],
+            response_model=builtins.list[UserMarketplacePurchase],
             error_models={
                 "401": BasicError,
                 "404": BasicError,
@@ -2463,8 +2516,13 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[UserMarketplacePurchase], list[UserMarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[UserMarketplacePurchase],
+        builtins.list[UserMarketplacePurchaseType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-subscriptions-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, UserMarketplacePurchase
 
@@ -2477,12 +2535,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[UserMarketplacePurchase],
+            response_model=builtins.list[UserMarketplacePurchase],
             error_models={
                 "401": BasicError,
                 "404": BasicError,
@@ -2495,8 +2553,13 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[UserMarketplacePurchase], list[UserMarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[UserMarketplacePurchase],
+        builtins.list[UserMarketplacePurchaseType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-subscriptions-for-the-authenticated-user-stubbed"""
+
+        import builtins
 
         from ..models import BasicError, UserMarketplacePurchase
 
@@ -2509,12 +2572,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[UserMarketplacePurchase],
+            response_model=builtins.list[UserMarketplacePurchase],
             error_models={
                 "401": BasicError,
             },
@@ -2526,8 +2589,13 @@ class AppsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[UserMarketplacePurchase], list[UserMarketplacePurchaseType]]:
+    ) -> Response[
+        builtins.list[UserMarketplacePurchase],
+        builtins.list[UserMarketplacePurchaseType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/apps/marketplace#list-subscriptions-for-the-authenticated-user-stubbed"""
+
+        import builtins
 
         from ..models import BasicError, UserMarketplacePurchase
 
@@ -2540,12 +2608,12 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[UserMarketplacePurchase],
+            response_model=builtins.list[UserMarketplacePurchase],
             error_models={
                 "401": BasicError,
             },
@@ -2565,7 +2633,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2586,7 +2654,7 @@ class AppsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

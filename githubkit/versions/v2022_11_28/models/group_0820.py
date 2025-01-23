@@ -9,19 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-
-class OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBody(GitHubModel):
-    """OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBody"""
-
-    runners: list[int] = Field(
-        description="List of runner IDs to add to the runner group."
-    )
+from .group_0063 import ActionsHostedRunnerMachineSpec
 
 
-model_rebuild(OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBody)
+class OrgsOrgActionsHostedRunnersMachineSizesGetResponse200(GitHubModel):
+    """OrgsOrgActionsHostedRunnersMachineSizesGetResponse200"""
 
-__all__ = ("OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBody",)
+    total_count: int = Field()
+    machine_specs: builtins.list[ActionsHostedRunnerMachineSpec] = Field()
+
+
+model_rebuild(OrgsOrgActionsHostedRunnersMachineSizesGetResponse200)
+
+__all__ = ("OrgsOrgActionsHostedRunnersMachineSizesGetResponse200",)

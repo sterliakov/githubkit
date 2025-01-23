@@ -4,7 +4,7 @@ from contextvars import ContextVar
 from datetime import datetime, timedelta, timezone
 import time
 from types import TracebackType
-from typing import Any, Generic, Optional, TypeVar, Union, cast, overload
+from typing import Any, Optional, TypeVar, Union, cast, overload
 
 import anyio
 import hishel
@@ -37,15 +37,13 @@ from .typing import (
 from .utils import UNSET
 
 T = TypeVar("T")
-A = TypeVar("A", bound="BaseAuthStrategy")
-AS = TypeVar("AS", bound="BaseAuthStrategy")
 
 
-class GitHubCore(Generic[A]):
+class GitHubCore:
     # none auth with config
     @overload
     def __init__(
-        self: "GitHubCore[UnauthAuthStrategy]",
+        self: "GitHubCore",
         auth: None = None,
         *,
         config: Config,
@@ -54,7 +52,7 @@ class GitHubCore(Generic[A]):
     # token auth with config
     @overload
     def __init__(
-        self: "GitHubCore[TokenAuthStrategy]",
+        self: "GitHubCore",
         auth: str,
         *,
         config: Config,
@@ -63,8 +61,8 @@ class GitHubCore(Generic[A]):
     # other auth strategies with config
     @overload
     def __init__(
-        self: "GitHubCore[AS]",
-        auth: AS,
+        self: "GitHubCore",
+        auth: "BaseAuthStrategy",
         *,
         config: Config,
     ): ...
@@ -72,7 +70,7 @@ class GitHubCore(Generic[A]):
     # none auth without config
     @overload
     def __init__(
-        self: "GitHubCore[UnauthAuthStrategy]",
+        self: "GitHubCore",
         auth: None = None,
         *,
         base_url: Optional[Union[str, httpx.URL]] = None,
@@ -91,7 +89,7 @@ class GitHubCore(Generic[A]):
     # token auth without config
     @overload
     def __init__(
-        self: "GitHubCore[TokenAuthStrategy]",
+        self: "GitHubCore",
         auth: str,
         *,
         base_url: Optional[Union[str, httpx.URL]] = None,
@@ -110,8 +108,8 @@ class GitHubCore(Generic[A]):
     # other auth strategies without config
     @overload
     def __init__(
-        self: "GitHubCore[AS]",
-        auth: AS,
+        self: "GitHubCore",
+        auth: "BaseAuthStrategy",
         *,
         base_url: Optional[Union[str, httpx.URL]] = None,
         accept_format: Optional[str] = None,
@@ -128,7 +126,7 @@ class GitHubCore(Generic[A]):
 
     def __init__(
         self,
-        auth: Optional[Union[A, str]] = None,
+        auth: Optional[Union["BaseAuthStrategy", str]] = None,
         *,
         config: Optional[Config] = None,
         base_url: Optional[Union[str, httpx.URL]] = None,
@@ -143,10 +141,8 @@ class GitHubCore(Generic[A]):
         auto_retry: Union[bool, RetryDecisionFunc] = True,
         rest_api_validate_body: bool = True,
     ):
-        auth = auth or UnauthAuthStrategy()  # type: ignore
-        self.auth: A = (  # type: ignore
-            TokenAuthStrategy(auth) if isinstance(auth, str) else auth
-        )
+        auth = auth or UnauthAuthStrategy()
+        self.auth = TokenAuthStrategy(auth) if isinstance(auth, str) else auth
 
         self.config = config or get_config(
             base_url=base_url,
@@ -216,6 +212,7 @@ class GitHubCore(Generic[A]):
 
     # create sync client
     def _create_sync_client(self) -> httpx.Client:
+        transport: Union[hishel.CacheTransport, httpx.HTTPTransport]
         if self.config.http_cache:
             transport = hishel.CacheTransport(
                 httpx.HTTPTransport(),
@@ -240,6 +237,7 @@ class GitHubCore(Generic[A]):
 
     # create async client
     def _create_async_client(self) -> httpx.AsyncClient:
+        transport: Union[hishel.AsyncCacheTransport, httpx.AsyncHTTPTransport]
         if self.config.http_cache:
             transport = hishel.AsyncCacheTransport(
                 httpx.AsyncHTTPTransport(),
@@ -365,10 +363,11 @@ class GitHubCore(Generic[A]):
                     f"{status_code[:-2]}XX", error_models.get("default", UNSET)
                 ),
             )
-            resp = Response(response, Any if error_model is UNSET else error_model)
+            resp = Response(response, Any if error_model is UNSET else error_model)  # type: ignore[arg-type]
         else:
             resp = Response(
-                response, Any if response_model is UNSET else response_model
+                response,
+                Any if response_model is UNSET else response_model,  # type: ignore[arg-type]
             )
 
         # only check rate limit when response is 403 or 429

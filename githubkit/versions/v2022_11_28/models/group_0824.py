@@ -9,20 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-from .group_0068 import RunnerLabel
+from .group_0019 import Repository
 
 
-class OrgsOrgActionsRunnersRunnerIdLabelsGetResponse200(GitHubModel):
-    """OrgsOrgActionsRunnersRunnerIdLabelsGetResponse200"""
+class OrgsOrgActionsPermissionsRepositoriesGetResponse200(GitHubModel):
+    """OrgsOrgActionsPermissionsRepositoriesGetResponse200"""
 
-    total_count: int = Field()
-    labels: list[RunnerLabel] = Field()
+    total_count: float = Field()
+    repositories: builtins.list[Repository] = Field()
 
 
-model_rebuild(OrgsOrgActionsRunnersRunnerIdLabelsGetResponse200)
+model_rebuild(OrgsOrgActionsPermissionsRepositoriesGetResponse200)
 
-__all__ = ("OrgsOrgActionsRunnersRunnerIdLabelsGetResponse200",)
+__all__ = ("OrgsOrgActionsPermissionsRepositoriesGetResponse200",)

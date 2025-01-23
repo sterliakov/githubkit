@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -90,9 +92,9 @@ class SecurityAdvisoriesClient:
         severity: Missing[
             Literal["unknown", "low", "medium", "high", "critical"]
         ] = UNSET,
-        cwes: Missing[Union[str, list[str]]] = UNSET,
+        cwes: Missing[Union[str, builtins.list[str]]] = UNSET,
         is_withdrawn: Missing[bool] = UNSET,
-        affects: Missing[Union[str, list[str]]] = UNSET,
+        affects: Missing[Union[str, builtins.list[str]]] = UNSET,
         published: Missing[str] = UNSET,
         updated: Missing[str] = UNSET,
         modified: Missing[str] = UNSET,
@@ -106,8 +108,10 @@ class SecurityAdvisoriesClient:
             Literal["updated", "published", "epss_percentage", "epss_percentile"]
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GlobalAdvisory], list[GlobalAdvisoryType]]:
+    ) -> Response[builtins.list[GlobalAdvisory], builtins.list[GlobalAdvisoryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/global-advisories#list-global-security-advisories"""
+
+        import builtins
 
         from ..models import BasicError, GlobalAdvisory, ValidationErrorSimple
 
@@ -136,12 +140,12 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GlobalAdvisory],
+            response_model=builtins.list[GlobalAdvisory],
             error_models={
                 "429": BasicError,
                 "422": ValidationErrorSimple,
@@ -174,9 +178,9 @@ class SecurityAdvisoriesClient:
         severity: Missing[
             Literal["unknown", "low", "medium", "high", "critical"]
         ] = UNSET,
-        cwes: Missing[Union[str, list[str]]] = UNSET,
+        cwes: Missing[Union[str, builtins.list[str]]] = UNSET,
         is_withdrawn: Missing[bool] = UNSET,
-        affects: Missing[Union[str, list[str]]] = UNSET,
+        affects: Missing[Union[str, builtins.list[str]]] = UNSET,
         published: Missing[str] = UNSET,
         updated: Missing[str] = UNSET,
         modified: Missing[str] = UNSET,
@@ -190,8 +194,10 @@ class SecurityAdvisoriesClient:
             Literal["updated", "published", "epss_percentage", "epss_percentile"]
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GlobalAdvisory], list[GlobalAdvisoryType]]:
+    ) -> Response[builtins.list[GlobalAdvisory], builtins.list[GlobalAdvisoryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/global-advisories#list-global-security-advisories"""
+
+        import builtins
 
         from ..models import BasicError, GlobalAdvisory, ValidationErrorSimple
 
@@ -220,12 +226,12 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GlobalAdvisory],
+            response_model=builtins.list[GlobalAdvisory],
             error_models={
                 "429": BasicError,
                 "422": ValidationErrorSimple,
@@ -246,7 +252,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -270,7 +276,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -291,8 +297,12 @@ class SecurityAdvisoriesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["triage", "draft", "published", "closed"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryAdvisory], list[RepositoryAdvisoryType]]:
+    ) -> Response[
+        builtins.list[RepositoryAdvisory], builtins.list[RepositoryAdvisoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#list-repository-security-advisories-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryAdvisory
 
@@ -309,12 +319,12 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryAdvisory],
+            response_model=builtins.list[RepositoryAdvisory],
             error_models={
                 "400": BasicError,
                 "404": BasicError,
@@ -332,8 +342,12 @@ class SecurityAdvisoriesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["triage", "draft", "published", "closed"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryAdvisory], list[RepositoryAdvisoryType]]:
+    ) -> Response[
+        builtins.list[RepositoryAdvisory], builtins.list[RepositoryAdvisoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#list-repository-security-advisories-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryAdvisory
 
@@ -350,12 +364,12 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryAdvisory],
+            response_model=builtins.list[RepositoryAdvisory],
             error_models={
                 "400": BasicError,
                 "404": BasicError,
@@ -374,8 +388,12 @@ class SecurityAdvisoriesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["triage", "draft", "published", "closed"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryAdvisory], list[RepositoryAdvisoryType]]:
+    ) -> Response[
+        builtins.list[RepositoryAdvisory], builtins.list[RepositoryAdvisoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#list-repository-security-advisories"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryAdvisory
 
@@ -392,12 +410,12 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryAdvisory],
+            response_model=builtins.list[RepositoryAdvisory],
             error_models={
                 "400": BasicError,
                 "404": BasicError,
@@ -416,8 +434,12 @@ class SecurityAdvisoriesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["triage", "draft", "published", "closed"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryAdvisory], list[RepositoryAdvisoryType]]:
+    ) -> Response[
+        builtins.list[RepositoryAdvisory], builtins.list[RepositoryAdvisoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#list-repository-security-advisories"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryAdvisory
 
@@ -434,12 +456,12 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryAdvisory],
+            response_model=builtins.list[RepositoryAdvisory],
             error_models={
                 "400": BasicError,
                 "404": BasicError,
@@ -467,10 +489,12 @@ class SecurityAdvisoriesClient:
         summary: str,
         description: str,
         cve_id: Missing[Union[str, None]] = UNSET,
-        vulnerabilities: list[RepositoryAdvisoryCreatePropVulnerabilitiesItemsType],
-        cwe_ids: Missing[Union[list[str], None]] = UNSET,
+        vulnerabilities: builtins.list[
+            RepositoryAdvisoryCreatePropVulnerabilitiesItemsType
+        ],
+        cwe_ids: Missing[Union[builtins.list[str], None]] = UNSET,
         credits_: Missing[
-            Union[list[RepositoryAdvisoryCreatePropCreditsItemsType], None]
+            Union[builtins.list[RepositoryAdvisoryCreatePropCreditsItemsType], None]
         ] = UNSET,
         severity: Missing[
             Union[None, Literal["critical", "high", "medium", "low"]]
@@ -486,7 +510,7 @@ class SecurityAdvisoriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[RepositoryAdvisoryCreateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#create-a-repository-security-advisory"""
 
@@ -505,12 +529,12 @@ class SecurityAdvisoriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(RepositoryAdvisoryCreate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -544,10 +568,12 @@ class SecurityAdvisoriesClient:
         summary: str,
         description: str,
         cve_id: Missing[Union[str, None]] = UNSET,
-        vulnerabilities: list[RepositoryAdvisoryCreatePropVulnerabilitiesItemsType],
-        cwe_ids: Missing[Union[list[str], None]] = UNSET,
+        vulnerabilities: builtins.list[
+            RepositoryAdvisoryCreatePropVulnerabilitiesItemsType
+        ],
+        cwe_ids: Missing[Union[builtins.list[str], None]] = UNSET,
         credits_: Missing[
-            Union[list[RepositoryAdvisoryCreatePropCreditsItemsType], None]
+            Union[builtins.list[RepositoryAdvisoryCreatePropCreditsItemsType], None]
         ] = UNSET,
         severity: Missing[
             Union[None, Literal["critical", "high", "medium", "low"]]
@@ -563,7 +589,7 @@ class SecurityAdvisoriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[RepositoryAdvisoryCreateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#create-a-repository-security-advisory"""
 
@@ -582,12 +608,12 @@ class SecurityAdvisoriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(RepositoryAdvisoryCreate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -622,10 +648,13 @@ class SecurityAdvisoriesClient:
         description: str,
         vulnerabilities: Missing[
             Union[
-                list[PrivateVulnerabilityReportCreatePropVulnerabilitiesItemsType], None
+                builtins.list[
+                    PrivateVulnerabilityReportCreatePropVulnerabilitiesItemsType
+                ],
+                None,
             ]
         ] = UNSET,
-        cwe_ids: Missing[Union[list[str], None]] = UNSET,
+        cwe_ids: Missing[Union[builtins.list[str], None]] = UNSET,
         severity: Missing[
             Union[None, Literal["critical", "high", "medium", "low"]]
         ] = UNSET,
@@ -640,7 +669,7 @@ class SecurityAdvisoriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[PrivateVulnerabilityReportCreateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#privately-report-a-security-vulnerability"""
 
@@ -659,12 +688,12 @@ class SecurityAdvisoriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(PrivateVulnerabilityReportCreate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -699,10 +728,13 @@ class SecurityAdvisoriesClient:
         description: str,
         vulnerabilities: Missing[
             Union[
-                list[PrivateVulnerabilityReportCreatePropVulnerabilitiesItemsType], None
+                builtins.list[
+                    PrivateVulnerabilityReportCreatePropVulnerabilitiesItemsType
+                ],
+                None,
             ]
         ] = UNSET,
-        cwe_ids: Missing[Union[list[str], None]] = UNSET,
+        cwe_ids: Missing[Union[builtins.list[str], None]] = UNSET,
         severity: Missing[
             Union[None, Literal["critical", "high", "medium", "low"]]
         ] = UNSET,
@@ -717,7 +749,7 @@ class SecurityAdvisoriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[PrivateVulnerabilityReportCreateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#privately-report-a-security-vulnerability"""
 
@@ -736,12 +768,12 @@ class SecurityAdvisoriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(PrivateVulnerabilityReportCreate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -770,7 +802,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -797,7 +829,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -832,19 +864,19 @@ class SecurityAdvisoriesClient:
         description: Missing[str] = UNSET,
         cve_id: Missing[Union[str, None]] = UNSET,
         vulnerabilities: Missing[
-            list[RepositoryAdvisoryUpdatePropVulnerabilitiesItemsType]
+            builtins.list[RepositoryAdvisoryUpdatePropVulnerabilitiesItemsType]
         ] = UNSET,
-        cwe_ids: Missing[Union[list[str], None]] = UNSET,
+        cwe_ids: Missing[Union[builtins.list[str], None]] = UNSET,
         credits_: Missing[
-            Union[list[RepositoryAdvisoryUpdatePropCreditsItemsType], None]
+            Union[builtins.list[RepositoryAdvisoryUpdatePropCreditsItemsType], None]
         ] = UNSET,
         severity: Missing[
             Union[None, Literal["critical", "high", "medium", "low"]]
         ] = UNSET,
         cvss_vector_string: Missing[Union[str, None]] = UNSET,
         state: Missing[Literal["published", "closed", "draft"]] = UNSET,
-        collaborating_users: Missing[Union[list[str], None]] = UNSET,
-        collaborating_teams: Missing[Union[list[str], None]] = UNSET,
+        collaborating_users: Missing[Union[builtins.list[str], None]] = UNSET,
+        collaborating_teams: Missing[Union[builtins.list[str], None]] = UNSET,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]: ...
 
     def update_repository_advisory(
@@ -855,7 +887,7 @@ class SecurityAdvisoriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[RepositoryAdvisoryUpdateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#update-a-repository-security-advisory"""
 
@@ -874,12 +906,12 @@ class SecurityAdvisoriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(RepositoryAdvisoryUpdate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -916,19 +948,19 @@ class SecurityAdvisoriesClient:
         description: Missing[str] = UNSET,
         cve_id: Missing[Union[str, None]] = UNSET,
         vulnerabilities: Missing[
-            list[RepositoryAdvisoryUpdatePropVulnerabilitiesItemsType]
+            builtins.list[RepositoryAdvisoryUpdatePropVulnerabilitiesItemsType]
         ] = UNSET,
-        cwe_ids: Missing[Union[list[str], None]] = UNSET,
+        cwe_ids: Missing[Union[builtins.list[str], None]] = UNSET,
         credits_: Missing[
-            Union[list[RepositoryAdvisoryUpdatePropCreditsItemsType], None]
+            Union[builtins.list[RepositoryAdvisoryUpdatePropCreditsItemsType], None]
         ] = UNSET,
         severity: Missing[
             Union[None, Literal["critical", "high", "medium", "low"]]
         ] = UNSET,
         cvss_vector_string: Missing[Union[str, None]] = UNSET,
         state: Missing[Literal["published", "closed", "draft"]] = UNSET,
-        collaborating_users: Missing[Union[list[str], None]] = UNSET,
-        collaborating_teams: Missing[Union[list[str], None]] = UNSET,
+        collaborating_users: Missing[Union[builtins.list[str], None]] = UNSET,
+        collaborating_teams: Missing[Union[builtins.list[str], None]] = UNSET,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]: ...
 
     async def async_update_repository_advisory(
@@ -939,7 +971,7 @@ class SecurityAdvisoriesClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[RepositoryAdvisoryUpdateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryAdvisory, RepositoryAdvisoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/security-advisories/repository-advisories#update-a-repository-security-advisory"""
 
@@ -958,12 +990,12 @@ class SecurityAdvisoriesClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(RepositoryAdvisoryUpdate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -999,7 +1031,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1035,7 +1067,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1064,7 +1096,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1093,7 +1125,7 @@ class SecurityAdvisoriesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),

@@ -9,38 +9,60 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0008 import IntegrationType
-from .group_0082 import TeamType
+from .group_0208 import DiffEntryType
+from .group_0210 import CommitPropCommitType
 
 
-class ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictionsType(
-    TypedDict
-):
-    """ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictions"""
+class CommitType(TypedDict):
+    """Commit
+
+    Commit
+    """
 
     url: str
-    users_url: str
-    teams_url: str
-    users: list[SimpleUserType]
-    teams: list[TeamType]
-    apps: NotRequired[list[Union[IntegrationType, None]]]
+    sha: str
+    node_id: str
+    html_url: str
+    comments_url: str
+    commit: CommitPropCommitType
+    author: Union[SimpleUserType, EmptyObjectType, None]
+    committer: Union[SimpleUserType, EmptyObjectType, None]
+    parents: builtins.list[CommitPropParentsItemsType]
+    stats: NotRequired[CommitPropStatsType]
+    files: NotRequired[builtins.list[DiffEntryType]]
 
 
-class ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowancesType(
-    TypedDict
-):
-    """ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowances"""
+class EmptyObjectType(TypedDict):
+    """Empty Object
 
-    users: list[SimpleUserType]
-    teams: list[TeamType]
-    apps: NotRequired[list[Union[IntegrationType, None]]]
+    An object without any properties.
+    """
+
+
+class CommitPropParentsItemsType(TypedDict):
+    """CommitPropParentsItems"""
+
+    sha: str
+    url: str
+    html_url: NotRequired[str]
+
+
+class CommitPropStatsType(TypedDict):
+    """CommitPropStats"""
+
+    additions: NotRequired[int]
+    deletions: NotRequired[int]
+    total: NotRequired[int]
 
 
 __all__ = (
-    "ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowancesType",
-    "ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictionsType",
+    "CommitPropParentsItemsType",
+    "CommitPropStatsType",
+    "CommitType",
+    "EmptyObjectType",
 )

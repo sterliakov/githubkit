@@ -9,38 +9,39 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0056 import MinimalRepositoryType
+from .group_0002 import SimpleUserType
+from .group_0009 import IntegrationType
+from .group_0086 import TeamType
 
 
-class CheckSuitePreferenceType(TypedDict):
-    """Check Suite Preference
+class ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictionsType(
+    TypedDict
+):
+    """ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictions"""
 
-    Check suite configuration preferences for a repository.
-    """
-
-    preferences: CheckSuitePreferencePropPreferencesType
-    repository: MinimalRepositoryType
-
-
-class CheckSuitePreferencePropPreferencesType(TypedDict):
-    """CheckSuitePreferencePropPreferences"""
-
-    auto_trigger_checks: NotRequired[
-        list[CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItemsType]
-    ]
+    url: str
+    users_url: str
+    teams_url: str
+    users: builtins.list[SimpleUserType]
+    teams: builtins.list[TeamType]
+    apps: NotRequired[builtins.list[Union[IntegrationType, None]]]
 
 
-class CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItemsType(TypedDict):
-    """CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItems"""
+class ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowancesType(
+    TypedDict
+):
+    """ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowances"""
 
-    app_id: int
-    setting: bool
+    users: builtins.list[SimpleUserType]
+    teams: builtins.list[TeamType]
+    apps: NotRequired[builtins.list[Union[IntegrationType, None]]]
 
 
 __all__ = (
-    "CheckSuitePreferencePropPreferencesPropAutoTriggerChecksItemsType",
-    "CheckSuitePreferencePropPreferencesType",
-    "CheckSuitePreferenceType",
+    "ProtectedBranchPropRequiredPullRequestReviewsPropBypassPullRequestAllowancesType",
+    "ProtectedBranchPropRequiredPullRequestReviewsPropDismissalRestrictionsType",
 )

@@ -9,20 +9,27 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-
-from .group_0035 import RunnerLabel
-
-
-class EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200(GitHubModel):
-    """EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200"""
-
-    total_count: int = Field()
-    labels: list[RunnerLabel] = Field()
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-model_rebuild(EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200)
+class EnterprisesEnterpriseActionsPermissionsPutBody(GitHubModel):
+    """EnterprisesEnterpriseActionsPermissionsPutBody"""
 
-__all__ = ("EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200",)
+    enabled_organizations: Literal["all", "none", "selected"] = Field(
+        description="The policy that controls the organizations in the enterprise that are allowed to run GitHub Actions."
+    )
+    allowed_actions: Missing[Literal["all", "local_only", "selected"]] = Field(
+        default=UNSET,
+        description="The permissions policy that controls the actions and reusable workflows that are allowed to run.",
+    )
+
+
+model_rebuild(EnterprisesEnterpriseActionsPermissionsPutBody)
+
+__all__ = ("EnterprisesEnterpriseActionsPermissionsPutBody",)

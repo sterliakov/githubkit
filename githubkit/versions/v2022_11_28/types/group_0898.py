@@ -9,14 +9,16 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
+
+from .group_0111 import CustomPropertyType
 
 
-class OrgsOrgTeamsTeamSlugMembershipsUsernamePutBodyType(TypedDict):
-    """OrgsOrgTeamsTeamSlugMembershipsUsernamePutBody"""
+class OrgsOrgPropertiesSchemaPatchBodyType(TypedDict):
+    """OrgsOrgPropertiesSchemaPatchBody"""
 
-    role: NotRequired[Literal["member", "maintainer"]]
+    properties: builtins.list[CustomPropertyType]
 
 
-__all__ = ("OrgsOrgTeamsTeamSlugMembershipsUsernamePutBodyType",)
+__all__ = ("OrgsOrgPropertiesSchemaPatchBodyType",)

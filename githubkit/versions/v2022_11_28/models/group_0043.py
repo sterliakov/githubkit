@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -28,7 +30,7 @@ class Feed(GitHubModel):
     current_user_url: Missing[str] = Field(default=UNSET)
     current_user_actor_url: Missing[str] = Field(default=UNSET)
     current_user_organization_url: Missing[str] = Field(default=UNSET)
-    current_user_organization_urls: Missing[list[str]] = Field(default=UNSET)
+    current_user_organization_urls: Missing[builtins.list[str]] = Field(default=UNSET)
     security_advisories_url: Missing[str] = Field(default=UNSET)
     repository_discussions_url: Missing[str] = Field(
         default=UNSET, description="A feed of discussions for a given repository."
@@ -64,7 +66,9 @@ class FeedPropLinks(GitHubModel):
     current_user_organization: Missing[LinkWithType] = Field(
         default=UNSET, title="Link With Type", description="Hypermedia Link with Type"
     )
-    current_user_organizations: Missing[list[LinkWithType]] = Field(default=UNSET)
+    current_user_organizations: Missing[builtins.list[LinkWithType]] = Field(
+        default=UNSET
+    )
     repository_discussions: Missing[LinkWithType] = Field(
         default=UNSET, title="Link With Type", description="Hypermedia Link with Type"
     )

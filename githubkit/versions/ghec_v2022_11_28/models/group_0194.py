@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal
 
@@ -19,46 +20,29 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class RuleSuitesItems(GitHubModel):
-    """RuleSuitesItems"""
+class OrgPrivateRegistryConfigurationWithSelectedRepositories(GitHubModel):
+    """Organization private registry
 
-    id: Missing[int] = Field(
-        default=UNSET, description="The unique identifier of the rule insight."
-    )
-    actor_id: Missing[int] = Field(
-        default=UNSET, description="The number that identifies the user."
-    )
-    actor_name: Missing[str] = Field(
-        default=UNSET, description="The handle for the GitHub user account."
-    )
-    before_sha: Missing[str] = Field(
-        default=UNSET, description="The first commit sha before the push evaluation."
-    )
-    after_sha: Missing[str] = Field(
-        default=UNSET, description="The last commit sha in the push evaluation."
-    )
-    ref: Missing[str] = Field(
-        default=UNSET, description="The ref name that the evaluation ran on."
-    )
-    repository_id: Missing[int] = Field(
+    Private registry configuration for an organization
+    """
+
+    name: str = Field(description="The name of the private registry configuration.")
+    registry_type: Literal["maven_repository"] = Field(description="The registry type.")
+    username: Missing[str] = Field(
         default=UNSET,
-        description="The ID of the repository associated with the rule evaluation.",
+        description="The username to use when authenticating with the private registry.",
     )
-    repository_name: Missing[str] = Field(
+    visibility: Literal["all", "private", "selected"] = Field(
+        description="Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry."
+    )
+    selected_repository_ids: Missing[builtins.list[int]] = Field(
         default=UNSET,
-        description="The name of the repository without the `.git` extension.",
+        description="An array of repository IDs that can access the organization private registry when `visibility` is set to `selected`.",
     )
-    pushed_at: Missing[datetime] = Field(default=UNSET)
-    result: Missing[Literal["pass", "fail", "bypass"]] = Field(
-        default=UNSET,
-        description="The result of the rule evaluations for rules with the `active` enforcement status.",
-    )
-    evaluation_result: Missing[Literal["pass", "fail", "bypass"]] = Field(
-        default=UNSET,
-        description="The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`.",
-    )
+    created_at: datetime = Field()
+    updated_at: datetime = Field()
 
 
-model_rebuild(RuleSuitesItems)
+model_rebuild(OrgPrivateRegistryConfigurationWithSelectedRepositories)
 
-__all__ = ("RuleSuitesItems",)
+__all__ = ("OrgPrivateRegistryConfigurationWithSelectedRepositories",)

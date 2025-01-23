@@ -9,19 +9,28 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
+
+from .group_0035 import OrganizationSimple
 
 
-class EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422(GitHubModel):
-    """EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422"""
+class EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200(
+    GitHubModel
+):
+    """EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200"""
 
-    errors: Missing[list[str]] = Field(default=UNSET)
+    total_count: float = Field()
+    organizations: builtins.list[OrganizationSimple] = Field()
 
 
-model_rebuild(EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422)
+model_rebuild(
+    EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200
+)
 
-__all__ = ("EnterprisesEnterpriseAuditLogStreamsStreamIdPutResponse422",)
+__all__ = (
+    "EnterprisesEnterpriseActionsRunnerGroupsRunnerGroupIdOrganizationsGetResponse200",
+)

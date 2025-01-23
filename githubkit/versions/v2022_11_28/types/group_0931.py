@@ -9,13 +9,16 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBodyType(TypedDict):
-    """ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBody"""
+class ProjectsProjectIdDeleteResponse403Type(TypedDict):
+    """ProjectsProjectIdDeleteResponse403"""
 
-    labels: list[str]
+    message: NotRequired[str]
+    documentation_url: NotRequired[str]
+    errors: NotRequired[builtins.list[str]]
 
 
-__all__ = ("ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBodyType",)
+__all__ = ("ProjectsProjectIdDeleteResponse403Type",)

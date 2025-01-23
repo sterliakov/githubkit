@@ -9,25 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class RuleSuitesItemsType(TypedDict):
-    """RuleSuitesItems"""
+class OrgPrivateRegistryConfigurationWithSelectedRepositoriesType(TypedDict):
+    """Organization private registry
 
-    id: NotRequired[int]
-    actor_id: NotRequired[int]
-    actor_name: NotRequired[str]
-    before_sha: NotRequired[str]
-    after_sha: NotRequired[str]
-    ref: NotRequired[str]
-    repository_id: NotRequired[int]
-    repository_name: NotRequired[str]
-    pushed_at: NotRequired[datetime]
-    result: NotRequired[Literal["pass", "fail", "bypass"]]
-    evaluation_result: NotRequired[Literal["pass", "fail", "bypass"]]
+    Private registry configuration for an organization
+    """
+
+    name: str
+    registry_type: Literal["maven_repository"]
+    username: NotRequired[str]
+    visibility: Literal["all", "private", "selected"]
+    selected_repository_ids: NotRequired[builtins.list[int]]
+    created_at: datetime
+    updated_at: datetime
 
 
-__all__ = ("RuleSuitesItemsType",)
+__all__ = ("OrgPrivateRegistryConfigurationWithSelectedRepositoriesType",)

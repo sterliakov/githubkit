@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
@@ -23,7 +24,7 @@ class ScopedInstallationType(TypedDict):
     repository_selection: Literal["all", "selected"]
     single_file_name: Union[str, None]
     has_multiple_single_files: NotRequired[bool]
-    single_file_paths: NotRequired[list[str]]
+    single_file_paths: NotRequired[builtins.list[str]]
     repositories_url: str
     account: SimpleUserType
 

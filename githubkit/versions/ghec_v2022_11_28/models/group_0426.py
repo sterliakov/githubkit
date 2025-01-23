@@ -9,8 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Literal, Union
+import builtins
+from typing import Literal
 
 from pydantic import Field
 
@@ -18,126 +18,69 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0002 import SimpleUser
-from .group_0008 import Integration
-from .group_0019 import Repository
-from .group_0129 import Milestone
-from .group_0130 import ReactionRollup
-from .group_0422 import SearchResultTextMatchesItems
+from .group_0421 import UserRoleItems
 
 
-class IssueSearchResultItem(GitHubModel):
-    """Issue Search Result Item
+class User(GitHubModel):
+    """User"""
 
-    Issue Search Result Item
-    """
-
-    url: str = Field()
-    repository_url: str = Field()
-    labels_url: str = Field()
-    comments_url: str = Field()
-    events_url: str = Field()
-    html_url: str = Field()
-    id: int = Field()
-    node_id: str = Field()
-    number: int = Field()
-    title: str = Field()
-    locked: bool = Field()
-    active_lock_reason: Missing[Union[str, None]] = Field(default=UNSET)
-    assignees: Missing[Union[list[SimpleUser], None]] = Field(default=UNSET)
-    user: Union[None, SimpleUser] = Field()
-    labels: list[IssueSearchResultItemPropLabelsItems] = Field()
-    sub_issues_summary: Missing[IssueSearchResultItemPropSubIssuesSummary] = Field(
-        default=UNSET, title="Sub-issues Summary"
+    schemas: builtins.list[Literal["urn:ietf:params:scim:schemas:core:2.0:User"]] = (
+        Field(
+            description="The URIs that are used to indicate the namespaces of the SCIM schemas."
+        )
     )
-    state: str = Field()
-    state_reason: Missing[Union[str, None]] = Field(default=UNSET)
-    assignee: Union[None, SimpleUser] = Field()
-    milestone: Union[None, Milestone] = Field()
-    comments: int = Field()
-    created_at: datetime = Field()
-    updated_at: datetime = Field()
-    closed_at: Union[datetime, None] = Field()
-    text_matches: Missing[list[SearchResultTextMatchesItems]] = Field(
-        default=UNSET, title="Search Result Text Matches"
+    external_id: str = Field(
+        alias="externalId",
+        description="A unique identifier for the resource as defined by the provisioning client.",
     )
-    pull_request: Missing[IssueSearchResultItemPropPullRequest] = Field(default=UNSET)
-    body: Missing[str] = Field(default=UNSET)
-    score: float = Field()
-    author_association: Literal[
-        "COLLABORATOR",
-        "CONTRIBUTOR",
-        "FIRST_TIMER",
-        "FIRST_TIME_CONTRIBUTOR",
-        "MANNEQUIN",
-        "MEMBER",
-        "NONE",
-        "OWNER",
-    ] = Field(
-        title="author_association",
-        description="How the author is associated with the repository.",
+    active: bool = Field(description="Whether the user active in the IdP.")
+    user_name: str = Field(alias="userName", description="The username for the user.")
+    name: Missing[UserName] = Field(default=UNSET)
+    display_name: str = Field(
+        alias="displayName", description="A human-readable name for the user."
     )
-    draft: Missing[bool] = Field(default=UNSET)
-    repository: Missing[Repository] = Field(
-        default=UNSET, title="Repository", description="A repository on GitHub."
+    emails: builtins.list[UserEmailsItems] = Field(
+        description="The emails for the user."
     )
-    body_html: Missing[str] = Field(default=UNSET)
-    body_text: Missing[str] = Field(default=UNSET)
-    timeline_url: Missing[str] = Field(default=UNSET)
-    performed_via_github_app: Missing[Union[None, Integration, None]] = Field(
-        default=UNSET
+    roles: Missing[builtins.list[UserRoleItems]] = Field(
+        default=UNSET, description="The roles assigned to the user."
     )
-    reactions: Missing[ReactionRollup] = Field(default=UNSET, title="Reaction Rollup")
 
 
-class IssueSearchResultItemPropLabelsItems(GitHubModel):
-    """IssueSearchResultItemPropLabelsItems"""
+class UserName(GitHubModel):
+    """UserName"""
 
-    id: Missing[int] = Field(default=UNSET)
-    node_id: Missing[str] = Field(default=UNSET)
-    url: Missing[str] = Field(default=UNSET)
-    name: Missing[str] = Field(default=UNSET)
-    color: Missing[str] = Field(default=UNSET)
-    default: Missing[bool] = Field(default=UNSET)
-    description: Missing[Union[str, None]] = Field(default=UNSET)
-
-
-class IssueSearchResultItemPropSubIssuesSummary(GitHubModel):
-    """Sub-issues Summary"""
-
-    total: int = Field()
-    completed: int = Field()
-    percent_completed: int = Field()
+    formatted: Missing[str] = Field(
+        default=UNSET,
+        description="The full name, including all middle names, titles, and suffixes as appropriate, formatted for display.",
+    )
+    family_name: str = Field(
+        alias="familyName", description="The family name of the user."
+    )
+    given_name: str = Field(
+        alias="givenName", description="The given name of the user."
+    )
+    middle_name: Missing[str] = Field(
+        default=UNSET, alias="middleName", description="The middle name(s) of the user."
+    )
 
 
-class IssueSearchResultItemPropPullRequest(GitHubModel):
-    """IssueSearchResultItemPropPullRequest"""
+class UserEmailsItems(GitHubModel):
+    """UserEmailsItems"""
 
-    merged_at: Missing[Union[datetime, None]] = Field(default=UNSET)
-    diff_url: Union[str, None] = Field()
-    html_url: Union[str, None] = Field()
-    patch_url: Union[str, None] = Field()
-    url: Union[str, None] = Field()
-
-
-class SearchIssuesGetResponse200(GitHubModel):
-    """SearchIssuesGetResponse200"""
-
-    total_count: int = Field()
-    incomplete_results: bool = Field()
-    items: list[IssueSearchResultItem] = Field()
+    value: str = Field(description="The email address.")
+    type: str = Field(description="The type of email address.")
+    primary: bool = Field(
+        description="Whether this email address is the primary address."
+    )
 
 
-model_rebuild(IssueSearchResultItem)
-model_rebuild(IssueSearchResultItemPropLabelsItems)
-model_rebuild(IssueSearchResultItemPropSubIssuesSummary)
-model_rebuild(IssueSearchResultItemPropPullRequest)
-model_rebuild(SearchIssuesGetResponse200)
+model_rebuild(User)
+model_rebuild(UserName)
+model_rebuild(UserEmailsItems)
 
 __all__ = (
-    "IssueSearchResultItem",
-    "IssueSearchResultItemPropLabelsItems",
-    "IssueSearchResultItemPropPullRequest",
-    "IssueSearchResultItemPropSubIssuesSummary",
-    "SearchIssuesGetResponse200",
+    "User",
+    "UserEmailsItems",
+    "UserName",
 )

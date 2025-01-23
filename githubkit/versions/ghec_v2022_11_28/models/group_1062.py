@@ -9,17 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-
-class ReposOwnerRepoCheckSuitesPostBody(GitHubModel):
-    """ReposOwnerRepoCheckSuitesPostBody"""
-
-    head_sha: str = Field(description="The sha of the head commit.")
+from .group_0228 import WorkflowRun
 
 
-model_rebuild(ReposOwnerRepoCheckSuitesPostBody)
+class ReposOwnerRepoActionsWorkflowsWorkflowIdRunsGetResponse200(GitHubModel):
+    """ReposOwnerRepoActionsWorkflowsWorkflowIdRunsGetResponse200"""
 
-__all__ = ("ReposOwnerRepoCheckSuitesPostBody",)
+    total_count: int = Field()
+    workflow_runs: builtins.list[WorkflowRun] = Field()
+
+
+model_rebuild(ReposOwnerRepoActionsWorkflowsWorkflowIdRunsGetResponse200)
+
+__all__ = ("ReposOwnerRepoActionsWorkflowsWorkflowIdRunsGetResponse200",)

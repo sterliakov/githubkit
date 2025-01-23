@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -65,8 +67,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gists-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BaseGist, BasicError
 
@@ -80,12 +84,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "403": BasicError,
             },
@@ -98,8 +102,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gists-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BaseGist, BasicError
 
@@ -113,12 +119,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "403": BasicError,
             },
@@ -145,7 +151,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[GistsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistSimple, GistSimpleType]:
         """See also: https://docs.github.com/rest/gists/gists#create-a-gist"""
 
@@ -159,12 +165,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(GistsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -198,7 +204,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[GistsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistSimple, GistSimpleType]:
         """See also: https://docs.github.com/rest/gists/gists#create-a-gist"""
 
@@ -212,12 +218,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(GistsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -237,8 +243,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-public-gists"""
+
+        import builtins
 
         from ..models import BaseGist, BasicError, ValidationError
 
@@ -252,12 +260,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "422": ValidationError,
                 "403": BasicError,
@@ -271,8 +279,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-public-gists"""
+
+        import builtins
 
         from ..models import BaseGist, BasicError, ValidationError
 
@@ -286,12 +296,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "422": ValidationError,
                 "403": BasicError,
@@ -305,8 +315,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-starred-gists"""
+
+        import builtins
 
         from ..models import BaseGist, BasicError
 
@@ -320,12 +332,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "401": BasicError,
                 "403": BasicError,
@@ -339,8 +351,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-starred-gists"""
+
+        import builtins
 
         from ..models import BaseGist, BasicError
 
@@ -354,12 +368,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "401": BasicError,
                 "403": BasicError,
@@ -380,7 +394,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -405,7 +419,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -430,7 +444,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -454,7 +468,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -490,7 +504,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[GistsGistIdPatchBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistSimple, GistSimpleType]:
         """See also: https://docs.github.com/rest/gists/gists#update-a-gist"""
 
@@ -511,12 +525,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[GistsGistIdPatchBody, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -554,7 +568,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[GistsGistIdPatchBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistSimple, GistSimpleType]:
         """See also: https://docs.github.com/rest/gists/gists#update-a-gist"""
 
@@ -575,12 +589,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[GistsGistIdPatchBody, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -599,8 +613,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GistComment], list[GistCommentType]]:
+    ) -> Response[builtins.list[GistComment], builtins.list[GistCommentType]]:
         """See also: https://docs.github.com/rest/gists/comments#list-gist-comments"""
+
+        import builtins
 
         from ..models import BasicError, GistComment
 
@@ -613,12 +629,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GistComment],
+            response_model=builtins.list[GistComment],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -632,8 +648,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GistComment], list[GistCommentType]]:
+    ) -> Response[builtins.list[GistComment], builtins.list[GistCommentType]]:
         """See also: https://docs.github.com/rest/gists/comments#list-gist-comments"""
+
+        import builtins
 
         from ..models import BasicError, GistComment
 
@@ -646,12 +664,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GistComment],
+            response_model=builtins.list[GistComment],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -683,7 +701,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[GistsGistIdCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistComment, GistCommentType]:
         """See also: https://docs.github.com/rest/gists/comments#create-a-gist-comment"""
 
@@ -697,12 +715,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(GistsGistIdCommentsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -739,7 +757,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[GistsGistIdCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistComment, GistCommentType]:
         """See also: https://docs.github.com/rest/gists/comments#create-a-gist-comment"""
 
@@ -753,12 +771,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(GistsGistIdCommentsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -785,7 +803,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -811,7 +829,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -837,7 +855,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -862,7 +880,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -900,7 +918,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[GistsGistIdCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistComment, GistCommentType]:
         """See also: https://docs.github.com/rest/gists/comments#update-a-gist-comment"""
 
@@ -918,12 +936,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(GistsGistIdCommentsCommentIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -962,7 +980,7 @@ class GistsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[GistsGistIdCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GistComment, GistCommentType]:
         """See also: https://docs.github.com/rest/gists/comments#update-a-gist-comment"""
 
@@ -980,12 +998,12 @@ class GistsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(GistsGistIdCommentsCommentIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1003,8 +1021,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GistCommit], list[GistCommitType]]:
+    ) -> Response[builtins.list[GistCommit], builtins.list[GistCommitType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gist-commits"""
+
+        import builtins
 
         from ..models import BasicError, GistCommit
 
@@ -1017,12 +1037,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GistCommit],
+            response_model=builtins.list[GistCommit],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1036,8 +1056,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GistCommit], list[GistCommitType]]:
+    ) -> Response[builtins.list[GistCommit], builtins.list[GistCommitType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gist-commits"""
+
+        import builtins
 
         from ..models import BasicError, GistCommit
 
@@ -1050,12 +1072,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GistCommit],
+            response_model=builtins.list[GistCommit],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1069,8 +1091,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GistSimple], list[GistSimpleType]]:
+    ) -> Response[builtins.list[GistSimple], builtins.list[GistSimpleType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gist-forks"""
+
+        import builtins
 
         from ..models import BasicError, GistSimple
 
@@ -1083,12 +1107,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GistSimple],
+            response_model=builtins.list[GistSimple],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1102,8 +1126,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GistSimple], list[GistSimpleType]]:
+    ) -> Response[builtins.list[GistSimple], builtins.list[GistSimpleType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gist-forks"""
+
+        import builtins
 
         from ..models import BasicError, GistSimple
 
@@ -1116,12 +1142,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[GistSimple],
+            response_model=builtins.list[GistSimple],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1142,7 +1168,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1168,7 +1194,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1194,7 +1220,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1218,7 +1244,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1242,7 +1268,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1266,7 +1292,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1290,7 +1316,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1314,7 +1340,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1339,7 +1365,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1366,7 +1392,7 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1386,8 +1412,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gists-for-a-user"""
+
+        import builtins
 
         from ..models import BaseGist, ValidationError
 
@@ -1401,12 +1429,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "422": ValidationError,
             },
@@ -1420,8 +1448,10 @@ class GistsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BaseGist], list[BaseGistType]]:
+    ) -> Response[builtins.list[BaseGist], builtins.list[BaseGistType]]:
         """See also: https://docs.github.com/rest/gists/gists#list-gists-for-a-user"""
+
+        import builtins
 
         from ..models import BaseGist, ValidationError
 
@@ -1435,12 +1465,12 @@ class GistsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[BaseGist],
+            response_model=builtins.list[BaseGist],
             error_models={
                 "422": ValidationError,
             },

@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -101,10 +103,12 @@ class CodeScanningClient:
         sort: Missing[Literal["created", "updated"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeScanningOrganizationAlertItems],
-        list[CodeScanningOrganizationAlertItemsType],
+        builtins.list[CodeScanningOrganizationAlertItems],
+        builtins.list[CodeScanningOrganizationAlertItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-alerts-for-an-enterprise"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -128,12 +132,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningOrganizationAlertItems],
+            response_model=builtins.list[CodeScanningOrganizationAlertItems],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseCodeScanningAlertsGetResponse503,
@@ -155,10 +159,12 @@ class CodeScanningClient:
         sort: Missing[Literal["created", "updated"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeScanningOrganizationAlertItems],
-        list[CodeScanningOrganizationAlertItemsType],
+        builtins.list[CodeScanningOrganizationAlertItems],
+        builtins.list[CodeScanningOrganizationAlertItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-alerts-for-an-enterprise"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -182,12 +188,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningOrganizationAlertItems],
+            response_model=builtins.list[CodeScanningOrganizationAlertItems],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseCodeScanningAlertsGetResponse503,
@@ -212,10 +218,12 @@ class CodeScanningClient:
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeScanningOrganizationAlertItems],
-        list[CodeScanningOrganizationAlertItemsType],
+        builtins.list[CodeScanningOrganizationAlertItems],
+        builtins.list[CodeScanningOrganizationAlertItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-alerts-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -240,12 +248,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningOrganizationAlertItems],
+            response_model=builtins.list[CodeScanningOrganizationAlertItems],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseCodeScanningAlertsGetResponse503,
@@ -270,10 +278,12 @@ class CodeScanningClient:
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeScanningOrganizationAlertItems],
-        list[CodeScanningOrganizationAlertItemsType],
+        builtins.list[CodeScanningOrganizationAlertItems],
+        builtins.list[CodeScanningOrganizationAlertItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-alerts-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -298,12 +308,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningOrganizationAlertItems],
+            response_model=builtins.list[CodeScanningOrganizationAlertItems],
             error_models={
                 "404": BasicError,
                 "503": EnterprisesEnterpriseCodeScanningAlertsGetResponse503,
@@ -330,8 +340,12 @@ class CodeScanningClient:
             Literal["critical", "high", "medium", "low", "warning", "note", "error"]
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeScanningAlertItems], list[CodeScanningAlertItemsType]]:
+    ) -> Response[
+        builtins.list[CodeScanningAlertItems], builtins.list[CodeScanningAlertItemsType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-alerts-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -358,12 +372,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningAlertItems],
+            response_model=builtins.list[CodeScanningAlertItems],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -391,8 +405,12 @@ class CodeScanningClient:
             Literal["critical", "high", "medium", "low", "warning", "note", "error"]
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeScanningAlertItems], list[CodeScanningAlertItemsType]]:
+    ) -> Response[
+        builtins.list[CodeScanningAlertItems], builtins.list[CodeScanningAlertItemsType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-alerts-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -419,12 +437,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningAlertItems],
+            response_model=builtins.list[CodeScanningAlertItems],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -452,7 +470,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -484,7 +502,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -531,7 +549,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCodeScanningAlertsAlertNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeScanningAlert, CodeScanningAlertType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#update-a-code-scanning-alert"""
 
@@ -550,14 +568,14 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCodeScanningAlertsAlertNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -605,7 +623,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCodeScanningAlertsAlertNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeScanningAlert, CodeScanningAlertType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#update-a-code-scanning-alert"""
 
@@ -624,14 +642,14 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCodeScanningAlertsAlertNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -664,7 +682,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -697,7 +715,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -730,7 +748,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -763,7 +781,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -812,7 +830,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[CodeScanningAutofixCommitsType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         CodeScanningAutofixCommitsResponse, CodeScanningAutofixCommitsResponseType
     ]:
@@ -837,12 +855,12 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[CodeScanningAutofixCommits, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -892,7 +910,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[CodeScanningAutofixCommitsType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         CodeScanningAutofixCommitsResponse, CodeScanningAutofixCommitsResponseType
     ]:
@@ -917,12 +935,12 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[CodeScanningAutofixCommits, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -947,8 +965,13 @@ class CodeScanningClient:
         ref: Missing[str] = UNSET,
         pr: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeScanningAlertInstance], list[CodeScanningAlertInstanceType]]:
+    ) -> Response[
+        builtins.list[CodeScanningAlertInstance],
+        builtins.list[CodeScanningAlertInstanceType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-instances-of-a-code-scanning-alert"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -967,12 +990,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningAlertInstance],
+            response_model=builtins.list[CodeScanningAlertInstance],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -991,8 +1014,13 @@ class CodeScanningClient:
         ref: Missing[str] = UNSET,
         pr: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeScanningAlertInstance], list[CodeScanningAlertInstanceType]]:
+    ) -> Response[
+        builtins.list[CodeScanningAlertInstance],
+        builtins.list[CodeScanningAlertInstanceType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-instances-of-a-code-scanning-alert"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1011,12 +1039,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningAlertInstance],
+            response_model=builtins.list[CodeScanningAlertInstance],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1039,8 +1067,12 @@ class CodeScanningClient:
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[Literal["created"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeScanningAnalysis], list[CodeScanningAnalysisType]]:
+    ) -> Response[
+        builtins.list[CodeScanningAnalysis], builtins.list[CodeScanningAnalysisType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-analyses-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1064,12 +1096,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningAnalysis],
+            response_model=builtins.list[CodeScanningAnalysis],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1092,8 +1124,12 @@ class CodeScanningClient:
         direction: Missing[Literal["asc", "desc"]] = UNSET,
         sort: Missing[Literal["created"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeScanningAnalysis], list[CodeScanningAnalysisType]]:
+    ) -> Response[
+        builtins.list[CodeScanningAnalysis], builtins.list[CodeScanningAnalysisType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-code-scanning-analyses-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1117,12 +1153,12 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningAnalysis],
+            response_model=builtins.list[CodeScanningAnalysis],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1150,7 +1186,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1182,7 +1218,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1219,7 +1255,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             params=exclude_unset(params),
@@ -1258,7 +1294,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             params=exclude_unset(params),
@@ -1279,9 +1315,12 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeScanningCodeqlDatabase], list[CodeScanningCodeqlDatabaseType]
+        builtins.list[CodeScanningCodeqlDatabase],
+        builtins.list[CodeScanningCodeqlDatabaseType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-codeql-databases-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1293,11 +1332,11 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningCodeqlDatabase],
+            response_model=builtins.list[CodeScanningCodeqlDatabase],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1312,9 +1351,12 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeScanningCodeqlDatabase], list[CodeScanningCodeqlDatabaseType]
+        builtins.list[CodeScanningCodeqlDatabase],
+        builtins.list[CodeScanningCodeqlDatabaseType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#list-codeql-databases-for-a-repository"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1326,11 +1368,11 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CodeScanningCodeqlDatabase],
+            response_model=builtins.list[CodeScanningCodeqlDatabase],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1358,7 +1400,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1390,7 +1432,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1421,7 +1463,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1451,7 +1493,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1488,9 +1530,9 @@ class CodeScanningClient:
             "cpp", "csharp", "go", "java", "javascript", "python", "ruby", "swift"
         ],
         query_pack: str,
-        repositories: list[str],
-        repository_lists: Missing[list[str]] = UNSET,
-        repository_owners: Missing[list[str]] = UNSET,
+        repositories: builtins.list[str],
+        repository_lists: Missing[builtins.list[str]] = UNSET,
+        repository_owners: Missing[builtins.list[str]] = UNSET,
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]: ...
 
     @overload
@@ -1505,9 +1547,9 @@ class CodeScanningClient:
             "cpp", "csharp", "go", "java", "javascript", "python", "ruby", "swift"
         ],
         query_pack: str,
-        repositories: Missing[list[str]] = UNSET,
-        repository_lists: list[str],
-        repository_owners: Missing[list[str]] = UNSET,
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_lists: builtins.list[str],
+        repository_owners: Missing[builtins.list[str]] = UNSET,
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]: ...
 
     @overload
@@ -1522,9 +1564,9 @@ class CodeScanningClient:
             "cpp", "csharp", "go", "java", "javascript", "python", "ruby", "swift"
         ],
         query_pack: str,
-        repositories: Missing[list[str]] = UNSET,
-        repository_lists: Missing[list[str]] = UNSET,
-        repository_owners: list[str],
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_lists: Missing[builtins.list[str]] = UNSET,
+        repository_owners: builtins.list[str],
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]: ...
 
     def create_variant_analysis(
@@ -1540,7 +1582,7 @@ class CodeScanningClient:
                 ReposOwnerRepoCodeScanningCodeqlVariantAnalysesPostBodyOneof2Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#create-a-codeql-variant-analysis"""
 
@@ -1563,7 +1605,7 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -1575,7 +1617,7 @@ class CodeScanningClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1614,9 +1656,9 @@ class CodeScanningClient:
             "cpp", "csharp", "go", "java", "javascript", "python", "ruby", "swift"
         ],
         query_pack: str,
-        repositories: list[str],
-        repository_lists: Missing[list[str]] = UNSET,
-        repository_owners: Missing[list[str]] = UNSET,
+        repositories: builtins.list[str],
+        repository_lists: Missing[builtins.list[str]] = UNSET,
+        repository_owners: Missing[builtins.list[str]] = UNSET,
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]: ...
 
     @overload
@@ -1631,9 +1673,9 @@ class CodeScanningClient:
             "cpp", "csharp", "go", "java", "javascript", "python", "ruby", "swift"
         ],
         query_pack: str,
-        repositories: Missing[list[str]] = UNSET,
-        repository_lists: list[str],
-        repository_owners: Missing[list[str]] = UNSET,
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_lists: builtins.list[str],
+        repository_owners: Missing[builtins.list[str]] = UNSET,
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]: ...
 
     @overload
@@ -1648,9 +1690,9 @@ class CodeScanningClient:
             "cpp", "csharp", "go", "java", "javascript", "python", "ruby", "swift"
         ],
         query_pack: str,
-        repositories: Missing[list[str]] = UNSET,
-        repository_lists: Missing[list[str]] = UNSET,
-        repository_owners: list[str],
+        repositories: Missing[builtins.list[str]] = UNSET,
+        repository_lists: Missing[builtins.list[str]] = UNSET,
+        repository_owners: builtins.list[str],
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]: ...
 
     async def async_create_variant_analysis(
@@ -1666,7 +1708,7 @@ class CodeScanningClient:
                 ReposOwnerRepoCodeScanningCodeqlVariantAnalysesPostBodyOneof2Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeScanningVariantAnalysis, CodeScanningVariantAnalysisType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#create-a-codeql-variant-analysis"""
 
@@ -1689,7 +1731,7 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -1701,7 +1743,7 @@ class CodeScanningClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1734,7 +1776,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1765,7 +1807,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1800,7 +1842,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1835,7 +1877,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1865,7 +1907,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1896,7 +1938,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1931,7 +1973,7 @@ class CodeScanningClient:
         runner_label: Missing[Union[str, None]] = UNSET,
         query_suite: Missing[Literal["default", "extended"]] = UNSET,
         languages: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "actions",
                     "c-cpp",
@@ -1954,7 +1996,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[CodeScanningDefaultSetupUpdateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#update-a-code-scanning-default-setup-configuration"""
 
@@ -1973,12 +2015,12 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(CodeScanningDefaultSetupUpdate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2015,7 +2057,7 @@ class CodeScanningClient:
         runner_label: Missing[Union[str, None]] = UNSET,
         query_suite: Missing[Literal["default", "extended"]] = UNSET,
         languages: Missing[
-            list[
+            builtins.list[
                 Literal[
                     "actions",
                     "c-cpp",
@@ -2038,7 +2080,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[CodeScanningDefaultSetupUpdateType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#update-a-code-scanning-default-setup-configuration"""
 
@@ -2057,12 +2099,12 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(CodeScanningDefaultSetupUpdate, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2110,7 +2152,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCodeScanningSarifsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeScanningSarifsReceipt, CodeScanningSarifsReceiptType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#upload-an-analysis-as-sarif-data"""
 
@@ -2129,12 +2171,12 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoCodeScanningSarifsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2181,7 +2223,7 @@ class CodeScanningClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCodeScanningSarifsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeScanningSarifsReceipt, CodeScanningSarifsReceiptType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-scanning/code-scanning#upload-an-analysis-as-sarif-data"""
 
@@ -2200,12 +2242,12 @@ class CodeScanningClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoCodeScanningSarifsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2238,7 +2280,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2269,7 +2311,7 @@ class CodeScanningClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

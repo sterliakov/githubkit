@@ -9,29 +9,24 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import Field
 
-from githubkit.compat import PYDANTIC_V2, GitHubModel, model_rebuild
+from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class UserEmailsDeleteBodyOneof0(GitHubModel):
-    """UserEmailsDeleteBodyOneof0
+class TeamsTeamIdProjectsProjectIdPutBody(GitHubModel):
+    """TeamsTeamIdProjectsProjectIdPutBody"""
 
-    Deletes one or more email addresses from your GitHub account. Must contain at
-    least one email address. **Note:** Alternatively, you can pass a single email
-    address or an `array` of emails addresses directly, but we recommend that you
-    pass an object using the `emails` key.
-
-    Examples:
-        {'emails': ['octocat@github.com', 'mona@github.com']}
-    """
-
-    emails: list[str] = Field(
-        min_length=1 if PYDANTIC_V2 else None,
-        description="Email addresses associated with the GitHub user account.",
+    permission: Missing[Literal["read", "write", "admin"]] = Field(
+        default=UNSET,
+        description="The permission to grant to the team for this project. Default: the team's `permission` attribute will be used to determine what permission to grant the team on this project. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling this endpoint. For more information, see \"[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method).\"",
     )
 
 
-model_rebuild(UserEmailsDeleteBodyOneof0)
+model_rebuild(TeamsTeamIdProjectsProjectIdPutBody)
 
-__all__ = ("UserEmailsDeleteBodyOneof0",)
+__all__ = ("TeamsTeamIdProjectsProjectIdPutBody",)

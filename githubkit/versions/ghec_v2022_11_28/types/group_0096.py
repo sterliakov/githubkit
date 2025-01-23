@@ -12,18 +12,35 @@ from __future__ import annotations
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0097 import RepositoryRulePullRequestPropParametersType
 
+class RepositoryRuleRequiredLinearHistoryType(TypedDict):
+    """required_linear_history
 
-class RepositoryRulePullRequestType(TypedDict):
-    """pull_request
-
-    Require all commits be made to a non-target branch and submitted via a pull
-    request before they can be merged.
+    Prevent merge commits from being pushed to matching refs.
     """
 
-    type: Literal["pull_request"]
-    parameters: NotRequired[RepositoryRulePullRequestPropParametersType]
+    type: Literal["required_linear_history"]
 
 
-__all__ = ("RepositoryRulePullRequestType",)
+class RepositoryRuleOneof16Type(TypedDict):
+    """max_file_path_length
+
+    Prevent commits that include file paths that exceed a specified character limit
+    from being pushed to the commit graph.
+    """
+
+    type: Literal["max_file_path_length"]
+    parameters: NotRequired[RepositoryRuleOneof16PropParametersType]
+
+
+class RepositoryRuleOneof16PropParametersType(TypedDict):
+    """RepositoryRuleOneof16PropParameters"""
+
+    max_file_path_length: int
+
+
+__all__ = (
+    "RepositoryRuleOneof16PropParametersType",
+    "RepositoryRuleOneof16Type",
+    "RepositoryRuleRequiredLinearHistoryType",
+)

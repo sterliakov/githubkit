@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -16,15 +18,19 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class RepositoryRulesetConditionsRepositoryIdTargetPropRepositoryId(GitHubModel):
-    """RepositoryRulesetConditionsRepositoryIdTargetPropRepositoryId"""
+class RepositoryRulesetConditionsPropRefName(GitHubModel):
+    """RepositoryRulesetConditionsPropRefName"""
 
-    repository_ids: Missing[list[int]] = Field(
+    include: Missing[builtins.list[str]] = Field(
         default=UNSET,
-        description="The repository IDs that the ruleset applies to. One of these IDs must match for the condition to pass.",
+        description="Array of ref names or patterns to include. One of these patterns must match for the condition to pass. Also accepts `~DEFAULT_BRANCH` to include the default branch or `~ALL` to include all branches.",
+    )
+    exclude: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="Array of ref names or patterns to exclude. The condition will not pass if any of these patterns match.",
     )
 
 
-model_rebuild(RepositoryRulesetConditionsRepositoryIdTargetPropRepositoryId)
+model_rebuild(RepositoryRulesetConditionsPropRefName)
 
-__all__ = ("RepositoryRulesetConditionsRepositoryIdTargetPropRepositoryId",)
+__all__ = ("RepositoryRulesetConditionsPropRefName",)

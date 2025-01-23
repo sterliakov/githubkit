@@ -9,30 +9,36 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0078 import RepositoryRulesetConditionsPropRefNameType
-from .group_0080 import (
-    RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType,
-)
-from .group_0082 import (
-    EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType,
-)
+
+class RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType(
+    TypedDict
+):
+    """RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty"""
+
+    include: NotRequired[
+        builtins.list[RepositoryRulesetConditionsRepositoryPropertySpecType]
+    ]
+    exclude: NotRequired[
+        builtins.list[RepositoryRulesetConditionsRepositoryPropertySpecType]
+    ]
 
 
-class EnterpriseRulesetConditionsOneof3Type(TypedDict):
-    """organization_id_and_repository_property
+class RepositoryRulesetConditionsRepositoryPropertySpecType(TypedDict):
+    """Repository ruleset property targeting definition
 
-    Conditions to target organization by id and repositories by property
+    Parameters for a targeting a repository property
     """
 
-    organization_id: (
-        EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationIdType
-    )
-    repository_property: (
-        RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType
-    )
-    ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
+    name: str
+    property_values: builtins.list[str]
+    source: NotRequired[Literal["custom", "system"]]
 
 
-__all__ = ("EnterpriseRulesetConditionsOneof3Type",)
+__all__ = (
+    "RepositoryRulesetConditionsRepositoryPropertySpecType",
+    "RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryPropertyType",
+)

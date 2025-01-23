@@ -9,15 +9,20 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
-
-class ReposOwnerRepoLabelsPostBodyType(TypedDict):
-    """ReposOwnerRepoLabelsPostBody"""
-
-    name: str
-    color: NotRequired[str]
-    description: NotRequired[str]
+from .group_0010 import WebhookConfigType
 
 
-__all__ = ("ReposOwnerRepoLabelsPostBodyType",)
+class ReposOwnerRepoHooksHookIdPatchBodyType(TypedDict):
+    """ReposOwnerRepoHooksHookIdPatchBody"""
+
+    config: NotRequired[WebhookConfigType]
+    events: NotRequired[builtins.list[str]]
+    add_events: NotRequired[builtins.list[str]]
+    remove_events: NotRequired[builtins.list[str]]
+    active: NotRequired[bool]
+
+
+__all__ = ("ReposOwnerRepoHooksHookIdPatchBodyType",)

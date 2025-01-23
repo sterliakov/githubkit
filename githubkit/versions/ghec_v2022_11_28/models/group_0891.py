@@ -9,23 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
-from .group_0019 import Repository
+from .group_0074 import NetworkConfiguration
 
 
-class InstallationRepositoriesGetResponse200(GitHubModel):
-    """InstallationRepositoriesGetResponse200"""
+class EnterprisesEnterpriseNetworkConfigurationsGetResponse200(GitHubModel):
+    """EnterprisesEnterpriseNetworkConfigurationsGetResponse200"""
 
     total_count: int = Field()
-    repositories: list[Repository] = Field()
-    repository_selection: Missing[str] = Field(default=UNSET)
+    network_configurations: builtins.list[NetworkConfiguration] = Field()
 
 
-model_rebuild(InstallationRepositoriesGetResponse200)
+model_rebuild(EnterprisesEnterpriseNetworkConfigurationsGetResponse200)
 
-__all__ = ("InstallationRepositoriesGetResponse200",)
+__all__ = ("EnterprisesEnterpriseNetworkConfigurationsGetResponse200",)

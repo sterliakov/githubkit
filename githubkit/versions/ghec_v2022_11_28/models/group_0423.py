@@ -9,8 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Union
+import builtins
+from typing import Literal, Union
 
 from pydantic import Field
 
@@ -18,47 +18,79 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0147 import MinimalRepository
-from .group_0422 import SearchResultTextMatchesItems
+from .group_0415 import Meta
+from .group_0420 import UserEmailsResponseItems, UserNameResponse
+from .group_0421 import UserRoleItems
+from .group_0425 import ScimEnterpriseUserResponseAllof1PropGroupsItems
 
 
-class CodeSearchResultItem(GitHubModel):
-    """Code Search Result Item
+class ScimEnterpriseUserResponse(GitHubModel):
+    """ScimEnterpriseUserResponse"""
 
-    Code Search Result Item
-    """
-
-    name: str = Field()
-    path: str = Field()
-    sha: str = Field()
-    url: str = Field()
-    git_url: str = Field()
-    html_url: str = Field()
-    repository: MinimalRepository = Field(
-        title="Minimal Repository", description="Minimal Repository"
+    schemas: builtins.list[Literal["urn:ietf:params:scim:schemas:core:2.0:User"]] = (
+        Field(
+            description="The URIs that are used to indicate the namespaces of the SCIM schemas."
+        )
     )
-    score: float = Field()
-    file_size: Missing[int] = Field(default=UNSET)
-    language: Missing[Union[str, None]] = Field(default=UNSET)
-    last_modified_at: Missing[datetime] = Field(default=UNSET)
-    line_numbers: Missing[list[str]] = Field(default=UNSET)
-    text_matches: Missing[list[SearchResultTextMatchesItems]] = Field(
-        default=UNSET, title="Search Result Text Matches"
+    external_id: Missing[Union[str, None]] = Field(
+        default=UNSET,
+        alias="externalId",
+        description="A unique identifier for the resource as defined by the provisioning client.",
+    )
+    active: bool = Field(description="Whether the user active in the IdP.")
+    user_name: Missing[str] = Field(
+        default=UNSET, alias="userName", description="The username for the user."
+    )
+    name: Missing[UserNameResponse] = Field(default=UNSET)
+    display_name: Missing[Union[str, None]] = Field(
+        default=UNSET,
+        alias="displayName",
+        description="A human-readable name for the user.",
+    )
+    emails: builtins.list[UserEmailsResponseItems] = Field(
+        description="The emails for the user."
+    )
+    roles: Missing[builtins.list[UserRoleItems]] = Field(
+        default=UNSET, description="The roles assigned to the user."
+    )
+    id: str = Field(description="The internally generated id for the user object.")
+    groups: Missing[builtins.list[ScimEnterpriseUserResponseAllof1PropGroupsItems]] = (
+        Field(
+            default=UNSET,
+            description="Provisioned SCIM groups that the user is a member of.",
+        )
+    )
+    meta: Meta = Field(
+        description="The metadata associated with the creation/updates to the user."
     )
 
 
-class SearchCodeGetResponse200(GitHubModel):
-    """SearchCodeGetResponse200"""
+class ScimEnterpriseUserList(GitHubModel):
+    """ScimEnterpriseUserList"""
 
-    total_count: int = Field()
-    incomplete_results: bool = Field()
-    items: list[CodeSearchResultItem] = Field()
+    schemas: builtins.list[
+        Literal["urn:ietf:params:scim:api:messages:2.0:ListResponse"]
+    ] = Field(
+        description="The URIs that are used to indicate the namespaces of the list SCIM schemas."
+    )
+    total_results: int = Field(
+        alias="totalResults", description="Number of results found"
+    )
+    resources: builtins.list[ScimEnterpriseUserResponse] = Field(
+        alias="Resources", description="Information about each provisioned account."
+    )
+    start_index: int = Field(
+        alias="startIndex", description="A starting index for the returned page"
+    )
+    items_per_page: int = Field(
+        alias="itemsPerPage", description="Number of objects per page"
+    )
 
 
-model_rebuild(CodeSearchResultItem)
-model_rebuild(SearchCodeGetResponse200)
+model_rebuild(ScimEnterpriseUserResponse)
+model_rebuild(ScimEnterpriseUserList)
 
 __all__ = (
-    "CodeSearchResultItem",
-    "SearchCodeGetResponse200",
+    "ScimEnterpriseUserList",
+    "ScimEnterpriseUserResponse",
 )

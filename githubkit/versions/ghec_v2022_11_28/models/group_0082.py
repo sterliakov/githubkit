@@ -9,6 +9,8 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
@@ -16,15 +18,23 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId(GitHubModel):
-    """EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId"""
+class RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName(GitHubModel):
+    """RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName"""
 
-    organization_ids: Missing[list[int]] = Field(
+    include: Missing[builtins.list[str]] = Field(
         default=UNSET,
-        description="The organization IDs that the ruleset applies to. One of these IDs must match for the condition to pass.",
+        description="Array of repository names or patterns to include. One of these patterns must match for the condition to pass. Also accepts `~ALL` to include all repositories.",
+    )
+    exclude: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="Array of repository names or patterns to exclude. The condition will not pass if any of these patterns match.",
+    )
+    protected: Missing[bool] = Field(
+        default=UNSET,
+        description="Whether renaming of target repositories is prevented.",
     )
 
 
-model_rebuild(EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId)
+model_rebuild(RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName)
 
-__all__ = ("EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId",)
+__all__ = ("RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryName",)

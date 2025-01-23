@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 
@@ -19,7 +20,7 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
-from .group_0014 import Enterprise
+from .group_0007 import Enterprise
 from .group_0016 import AppPermissions
 
 
@@ -46,12 +47,12 @@ class Installation(GitHubModel):
         title="App Permissions",
         description="The permissions granted to the user access token.",
     )
-    events: list[str] = Field()
+    events: builtins.list[str] = Field()
     created_at: datetime = Field()
     updated_at: datetime = Field()
     single_file_name: Union[str, None] = Field()
     has_multiple_single_files: Missing[bool] = Field(default=UNSET)
-    single_file_paths: Missing[list[str]] = Field(default=UNSET)
+    single_file_paths: Missing[builtins.list[str]] = Field(default=UNSET)
     app_slug: str = Field()
     suspended_by: Union[None, SimpleUser] = Field()
     suspended_at: Union[datetime, None] = Field()

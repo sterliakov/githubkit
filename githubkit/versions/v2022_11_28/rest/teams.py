@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -92,8 +94,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-teams"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -106,12 +110,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "403": BasicError,
             },
@@ -124,8 +128,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-teams"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -138,12 +144,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "403": BasicError,
             },
@@ -167,8 +173,8 @@ class TeamsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         description: Missing[str] = UNSET,
-        maintainers: Missing[list[str]] = UNSET,
-        repo_names: Missing[list[str]] = UNSET,
+        maintainers: Missing[builtins.list[str]] = UNSET,
+        repo_names: Missing[builtins.list[str]] = UNSET,
         privacy: Missing[Literal["secret", "closed"]] = UNSET,
         notification_setting: Missing[
             Literal["notifications_enabled", "notifications_disabled"]
@@ -183,7 +189,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamFull, TeamFullType]:
         """See also: https://docs.github.com/rest/teams/teams#create-a-team"""
 
@@ -197,12 +203,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -232,8 +238,8 @@ class TeamsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         description: Missing[str] = UNSET,
-        maintainers: Missing[list[str]] = UNSET,
-        repo_names: Missing[list[str]] = UNSET,
+        maintainers: Missing[builtins.list[str]] = UNSET,
+        repo_names: Missing[builtins.list[str]] = UNSET,
         privacy: Missing[Literal["secret", "closed"]] = UNSET,
         notification_setting: Missing[
             Literal["notifications_enabled", "notifications_disabled"]
@@ -248,7 +254,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamFull, TeamFullType]:
         """See also: https://docs.github.com/rest/teams/teams#create-a-team"""
 
@@ -262,12 +268,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -294,7 +300,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -319,7 +325,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -342,7 +348,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -361,7 +367,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -402,7 +408,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamFull, TeamFullType]:
         """See also: https://docs.github.com/rest/teams/teams#update-a-team"""
 
@@ -421,12 +427,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsTeamSlugPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -474,7 +480,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamFull, TeamFullType]:
         """See also: https://docs.github.com/rest/teams/teams#update-a-team"""
 
@@ -493,12 +499,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsTeamSlugPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -521,8 +527,10 @@ class TeamsClient:
         page: Missing[int] = UNSET,
         pinned: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussion], list[TeamDiscussionType]]:
+    ) -> Response[builtins.list[TeamDiscussion], builtins.list[TeamDiscussionType]]:
         """See also: https://docs.github.com/rest/teams/discussions#list-discussions"""
+
+        import builtins
 
         from ..models import TeamDiscussion
 
@@ -537,12 +545,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussion],
+            response_model=builtins.list[TeamDiscussion],
         )
 
     async def async_list_discussions_in_org(
@@ -555,8 +563,10 @@ class TeamsClient:
         page: Missing[int] = UNSET,
         pinned: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussion], list[TeamDiscussionType]]:
+    ) -> Response[builtins.list[TeamDiscussion], builtins.list[TeamDiscussionType]]:
         """See also: https://docs.github.com/rest/teams/discussions#list-discussions"""
+
+        import builtins
 
         from ..models import TeamDiscussion
 
@@ -571,12 +581,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussion],
+            response_model=builtins.list[TeamDiscussion],
         )
 
     @overload
@@ -609,7 +619,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugDiscussionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#create-a-discussion"""
 
@@ -623,12 +633,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsTeamSlugDiscussionsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -666,7 +676,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugDiscussionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#create-a-discussion"""
 
@@ -680,12 +690,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsTeamSlugDiscussionsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -709,7 +719,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -732,7 +742,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -753,7 +763,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -773,7 +783,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -815,7 +825,7 @@ class TeamsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#update-a-discussion"""
 
@@ -832,14 +842,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -883,7 +893,7 @@ class TeamsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#update-a-discussion"""
 
@@ -900,14 +910,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -925,8 +935,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussionComment], list[TeamDiscussionCommentType]]:
+    ) -> Response[
+        builtins.list[TeamDiscussionComment], builtins.list[TeamDiscussionCommentType]
+    ]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#list-discussion-comments"""
+
+        import builtins
 
         from ..models import TeamDiscussionComment
 
@@ -940,12 +954,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussionComment],
+            response_model=builtins.list[TeamDiscussionComment],
         )
 
     async def async_list_discussion_comments_in_org(
@@ -958,8 +972,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussionComment], list[TeamDiscussionCommentType]]:
+    ) -> Response[
+        builtins.list[TeamDiscussionComment], builtins.list[TeamDiscussionCommentType]
+    ]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#list-discussion-comments"""
+
+        import builtins
 
         from ..models import TeamDiscussionComment
 
@@ -973,12 +991,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussionComment],
+            response_model=builtins.list[TeamDiscussionComment],
         )
 
     @overload
@@ -1014,7 +1032,7 @@ class TeamsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#create-a-discussion-comment"""
 
@@ -1031,14 +1049,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1079,7 +1097,7 @@ class TeamsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#create-a-discussion-comment"""
 
@@ -1096,14 +1114,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1128,7 +1146,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1152,7 +1170,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1174,7 +1192,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1195,7 +1213,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1237,7 +1255,7 @@ class TeamsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#update-a-discussion-comment"""
 
@@ -1254,7 +1272,7 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberPatchBody,
@@ -1262,7 +1280,7 @@ class TeamsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1306,7 +1324,7 @@ class TeamsClient:
         data: Missing[
             OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#update-a-discussion-comment"""
 
@@ -1323,7 +1341,7 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugDiscussionsDiscussionNumberCommentsCommentNumberPatchBody,
@@ -1331,7 +1349,7 @@ class TeamsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1347,8 +1365,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/rest/teams/members#list-pending-team-invitations"""
+
+        import builtins
 
         from ..models import OrganizationInvitation
 
@@ -1361,12 +1383,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
         )
 
     async def async_list_pending_invitations_in_org(
@@ -1377,8 +1399,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/rest/teams/members#list-pending-team-invitations"""
+
+        import builtins
 
         from ..models import OrganizationInvitation
 
@@ -1391,12 +1417,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
         )
 
     def list_members_in_org(
@@ -1408,8 +1434,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/teams/members#list-team-members"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -1423,12 +1451,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     async def async_list_members_in_org(
@@ -1440,8 +1468,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/teams/members#list-team-members"""
+
+        import builtins
 
         from ..models import SimpleUser
 
@@ -1455,12 +1485,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
         )
 
     def get_membership_for_user_in_org(
@@ -1479,7 +1509,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1503,7 +1533,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1542,7 +1572,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugMembershipsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamMembership, TeamMembershipType]:
         """See also: https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user"""
 
@@ -1559,14 +1589,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugMembershipsUsernamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1606,7 +1636,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugMembershipsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamMembership, TeamMembershipType]:
         """See also: https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user"""
 
@@ -1623,14 +1653,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgTeamsTeamSlugMembershipsUsernamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1653,7 +1683,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1674,7 +1704,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1689,8 +1719,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamProject], list[TeamProjectType]]:
+    ) -> Response[builtins.list[TeamProject], builtins.list[TeamProjectType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-projects"""
+
+        import builtins
 
         from ..models import TeamProject
 
@@ -1703,12 +1735,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamProject],
+            response_model=builtins.list[TeamProject],
         )
 
     async def async_list_projects_in_org(
@@ -1719,8 +1751,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamProject], list[TeamProjectType]]:
+    ) -> Response[builtins.list[TeamProject], builtins.list[TeamProjectType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-projects"""
+
+        import builtins
 
         from ..models import TeamProject
 
@@ -1733,12 +1767,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamProject],
+            response_model=builtins.list[TeamProject],
         )
 
     def check_permissions_for_project_in_org(
@@ -1757,7 +1791,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1781,7 +1815,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1824,7 +1858,7 @@ class TeamsClient:
         data: Missing[
             Union[OrgsOrgTeamsTeamSlugProjectsProjectIdPutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-project-permissions"""
 
@@ -1843,14 +1877,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[OrgsOrgTeamsTeamSlugProjectsProjectIdPutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1895,7 +1929,7 @@ class TeamsClient:
         data: Missing[
             Union[OrgsOrgTeamsTeamSlugProjectsProjectIdPutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-project-permissions"""
 
@@ -1914,14 +1948,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[OrgsOrgTeamsTeamSlugProjectsProjectIdPutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1945,7 +1979,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1965,7 +1999,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1979,8 +2013,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-repositories"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -1993,12 +2031,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
 
     async def async_list_repos_in_org(
@@ -2009,8 +2047,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-repositories"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -2023,12 +2065,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
 
     def check_permissions_for_repo_in_org(
@@ -2048,7 +2090,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2073,7 +2115,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2115,7 +2157,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugReposOwnerRepoPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions"""
 
@@ -2129,12 +2171,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsTeamSlugReposOwnerRepoPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2175,7 +2217,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgTeamsTeamSlugReposOwnerRepoPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions"""
 
@@ -2189,12 +2231,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgTeamsTeamSlugReposOwnerRepoPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2216,7 +2258,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2237,7 +2279,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2251,8 +2293,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-child-teams"""
+
+        import builtins
 
         from ..models import Team
 
@@ -2265,12 +2309,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
         )
 
     async def async_list_child_in_org(
@@ -2281,8 +2325,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-child-teams"""
+
+        import builtins
 
         from ..models import Team
 
@@ -2295,12 +2341,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
         )
 
     def get_legacy(
@@ -2317,7 +2363,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2341,7 +2387,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2365,7 +2411,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2389,7 +2435,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2431,7 +2477,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamFull, TeamFullType]:
         """See also: https://docs.github.com/rest/teams/teams#update-a-team-legacy"""
 
@@ -2445,12 +2491,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2495,7 +2541,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamFull, TeamFullType]:
         """See also: https://docs.github.com/rest/teams/teams#update-a-team-legacy"""
 
@@ -2509,12 +2555,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2535,8 +2581,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussion], list[TeamDiscussionType]]:
+    ) -> Response[builtins.list[TeamDiscussion], builtins.list[TeamDiscussionType]]:
         """See also: https://docs.github.com/rest/teams/discussions#list-discussions-legacy"""
+
+        import builtins
 
         from ..models import TeamDiscussion
 
@@ -2550,12 +2598,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussion],
+            response_model=builtins.list[TeamDiscussion],
         )
 
     async def async_list_discussions_legacy(
@@ -2566,8 +2614,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussion], list[TeamDiscussionType]]:
+    ) -> Response[builtins.list[TeamDiscussion], builtins.list[TeamDiscussionType]]:
         """See also: https://docs.github.com/rest/teams/discussions#list-discussions-legacy"""
+
+        import builtins
 
         from ..models import TeamDiscussion
 
@@ -2581,12 +2631,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussion],
+            response_model=builtins.list[TeamDiscussion],
         )
 
     @overload
@@ -2616,7 +2666,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdDiscussionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#create-a-discussion-legacy"""
 
@@ -2630,12 +2680,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdDiscussionsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2670,7 +2720,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdDiscussionsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#create-a-discussion-legacy"""
 
@@ -2684,12 +2734,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdDiscussionsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2712,7 +2762,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2734,7 +2784,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2754,7 +2804,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2773,7 +2823,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2808,7 +2858,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdDiscussionsDiscussionNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#update-a-discussion-legacy"""
 
@@ -2825,14 +2875,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2869,7 +2919,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdDiscussionsDiscussionNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussion, TeamDiscussionType]:
         """See also: https://docs.github.com/rest/teams/discussions#update-a-discussion-legacy"""
 
@@ -2886,14 +2936,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2910,8 +2960,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussionComment], list[TeamDiscussionCommentType]]:
+    ) -> Response[
+        builtins.list[TeamDiscussionComment], builtins.list[TeamDiscussionCommentType]
+    ]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#list-discussion-comments-legacy"""
+
+        import builtins
 
         from ..models import TeamDiscussionComment
 
@@ -2925,12 +2979,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussionComment],
+            response_model=builtins.list[TeamDiscussionComment],
         )
 
     async def async_list_discussion_comments_legacy(
@@ -2942,8 +2996,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamDiscussionComment], list[TeamDiscussionCommentType]]:
+    ) -> Response[
+        builtins.list[TeamDiscussionComment], builtins.list[TeamDiscussionCommentType]
+    ]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#list-discussion-comments-legacy"""
+
+        import builtins
 
         from ..models import TeamDiscussionComment
 
@@ -2957,12 +3015,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamDiscussionComment],
+            response_model=builtins.list[TeamDiscussionComment],
         )
 
     @overload
@@ -2995,7 +3053,7 @@ class TeamsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberCommentsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#create-a-discussion-comment-legacy"""
 
@@ -3012,14 +3070,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3057,7 +3115,7 @@ class TeamsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberCommentsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#create-a-discussion-comment-legacy"""
 
@@ -3074,14 +3132,14 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3105,7 +3163,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3128,7 +3186,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3149,7 +3207,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3169,7 +3227,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3208,7 +3266,7 @@ class TeamsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#update-a-discussion-comment-legacy"""
 
@@ -3225,7 +3283,7 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberPatchBody,
@@ -3233,7 +3291,7 @@ class TeamsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3274,7 +3332,7 @@ class TeamsClient:
         data: Missing[
             TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamDiscussionComment, TeamDiscussionCommentType]:
         """See also: https://docs.github.com/rest/teams/discussion-comments#update-a-discussion-comment-legacy"""
 
@@ -3291,7 +3349,7 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 TeamsTeamIdDiscussionsDiscussionNumberCommentsCommentNumberPatchBody,
@@ -3299,7 +3357,7 @@ class TeamsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3314,8 +3372,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/rest/teams/members#list-pending-team-invitations-legacy"""
+
+        import builtins
 
         from ..models import OrganizationInvitation
 
@@ -3328,12 +3390,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
         )
 
     async def async_list_pending_invitations_legacy(
@@ -3343,8 +3405,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[OrganizationInvitation], list[OrganizationInvitationType]]:
+    ) -> Response[
+        builtins.list[OrganizationInvitation], builtins.list[OrganizationInvitationType]
+    ]:
         """See also: https://docs.github.com/rest/teams/members#list-pending-team-invitations-legacy"""
+
+        import builtins
 
         from ..models import OrganizationInvitation
 
@@ -3357,12 +3423,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[OrganizationInvitation],
+            response_model=builtins.list[OrganizationInvitation],
         )
 
     def list_members_legacy(
@@ -3373,8 +3439,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/teams/members#list-team-members-legacy"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -3388,12 +3456,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
             },
@@ -3407,8 +3475,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/rest/teams/members#list-team-members-legacy"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -3422,12 +3492,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
             },
@@ -3446,7 +3516,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3466,7 +3536,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3488,7 +3558,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -3512,7 +3582,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -3534,7 +3604,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3554,7 +3624,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3576,7 +3646,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3601,7 +3671,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3639,7 +3709,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdMembershipsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamMembership, TeamMembershipType]:
         """See also: https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user-legacy"""
 
@@ -3657,12 +3727,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdMembershipsUsernamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3701,7 +3771,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdMembershipsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TeamMembership, TeamMembershipType]:
         """See also: https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user-legacy"""
 
@@ -3719,12 +3789,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdMembershipsUsernamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3748,7 +3818,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3768,7 +3838,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3782,8 +3852,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamProject], list[TeamProjectType]]:
+    ) -> Response[builtins.list[TeamProject], builtins.list[TeamProjectType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-projects-legacy"""
+
+        import builtins
 
         from ..models import BasicError, TeamProject
 
@@ -3796,12 +3868,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamProject],
+            response_model=builtins.list[TeamProject],
             error_models={
                 "404": BasicError,
             },
@@ -3814,8 +3886,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamProject], list[TeamProjectType]]:
+    ) -> Response[builtins.list[TeamProject], builtins.list[TeamProjectType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-projects-legacy"""
+
+        import builtins
 
         from ..models import BasicError, TeamProject
 
@@ -3828,12 +3902,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamProject],
+            response_model=builtins.list[TeamProject],
             error_models={
                 "404": BasicError,
             },
@@ -3854,7 +3928,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3877,7 +3951,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3913,7 +3987,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdProjectsProjectIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-project-permissions-legacy"""
 
@@ -3932,12 +4006,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdProjectsProjectIdPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3977,7 +4051,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdProjectsProjectIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-project-permissions-legacy"""
 
@@ -3996,12 +4070,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdProjectsProjectIdPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4028,7 +4102,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4053,7 +4127,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4070,8 +4144,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-repositories-legacy"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -4084,12 +4162,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "404": BasicError,
             },
@@ -4102,8 +4180,12 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/rest/teams/teams#list-team-repositories-legacy"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -4116,12 +4198,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "404": BasicError,
             },
@@ -4143,7 +4225,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4167,7 +4249,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4206,7 +4288,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdReposOwnerRepoPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions-legacy"""
 
@@ -4224,12 +4306,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdReposOwnerRepoPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4271,7 +4353,7 @@ class TeamsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[TeamsTeamIdReposOwnerRepoPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions-legacy"""
 
@@ -4289,12 +4371,12 @@ class TeamsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(TeamsTeamIdReposOwnerRepoPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4319,7 +4401,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4339,7 +4421,7 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4352,8 +4434,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-child-teams-legacy"""
+
+        import builtins
 
         from ..models import BasicError, Team, ValidationError
 
@@ -4366,12 +4450,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -4386,8 +4470,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-child-teams-legacy"""
+
+        import builtins
 
         from ..models import BasicError, Team, ValidationError
 
@@ -4400,12 +4486,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -4419,8 +4505,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamFull], list[TeamFullType]]:
+    ) -> Response[builtins.list[TeamFull], builtins.list[TeamFullType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-teams-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, TeamFull
 
@@ -4433,12 +4521,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamFull],
+            response_model=builtins.list[TeamFull],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -4451,8 +4539,10 @@ class TeamsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TeamFull], list[TeamFullType]]:
+    ) -> Response[builtins.list[TeamFull], builtins.list[TeamFullType]]:
         """See also: https://docs.github.com/rest/teams/teams#list-teams-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, TeamFull
 
@@ -4465,12 +4555,12 @@ class TeamsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[TeamFull],
+            response_model=builtins.list[TeamFull],
             error_models={
                 "404": BasicError,
                 "403": BasicError,

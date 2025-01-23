@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Optional
 from weakref import ref
@@ -17,6 +18,7 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import date
 
     from githubkit import GitHubCore
@@ -56,7 +58,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -76,7 +78,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -96,7 +98,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -116,7 +118,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -139,7 +141,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -163,7 +165,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -175,9 +177,10 @@ class MetaClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[date], list[date]]:
+    ) -> Response[builtins.list[date], builtins.list[date]]:
         """See also: https://docs.github.com/rest/meta/meta#get-all-api-versions"""
 
+        import builtins
         from datetime import date
 
         from ..models import BasicError
@@ -186,11 +189,11 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[date],
+            response_model=builtins.list[date],
             error_models={
                 "404": BasicError,
             },
@@ -200,9 +203,10 @@ class MetaClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[date], list[date]]:
+    ) -> Response[builtins.list[date], builtins.list[date]]:
         """See also: https://docs.github.com/rest/meta/meta#get-all-api-versions"""
 
+        import builtins
         from datetime import date
 
         from ..models import BasicError
@@ -211,11 +215,11 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[date],
+            response_model=builtins.list[date],
             error_models={
                 "404": BasicError,
             },
@@ -232,7 +236,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -250,7 +254,7 @@ class MetaClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

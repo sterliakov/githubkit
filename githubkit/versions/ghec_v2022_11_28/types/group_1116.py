@@ -9,14 +9,13 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoInvitationsInvitationIdPatchBodyType(TypedDict):
-    """ReposOwnerRepoInvitationsInvitationIdPatchBody"""
+class ReposOwnerRepoDeploymentsPostResponse202Type(TypedDict):
+    """ReposOwnerRepoDeploymentsPostResponse202"""
 
-    permissions: NotRequired[Literal["read", "write", "maintain", "triage", "admin"]]
+    message: NotRequired[str]
 
 
-__all__ = ("ReposOwnerRepoInvitationsInvitationIdPatchBodyType",)
+__all__ = ("ReposOwnerRepoDeploymentsPostResponse202Type",)

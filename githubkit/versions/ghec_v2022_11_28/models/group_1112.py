@@ -9,36 +9,36 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
+from datetime import datetime
 
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
 
-class ReposOwnerRepoImportPatchBody(GitHubModel):
-    """ReposOwnerRepoImportPatchBody"""
+class ReposOwnerRepoDependabotSecretsGetResponse200(GitHubModel):
+    """ReposOwnerRepoDependabotSecretsGetResponse200"""
 
-    vcs_username: Missing[str] = Field(
-        default=UNSET,
-        description="The username to provide to the originating repository.",
-    )
-    vcs_password: Missing[str] = Field(
-        default=UNSET,
-        description="The password to provide to the originating repository.",
-    )
-    vcs: Missing[Literal["subversion", "tfvc", "git", "mercurial"]] = Field(
-        default=UNSET,
-        description="The type of version control system you are migrating from.",
-    )
-    tfvc_project: Missing[str] = Field(
-        default=UNSET,
-        description="For a tfvc import, the name of the project that is being imported.",
-    )
+    total_count: int = Field()
+    secrets: builtins.list[DependabotSecret] = Field()
 
 
-model_rebuild(ReposOwnerRepoImportPatchBody)
+class DependabotSecret(GitHubModel):
+    """Dependabot Secret
 
-__all__ = ("ReposOwnerRepoImportPatchBody",)
+    Set secrets for Dependabot.
+    """
+
+    name: str = Field(description="The name of the secret.")
+    created_at: datetime = Field()
+    updated_at: datetime = Field()
+
+
+model_rebuild(ReposOwnerRepoDependabotSecretsGetResponse200)
+model_rebuild(DependabotSecret)
+
+__all__ = (
+    "DependabotSecret",
+    "ReposOwnerRepoDependabotSecretsGetResponse200",
+)

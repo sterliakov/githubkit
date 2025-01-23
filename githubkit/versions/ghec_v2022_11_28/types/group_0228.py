@@ -9,85 +9,75 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from datetime import datetime
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
+from .group_0002 import SimpleUserType
+from .group_0153 import MinimalRepositoryType
+from .group_0226 import PullRequestMinimalType
+from .group_0227 import SimpleCommitType
 
-class WorkflowRunUsageType(TypedDict):
-    """Workflow Run Usage
 
-    Workflow Run Usage
+class WorkflowRunType(TypedDict):
+    """Workflow Run
+
+    An invocation of a workflow
     """
 
-    billable: WorkflowRunUsagePropBillableType
-    run_duration_ms: NotRequired[int]
-
-
-class WorkflowRunUsagePropBillableType(TypedDict):
-    """WorkflowRunUsagePropBillable"""
-
-    ubuntu: NotRequired[WorkflowRunUsagePropBillablePropUbuntuType]
-    macos: NotRequired[WorkflowRunUsagePropBillablePropMacosType]
-    windows: NotRequired[WorkflowRunUsagePropBillablePropWindowsType]
-
-
-class WorkflowRunUsagePropBillablePropUbuntuType(TypedDict):
-    """WorkflowRunUsagePropBillablePropUbuntu"""
-
-    total_ms: int
-    jobs: int
-    job_runs: NotRequired[
-        list[WorkflowRunUsagePropBillablePropUbuntuPropJobRunsItemsType]
+    id: int
+    name: NotRequired[Union[str, None]]
+    node_id: str
+    check_suite_id: NotRequired[int]
+    check_suite_node_id: NotRequired[str]
+    head_branch: Union[str, None]
+    head_sha: str
+    path: str
+    run_number: int
+    run_attempt: NotRequired[int]
+    referenced_workflows: NotRequired[
+        Union[builtins.list[ReferencedWorkflowType], None]
     ]
+    event: str
+    status: Union[str, None]
+    conclusion: Union[str, None]
+    workflow_id: int
+    url: str
+    html_url: str
+    pull_requests: Union[builtins.list[PullRequestMinimalType], None]
+    created_at: datetime
+    updated_at: datetime
+    actor: NotRequired[SimpleUserType]
+    triggering_actor: NotRequired[SimpleUserType]
+    run_started_at: NotRequired[datetime]
+    jobs_url: str
+    logs_url: str
+    check_suite_url: str
+    artifacts_url: str
+    cancel_url: str
+    rerun_url: str
+    previous_attempt_url: NotRequired[Union[str, None]]
+    workflow_url: str
+    head_commit: Union[None, SimpleCommitType]
+    repository: MinimalRepositoryType
+    head_repository: MinimalRepositoryType
+    head_repository_id: NotRequired[int]
+    display_title: str
 
 
-class WorkflowRunUsagePropBillablePropUbuntuPropJobRunsItemsType(TypedDict):
-    """WorkflowRunUsagePropBillablePropUbuntuPropJobRunsItems"""
+class ReferencedWorkflowType(TypedDict):
+    """Referenced workflow
 
-    job_id: int
-    duration_ms: int
+    A workflow referenced/reused by the initial caller workflow
+    """
 
-
-class WorkflowRunUsagePropBillablePropMacosType(TypedDict):
-    """WorkflowRunUsagePropBillablePropMacos"""
-
-    total_ms: int
-    jobs: int
-    job_runs: NotRequired[
-        list[WorkflowRunUsagePropBillablePropMacosPropJobRunsItemsType]
-    ]
-
-
-class WorkflowRunUsagePropBillablePropMacosPropJobRunsItemsType(TypedDict):
-    """WorkflowRunUsagePropBillablePropMacosPropJobRunsItems"""
-
-    job_id: int
-    duration_ms: int
-
-
-class WorkflowRunUsagePropBillablePropWindowsType(TypedDict):
-    """WorkflowRunUsagePropBillablePropWindows"""
-
-    total_ms: int
-    jobs: int
-    job_runs: NotRequired[
-        list[WorkflowRunUsagePropBillablePropWindowsPropJobRunsItemsType]
-    ]
-
-
-class WorkflowRunUsagePropBillablePropWindowsPropJobRunsItemsType(TypedDict):
-    """WorkflowRunUsagePropBillablePropWindowsPropJobRunsItems"""
-
-    job_id: int
-    duration_ms: int
+    path: str
+    sha: str
+    ref: NotRequired[str]
 
 
 __all__ = (
-    "WorkflowRunUsagePropBillablePropMacosPropJobRunsItemsType",
-    "WorkflowRunUsagePropBillablePropMacosType",
-    "WorkflowRunUsagePropBillablePropUbuntuPropJobRunsItemsType",
-    "WorkflowRunUsagePropBillablePropUbuntuType",
-    "WorkflowRunUsagePropBillablePropWindowsPropJobRunsItemsType",
-    "WorkflowRunUsagePropBillablePropWindowsType",
-    "WorkflowRunUsagePropBillableType",
-    "WorkflowRunUsageType",
+    "ReferencedWorkflowType",
+    "WorkflowRunType",
 )

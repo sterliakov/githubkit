@@ -9,14 +9,30 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from datetime import datetime
+from typing_extensions import TypedDict
 
 
-class ReposOwnerRepoGitBlobsPostBodyType(TypedDict):
-    """ReposOwnerRepoGitBlobsPostBody"""
+class ReposOwnerRepoCodespacesSecretsGetResponse200Type(TypedDict):
+    """ReposOwnerRepoCodespacesSecretsGetResponse200"""
 
-    content: str
-    encoding: NotRequired[str]
+    total_count: int
+    secrets: builtins.list[RepoCodespacesSecretType]
 
 
-__all__ = ("ReposOwnerRepoGitBlobsPostBodyType",)
+class RepoCodespacesSecretType(TypedDict):
+    """Codespaces Secret
+
+    Set repository secrets for GitHub Codespaces.
+    """
+
+    name: str
+    created_at: datetime
+    updated_at: datetime
+
+
+__all__ = (
+    "RepoCodespacesSecretType",
+    "ReposOwnerRepoCodespacesSecretsGetResponse200Type",
+)

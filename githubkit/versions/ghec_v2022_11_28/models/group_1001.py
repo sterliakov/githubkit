@@ -9,35 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
+
+from .group_0074 import NetworkConfiguration
 
 
-class ProjectsColumnsColumnIdCardsPostResponse503(GitHubModel):
-    """ProjectsColumnsColumnIdCardsPostResponse503"""
+class OrgsOrgSettingsNetworkConfigurationsGetResponse200(GitHubModel):
+    """OrgsOrgSettingsNetworkConfigurationsGetResponse200"""
 
-    code: Missing[str] = Field(default=UNSET)
-    message: Missing[str] = Field(default=UNSET)
-    documentation_url: Missing[str] = Field(default=UNSET)
-    errors: Missing[
-        list[ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems]
-    ] = Field(default=UNSET)
+    total_count: int = Field()
+    network_configurations: builtins.list[NetworkConfiguration] = Field()
 
 
-class ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems(GitHubModel):
-    """ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems"""
+model_rebuild(OrgsOrgSettingsNetworkConfigurationsGetResponse200)
 
-    code: Missing[str] = Field(default=UNSET)
-    message: Missing[str] = Field(default=UNSET)
-
-
-model_rebuild(ProjectsColumnsColumnIdCardsPostResponse503)
-model_rebuild(ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems)
-
-__all__ = (
-    "ProjectsColumnsColumnIdCardsPostResponse503",
-    "ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems",
-)
+__all__ = ("OrgsOrgSettingsNetworkConfigurationsGetResponse200",)

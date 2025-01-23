@@ -9,17 +9,45 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0085 import TeamSimpleType
 
 
-class DependabotPublicKeyType(TypedDict):
-    """DependabotPublicKey
+class TeamType(TypedDict):
+    """Team
 
-    The public key used for setting Dependabot Secrets.
+    Groups of organization members that gives permissions on specified repositories.
     """
 
-    key_id: str
-    key: str
+    id: int
+    node_id: str
+    name: str
+    slug: str
+    description: Union[str, None]
+    privacy: NotRequired[str]
+    notification_setting: NotRequired[str]
+    permission: str
+    permissions: NotRequired[TeamPropPermissionsType]
+    url: str
+    html_url: str
+    members_url: str
+    repositories_url: str
+    parent: Union[None, TeamSimpleType]
 
 
-__all__ = ("DependabotPublicKeyType",)
+class TeamPropPermissionsType(TypedDict):
+    """TeamPropPermissions"""
+
+    pull: bool
+    triage: bool
+    push: bool
+    maintain: bool
+    admin: bool
+
+
+__all__ = (
+    "TeamPropPermissionsType",
+    "TeamType",
+)

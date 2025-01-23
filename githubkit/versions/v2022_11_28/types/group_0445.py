@@ -9,25 +9,96 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0002 import SimpleUserType
-from .group_0393 import EnterpriseWebhooksType
-from .group_0394 import SimpleInstallationType
-from .group_0395 import OrganizationSimpleWebhooksType
-from .group_0396 import RepositoryWebhooksType
+from .group_0001 import CvssSeveritiesType
 
 
-class WebhookBranchProtectionConfigurationEnabledType(TypedDict):
-    """branch protection configuration enabled event"""
+class WebhooksSecurityAdvisoryType(TypedDict):
+    """WebhooksSecurityAdvisory
 
-    action: Literal["enabled"]
-    enterprise: NotRequired[EnterpriseWebhooksType]
-    installation: NotRequired[SimpleInstallationType]
-    organization: NotRequired[OrganizationSimpleWebhooksType]
-    repository: RepositoryWebhooksType
-    sender: SimpleUserType
+    The details of the security advisory, including summary, description, and
+    severity.
+    """
+
+    cvss: WebhooksSecurityAdvisoryPropCvssType
+    cvss_severities: NotRequired[Union[CvssSeveritiesType, None]]
+    cwes: builtins.list[WebhooksSecurityAdvisoryPropCwesItemsType]
+    description: str
+    ghsa_id: str
+    identifiers: builtins.list[WebhooksSecurityAdvisoryPropIdentifiersItemsType]
+    published_at: str
+    references: builtins.list[WebhooksSecurityAdvisoryPropReferencesItemsType]
+    severity: str
+    summary: str
+    updated_at: str
+    vulnerabilities: builtins.list[WebhooksSecurityAdvisoryPropVulnerabilitiesItemsType]
+    withdrawn_at: Union[str, None]
 
 
-__all__ = ("WebhookBranchProtectionConfigurationEnabledType",)
+class WebhooksSecurityAdvisoryPropCvssType(TypedDict):
+    """WebhooksSecurityAdvisoryPropCvss"""
+
+    score: float
+    vector_string: Union[str, None]
+
+
+class WebhooksSecurityAdvisoryPropCwesItemsType(TypedDict):
+    """WebhooksSecurityAdvisoryPropCwesItems"""
+
+    cwe_id: str
+    name: str
+
+
+class WebhooksSecurityAdvisoryPropIdentifiersItemsType(TypedDict):
+    """WebhooksSecurityAdvisoryPropIdentifiersItems"""
+
+    type: str
+    value: str
+
+
+class WebhooksSecurityAdvisoryPropReferencesItemsType(TypedDict):
+    """WebhooksSecurityAdvisoryPropReferencesItems"""
+
+    url: str
+
+
+class WebhooksSecurityAdvisoryPropVulnerabilitiesItemsType(TypedDict):
+    """WebhooksSecurityAdvisoryPropVulnerabilitiesItems"""
+
+    first_patched_version: Union[
+        WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropFirstPatchedVersionType,
+        None,
+    ]
+    package: WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropPackageType
+    severity: str
+    vulnerable_version_range: str
+
+
+class WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropFirstPatchedVersionType(
+    TypedDict
+):
+    """WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropFirstPatchedVersion"""
+
+    identifier: str
+
+
+class WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropPackageType(TypedDict):
+    """WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropPackage"""
+
+    ecosystem: str
+    name: str
+
+
+__all__ = (
+    "WebhooksSecurityAdvisoryPropCvssType",
+    "WebhooksSecurityAdvisoryPropCwesItemsType",
+    "WebhooksSecurityAdvisoryPropIdentifiersItemsType",
+    "WebhooksSecurityAdvisoryPropReferencesItemsType",
+    "WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropFirstPatchedVersionType",
+    "WebhooksSecurityAdvisoryPropVulnerabilitiesItemsPropPackageType",
+    "WebhooksSecurityAdvisoryPropVulnerabilitiesItemsType",
+    "WebhooksSecurityAdvisoryType",
+)

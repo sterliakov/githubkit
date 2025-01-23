@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
@@ -23,7 +24,7 @@ class EventPropPayloadType(TypedDict):
     action: NotRequired[str]
     issue: NotRequired[IssueType]
     comment: NotRequired[IssueCommentType]
-    pages: NotRequired[list[EventPropPayloadPropPagesItemsType]]
+    pages: NotRequired[builtins.list[EventPropPayloadPropPagesItemsType]]
 
 
 class EventPropPayloadPropPagesItemsType(TypedDict):

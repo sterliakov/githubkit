@@ -61,7 +61,7 @@ headers: Optional[Mapping[str, str]] = None,
 {%- if endpoint.request_body %}
 {{ endpoint.request_body.get_endpoint_definition() }},
 {%- if endpoint.request_body.allowed_models %}
-**kwargs
+**kwargs: Any
 {%- endif %}
 {%- endif %}
 {% endmacro %}

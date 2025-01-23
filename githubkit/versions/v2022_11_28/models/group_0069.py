@@ -9,32 +9,32 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0068 import RunnerLabel
 
+class SelectedActions(GitHubModel):
+    """SelectedActions"""
 
-class Runner(GitHubModel):
-    """Self hosted runners
-
-    A self hosted runner
-    """
-
-    id: int = Field(description="The id of the runner.")
-    runner_group_id: Missing[int] = Field(
-        default=UNSET, description="The id of the runner group."
+    github_owned_allowed: Missing[bool] = Field(
+        default=UNSET,
+        description="Whether GitHub-owned actions are allowed. For example, this includes the actions in the `actions` organization.",
     )
-    name: str = Field(description="The name of the runner.")
-    os: str = Field(description="The Operating System of the runner.")
-    status: str = Field(description="The status of the runner.")
-    busy: bool = Field()
-    labels: list[RunnerLabel] = Field()
+    verified_allowed: Missing[bool] = Field(
+        default=UNSET,
+        description="Whether actions from GitHub Marketplace verified creators are allowed. Set to `true` to allow all actions by GitHub Marketplace verified creators.",
+    )
+    patterns_allowed: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="Specifies a list of string-matching patterns to allow specific action(s) and reusable workflow(s). Wildcards, tags, and SHAs are allowed. For example, `monalisa/octocat@*`, `monalisa/octocat@v2`, `monalisa/*`.\n\n> [!NOTE]\n> The `patterns_allowed` setting only applies to public repositories.",
+    )
 
 
-model_rebuild(Runner)
+model_rebuild(SelectedActions)
 
-__all__ = ("Runner",)
+__all__ = ("SelectedActions",)

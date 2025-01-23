@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -32,6 +34,8 @@ if TYPE_CHECKING:
         ActionsCacheUsageByRepository,
         ActionsCacheUsageOrgEnterprise,
         ActionsGetDefaultWorkflowPermissions,
+        ActionsHostedRunner,
+        ActionsHostedRunnerLimits,
         ActionsOrganizationPermissions,
         ActionsPublicKey,
         ActionsRepositoryPermissions,
@@ -42,6 +46,11 @@ if TYPE_CHECKING:
         AuthenticationToken,
         Deployment,
         EmptyObject,
+        EnterprisesEnterpriseActionsHostedRunnersGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsDeleteResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
@@ -51,8 +60,14 @@ if TYPE_CHECKING:
         OrganizationActionsSecret,
         OrganizationActionsVariable,
         OrgsOrgActionsCacheUsageByRepositoryGetResponse200,
+        OrgsOrgActionsHostedRunnersGetResponse200,
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200,
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200,
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200,
         OrgsOrgActionsPermissionsRepositoriesGetResponse200,
         OrgsOrgActionsRunnerGroupsGetResponse200,
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
         OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesGetResponse200,
         OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersGetResponse200,
         OrgsOrgActionsRunnersGetResponse200,
@@ -89,6 +104,8 @@ if TYPE_CHECKING:
         ActionsCacheUsageByRepositoryType,
         ActionsCacheUsageOrgEnterpriseType,
         ActionsGetDefaultWorkflowPermissionsType,
+        ActionsHostedRunnerLimitsType,
+        ActionsHostedRunnerType,
         ActionsOidcCustomIssuerPolicyForEnterpriseType,
         ActionsOrganizationPermissionsType,
         ActionsPublicKeyType,
@@ -101,6 +118,14 @@ if TYPE_CHECKING:
         AuthenticationTokenType,
         DeploymentType,
         EmptyObjectType,
+        EnterprisesEnterpriseActionsHostedRunnersGetResponse200Type,
+        EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBodyType,
+        EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200Type,
+        EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200Type,
+        EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200Type,
+        EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200Type,
+        EnterprisesEnterpriseActionsHostedRunnersPostBodyPropImageType,
+        EnterprisesEnterpriseActionsHostedRunnersPostBodyType,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostBodyType,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsDeleteResponse200Type,
@@ -111,11 +136,20 @@ if TYPE_CHECKING:
         OrganizationActionsSecretType,
         OrganizationActionsVariableType,
         OrgsOrgActionsCacheUsageByRepositoryGetResponse200Type,
+        OrgsOrgActionsHostedRunnersGetResponse200Type,
+        OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBodyType,
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200Type,
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200Type,
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200Type,
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200Type,
+        OrgsOrgActionsHostedRunnersPostBodyPropImageType,
+        OrgsOrgActionsHostedRunnersPostBodyType,
         OrgsOrgActionsPermissionsPutBodyType,
         OrgsOrgActionsPermissionsRepositoriesGetResponse200Type,
         OrgsOrgActionsPermissionsRepositoriesPutBodyType,
         OrgsOrgActionsRunnerGroupsGetResponse200Type,
         OrgsOrgActionsRunnerGroupsPostBodyType,
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200Type,
         OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBodyType,
         OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesGetResponse200Type,
         OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesPutBodyType,
@@ -208,7 +242,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -229,11 +263,669 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
             response_model=ActionsCacheUsageOrgEnterprise,
+        )
+
+    def list_hosted_runners_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        per_page: Missing[int] = UNSET,
+        page: Missing[int] = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#list-github-hosted-runners-for-an-enterprise"""
+
+        from ..models import EnterprisesEnterpriseActionsHostedRunnersGetResponse200
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners"
+
+        params = {
+            "per_page": per_page,
+            "page": page,
+        }
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            params=exclude_unset(params),
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersGetResponse200,
+        )
+
+    async def async_list_hosted_runners_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        per_page: Missing[int] = UNSET,
+        page: Missing[int] = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#list-github-hosted-runners-for-an-enterprise"""
+
+        from ..models import EnterprisesEnterpriseActionsHostedRunnersGetResponse200
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners"
+
+        params = {
+            "per_page": per_page,
+            "page": page,
+        }
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            params=exclude_unset(params),
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersGetResponse200,
+        )
+
+    @overload
+    def create_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: EnterprisesEnterpriseActionsHostedRunnersPostBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    def create_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: str,
+        image: EnterprisesEnterpriseActionsHostedRunnersPostBodyPropImageType,
+        size: str,
+        runner_group_id: int,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    def create_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[EnterprisesEnterpriseActionsHostedRunnersPostBodyType] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#create-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import (
+            ActionsHostedRunner,
+            EnterprisesEnterpriseActionsHostedRunnersPostBody,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(
+                EnterprisesEnterpriseActionsHostedRunnersPostBody, json
+            )
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return self._github.request(  # type: ignore[call-overload]
+            "POST",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    @overload
+    async def async_create_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: EnterprisesEnterpriseActionsHostedRunnersPostBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    async def async_create_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: str,
+        image: EnterprisesEnterpriseActionsHostedRunnersPostBodyPropImageType,
+        size: str,
+        runner_group_id: int,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    async def async_create_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[EnterprisesEnterpriseActionsHostedRunnersPostBodyType] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#create-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import (
+            ActionsHostedRunner,
+            EnterprisesEnterpriseActionsHostedRunnersPostBody,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(
+                EnterprisesEnterpriseActionsHostedRunnersPostBody, json
+            )
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "POST",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    def get_hosted_runners_github_owned_images_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-owned-images-for-github-hosted-runners-in-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/images/github-owned"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        )
+
+    async def async_get_hosted_runners_github_owned_images_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-owned-images-for-github-hosted-runners-in-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/images/github-owned"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        )
+
+    def get_hosted_runners_partner_images_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-partner-images-for-github-hosted-runners-in-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/images/partner"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        )
+
+    async def async_get_hosted_runners_partner_images_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-partner-images-for-github-hosted-runners-in-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/images/partner"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersImagesPartnerGetResponse200,
+        )
+
+    def get_hosted_runners_limits_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunnerLimits, ActionsHostedRunnerLimitsType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-limits-on-github-hosted-runners-for-an-enterprise"""
+
+        from ..models import ActionsHostedRunnerLimits
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/limits"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunnerLimits,
+        )
+
+    async def async_get_hosted_runners_limits_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunnerLimits, ActionsHostedRunnerLimitsType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-limits-on-github-hosted-runners-for-an-enterprise"""
+
+        from ..models import ActionsHostedRunnerLimits
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/limits"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunnerLimits,
+        )
+
+    def get_hosted_runners_machine_specs_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-hosted-runners-machine-specs-for-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/machine-sizes"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        )
+
+    async def async_get_hosted_runners_machine_specs_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-hosted-runners-machine-specs-for-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/machine-sizes"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200,
+        )
+
+    def get_hosted_runners_platforms_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-platforms-for-github-hosted-runners-in-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/platforms"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
+        )
+
+    async def async_get_hosted_runners_platforms_for_enterprise(
+        self,
+        enterprise: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
+        EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-platforms-for-github-hosted-runners-in-an-enterprise"""
+
+        from ..models import (
+            EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/platforms"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=EnterprisesEnterpriseActionsHostedRunnersPlatformsGetResponse200,
+        )
+
+    def get_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    async def async_get_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    def delete_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#delete-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "DELETE",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    async def async_delete_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#delete-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "DELETE",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    @overload
+    def update_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    def update_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: Missing[str] = UNSET,
+        runner_group_id: Missing[int] = UNSET,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+        image_version: Missing[Union[str, None]] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    def update_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[
+            EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBodyType
+        ] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#update-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import (
+            ActionsHostedRunner,
+            EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBody,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(
+                EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBody, json
+            )
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return self._github.request(  # type: ignore[call-overload]
+            "PATCH",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    @overload
+    async def async_update_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    async def async_update_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: Missing[str] = UNSET,
+        runner_group_id: Missing[int] = UNSET,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+        image_version: Missing[Union[str, None]] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    async def async_update_hosted_runner_for_enterprise(
+        self,
+        enterprise: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[
+            EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBodyType
+        ] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#update-a-github-hosted-runner-for-an-enterprise"""
+
+        from ..models import (
+            ActionsHostedRunner,
+            EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBody,
+        )
+
+        url = f"/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(
+                EnterprisesEnterpriseActionsHostedRunnersHostedRunnerIdPatchBody, json
+            )
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "PATCH",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
         )
 
     @overload
@@ -261,7 +953,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsOidcCustomIssuerPolicyForEnterpriseType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-github-actions-oidc-custom-issuer-policy-for-an-enterprise"""
 
@@ -275,14 +967,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ActionsOidcCustomIssuerPolicyForEnterprise, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -314,7 +1006,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsOidcCustomIssuerPolicyForEnterpriseType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-github-actions-oidc-custom-issuer-policy-for-an-enterprise"""
 
@@ -328,14 +1020,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ActionsOidcCustomIssuerPolicyForEnterprise, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -358,7 +1050,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -381,7 +1073,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -414,7 +1106,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsSetDefaultWorkflowPermissionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-default-workflow-permissions-for-an-enterprise"""
 
@@ -428,12 +1120,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsSetDefaultWorkflowPermissions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -466,7 +1158,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsSetDefaultWorkflowPermissionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-default-workflow-permissions-for-an-enterprise"""
 
@@ -480,12 +1172,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsSetDefaultWorkflowPermissions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -513,7 +1205,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         runner_group_id: int,
-        labels: list[str],
+        labels: builtins.list[str],
         work_folder: Missing[str] = UNSET,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
@@ -528,7 +1220,7 @@ class ActionsClient:
         data: Missing[
             EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
@@ -550,14 +1242,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -590,7 +1282,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         runner_group_id: int,
-        labels: list[str],
+        labels: builtins.list[str],
         work_folder: Missing[str] = UNSET,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
@@ -605,7 +1297,7 @@ class ActionsClient:
         data: Missing[
             EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
@@ -627,14 +1319,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -660,7 +1352,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -681,7 +1373,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -712,7 +1404,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -744,12 +1436,640 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
             response_model=OrgsOrgActionsCacheUsageByRepositoryGetResponse200,
+        )
+
+    def list_hosted_runners_for_org(
+        self,
+        org: str,
+        *,
+        per_page: Missing[int] = UNSET,
+        page: Missing[int] = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersGetResponse200,
+        OrgsOrgActionsHostedRunnersGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#list-github-hosted-runners-for-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners"
+
+        params = {
+            "per_page": per_page,
+            "page": page,
+        }
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            params=exclude_unset(params),
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersGetResponse200,
+        )
+
+    async def async_list_hosted_runners_for_org(
+        self,
+        org: str,
+        *,
+        per_page: Missing[int] = UNSET,
+        page: Missing[int] = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersGetResponse200,
+        OrgsOrgActionsHostedRunnersGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#list-github-hosted-runners-for-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners"
+
+        params = {
+            "per_page": per_page,
+            "page": page,
+        }
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            params=exclude_unset(params),
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersGetResponse200,
+        )
+
+    @overload
+    def create_hosted_runner_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: OrgsOrgActionsHostedRunnersPostBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    def create_hosted_runner_for_org(
+        self,
+        org: str,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: str,
+        image: OrgsOrgActionsHostedRunnersPostBodyPropImageType,
+        size: str,
+        runner_group_id: int,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    def create_hosted_runner_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[OrgsOrgActionsHostedRunnersPostBodyType] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#create-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import ActionsHostedRunner, OrgsOrgActionsHostedRunnersPostBody
+
+        url = f"/orgs/{org}/actions/hosted-runners"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(OrgsOrgActionsHostedRunnersPostBody, json)
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return self._github.request(  # type: ignore[call-overload]
+            "POST",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    @overload
+    async def async_create_hosted_runner_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: OrgsOrgActionsHostedRunnersPostBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    async def async_create_hosted_runner_for_org(
+        self,
+        org: str,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: str,
+        image: OrgsOrgActionsHostedRunnersPostBodyPropImageType,
+        size: str,
+        runner_group_id: int,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    async def async_create_hosted_runner_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[OrgsOrgActionsHostedRunnersPostBodyType] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#create-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import ActionsHostedRunner, OrgsOrgActionsHostedRunnersPostBody
+
+        url = f"/orgs/{org}/actions/hosted-runners"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(OrgsOrgActionsHostedRunnersPostBody, json)
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "POST",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    def get_hosted_runners_github_owned_images_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-owned-images-for-github-hosted-runners-in-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/images/github-owned"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        )
+
+    async def async_get_hosted_runners_github_owned_images_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-owned-images-for-github-hosted-runners-in-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/images/github-owned"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersImagesGithubOwnedGetResponse200,
+        )
+
+    def get_hosted_runners_partner_images_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200,
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-partner-images-for-github-hosted-runners-in-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/images/partner"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200,
+        )
+
+    async def async_get_hosted_runners_partner_images_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200,
+        OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-partner-images-for-github-hosted-runners-in-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/images/partner"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersImagesPartnerGetResponse200,
+        )
+
+    def get_hosted_runners_limits_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunnerLimits, ActionsHostedRunnerLimitsType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-limits-on-github-hosted-runners-for-an-organization"""
+
+        from ..models import ActionsHostedRunnerLimits
+
+        url = f"/orgs/{org}/actions/hosted-runners/limits"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunnerLimits,
+        )
+
+    async def async_get_hosted_runners_limits_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunnerLimits, ActionsHostedRunnerLimitsType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-limits-on-github-hosted-runners-for-an-organization"""
+
+        from ..models import ActionsHostedRunnerLimits
+
+        url = f"/orgs/{org}/actions/hosted-runners/limits"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunnerLimits,
+        )
+
+    def get_hosted_runners_machine_specs_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200,
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-hosted-runners-machine-specs-for-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersMachineSizesGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/machine-sizes"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersMachineSizesGetResponse200,
+        )
+
+    async def async_get_hosted_runners_machine_specs_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200,
+        OrgsOrgActionsHostedRunnersMachineSizesGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-hosted-runners-machine-specs-for-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersMachineSizesGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/machine-sizes"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersMachineSizesGetResponse200,
+        )
+
+    def get_hosted_runners_platforms_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200,
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-platforms-for-github-hosted-runners-in-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersPlatformsGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/platforms"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersPlatformsGetResponse200,
+        )
+
+    async def async_get_hosted_runners_platforms_for_org(
+        self,
+        org: str,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200,
+        OrgsOrgActionsHostedRunnersPlatformsGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-platforms-for-github-hosted-runners-in-an-organization"""
+
+        from ..models import OrgsOrgActionsHostedRunnersPlatformsGetResponse200
+
+        url = f"/orgs/{org}/actions/hosted-runners/platforms"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsHostedRunnersPlatformsGetResponse200,
+        )
+
+    def get_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/orgs/{org}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    async def async_get_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/orgs/{org}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    def delete_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#delete-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/orgs/{org}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "DELETE",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    async def async_delete_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#delete-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import ActionsHostedRunner
+
+        url = f"/orgs/{org}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "DELETE",
+            url,
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    @overload
+    def update_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    def update_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: Missing[str] = UNSET,
+        runner_group_id: Missing[int] = UNSET,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+        image_version: Missing[Union[str, None]] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    def update_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBodyType] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#update-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import (
+            ActionsHostedRunner,
+            OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody,
+        )
+
+        url = f"/orgs/{org}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(
+                OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody, json
+            )
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return self._github.request(  # type: ignore[call-overload]
+            "PATCH",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
+        )
+
+    @overload
+    async def async_update_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBodyType,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    @overload
+    async def async_update_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        data: UnsetType = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+        name: Missing[str] = UNSET,
+        runner_group_id: Missing[int] = UNSET,
+        maximum_runners: Missing[int] = UNSET,
+        enable_static_ip: Missing[bool] = UNSET,
+        image_version: Missing[Union[str, None]] = UNSET,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]: ...
+
+    async def async_update_hosted_runner_for_org(
+        self,
+        org: str,
+        hosted_runner_id: int,
+        *,
+        headers: Optional[Mapping[str, str]] = None,
+        data: Missing[OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBodyType] = UNSET,
+        **kwargs: Any,
+    ) -> Response[ActionsHostedRunner, ActionsHostedRunnerType]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#update-a-github-hosted-runner-for-an-organization"""
+
+        from ..models import (
+            ActionsHostedRunner,
+            OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody,
+        )
+
+        url = f"/orgs/{org}/actions/hosted-runners/{hosted_runner_id}"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": self._REST_API_VERSION,
+            **(headers or {}),
+        }
+
+        json: Any = kwargs if data is UNSET else data
+        if self._github.config.rest_api_validate_body:
+            json = type_validate_python(
+                OrgsOrgActionsHostedRunnersHostedRunnerIdPatchBody, json
+            )
+        json = model_dump(json) if isinstance(json, BaseModel) else json
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "PATCH",
+            url,
+            json=exclude_unset(json),
+            headers=exclude_unset(headers),
+            response_model=ActionsHostedRunner,
         )
 
     def get_github_actions_permissions_organization(
@@ -766,7 +2086,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -787,7 +2107,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -820,7 +2140,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsPermissionsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-github-actions-permissions-for-an-organization"""
 
@@ -834,12 +2154,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsPermissionsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -872,7 +2192,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsPermissionsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-github-actions-permissions-for-an-organization"""
 
@@ -886,12 +2206,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsPermissionsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -922,7 +2242,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -954,7 +2274,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -978,7 +2298,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_selected_repositories_enabled_github_actions_organization(
@@ -987,7 +2307,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsPermissionsRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-selected-repositories-enabled-for-github-actions-in-an-organization"""
 
@@ -1001,14 +2321,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsPermissionsRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1031,7 +2351,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_selected_repositories_enabled_github_actions_organization(
@@ -1040,7 +2360,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsPermissionsRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-selected-repositories-enabled-for-github-actions-in-an-organization"""
 
@@ -1054,14 +2374,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsPermissionsRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1081,7 +2401,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1100,7 +2420,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -1119,7 +2439,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1138,7 +2458,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1158,7 +2478,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1179,7 +2499,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1204,7 +2524,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         github_owned_allowed: Missing[bool] = UNSET,
         verified_allowed: Missing[bool] = UNSET,
-        patterns_allowed: Missing[list[str]] = UNSET,
+        patterns_allowed: Missing[builtins.list[str]] = UNSET,
     ) -> Response: ...
 
     def set_allowed_actions_organization(
@@ -1213,7 +2533,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[SelectedActionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-allowed-actions-and-reusable-workflows-for-an-organization"""
 
@@ -1227,12 +2547,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(SelectedActions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1257,7 +2577,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         github_owned_allowed: Missing[bool] = UNSET,
         verified_allowed: Missing[bool] = UNSET,
-        patterns_allowed: Missing[list[str]] = UNSET,
+        patterns_allowed: Missing[builtins.list[str]] = UNSET,
     ) -> Response: ...
 
     async def async_set_allowed_actions_organization(
@@ -1266,7 +2586,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[SelectedActionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-allowed-actions-and-reusable-workflows-for-an-organization"""
 
@@ -1280,12 +2600,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(SelectedActions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1308,7 +2628,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1331,7 +2651,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1364,7 +2684,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsSetDefaultWorkflowPermissionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-default-workflow-permissions-for-an-organization"""
 
@@ -1378,12 +2698,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsSetDefaultWorkflowPermissions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1417,7 +2737,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsSetDefaultWorkflowPermissionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-default-workflow-permissions-for-an-organization"""
 
@@ -1431,12 +2751,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsSetDefaultWorkflowPermissions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1470,7 +2790,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1504,7 +2824,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1530,11 +2850,12 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         visibility: Missing[Literal["selected", "all", "private"]] = UNSET,
-        selected_repository_ids: Missing[list[int]] = UNSET,
-        runners: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
+        runners: Missing[builtins.list[int]] = UNSET,
         allows_public_repositories: Missing[bool] = UNSET,
         restricted_to_workflows: Missing[bool] = UNSET,
-        selected_workflows: Missing[list[str]] = UNSET,
+        selected_workflows: Missing[builtins.list[str]] = UNSET,
+        network_configuration_id: Missing[str] = UNSET,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]: ...
 
     def create_self_hosted_runner_group_for_org(
@@ -1543,7 +2864,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnerGroupsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#create-a-self-hosted-runner-group-for-an-organization"""
 
@@ -1557,12 +2878,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsRunnerGroupsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1588,11 +2909,12 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         visibility: Missing[Literal["selected", "all", "private"]] = UNSET,
-        selected_repository_ids: Missing[list[int]] = UNSET,
-        runners: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
+        runners: Missing[builtins.list[int]] = UNSET,
         allows_public_repositories: Missing[bool] = UNSET,
         restricted_to_workflows: Missing[bool] = UNSET,
-        selected_workflows: Missing[list[str]] = UNSET,
+        selected_workflows: Missing[builtins.list[str]] = UNSET,
+        network_configuration_id: Missing[str] = UNSET,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]: ...
 
     async def async_create_self_hosted_runner_group_for_org(
@@ -1601,7 +2923,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnerGroupsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#create-a-self-hosted-runner-group-for-an-organization"""
 
@@ -1615,12 +2937,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsRunnerGroupsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1643,7 +2965,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1665,7 +2987,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1685,7 +3007,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1704,7 +3026,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1732,7 +3054,8 @@ class ActionsClient:
         visibility: Missing[Literal["selected", "all", "private"]] = UNSET,
         allows_public_repositories: Missing[bool] = UNSET,
         restricted_to_workflows: Missing[bool] = UNSET,
-        selected_workflows: Missing[list[str]] = UNSET,
+        selected_workflows: Missing[builtins.list[str]] = UNSET,
+        network_configuration_id: Missing[Union[str, None]] = UNSET,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]: ...
 
     def update_self_hosted_runner_group_for_org(
@@ -1742,7 +3065,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#update-a-self-hosted-runner-group-for-an-organization"""
 
@@ -1759,14 +3082,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1796,7 +3119,8 @@ class ActionsClient:
         visibility: Missing[Literal["selected", "all", "private"]] = UNSET,
         allows_public_repositories: Missing[bool] = UNSET,
         restricted_to_workflows: Missing[bool] = UNSET,
-        selected_workflows: Missing[list[str]] = UNSET,
+        selected_workflows: Missing[builtins.list[str]] = UNSET,
+        network_configuration_id: Missing[Union[str, None]] = UNSET,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]: ...
 
     async def async_update_self_hosted_runner_group_for_org(
@@ -1806,7 +3130,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RunnerGroupsOrg, RunnerGroupsOrgType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#update-a-self-hosted-runner-group-for-an-organization"""
 
@@ -1823,19 +3147,89 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnerGroupsRunnerGroupIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
             response_model=RunnerGroupsOrg,
+        )
+
+    def list_github_hosted_runners_in_group_for_org(
+        self,
+        org: str,
+        runner_group_id: int,
+        *,
+        per_page: Missing[int] = UNSET,
+        page: Missing[int] = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#list-github-hosted-runners-in-a-group-for-an-organization"""
+
+        from ..models import (
+            OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
+        )
+
+        url = f"/orgs/{org}/actions/runner-groups/{runner_group_id}/hosted-runners"
+
+        params = {
+            "per_page": per_page,
+            "page": page,
+        }
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return self._github.request(  # type: ignore[call-overload]
+            "GET",
+            url,
+            params=exclude_unset(params),
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
+        )
+
+    async def async_list_github_hosted_runners_in_group_for_org(
+        self,
+        org: str,
+        runner_group_id: int,
+        *,
+        per_page: Missing[int] = UNSET,
+        page: Missing[int] = UNSET,
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Response[
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
+        OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200Type,
+    ]:
+        """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#list-github-hosted-runners-in-a-group-for-an-organization"""
+
+        from ..models import (
+            OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
+        )
+
+        url = f"/orgs/{org}/actions/runner-groups/{runner_group_id}/hosted-runners"
+
+        params = {
+            "per_page": per_page,
+            "page": page,
+        }
+
+        headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
+
+        return await self._github.arequest(  # type: ignore[call-overload]
+            "GET",
+            url,
+            params=exclude_unset(params),
+            headers=exclude_unset(headers),
+            response_model=OrgsOrgActionsRunnerGroupsRunnerGroupIdHostedRunnersGetResponse200,
         )
 
     def list_repo_access_to_self_hosted_runner_group_in_org(
@@ -1865,7 +3259,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1900,7 +3294,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1926,7 +3320,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_repo_access_to_self_hosted_runner_group_in_org(
@@ -1938,7 +3332,7 @@ class ActionsClient:
         data: Missing[
             OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#set-repository-access-for-a-self-hosted-runner-group-in-an-organization"""
 
@@ -1952,14 +3346,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1984,7 +3378,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_repo_access_to_self_hosted_runner_group_in_org(
@@ -1996,7 +3390,7 @@ class ActionsClient:
         data: Missing[
             OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#set-repository-access-for-a-self-hosted-runner-group-in-an-organization"""
 
@@ -2010,14 +3404,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnerGroupsRunnerGroupIdRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2038,7 +3432,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2058,7 +3452,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2078,7 +3472,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2098,7 +3492,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2131,7 +3525,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2166,7 +3560,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2192,7 +3586,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        runners: list[int],
+        runners: builtins.list[int],
     ) -> Response: ...
 
     def set_self_hosted_runners_in_group_for_org(
@@ -2204,7 +3598,7 @@ class ActionsClient:
         data: Missing[
             OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#set-self-hosted-runners-in-a-group-for-an-organization"""
 
@@ -2218,14 +3612,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2250,7 +3644,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        runners: list[int],
+        runners: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_self_hosted_runners_in_group_for_org(
@@ -2262,7 +3656,7 @@ class ActionsClient:
         data: Missing[
             OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#set-self-hosted-runners-in-a-group-for-an-organization"""
 
@@ -2276,14 +3670,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnerGroupsRunnerGroupIdRunnersPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2304,7 +3698,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2324,7 +3718,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2344,7 +3738,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2364,7 +3758,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2395,7 +3789,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2428,7 +3822,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2441,8 +3835,12 @@ class ActionsClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RunnerApplication], list[RunnerApplicationType]]:
+    ) -> Response[
+        builtins.list[RunnerApplication], builtins.list[RunnerApplicationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runners#list-runner-applications-for-an-organization"""
+
+        import builtins
 
         from ..models import RunnerApplication
 
@@ -2450,11 +3848,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RunnerApplication],
+            response_model=builtins.list[RunnerApplication],
         )
 
     async def async_list_runner_applications_for_org(
@@ -2462,8 +3860,12 @@ class ActionsClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RunnerApplication], list[RunnerApplicationType]]:
+    ) -> Response[
+        builtins.list[RunnerApplication], builtins.list[RunnerApplicationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runners#list-runner-applications-for-an-organization"""
+
+        import builtins
 
         from ..models import RunnerApplication
 
@@ -2471,11 +3873,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RunnerApplication],
+            response_model=builtins.list[RunnerApplication],
         )
 
     @overload
@@ -2499,7 +3901,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         runner_group_id: int,
-        labels: list[str],
+        labels: builtins.list[str],
         work_folder: Missing[str] = UNSET,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
@@ -2512,7 +3914,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnersGenerateJitconfigPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
@@ -2534,14 +3936,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnersGenerateJitconfigPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2574,7 +3976,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         runner_group_id: int,
-        labels: list[str],
+        labels: builtins.list[str],
         work_folder: Missing[str] = UNSET,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
@@ -2587,7 +3989,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnersGenerateJitconfigPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
@@ -2609,14 +4011,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnersGenerateJitconfigPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2642,7 +4044,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -2663,7 +4065,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -2684,7 +4086,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -2705,7 +4107,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -2727,7 +4129,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2749,7 +4151,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2769,7 +4171,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2788,7 +4190,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2815,7 +4217,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2846,7 +4248,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2877,7 +4279,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -2890,7 +4292,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnersRunnerIdLabelsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -2912,14 +4314,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnersRunnerIdLabelsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2952,7 +4354,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -2965,7 +4367,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnersRunnerIdLabelsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -2987,14 +4389,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnersRunnerIdLabelsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3027,7 +4429,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -3040,7 +4442,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnersRunnerIdLabelsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -3062,14 +4464,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnersRunnerIdLabelsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3102,7 +4504,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -3115,7 +4517,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsRunnersRunnerIdLabelsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -3137,14 +4539,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsRunnersRunnerIdLabelsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3177,7 +4579,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3208,7 +4610,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3241,7 +4643,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3275,7 +4677,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3309,7 +4711,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3340,7 +4742,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3362,7 +4764,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3383,7 +4785,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3405,7 +4807,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3427,7 +4829,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3455,7 +4857,7 @@ class ActionsClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def create_or_update_org_secret(
@@ -3465,7 +4867,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#create-or-update-an-organization-secret"""
 
@@ -3479,12 +4881,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3513,7 +4915,7 @@ class ActionsClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_create_or_update_org_secret(
@@ -3523,7 +4925,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#create-or-update-an-organization-secret"""
 
@@ -3537,12 +4939,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3563,7 +4965,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3582,7 +4984,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3613,7 +5015,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3646,7 +5048,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3672,7 +5074,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_selected_repos_for_org_secret(
@@ -3682,7 +5084,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsSecretsSecretNameRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#set-selected-repositories-for-an-organization-secret"""
 
@@ -3696,14 +5098,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3728,7 +5130,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_selected_repos_for_org_secret(
@@ -3738,7 +5140,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsSecretsSecretNameRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#set-selected-repositories-for-an-organization-secret"""
 
@@ -3752,14 +5154,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3780,7 +5182,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -3801,7 +5203,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -3822,7 +5224,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3843,7 +5245,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3873,7 +5275,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3904,7 +5306,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -3931,7 +5333,7 @@ class ActionsClient:
         name: str,
         value: str,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def create_org_variable(
@@ -3940,7 +5342,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsVariablesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#create-an-organization-variable"""
 
@@ -3954,12 +5356,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsVariablesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -3986,7 +5388,7 @@ class ActionsClient:
         name: str,
         value: str,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_create_org_variable(
@@ -3995,7 +5397,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsVariablesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#create-an-organization-variable"""
 
@@ -4009,12 +5411,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsVariablesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -4037,7 +5439,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4059,7 +5461,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4079,7 +5481,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4098,7 +5500,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4124,7 +5526,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         value: Missing[str] = UNSET,
         visibility: Missing[Literal["all", "private", "selected"]] = UNSET,
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response: ...
 
     def update_org_variable(
@@ -4134,7 +5536,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsVariablesNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#update-an-organization-variable"""
 
@@ -4148,12 +5550,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsVariablesNamePatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4180,7 +5582,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         value: Missing[str] = UNSET,
         visibility: Missing[Literal["all", "private", "selected"]] = UNSET,
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response: ...
 
     async def async_update_org_variable(
@@ -4190,7 +5592,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsVariablesNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#update-an-organization-variable"""
 
@@ -4204,12 +5606,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgActionsVariablesNamePatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4241,7 +5643,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -4275,7 +5677,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -4302,7 +5704,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_selected_repos_for_org_variable(
@@ -4312,7 +5714,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsVariablesNameRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#set-selected-repositories-for-an-organization-variable"""
 
@@ -4326,14 +5728,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsVariablesNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4359,7 +5761,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_selected_repos_for_org_variable(
@@ -4369,7 +5771,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgActionsVariablesNameRepositoriesPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#set-selected-repositories-for-an-organization-variable"""
 
@@ -4383,14 +5785,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgActionsVariablesNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -4412,7 +5814,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -4433,7 +5835,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -4454,7 +5856,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4475,7 +5877,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4509,7 +5911,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -4544,7 +5946,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -4568,7 +5970,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4591,7 +5993,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4612,7 +6014,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4632,7 +6034,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4655,7 +6057,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4681,7 +6083,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4705,7 +6107,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4727,7 +6129,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4766,7 +6168,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -4806,7 +6208,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -4836,7 +6238,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             params=exclude_unset(params),
@@ -4866,7 +6268,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             params=exclude_unset(params),
@@ -4888,7 +6290,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4908,7 +6310,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4930,7 +6332,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4953,7 +6355,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4974,7 +6376,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4994,7 +6396,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5035,7 +6437,7 @@ class ActionsClient:
         data: Missing[
             Union[ReposOwnerRepoActionsJobsJobIdRerunPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#re-run-a-job-from-a-workflow-run"""
 
@@ -5055,14 +6457,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoActionsJobsJobIdRerunPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -5108,7 +6510,7 @@ class ActionsClient:
         data: Missing[
             Union[ReposOwnerRepoActionsJobsJobIdRerunPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#re-run-a-job-from-a-workflow-run"""
 
@@ -5128,14 +6530,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoActionsJobsJobIdRerunPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -5161,7 +6563,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5187,7 +6589,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5217,7 +6619,7 @@ class ActionsClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         use_default: bool,
-        include_claim_keys: Missing[list[str]] = UNSET,
+        include_claim_keys: Missing[builtins.list[str]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def set_custom_oidc_sub_claim_for_repo(
@@ -5227,7 +6629,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsOidcCustomizationSubPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-a-repository"""
 
@@ -5246,14 +6648,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsOidcCustomizationSubPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5285,7 +6687,7 @@ class ActionsClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         use_default: bool,
-        include_claim_keys: Missing[list[str]] = UNSET,
+        include_claim_keys: Missing[builtins.list[str]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_set_custom_oidc_sub_claim_for_repo(
@@ -5295,7 +6697,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsOidcCustomizationSubPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-a-repository"""
 
@@ -5314,14 +6716,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsOidcCustomizationSubPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5359,7 +6761,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -5392,7 +6794,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -5425,7 +6827,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -5458,7 +6860,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -5481,7 +6883,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5503,7 +6905,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5539,7 +6941,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsPermissionsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-github-actions-permissions-for-a-repository"""
 
@@ -5553,12 +6955,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoActionsPermissionsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5594,7 +6996,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsPermissionsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-github-actions-permissions-for-a-repository"""
 
@@ -5608,12 +7010,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoActionsPermissionsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5637,7 +7039,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5661,7 +7063,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5696,7 +7098,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsWorkflowAccessToRepositoryType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-the-level-of-access-for-workflows-outside-of-the-repository"""
 
@@ -5710,12 +7112,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsWorkflowAccessToRepository, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5750,7 +7152,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsWorkflowAccessToRepositoryType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-the-level-of-access-for-workflows-outside-of-the-repository"""
 
@@ -5764,12 +7166,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsWorkflowAccessToRepository, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5791,7 +7193,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5813,7 +7215,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5840,7 +7242,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         github_owned_allowed: Missing[bool] = UNSET,
         verified_allowed: Missing[bool] = UNSET,
-        patterns_allowed: Missing[list[str]] = UNSET,
+        patterns_allowed: Missing[builtins.list[str]] = UNSET,
     ) -> Response: ...
 
     def set_allowed_actions_repository(
@@ -5850,7 +7252,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[SelectedActionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-allowed-actions-and-reusable-workflows-for-a-repository"""
 
@@ -5864,12 +7266,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(SelectedActions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5896,7 +7298,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         github_owned_allowed: Missing[bool] = UNSET,
         verified_allowed: Missing[bool] = UNSET,
-        patterns_allowed: Missing[list[str]] = UNSET,
+        patterns_allowed: Missing[builtins.list[str]] = UNSET,
     ) -> Response: ...
 
     async def async_set_allowed_actions_repository(
@@ -5906,7 +7308,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[SelectedActionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-allowed-actions-and-reusable-workflows-for-a-repository"""
 
@@ -5920,12 +7322,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(SelectedActions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -5949,7 +7351,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -5973,7 +7375,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6009,7 +7411,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsSetDefaultWorkflowPermissionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-default-workflow-permissions-for-a-repository"""
 
@@ -6023,12 +7425,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsSetDefaultWorkflowPermissions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6065,7 +7467,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ActionsSetDefaultWorkflowPermissionsType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/permissions#set-default-workflow-permissions-for-a-repository"""
 
@@ -6079,12 +7481,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ActionsSetDefaultWorkflowPermissions, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6119,7 +7521,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -6154,7 +7556,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -6168,8 +7570,12 @@ class ActionsClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RunnerApplication], list[RunnerApplicationType]]:
+    ) -> Response[
+        builtins.list[RunnerApplication], builtins.list[RunnerApplicationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runners#list-runner-applications-for-a-repository"""
+
+        import builtins
 
         from ..models import RunnerApplication
 
@@ -6177,11 +7583,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RunnerApplication],
+            response_model=builtins.list[RunnerApplication],
         )
 
     async def async_list_runner_applications_for_repo(
@@ -6190,8 +7596,12 @@ class ActionsClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RunnerApplication], list[RunnerApplicationType]]:
+    ) -> Response[
+        builtins.list[RunnerApplication], builtins.list[RunnerApplicationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runners#list-runner-applications-for-a-repository"""
+
+        import builtins
 
         from ..models import RunnerApplication
 
@@ -6199,11 +7609,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[RunnerApplication],
+            response_model=builtins.list[RunnerApplication],
         )
 
     @overload
@@ -6229,7 +7639,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         runner_group_id: int,
-        labels: list[str],
+        labels: builtins.list[str],
         work_folder: Missing[str] = UNSET,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
@@ -6245,7 +7655,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoActionsRunnersGenerateJitconfigPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
@@ -6267,14 +7677,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunnersGenerateJitconfigPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6309,7 +7719,7 @@ class ActionsClient:
         headers: Optional[Mapping[str, str]] = None,
         name: str,
         runner_group_id: int,
-        labels: list[str],
+        labels: builtins.list[str],
         work_folder: Missing[str] = UNSET,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
@@ -6325,7 +7735,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoActionsRunnersGenerateJitconfigPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201,
         EnterprisesEnterpriseActionsRunnersGenerateJitconfigPostResponse201Type,
@@ -6347,14 +7757,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunnersGenerateJitconfigPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6381,7 +7791,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -6403,7 +7813,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -6425,7 +7835,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -6447,7 +7857,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -6470,7 +7880,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6493,7 +7903,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6514,7 +7924,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6534,7 +7944,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6562,7 +7972,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6594,7 +8004,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6627,7 +8037,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6641,7 +8051,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsRunnersRunnerIdLabelsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6663,14 +8073,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunnersRunnerIdLabelsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6705,7 +8115,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6719,7 +8129,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsRunnersRunnerIdLabelsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6741,14 +8151,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunnersRunnerIdLabelsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6783,7 +8193,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6797,7 +8207,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6819,14 +8229,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6861,7 +8271,7 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        labels: list[str],
+        labels: builtins.list[str],
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6875,7 +8285,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200,
         EnterprisesEnterpriseActionsRunnersRunnerIdLabelsGetResponse200Type,
@@ -6897,14 +8307,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunnersRunnerIdLabelsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6938,7 +8348,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6970,7 +8380,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7004,7 +8414,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7039,7 +8449,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7108,7 +8518,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7174,7 +8584,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7203,7 +8613,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7232,7 +8642,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7254,7 +8664,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7274,7 +8684,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7287,8 +8697,12 @@ class ActionsClient:
         run_id: int,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[EnvironmentApprovals], list[EnvironmentApprovalsType]]:
+    ) -> Response[
+        builtins.list[EnvironmentApprovals], builtins.list[EnvironmentApprovalsType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#get-the-review-history-for-a-workflow-run"""
+
+        import builtins
 
         from ..models import EnvironmentApprovals
 
@@ -7296,11 +8710,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[EnvironmentApprovals],
+            response_model=builtins.list[EnvironmentApprovals],
         )
 
     async def async_get_reviews_for_run(
@@ -7310,8 +8724,12 @@ class ActionsClient:
         run_id: int,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[EnvironmentApprovals], list[EnvironmentApprovalsType]]:
+    ) -> Response[
+        builtins.list[EnvironmentApprovals], builtins.list[EnvironmentApprovalsType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#get-the-review-history-for-a-workflow-run"""
+
+        import builtins
 
         from ..models import EnvironmentApprovals
 
@@ -7319,11 +8737,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[EnvironmentApprovals],
+            response_model=builtins.list[EnvironmentApprovals],
         )
 
     def approve_workflow_run(
@@ -7342,7 +8760,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -7369,7 +8787,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -7408,7 +8826,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7444,7 +8862,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7474,7 +8892,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7504,7 +8922,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7542,7 +8960,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7583,7 +9001,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7609,7 +9027,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7630,7 +9048,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7652,7 +9070,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -7678,7 +9096,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -7740,7 +9158,7 @@ class ActionsClient:
                 ReviewCustomGatesCommentRequiredType, ReviewCustomGatesStateRequiredType
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#review-custom-deployment-protection-rules-for-a-workflow-run"""
 
@@ -7759,7 +9177,7 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReviewCustomGatesCommentRequired, ReviewCustomGatesStateRequired],
@@ -7767,7 +9185,7 @@ class ActionsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -7826,7 +9244,7 @@ class ActionsClient:
                 ReviewCustomGatesCommentRequiredType, ReviewCustomGatesStateRequiredType
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#review-custom-deployment-protection-rules-for-a-workflow-run"""
 
@@ -7845,7 +9263,7 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReviewCustomGatesCommentRequired, ReviewCustomGatesStateRequired],
@@ -7853,7 +9271,7 @@ class ActionsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -7876,7 +9294,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -7902,7 +9320,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -7940,7 +9358,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7976,7 +9394,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7998,7 +9416,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8018,7 +9436,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8040,7 +9458,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -8066,7 +9484,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -8083,8 +9501,12 @@ class ActionsClient:
         run_id: int,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PendingDeployment], list[PendingDeploymentType]]:
+    ) -> Response[
+        builtins.list[PendingDeployment], builtins.list[PendingDeploymentType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#get-pending-deployments-for-a-workflow-run"""
+
+        import builtins
 
         from ..models import PendingDeployment
 
@@ -8092,11 +9514,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[PendingDeployment],
+            response_model=builtins.list[PendingDeployment],
         )
 
     async def async_get_pending_deployments_for_run(
@@ -8106,8 +9528,12 @@ class ActionsClient:
         run_id: int,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PendingDeployment], list[PendingDeploymentType]]:
+    ) -> Response[
+        builtins.list[PendingDeployment], builtins.list[PendingDeploymentType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#get-pending-deployments-for-a-workflow-run"""
+
+        import builtins
 
         from ..models import PendingDeployment
 
@@ -8115,11 +9541,11 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[PendingDeployment],
+            response_model=builtins.list[PendingDeployment],
         )
 
     @overload
@@ -8131,7 +9557,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoActionsRunsRunIdPendingDeploymentsPostBodyType,
-    ) -> Response[list[Deployment], list[DeploymentType]]: ...
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]: ...
 
     @overload
     def review_pending_deployments_for_run(
@@ -8142,10 +9568,10 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        environment_ids: list[int],
+        environment_ids: builtins.list[int],
         state: Literal["approved", "rejected"],
         comment: str,
-    ) -> Response[list[Deployment], list[DeploymentType]]: ...
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]: ...
 
     def review_pending_deployments_for_run(
         self,
@@ -8157,9 +9583,11 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoActionsRunsRunIdPendingDeploymentsPostBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Deployment], list[DeploymentType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#review-pending-deployments-for-a-workflow-run"""
+
+        import builtins
 
         from ..models import (
             Deployment,
@@ -8174,19 +9602,19 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunsRunIdPendingDeploymentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Deployment],
+            response_model=builtins.list[Deployment],
         )
 
     @overload
@@ -8198,7 +9626,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoActionsRunsRunIdPendingDeploymentsPostBodyType,
-    ) -> Response[list[Deployment], list[DeploymentType]]: ...
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]: ...
 
     @overload
     async def async_review_pending_deployments_for_run(
@@ -8209,10 +9637,10 @@ class ActionsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        environment_ids: list[int],
+        environment_ids: builtins.list[int],
         state: Literal["approved", "rejected"],
         comment: str,
-    ) -> Response[list[Deployment], list[DeploymentType]]: ...
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]: ...
 
     async def async_review_pending_deployments_for_run(
         self,
@@ -8224,9 +9652,11 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoActionsRunsRunIdPendingDeploymentsPostBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Deployment], list[DeploymentType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#review-pending-deployments-for-a-workflow-run"""
+
+        import builtins
 
         from ..models import (
             Deployment,
@@ -8241,19 +9671,19 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsRunsRunIdPendingDeploymentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Deployment],
+            response_model=builtins.list[Deployment],
         )
 
     @overload
@@ -8291,7 +9721,7 @@ class ActionsClient:
         data: Missing[
             Union[ReposOwnerRepoActionsRunsRunIdRerunPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#re-run-a-workflow"""
 
@@ -8307,14 +9737,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoActionsRunsRunIdRerunPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -8357,7 +9787,7 @@ class ActionsClient:
         data: Missing[
             Union[ReposOwnerRepoActionsRunsRunIdRerunPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#re-run-a-workflow"""
 
@@ -8373,14 +9803,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoActionsRunsRunIdRerunPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -8423,7 +9853,7 @@ class ActionsClient:
         data: Missing[
             Union[ReposOwnerRepoActionsRunsRunIdRerunFailedJobsPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#re-run-failed-jobs-from-a-workflow-run"""
 
@@ -8442,14 +9872,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoActionsRunsRunIdRerunFailedJobsPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -8492,7 +9922,7 @@ class ActionsClient:
         data: Missing[
             Union[ReposOwnerRepoActionsRunsRunIdRerunFailedJobsPostBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflow-runs#re-run-failed-jobs-from-a-workflow-run"""
 
@@ -8511,14 +9941,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoActionsRunsRunIdRerunFailedJobsPostBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -8542,7 +9972,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8565,7 +9995,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8597,7 +10027,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -8630,7 +10060,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -8653,7 +10083,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8675,7 +10105,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8698,7 +10128,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8721,7 +10151,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8760,7 +10190,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#create-or-update-a-repository-secret"""
 
@@ -8774,14 +10204,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -8821,7 +10251,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#create-or-update-a-repository-secret"""
 
@@ -8835,14 +10265,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -8864,7 +10294,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -8884,7 +10314,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -8915,7 +10345,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -8948,7 +10378,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -8985,7 +10415,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsVariablesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#create-a-repository-variable"""
 
@@ -8999,12 +10429,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoActionsVariablesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9041,7 +10471,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsVariablesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#create-a-repository-variable"""
 
@@ -9055,12 +10485,12 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoActionsVariablesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9084,7 +10514,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9107,7 +10537,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9128,7 +10558,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -9148,7 +10578,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -9185,7 +10615,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsVariablesNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#update-a-repository-variable"""
 
@@ -9199,14 +10629,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsVariablesNamePatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -9244,7 +10674,7 @@ class ActionsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoActionsVariablesNamePatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#update-a-repository-variable"""
 
@@ -9258,14 +10688,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsVariablesNamePatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -9297,7 +10727,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9330,7 +10760,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9354,7 +10784,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9377,7 +10807,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9398,7 +10828,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -9418,7 +10848,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -9460,7 +10890,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoActionsWorkflowsWorkflowIdDispatchesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflows#create-a-workflow-dispatch-event"""
 
@@ -9474,14 +10904,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsWorkflowsWorkflowIdDispatchesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9524,7 +10954,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoActionsWorkflowsWorkflowIdDispatchesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/workflows#create-a-workflow-dispatch-event"""
 
@@ -9538,14 +10968,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoActionsWorkflowsWorkflowIdDispatchesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9566,7 +10996,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -9586,7 +11016,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -9651,7 +11081,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9718,7 +11148,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9742,7 +11172,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9765,7 +11195,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9800,7 +11230,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9836,7 +11266,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9862,7 +11292,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9887,7 +11317,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9911,7 +11341,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9935,7 +11365,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9979,7 +11409,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameSecretsSecretNamePutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#create-or-update-an-environment-secret"""
 
@@ -9996,14 +11426,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -10048,7 +11478,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameSecretsSecretNamePutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/secrets#create-or-update-an-environment-secret"""
 
@@ -10065,14 +11495,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -10095,7 +11525,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10116,7 +11546,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10150,7 +11580,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -10186,7 +11616,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -10228,7 +11658,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameVariablesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#create-an-environment-variable"""
 
@@ -10245,14 +11675,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameVariablesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10294,7 +11724,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameVariablesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#create-an-environment-variable"""
 
@@ -10311,14 +11741,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameVariablesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10343,7 +11773,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10367,7 +11797,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10389,7 +11819,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10410,7 +11840,7 @@ class ActionsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10452,7 +11882,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameVariablesNamePatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#update-an-environment-variable"""
 
@@ -10468,14 +11898,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameVariablesNamePatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -10518,7 +11948,7 @@ class ActionsClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameVariablesNamePatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/actions/variables#update-an-environment-variable"""
 
@@ -10534,14 +11964,14 @@ class ActionsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameVariablesNamePatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),

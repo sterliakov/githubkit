@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Literal, Optional
 from weakref import ref
@@ -17,6 +18,7 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal
 
     from githubkit import GitHubCore
@@ -48,8 +50,10 @@ class PackagesClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#get-list-of-conflicting-packages-during-docker-migration-for-organization"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -57,11 +61,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -73,8 +77,10 @@ class PackagesClient:
         org: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#get-list-of-conflicting-packages-during-docker-migration-for-organization"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -82,11 +88,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -104,8 +110,10 @@ class PackagesClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-packages-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -120,12 +128,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -143,8 +151,10 @@ class PackagesClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-packages-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -159,12 +169,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -189,7 +199,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -214,7 +224,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -239,7 +249,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -268,7 +278,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -302,7 +312,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -337,7 +347,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -361,8 +371,10 @@ class PackagesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["active", "deleted"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PackageVersion], list[PackageVersionType]]:
+    ) -> Response[builtins.list[PackageVersion], builtins.list[PackageVersionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-package-versions-for-a-package-owned-by-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, PackageVersion
 
@@ -376,12 +388,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PackageVersion],
+            response_model=builtins.list[PackageVersion],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -401,8 +413,10 @@ class PackagesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["active", "deleted"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PackageVersion], list[PackageVersionType]]:
+    ) -> Response[builtins.list[PackageVersion], builtins.list[PackageVersionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-package-versions-for-a-package-owned-by-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, PackageVersion
 
@@ -416,12 +430,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PackageVersion],
+            response_model=builtins.list[PackageVersion],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -448,7 +462,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -474,7 +488,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -500,7 +514,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -530,7 +544,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -560,7 +574,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -590,7 +604,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -605,8 +619,10 @@ class PackagesClient:
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#get-list-of-conflicting-packages-during-docker-migration-for-authenticated-user"""
+
+        import builtins
 
         from ..models import Package
 
@@ -614,19 +630,21 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
         )
 
     async def async_list_docker_migration_conflicting_packages_for_authenticated_user(
         self,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#get-list-of-conflicting-packages-during-docker-migration-for-authenticated-user"""
+
+        import builtins
 
         from ..models import Package
 
@@ -634,11 +652,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
         )
 
     def list_packages_for_authenticated_user(
@@ -651,8 +669,10 @@ class PackagesClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-packages-for-the-authenticated-users-namespace"""
+
+        import builtins
 
         from ..models import Package
 
@@ -667,12 +687,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={},
         )
 
@@ -686,8 +706,10 @@ class PackagesClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-packages-for-the-authenticated-users-namespace"""
+
+        import builtins
 
         from ..models import Package
 
@@ -702,12 +724,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={},
         )
 
@@ -728,7 +750,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -752,7 +774,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -776,7 +798,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -804,7 +826,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -837,7 +859,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -871,7 +893,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -894,8 +916,10 @@ class PackagesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["active", "deleted"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PackageVersion], list[PackageVersionType]]:
+    ) -> Response[builtins.list[PackageVersion], builtins.list[PackageVersionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-package-versions-for-a-package-owned-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, PackageVersion
 
@@ -909,12 +933,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PackageVersion],
+            response_model=builtins.list[PackageVersion],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -933,8 +957,10 @@ class PackagesClient:
         per_page: Missing[int] = UNSET,
         state: Missing[Literal["active", "deleted"]] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PackageVersion], list[PackageVersionType]]:
+    ) -> Response[builtins.list[PackageVersion], builtins.list[PackageVersionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-package-versions-for-a-package-owned-by-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, PackageVersion
 
@@ -948,12 +974,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PackageVersion],
+            response_model=builtins.list[PackageVersion],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -979,7 +1005,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1004,7 +1030,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1029,7 +1055,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1058,7 +1084,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1087,7 +1113,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1116,7 +1142,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1132,8 +1158,10 @@ class PackagesClient:
         username: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#get-list-of-conflicting-packages-during-docker-migration-for-user"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -1141,11 +1169,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1157,8 +1185,10 @@ class PackagesClient:
         username: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#get-list-of-conflicting-packages-during-docker-migration-for-user"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -1166,11 +1196,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1188,8 +1218,10 @@ class PackagesClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-packages-for-a-user"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -1204,12 +1236,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1227,8 +1259,10 @@ class PackagesClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Package], list[PackageType]]:
+    ) -> Response[builtins.list[Package], builtins.list[PackageType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-packages-for-a-user"""
+
+        import builtins
 
         from ..models import BasicError, Package
 
@@ -1243,12 +1277,12 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Package],
+            response_model=builtins.list[Package],
             error_models={
                 "403": BasicError,
                 "401": BasicError,
@@ -1273,7 +1307,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1298,7 +1332,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1323,7 +1357,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1352,7 +1386,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1386,7 +1420,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -1421,7 +1455,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -1442,8 +1476,10 @@ class PackagesClient:
         username: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PackageVersion], list[PackageVersionType]]:
+    ) -> Response[builtins.list[PackageVersion], builtins.list[PackageVersionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-package-versions-for-a-package-owned-by-a-user"""
+
+        import builtins
 
         from ..models import BasicError, PackageVersion
 
@@ -1451,11 +1487,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[PackageVersion],
+            response_model=builtins.list[PackageVersion],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1472,8 +1508,10 @@ class PackagesClient:
         username: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PackageVersion], list[PackageVersionType]]:
+    ) -> Response[builtins.list[PackageVersion], builtins.list[PackageVersionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/packages/packages#list-package-versions-for-a-package-owned-by-a-user"""
+
+        import builtins
 
         from ..models import BasicError, PackageVersion
 
@@ -1481,11 +1519,11 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[PackageVersion],
+            response_model=builtins.list[PackageVersion],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -1512,7 +1550,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1538,7 +1576,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1564,7 +1602,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1594,7 +1632,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1624,7 +1662,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -1654,7 +1692,7 @@ class PackagesClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),

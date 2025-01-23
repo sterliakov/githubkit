@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import TypedDict
 
-from .group_0147 import MinimalRepositoryType
+from .group_0030 import ActionsHostedRunnerType
 
 
-class OrgsOrgActionsSecretsSecretNameRepositoriesGetResponse200Type(TypedDict):
-    """OrgsOrgActionsSecretsSecretNameRepositoriesGetResponse200"""
+class OrgsOrgActionsHostedRunnersGetResponse200Type(TypedDict):
+    """OrgsOrgActionsHostedRunnersGetResponse200"""
 
     total_count: int
-    repositories: list[MinimalRepositoryType]
+    runners: builtins.list[ActionsHostedRunnerType]
 
 
-__all__ = ("OrgsOrgActionsSecretsSecretNameRepositoriesGetResponse200Type",)
+__all__ = ("OrgsOrgActionsHostedRunnersGetResponse200Type",)

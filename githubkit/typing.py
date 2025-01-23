@@ -28,7 +28,7 @@ PrimitiveData: TypeAlias = Optional[Union[str, int, float, bool]]
 QueryParamTypes: TypeAlias = Union[
     httpx.QueryParams,
     Mapping[str, Union[PrimitiveData, Sequence[PrimitiveData]]],
-    Sequence[tuple[str, PrimitiveData]],
+    list[tuple[str, PrimitiveData]],
     tuple[tuple[str, PrimitiveData], ...],
     str,
     bytes,
@@ -36,8 +36,8 @@ QueryParamTypes: TypeAlias = Union[
 
 HeaderTypes: TypeAlias = Union[
     httpx.Headers,
-    Mapping[str, str],
-    Mapping[bytes, bytes],
+    dict[str, str],
+    dict[bytes, bytes],
     Sequence[tuple[str, str]],
     Sequence[tuple[bytes, bytes]],
 ]
@@ -68,7 +68,7 @@ if PYDANTIC_V2:  # pragma: pydantic-v2
             raise PydanticCustomError("unique_list", "value is not a unique list")
         return value
 
-    UniqueList: TypeAlias = Annotated[  # type: ignore
+    UniqueList: TypeAlias = Annotated[
         list[H],
         AfterValidator(_validate_unique_list),
         Field(json_schema_extra={"uniqueItems": True}),

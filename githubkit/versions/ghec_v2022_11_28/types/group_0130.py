@@ -9,22 +9,40 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from typing_extensions import NotRequired, TypedDict
 
 
-class ReactionRollupType(TypedDict):
-    """Reaction Rollup"""
+class AdvancedSecurityActiveCommittersType(TypedDict):
+    """AdvancedSecurityActiveCommitters"""
 
-    url: str
-    total_count: int
-    plus_one: int
-    minus_one: int
-    laugh: int
-    confused: int
-    heart: int
-    hooray: int
-    eyes: int
-    rocket: int
+    total_advanced_security_committers: NotRequired[int]
+    total_count: NotRequired[int]
+    maximum_advanced_security_committers: NotRequired[int]
+    purchased_advanced_security_committers: NotRequired[int]
+    repositories: builtins.list[AdvancedSecurityActiveCommittersRepositoryType]
 
 
-__all__ = ("ReactionRollupType",)
+class AdvancedSecurityActiveCommittersRepositoryType(TypedDict):
+    """AdvancedSecurityActiveCommittersRepository"""
+
+    name: str
+    advanced_security_committers: int
+    advanced_security_committers_breakdown: builtins.list[
+        AdvancedSecurityActiveCommittersUserType
+    ]
+
+
+class AdvancedSecurityActiveCommittersUserType(TypedDict):
+    """AdvancedSecurityActiveCommittersUser"""
+
+    user_login: str
+    last_pushed_date: str
+    last_pushed_email: str
+
+
+__all__ = (
+    "AdvancedSecurityActiveCommittersRepositoryType",
+    "AdvancedSecurityActiveCommittersType",
+    "AdvancedSecurityActiveCommittersUserType",
+)

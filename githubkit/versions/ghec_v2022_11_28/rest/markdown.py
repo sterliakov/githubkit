@@ -10,7 +10,7 @@ See https://github.com/github/rest-api-description for more information.
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -66,7 +66,7 @@ class MarkdownClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[MarkdownPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[str, str]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/markdown/markdown#render-a-markdown-document"""
 
@@ -80,12 +80,12 @@ class MarkdownClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(MarkdownPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -114,7 +114,7 @@ class MarkdownClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[MarkdownPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[str, str]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/markdown/markdown#render-a-markdown-document"""
 
@@ -128,12 +128,12 @@ class MarkdownClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(MarkdownPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -157,9 +157,9 @@ class MarkdownClient:
             **(headers or {}),
         }
 
-        content = data
+        content: Any = data
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             content=exclude_unset(content),
@@ -183,9 +183,9 @@ class MarkdownClient:
             **(headers or {}),
         }
 
-        content = data
+        content: Any = data
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             content=exclude_unset(content),

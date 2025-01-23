@@ -11,28 +11,16 @@ from __future__ import annotations
 
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0074 import (
-    EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType,
-)
-from .group_0076 import (
-    RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType,
-)
-from .group_0078 import RepositoryRulesetConditionsPropRefNameType
+from .group_0084 import RepositoryRulesetConditionsPropRefNameType
 
 
-class EnterpriseRulesetConditionsOneof0Type(TypedDict):
-    """organization_name_and_repository_name
+class RepositoryRulesetConditionsType(TypedDict):
+    """Repository ruleset conditions for ref names
 
-    Conditions to target organizations by name and all repositories
+    Parameters for a repository ruleset ref name condition
     """
 
-    organization_name: (
-        EnterpriseRulesetConditionsOrganizationNameTargetPropOrganizationNameType
-    )
-    repository_name: (
-        RepositoryRulesetConditionsRepositoryNameTargetPropRepositoryNameType
-    )
     ref_name: NotRequired[RepositoryRulesetConditionsPropRefNameType]
 
 
-__all__ = ("EnterpriseRulesetConditionsOneof0Type",)
+__all__ = ("RepositoryRulesetConditionsType",)

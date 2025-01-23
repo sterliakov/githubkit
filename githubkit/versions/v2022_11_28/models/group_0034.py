@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Literal, Union
 
@@ -40,7 +41,7 @@ class DependabotAlertSecurityAdvisory(GitHubModel):
     description: str = Field(
         description="A long-form Markdown-supported description of the advisory."
     )
-    vulnerabilities: list[DependabotAlertSecurityVulnerability] = Field(
+    vulnerabilities: builtins.list[DependabotAlertSecurityVulnerability] = Field(
         description="Vulnerable version range information for the advisory."
     )
     severity: Literal["low", "medium", "high", "critical"] = Field(
@@ -50,14 +51,16 @@ class DependabotAlertSecurityAdvisory(GitHubModel):
         description="Details for the advisory pertaining to the Common Vulnerability Scoring System."
     )
     cvss_severities: Missing[Union[CvssSeverities, None]] = Field(default=UNSET)
-    cwes: list[DependabotAlertSecurityAdvisoryPropCwesItems] = Field(
+    cwes: builtins.list[DependabotAlertSecurityAdvisoryPropCwesItems] = Field(
         description="Details for the advisory pertaining to Common Weakness Enumeration."
     )
-    identifiers: list[DependabotAlertSecurityAdvisoryPropIdentifiersItems] = Field(
-        description="Values that identify this advisory among security information sources."
+    identifiers: builtins.list[DependabotAlertSecurityAdvisoryPropIdentifiersItems] = (
+        Field(
+            description="Values that identify this advisory among security information sources."
+        )
     )
-    references: list[DependabotAlertSecurityAdvisoryPropReferencesItems] = Field(
-        description="Links to additional advisory information."
+    references: builtins.list[DependabotAlertSecurityAdvisoryPropReferencesItems] = (
+        Field(description="Links to additional advisory information.")
     )
     published_at: datetime = Field(
         description="The time that the advisory was published in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`."

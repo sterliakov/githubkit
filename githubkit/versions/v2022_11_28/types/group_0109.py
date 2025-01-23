@@ -9,18 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import TypedDict
+import builtins
+from datetime import datetime
+from typing import Literal
+from typing_extensions import NotRequired, TypedDict
 
 
-class CustomPropertyValueType(TypedDict):
-    """Custom Property Value
+class OrgPrivateRegistryConfigurationWithSelectedRepositoriesType(TypedDict):
+    """Organization private registry
 
-    Custom property name and associated value
+    Private registry configuration for an organization
     """
 
-    property_name: str
-    value: Union[str, list[str], None]
+    name: str
+    registry_type: Literal["maven_repository"]
+    username: NotRequired[str]
+    visibility: Literal["all", "private", "selected"]
+    selected_repository_ids: NotRequired[builtins.list[int]]
+    created_at: datetime
+    updated_at: datetime
 
 
-__all__ = ("CustomPropertyValueType",)
+__all__ = ("OrgPrivateRegistryConfigurationWithSelectedRepositoriesType",)

@@ -9,20 +9,37 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-
-from .group_0216 import ActionsSecret
-
-
-class ReposOwnerRepoActionsSecretsGetResponse200(GitHubModel):
-    """ReposOwnerRepoActionsSecretsGetResponse200"""
-
-    total_count: int = Field()
-    secrets: list[ActionsSecret] = Field()
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-model_rebuild(ReposOwnerRepoActionsSecretsGetResponse200)
+class ProjectsColumnsColumnIdCardsPostResponse503(GitHubModel):
+    """ProjectsColumnsColumnIdCardsPostResponse503"""
 
-__all__ = ("ReposOwnerRepoActionsSecretsGetResponse200",)
+    code: Missing[str] = Field(default=UNSET)
+    message: Missing[str] = Field(default=UNSET)
+    documentation_url: Missing[str] = Field(default=UNSET)
+    errors: Missing[
+        builtins.list[ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems]
+    ] = Field(default=UNSET)
+
+
+class ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems(GitHubModel):
+    """ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems"""
+
+    code: Missing[str] = Field(default=UNSET)
+    message: Missing[str] = Field(default=UNSET)
+
+
+model_rebuild(ProjectsColumnsColumnIdCardsPostResponse503)
+model_rebuild(ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems)
+
+__all__ = (
+    "ProjectsColumnsColumnIdCardsPostResponse503",
+    "ProjectsColumnsColumnIdCardsPostResponse503PropErrorsItems",
+)

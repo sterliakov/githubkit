@@ -9,24 +9,27 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
-from .group_0069 import Runner
 
+class OrgsOrgActionsPermissionsPutBody(GitHubModel):
+    """OrgsOrgActionsPermissionsPutBody"""
 
-class OrgsOrgActionsRunnersGenerateJitconfigPostResponse201(GitHubModel):
-    """OrgsOrgActionsRunnersGenerateJitconfigPostResponse201"""
-
-    runner: Runner = Field(
-        title="Self hosted runners", description="A self hosted runner"
+    enabled_repositories: Literal["all", "none", "selected"] = Field(
+        description="The policy that controls the repositories in the organization that are allowed to run GitHub Actions."
     )
-    encoded_jit_config: str = Field(
-        description="The base64 encoded runner configuration."
+    allowed_actions: Missing[Literal["all", "local_only", "selected"]] = Field(
+        default=UNSET,
+        description="The permissions policy that controls the actions and reusable workflows that are allowed to run.",
     )
 
 
-model_rebuild(OrgsOrgActionsRunnersGenerateJitconfigPostResponse201)
+model_rebuild(OrgsOrgActionsPermissionsPutBody)
 
-__all__ = ("OrgsOrgActionsRunnersGenerateJitconfigPostResponse201",)
+__all__ = ("OrgsOrgActionsPermissionsPutBody",)

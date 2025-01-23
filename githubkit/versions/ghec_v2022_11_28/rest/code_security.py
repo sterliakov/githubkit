@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal, Union
 
     from githubkit import GitHubCore
@@ -86,8 +88,13 @@ class CodeSecurityClient:
         before: Missing[str] = UNSET,
         after: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeSecurityConfiguration], list[CodeSecurityConfigurationType]]:
+    ) -> Response[
+        builtins.list[CodeSecurityConfiguration],
+        builtins.list[CodeSecurityConfigurationType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-code-security-configurations-for-an-enterprise"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfiguration
 
@@ -101,12 +108,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfiguration],
+            response_model=builtins.list[CodeSecurityConfiguration],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -121,8 +128,13 @@ class CodeSecurityClient:
         before: Missing[str] = UNSET,
         after: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeSecurityConfiguration], list[CodeSecurityConfigurationType]]:
+    ) -> Response[
+        builtins.list[CodeSecurityConfiguration],
+        builtins.list[CodeSecurityConfigurationType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-code-security-configurations-for-an-enterprise"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfiguration
 
@@ -136,12 +148,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfiguration],
+            response_model=builtins.list[CodeSecurityConfiguration],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -208,7 +220,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#create-a-code-security-configuration-for-an-enterprise"""
 
@@ -226,14 +238,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -306,7 +318,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#create-a-code-security-configuration-for-an-enterprise"""
 
@@ -324,14 +336,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -350,10 +362,12 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityDefaultConfigurationsItems],
-        list[CodeSecurityDefaultConfigurationsItemsType],
+        builtins.list[CodeSecurityDefaultConfigurationsItems],
+        builtins.list[CodeSecurityDefaultConfigurationsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-default-code-security-configurations-for-an-enterprise"""
+
+        import builtins
 
         from ..models import CodeSecurityDefaultConfigurationsItems
 
@@ -361,11 +375,11 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityDefaultConfigurationsItems],
+            response_model=builtins.list[CodeSecurityDefaultConfigurationsItems],
         )
 
     async def async_get_default_configurations_for_enterprise(
@@ -374,10 +388,12 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityDefaultConfigurationsItems],
-        list[CodeSecurityDefaultConfigurationsItemsType],
+        builtins.list[CodeSecurityDefaultConfigurationsItems],
+        builtins.list[CodeSecurityDefaultConfigurationsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-default-code-security-configurations-for-an-enterprise"""
+
+        import builtins
 
         from ..models import CodeSecurityDefaultConfigurationsItems
 
@@ -385,11 +401,11 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityDefaultConfigurationsItems],
+            response_model=builtins.list[CodeSecurityDefaultConfigurationsItems],
         )
 
     def get_single_configuration_for_enterprise(
@@ -409,7 +425,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -437,7 +453,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -465,7 +481,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -494,7 +510,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -569,7 +585,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#update-a-custom-code-security-configuration-for-an-enterprise"""
 
@@ -589,7 +605,7 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdPatchBody,
@@ -597,7 +613,7 @@ class CodeSecurityClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -673,7 +689,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#update-a-custom-code-security-configuration-for-an-enterprise"""
 
@@ -693,7 +709,7 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdPatchBody,
@@ -701,7 +717,7 @@ class CodeSecurityClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -750,7 +766,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -771,7 +787,7 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBody,
@@ -779,7 +795,7 @@ class CodeSecurityClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -828,7 +844,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -849,7 +865,7 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdAttachPostBody,
@@ -857,7 +873,7 @@ class CodeSecurityClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -908,7 +924,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200,
         EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200Type,
@@ -929,7 +945,7 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBody,
@@ -937,7 +953,7 @@ class CodeSecurityClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -987,7 +1003,7 @@ class CodeSecurityClient:
         data: Missing[
             EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200,
         EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200Type,
@@ -1008,7 +1024,7 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseCodeSecurityConfigurationsConfigurationIdDefaultsPutBody,
@@ -1016,7 +1032,7 @@ class CodeSecurityClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1039,10 +1055,12 @@ class CodeSecurityClient:
         status: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityConfigurationRepositories],
-        list[CodeSecurityConfigurationRepositoriesType],
+        builtins.list[CodeSecurityConfigurationRepositories],
+        builtins.list[CodeSecurityConfigurationRepositoriesType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-repositories-associated-with-an-enterprise-code-security-configuration"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfigurationRepositories
 
@@ -1057,12 +1075,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfigurationRepositories],
+            response_model=builtins.list[CodeSecurityConfigurationRepositories],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1080,10 +1098,12 @@ class CodeSecurityClient:
         status: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityConfigurationRepositories],
-        list[CodeSecurityConfigurationRepositoriesType],
+        builtins.list[CodeSecurityConfigurationRepositories],
+        builtins.list[CodeSecurityConfigurationRepositoriesType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-repositories-associated-with-an-enterprise-code-security-configuration"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfigurationRepositories
 
@@ -1098,12 +1118,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfigurationRepositories],
+            response_model=builtins.list[CodeSecurityConfigurationRepositories],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1119,8 +1139,13 @@ class CodeSecurityClient:
         before: Missing[str] = UNSET,
         after: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeSecurityConfiguration], list[CodeSecurityConfigurationType]]:
+    ) -> Response[
+        builtins.list[CodeSecurityConfiguration],
+        builtins.list[CodeSecurityConfigurationType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-code-security-configurations-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfiguration
 
@@ -1135,12 +1160,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfiguration],
+            response_model=builtins.list[CodeSecurityConfiguration],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1156,8 +1181,13 @@ class CodeSecurityClient:
         before: Missing[str] = UNSET,
         after: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CodeSecurityConfiguration], list[CodeSecurityConfigurationType]]:
+    ) -> Response[
+        builtins.list[CodeSecurityConfiguration],
+        builtins.list[CodeSecurityConfigurationType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-code-security-configurations-for-an-organization"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfiguration
 
@@ -1172,12 +1202,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfiguration],
+            response_model=builtins.list[CodeSecurityConfiguration],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1248,7 +1278,7 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodeSecurityConfigurationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#create-a-code-security-configuration"""
 
@@ -1265,12 +1295,12 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgCodeSecurityConfigurationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1342,7 +1372,7 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodeSecurityConfigurationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#create-a-code-security-configuration"""
 
@@ -1359,12 +1389,12 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgCodeSecurityConfigurationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1378,10 +1408,12 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityDefaultConfigurationsItems],
-        list[CodeSecurityDefaultConfigurationsItemsType],
+        builtins.list[CodeSecurityDefaultConfigurationsItems],
+        builtins.list[CodeSecurityDefaultConfigurationsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-default-code-security-configurations"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityDefaultConfigurationsItems
 
@@ -1389,11 +1421,11 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityDefaultConfigurationsItems],
+            response_model=builtins.list[CodeSecurityDefaultConfigurationsItems],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1406,10 +1438,12 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityDefaultConfigurationsItems],
-        list[CodeSecurityDefaultConfigurationsItemsType],
+        builtins.list[CodeSecurityDefaultConfigurationsItems],
+        builtins.list[CodeSecurityDefaultConfigurationsItemsType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-default-code-security-configurations"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityDefaultConfigurationsItems
 
@@ -1417,11 +1451,11 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityDefaultConfigurationsItems],
+            response_model=builtins.list[CodeSecurityDefaultConfigurationsItems],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -1444,7 +1478,7 @@ class CodeSecurityClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response: ...
 
     def detach_configuration(
@@ -1453,7 +1487,7 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodeSecurityConfigurationsDetachDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#detach-configurations-from-repositories"""
 
@@ -1470,14 +1504,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsDetachDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1506,7 +1540,7 @@ class CodeSecurityClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response: ...
 
     async def async_detach_configuration(
@@ -1515,7 +1549,7 @@ class CodeSecurityClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgCodeSecurityConfigurationsDetachDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#detach-configurations-from-repositories"""
 
@@ -1532,14 +1566,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsDetachDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1567,7 +1601,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1593,7 +1627,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1619,7 +1653,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1646,7 +1680,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1727,7 +1761,7 @@ class CodeSecurityClient:
         data: Missing[
             OrgsOrgCodeSecurityConfigurationsConfigurationIdPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#update-a-code-security-configuration"""
 
@@ -1744,14 +1778,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsConfigurationIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1828,7 +1862,7 @@ class CodeSecurityClient:
         data: Missing[
             OrgsOrgCodeSecurityConfigurationsConfigurationIdPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CodeSecurityConfiguration, CodeSecurityConfigurationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#update-a-code-security-configuration"""
 
@@ -1845,14 +1879,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsConfigurationIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1888,7 +1922,7 @@ class CodeSecurityClient:
             "private_or_internal",
             "selected",
         ],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -1903,7 +1937,7 @@ class CodeSecurityClient:
         data: Missing[
             OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -1923,14 +1957,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1966,7 +2000,7 @@ class CodeSecurityClient:
             "private_or_internal",
             "selected",
         ],
-        selected_repository_ids: Missing[list[int]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -1981,7 +2015,7 @@ class CodeSecurityClient:
         data: Missing[
             OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202,
         AppHookDeliveriesDeliveryIdAttemptsPostResponse202Type,
@@ -2001,14 +2035,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2054,7 +2088,7 @@ class CodeSecurityClient:
         data: Missing[
             OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200,
         OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200Type,
@@ -2075,14 +2109,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2132,7 +2166,7 @@ class CodeSecurityClient:
         data: Missing[
             OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200,
         OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutResponse200Type,
@@ -2153,14 +2187,14 @@ class CodeSecurityClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgCodeSecurityConfigurationsConfigurationIdDefaultsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2183,10 +2217,12 @@ class CodeSecurityClient:
         status: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityConfigurationRepositories],
-        list[CodeSecurityConfigurationRepositoriesType],
+        builtins.list[CodeSecurityConfigurationRepositories],
+        builtins.list[CodeSecurityConfigurationRepositoriesType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-repositories-associated-with-a-code-security-configuration"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfigurationRepositories
 
@@ -2203,12 +2239,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfigurationRepositories],
+            response_model=builtins.list[CodeSecurityConfigurationRepositories],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -2226,10 +2262,12 @@ class CodeSecurityClient:
         status: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[CodeSecurityConfigurationRepositories],
-        list[CodeSecurityConfigurationRepositoriesType],
+        builtins.list[CodeSecurityConfigurationRepositories],
+        builtins.list[CodeSecurityConfigurationRepositoriesType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/code-security/configurations#get-repositories-associated-with-a-code-security-configuration"""
+
+        import builtins
 
         from ..models import BasicError, CodeSecurityConfigurationRepositories
 
@@ -2246,12 +2284,12 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CodeSecurityConfigurationRepositories],
+            response_model=builtins.list[CodeSecurityConfigurationRepositories],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -2276,7 +2314,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2305,7 +2343,7 @@ class CodeSecurityClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),

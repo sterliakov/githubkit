@@ -9,39 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from datetime import datetime
+from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class ActionsBillingUsageType(TypedDict):
-    """ActionsBillingUsage"""
+class RuleSuitesItemsType(TypedDict):
+    """RuleSuitesItems"""
 
-    total_minutes_used: int
-    total_paid_minutes_used: int
-    included_minutes: int
-    minutes_used_breakdown: ActionsBillingUsagePropMinutesUsedBreakdownType
-
-
-class ActionsBillingUsagePropMinutesUsedBreakdownType(TypedDict):
-    """ActionsBillingUsagePropMinutesUsedBreakdown"""
-
-    ubuntu: NotRequired[int]
-    macos: NotRequired[int]
-    windows: NotRequired[int]
-    ubuntu_4_core: NotRequired[int]
-    ubuntu_8_core: NotRequired[int]
-    ubuntu_16_core: NotRequired[int]
-    ubuntu_32_core: NotRequired[int]
-    ubuntu_64_core: NotRequired[int]
-    windows_4_core: NotRequired[int]
-    windows_8_core: NotRequired[int]
-    windows_16_core: NotRequired[int]
-    windows_32_core: NotRequired[int]
-    windows_64_core: NotRequired[int]
-    macos_12_core: NotRequired[int]
-    total: NotRequired[int]
+    id: NotRequired[int]
+    actor_id: NotRequired[int]
+    actor_name: NotRequired[str]
+    before_sha: NotRequired[str]
+    after_sha: NotRequired[str]
+    ref: NotRequired[str]
+    repository_id: NotRequired[int]
+    repository_name: NotRequired[str]
+    pushed_at: NotRequired[datetime]
+    result: NotRequired[Literal["pass", "fail", "bypass"]]
+    evaluation_result: NotRequired[Literal["pass", "fail", "bypass"]]
 
 
-__all__ = (
-    "ActionsBillingUsagePropMinutesUsedBreakdownType",
-    "ActionsBillingUsageType",
-)
+__all__ = ("RuleSuitesItemsType",)

@@ -9,23 +9,27 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+from datetime import datetime
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class IntegrationPropPermissionsType(TypedDict):
-    """IntegrationPropPermissions
+class EnterpriseType(TypedDict):
+    """Enterprise
 
-    The set of permissions for the GitHub app
-
-    Examples:
-        {'issues': 'read', 'deployments': 'write'}
+    An enterprise on GitHub.
     """
 
-    issues: NotRequired[str]
-    checks: NotRequired[str]
-    metadata: NotRequired[str]
-    contents: NotRequired[str]
-    deployments: NotRequired[str]
+    description: NotRequired[Union[str, None]]
+    html_url: str
+    website_url: NotRequired[Union[str, None]]
+    id: int
+    node_id: str
+    name: str
+    slug: str
+    created_at: Union[datetime, None]
+    updated_at: Union[datetime, None]
+    avatar_url: str
 
 
-__all__ = ("IntegrationPropPermissionsType",)
+__all__ = ("EnterpriseType",)

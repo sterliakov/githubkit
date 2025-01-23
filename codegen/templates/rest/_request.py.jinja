@@ -46,9 +46,9 @@ cookies = {
 {% macro build_body(request_body) %}
 {% set name = TYPE_MAPPING[request_body.type] %}
 {% if request_body.allowed_models %}
-{{ name }} = kwargs if data is UNSET else data
+{{ name }}: Any = kwargs if data is UNSET else data
 {% else %}
-{{ name }} = data
+{{ name }}: Any = data
 {% endif %}
 {% if request_body.type in ["json", "form"] %}
 if self._github.config.rest_api_validate_body:

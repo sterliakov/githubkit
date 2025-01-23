@@ -11,14 +11,11 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .group_0078 import CodespaceType
+
+class ReposOwnerRepoTagsProtectionPostBodyType(TypedDict):
+    """ReposOwnerRepoTagsProtectionPostBody"""
+
+    pattern: str
 
 
-class UserCodespacesGetResponse200Type(TypedDict):
-    """UserCodespacesGetResponse200"""
-
-    total_count: int
-    codespaces: list[CodespaceType]
-
-
-__all__ = ("UserCodespacesGetResponse200Type",)
+__all__ = ("ReposOwnerRepoTagsProtectionPostBodyType",)

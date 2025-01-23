@@ -9,33 +9,40 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing_extensions import NotRequired, TypedDict
 
+from .group_0316 import CustomDeploymentRuleAppType
 
-class GitTreeType(TypedDict):
-    """Git Tree
 
-    The hierarchy between files in a Git repository.
+class DeploymentProtectionRuleType(TypedDict):
+    """Deployment protection rule
+
+    Deployment protection rule
     """
 
-    sha: str
-    url: str
-    truncated: bool
-    tree: list[GitTreePropTreeItemsType]
+    id: int
+    node_id: str
+    enabled: bool
+    app: CustomDeploymentRuleAppType
 
 
-class GitTreePropTreeItemsType(TypedDict):
-    """GitTreePropTreeItems"""
+class ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesGetResponse200Type(
+    TypedDict
+):
+    """ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesGetResponse200
 
-    path: NotRequired[str]
-    mode: NotRequired[str]
-    type: NotRequired[str]
-    sha: NotRequired[str]
-    size: NotRequired[int]
-    url: NotRequired[str]
+    Examples:
+        {'$ref': '#/components/examples/deployment-protection-rules'}
+    """
+
+    total_count: NotRequired[int]
+    custom_deployment_protection_rules: NotRequired[
+        builtins.list[DeploymentProtectionRuleType]
+    ]
 
 
 __all__ = (
-    "GitTreePropTreeItemsType",
-    "GitTreeType",
+    "DeploymentProtectionRuleType",
+    "ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesGetResponse200Type",
 )

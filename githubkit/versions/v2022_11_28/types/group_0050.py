@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 from typing_extensions import TypedDict
 
@@ -27,9 +28,9 @@ class LicenseType(TypedDict):
     html_url: str
     description: str
     implementation: str
-    permissions: list[str]
-    conditions: list[str]
-    limitations: list[str]
+    permissions: builtins.list[str]
+    conditions: builtins.list[str]
+    limitations: builtins.list[str]
     body: str
     featured: bool
 

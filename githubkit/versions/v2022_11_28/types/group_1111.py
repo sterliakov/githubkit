@@ -9,14 +9,15 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+from typing import Literal
+from typing_extensions import TypedDict
 
 
-class TeamsTeamIdProjectsProjectIdPutResponse403Type(TypedDict):
-    """TeamsTeamIdProjectsProjectIdPutResponse403"""
+class ReposOwnerRepoSecretScanningPushProtectionBypassesPostBodyType(TypedDict):
+    """ReposOwnerRepoSecretScanningPushProtectionBypassesPostBody"""
 
-    message: NotRequired[str]
-    documentation_url: NotRequired[str]
+    reason: Literal["false_positive", "used_in_tests", "will_fix_later"]
+    placeholder_id: str
 
 
-__all__ = ("TeamsTeamIdProjectsProjectIdPutResponse403Type",)
+__all__ = ("ReposOwnerRepoSecretScanningPushProtectionBypassesPostBodyType",)

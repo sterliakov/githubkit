@@ -9,16 +9,19 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import NotRequired, TypedDict
+import builtins
+from typing_extensions import TypedDict
 
-from .group_0036 import RunnerType
-
-
-class EnterprisesEnterpriseActionsRunnersGetResponse200Type(TypedDict):
-    """EnterprisesEnterpriseActionsRunnersGetResponse200"""
-
-    total_count: NotRequired[float]
-    runners: NotRequired[list[RunnerType]]
+from .group_0029 import ActionsHostedRunnerMachineSpecType
 
 
-__all__ = ("EnterprisesEnterpriseActionsRunnersGetResponse200Type",)
+class EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200Type(
+    TypedDict
+):
+    """EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200"""
+
+    total_count: int
+    machine_specs: builtins.list[ActionsHostedRunnerMachineSpecType]
+
+
+__all__ = ("EnterprisesEnterpriseActionsHostedRunnersMachineSizesGetResponse200Type",)

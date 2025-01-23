@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Optional
 from weakref import ref
@@ -17,6 +18,8 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
+
     from githubkit import GitHubCore
     from githubkit.response import Response
     from githubkit.typing import Missing
@@ -69,7 +72,7 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -93,7 +96,7 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -111,9 +114,12 @@ class ClassroomClient:
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[ClassroomAcceptedAssignment], list[ClassroomAcceptedAssignmentType]
+        builtins.list[ClassroomAcceptedAssignment],
+        builtins.list[ClassroomAcceptedAssignmentType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#list-accepted-assignments-for-an-assignment"""
+
+        import builtins
 
         from ..models import ClassroomAcceptedAssignment
 
@@ -126,12 +132,12 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ClassroomAcceptedAssignment],
+            response_model=builtins.list[ClassroomAcceptedAssignment],
         )
 
     async def async_list_accepted_assignments_for_an_assignment(
@@ -142,9 +148,12 @@ class ClassroomClient:
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[ClassroomAcceptedAssignment], list[ClassroomAcceptedAssignmentType]
+        builtins.list[ClassroomAcceptedAssignment],
+        builtins.list[ClassroomAcceptedAssignmentType],
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#list-accepted-assignments-for-an-assignment"""
+
+        import builtins
 
         from ..models import ClassroomAcceptedAssignment
 
@@ -157,12 +166,12 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ClassroomAcceptedAssignment],
+            response_model=builtins.list[ClassroomAcceptedAssignment],
         )
 
     def get_assignment_grades(
@@ -170,8 +179,13 @@ class ClassroomClient:
         assignment_id: int,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ClassroomAssignmentGrade], list[ClassroomAssignmentGradeType]]:
+    ) -> Response[
+        builtins.list[ClassroomAssignmentGrade],
+        builtins.list[ClassroomAssignmentGradeType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#get-assignment-grades"""
+
+        import builtins
 
         from ..models import BasicError, ClassroomAssignmentGrade
 
@@ -179,11 +193,11 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ClassroomAssignmentGrade],
+            response_model=builtins.list[ClassroomAssignmentGrade],
             error_models={
                 "404": BasicError,
             },
@@ -194,8 +208,13 @@ class ClassroomClient:
         assignment_id: int,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ClassroomAssignmentGrade], list[ClassroomAssignmentGradeType]]:
+    ) -> Response[
+        builtins.list[ClassroomAssignmentGrade],
+        builtins.list[ClassroomAssignmentGradeType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#get-assignment-grades"""
+
+        import builtins
 
         from ..models import BasicError, ClassroomAssignmentGrade
 
@@ -203,11 +222,11 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ClassroomAssignmentGrade],
+            response_model=builtins.list[ClassroomAssignmentGrade],
             error_models={
                 "404": BasicError,
             },
@@ -219,8 +238,10 @@ class ClassroomClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleClassroom], list[SimpleClassroomType]]:
+    ) -> Response[builtins.list[SimpleClassroom], builtins.list[SimpleClassroomType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#list-classrooms"""
+
+        import builtins
 
         from ..models import SimpleClassroom
 
@@ -233,12 +254,12 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleClassroom],
+            response_model=builtins.list[SimpleClassroom],
         )
 
     async def async_list_classrooms(
@@ -247,8 +268,10 @@ class ClassroomClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleClassroom], list[SimpleClassroomType]]:
+    ) -> Response[builtins.list[SimpleClassroom], builtins.list[SimpleClassroomType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#list-classrooms"""
+
+        import builtins
 
         from ..models import SimpleClassroom
 
@@ -261,12 +284,12 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleClassroom],
+            response_model=builtins.list[SimpleClassroom],
         )
 
     def get_a_classroom(
@@ -283,7 +306,7 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -307,7 +330,7 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -324,8 +347,13 @@ class ClassroomClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleClassroomAssignment], list[SimpleClassroomAssignmentType]]:
+    ) -> Response[
+        builtins.list[SimpleClassroomAssignment],
+        builtins.list[SimpleClassroomAssignmentType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#list-assignments-for-a-classroom"""
+
+        import builtins
 
         from ..models import SimpleClassroomAssignment
 
@@ -338,12 +366,12 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleClassroomAssignment],
+            response_model=builtins.list[SimpleClassroomAssignment],
         )
 
     async def async_list_assignments_for_a_classroom(
@@ -353,8 +381,13 @@ class ClassroomClient:
         page: Missing[int] = UNSET,
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleClassroomAssignment], list[SimpleClassroomAssignmentType]]:
+    ) -> Response[
+        builtins.list[SimpleClassroomAssignment],
+        builtins.list[SimpleClassroomAssignmentType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/classroom/classroom#list-assignments-for-a-classroom"""
+
+        import builtins
 
         from ..models import SimpleClassroomAssignment
 
@@ -367,10 +400,10 @@ class ClassroomClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[SimpleClassroomAssignment],
+            response_model=builtins.list[SimpleClassroomAssignment],
         )

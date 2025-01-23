@@ -9,7 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Literal
 
 from pydantic import Field
 
@@ -18,41 +18,40 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class ReposOwnerRepoIssuesPostBody(GitHubModel):
-    """ReposOwnerRepoIssuesPostBody"""
+class ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody(GitHubModel):
+    """ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody"""
 
-    title: Union[str, int] = Field(description="The title of the issue.")
-    body: Missing[str] = Field(default=UNSET, description="The contents of the issue.")
-    assignee: Missing[Union[str, None]] = Field(
-        default=UNSET,
-        description="Login for the user that this issue should be assigned to. _NOTE: Only users with push access can set the assignee for new issues. The assignee is silently dropped otherwise. **This field is closing down.**_",
-    )
-    milestone: Missing[Union[str, int, None]] = Field(default=UNSET)
-    labels: Missing[
-        list[Union[str, ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1]]
+    state: Literal[
+        "error", "failure", "inactive", "in_progress", "queued", "pending", "success"
     ] = Field(
-        default=UNSET,
-        description="Labels to associate with this issue. _NOTE: Only users with push access can set labels for new issues. Labels are silently dropped otherwise._",
+        description="The state of the status. When you set a transient deployment to `inactive`, the deployment will be shown as `destroyed` in GitHub."
     )
-    assignees: Missing[list[str]] = Field(
+    target_url: Missing[str] = Field(
         default=UNSET,
-        description="Logins for Users to assign to this issue. _NOTE: Only users with push access can set assignees for new issues. Assignees are silently dropped otherwise._",
+        description="The target URL to associate with this status. This URL should contain output to keep the user updated while the task is running or serve as historical information for what happened in the deployment.\n\n> [!NOTE]\n> It's recommended to use the `log_url` parameter, which replaces `target_url`.",
+    )
+    log_url: Missing[str] = Field(
+        default=UNSET,
+        description='The full URL of the deployment\'s output. This parameter replaces `target_url`. We will continue to accept `target_url` to support legacy uses, but we recommend replacing `target_url` with `log_url`. Setting `log_url` will automatically set `target_url` to the same value. Default: `""`',
+    )
+    description: Missing[str] = Field(
+        default=UNSET,
+        description="A short description of the status. The maximum description length is 140 characters.",
+    )
+    environment: Missing[str] = Field(
+        default=UNSET,
+        description="Name for the target deployment environment, which can be changed when setting a deploy status. For example, `production`, `staging`, or `qa`. If not defined, the environment of the previous status on the deployment will be used, if it exists. Otherwise, the environment of the deployment will be used.",
+    )
+    environment_url: Missing[str] = Field(
+        default=UNSET,
+        description='Sets the URL for accessing your environment. Default: `""`',
+    )
+    auto_inactive: Missing[bool] = Field(
+        default=UNSET,
+        description="Adds a new `inactive` status to all prior non-transient, non-production environment deployments with the same repository and `environment` name as the created status's deployment. An `inactive` status is only added to deployments that had a `success` state. Default: `true`",
     )
 
 
-class ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1(GitHubModel):
-    """ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1"""
+model_rebuild(ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody)
 
-    id: Missing[int] = Field(default=UNSET)
-    name: Missing[str] = Field(default=UNSET)
-    description: Missing[Union[str, None]] = Field(default=UNSET)
-    color: Missing[Union[str, None]] = Field(default=UNSET)
-
-
-model_rebuild(ReposOwnerRepoIssuesPostBody)
-model_rebuild(ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1)
-
-__all__ = (
-    "ReposOwnerRepoIssuesPostBody",
-    "ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1",
-)
+__all__ = ("ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody",)

@@ -20,7 +20,7 @@ class MemCache(AsyncBaseCache, BaseCache):
     def __init__(self):
         self._cache: dict[str, _Item] = {}
 
-    def expire(self):
+    def expire(self) -> None:
         now = datetime.now(timezone.utc)
         for key, item in list(self._cache.items()):
             if item.expire_at is not None and item.expire_at < now:
@@ -29,7 +29,8 @@ class MemCache(AsyncBaseCache, BaseCache):
     @override
     def get(self, key: str) -> Optional[str]:
         self.expire()
-        return (item := self._cache.get(key, None)) and item.value
+        item = self._cache.get(key, None)
+        return item.value if item is not None else None
 
     @override
     async def aget(self, key: str) -> Optional[str]:

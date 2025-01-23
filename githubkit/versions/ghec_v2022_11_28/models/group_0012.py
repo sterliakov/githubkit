@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 
 from pydantic import Field
@@ -18,32 +19,20 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class ValidationError(GitHubModel):
-    """Validation Error
+class ScimError(GitHubModel):
+    """Scim Error
 
-    Validation Error
+    Scim Error
     """
 
-    message: str = Field()
-    documentation_url: str = Field()
-    errors: Missing[list[ValidationErrorPropErrorsItems]] = Field(default=UNSET)
+    message: Missing[Union[str, None]] = Field(default=UNSET)
+    documentation_url: Missing[Union[str, None]] = Field(default=UNSET)
+    detail: Missing[Union[str, None]] = Field(default=UNSET)
+    status: Missing[int] = Field(default=UNSET)
+    scim_type: Missing[Union[str, None]] = Field(default=UNSET, alias="scimType")
+    schemas: Missing[builtins.list[str]] = Field(default=UNSET)
 
 
-class ValidationErrorPropErrorsItems(GitHubModel):
-    """ValidationErrorPropErrorsItems"""
+model_rebuild(ScimError)
 
-    resource: Missing[str] = Field(default=UNSET)
-    field: Missing[str] = Field(default=UNSET)
-    message: Missing[str] = Field(default=UNSET)
-    code: str = Field()
-    index: Missing[int] = Field(default=UNSET)
-    value: Missing[Union[str, None, int, None, list[str], None]] = Field(default=UNSET)
-
-
-model_rebuild(ValidationError)
-model_rebuild(ValidationErrorPropErrorsItems)
-
-__all__ = (
-    "ValidationError",
-    "ValidationErrorPropErrorsItems",
-)
+__all__ = ("ScimError",)

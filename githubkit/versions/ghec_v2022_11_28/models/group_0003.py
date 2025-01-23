@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Annotated, Literal, Union
 
@@ -52,8 +53,10 @@ class GlobalAdvisory(GitHubModel):
     source_code_location: Union[str, None] = Field(
         description="The URL of the advisory's source code."
     )
-    identifiers: Union[list[GlobalAdvisoryPropIdentifiersItems], None] = Field()
-    references: Union[list[str], None] = Field()
+    identifiers: Union[builtins.list[GlobalAdvisoryPropIdentifiersItems], None] = (
+        Field()
+    )
+    references: Union[builtins.list[str], None] = Field()
     published_at: datetime = Field(
         description="The date and time of when the advisory was published, in ISO 8601 format."
     )
@@ -69,14 +72,14 @@ class GlobalAdvisory(GitHubModel):
     withdrawn_at: Union[datetime, None] = Field(
         description="The date and time of when the advisory was withdrawn, in ISO 8601 format."
     )
-    vulnerabilities: Union[list[Vulnerability], None] = Field(
+    vulnerabilities: Union[builtins.list[Vulnerability], None] = Field(
         description="The products and respective version ranges affected by the advisory."
     )
     cvss: Union[GlobalAdvisoryPropCvss, None] = Field()
     cvss_severities: Missing[Union[CvssSeverities, None]] = Field(default=UNSET)
-    cwes: Union[list[GlobalAdvisoryPropCwesItems], None] = Field()
+    cwes: Union[builtins.list[GlobalAdvisoryPropCwesItems], None] = Field()
     epss: Missing[Union[GlobalAdvisoryPropEpss, None]] = Field(default=UNSET)
-    credits_: Union[list[GlobalAdvisoryPropCreditsItems], None] = Field(
+    credits_: Union[builtins.list[GlobalAdvisoryPropCreditsItems], None] = Field(
         alias="credits", description="The users who contributed to the advisory."
     )
 
@@ -127,7 +130,7 @@ class Vulnerability(GitHubModel):
     first_patched_version: Union[str, None] = Field(
         description="The package version that resolves the vulnerability."
     )
-    vulnerable_functions: Union[list[str], None] = Field(
+    vulnerable_functions: Union[builtins.list[str], None] = Field(
         description="The functions in the package that are affected by the vulnerability."
     )
 

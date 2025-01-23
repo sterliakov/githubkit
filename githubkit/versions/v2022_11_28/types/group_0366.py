@@ -9,16 +9,15 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
+import builtins
 from typing_extensions import TypedDict
 
 
-class TrafficType(TypedDict):
-    """Traffic"""
+class ParticipationStatsType(TypedDict):
+    """Participation Stats"""
 
-    timestamp: datetime
-    uniques: int
-    count: int
+    all_: builtins.list[int]
+    owner: builtins.list[int]
 
 
-__all__ = ("TrafficType",)
+__all__ = ("ParticipationStatsType",)

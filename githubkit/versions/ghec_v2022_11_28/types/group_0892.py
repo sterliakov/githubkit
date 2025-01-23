@@ -9,16 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class MarkdownPostBodyType(TypedDict):
-    """MarkdownPostBody"""
+class EnterprisesEnterpriseNetworkConfigurationsPostBodyType(TypedDict):
+    """EnterprisesEnterpriseNetworkConfigurationsPostBody"""
 
-    text: str
-    mode: NotRequired[Literal["markdown", "gfm"]]
-    context: NotRequired[str]
+    name: str
+    compute_service: NotRequired[Literal["none", "actions"]]
+    network_settings_ids: builtins.list[str]
 
 
-__all__ = ("MarkdownPostBodyType",)
+__all__ = ("EnterprisesEnterpriseNetworkConfigurationsPostBodyType",)

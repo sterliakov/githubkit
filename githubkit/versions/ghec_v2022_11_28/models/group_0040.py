@@ -9,8 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Union
+import builtins
 
 from pydantic import Field
 
@@ -18,22 +17,26 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
+from .group_0039 import RunnerLabel
 
-class Announcement(GitHubModel):
-    """Enterprise Announcement
 
-    Enterprise global announcement
+class Runner(GitHubModel):
+    """Self hosted runners
+
+    A self hosted runner
     """
 
-    announcement: Union[str, None] = Field(
-        description='The announcement text in GitHub Flavored Markdown. For more information about GitHub Flavored Markdown, see "[Basic writing and formatting syntax](https://docs.github.com/enterprise-cloud@latest//github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)."'
+    id: int = Field(description="The id of the runner.")
+    runner_group_id: Missing[int] = Field(
+        default=UNSET, description="The id of the runner group."
     )
-    expires_at: Missing[Union[datetime, None]] = Field(
-        default=UNSET,
-        description="The time at which the announcement expires. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. To set an announcement that never expires, omit this parameter, set it to `null`, or set it to an empty string.",
-    )
+    name: str = Field(description="The name of the runner.")
+    os: str = Field(description="The Operating System of the runner.")
+    status: str = Field(description="The status of the runner.")
+    busy: bool = Field()
+    labels: builtins.list[RunnerLabel] = Field()
 
 
-model_rebuild(Announcement)
+model_rebuild(Runner)
 
-__all__ = ("Announcement",)
+__all__ = ("Runner",)

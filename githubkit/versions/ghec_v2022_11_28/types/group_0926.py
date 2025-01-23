@@ -9,17 +9,22 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 from typing_extensions import NotRequired, TypedDict
 
 
-class OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBodyType(TypedDict):
-    """OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody"""
+class OrgsOrgActionsRunnerGroupsPostBodyType(TypedDict):
+    """OrgsOrgActionsRunnerGroupsPostBody"""
 
-    scope: Literal[
-        "all", "all_without_configurations", "public", "private_or_internal", "selected"
-    ]
-    selected_repository_ids: NotRequired[list[int]]
+    name: str
+    visibility: NotRequired[Literal["selected", "all", "private"]]
+    selected_repository_ids: NotRequired[builtins.list[int]]
+    runners: NotRequired[builtins.list[int]]
+    allows_public_repositories: NotRequired[bool]
+    restricted_to_workflows: NotRequired[bool]
+    selected_workflows: NotRequired[builtins.list[str]]
+    network_configuration_id: NotRequired[str]
 
 
-__all__ = ("OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBodyType",)
+__all__ = ("OrgsOrgActionsRunnerGroupsPostBodyType",)

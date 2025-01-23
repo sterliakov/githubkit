@@ -9,39 +9,46 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
+import builtins
+from datetime import date
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class OrgHookType(TypedDict):
-    """Org Hook
+class CopilotUsageMetricsType(TypedDict):
+    """Copilot Usage Metrics
 
-    Org Hook
+    Summary of Copilot usage.
     """
 
-    id: int
-    url: str
-    ping_url: str
-    deliveries_url: NotRequired[str]
-    name: str
-    events: list[str]
-    active: bool
-    config: OrgHookPropConfigType
-    updated_at: datetime
-    created_at: datetime
-    type: str
+    day: date
+    total_suggestions_count: NotRequired[int]
+    total_acceptances_count: NotRequired[int]
+    total_lines_suggested: NotRequired[int]
+    total_lines_accepted: NotRequired[int]
+    total_active_users: NotRequired[int]
+    total_chat_acceptances: NotRequired[int]
+    total_chat_turns: NotRequired[int]
+    total_active_chat_users: NotRequired[int]
+    breakdown: Union[builtins.list[CopilotUsageMetricsPropBreakdownItemsType], None]
 
 
-class OrgHookPropConfigType(TypedDict):
-    """OrgHookPropConfig"""
+class CopilotUsageMetricsPropBreakdownItemsType(TypedDict):
+    """CopilotUsageMetricsPropBreakdownItems
 
-    url: NotRequired[str]
-    insecure_ssl: NotRequired[str]
-    content_type: NotRequired[str]
-    secret: NotRequired[str]
+    Breakdown of Copilot usage by editor for this language
+    """
+
+    language: NotRequired[str]
+    editor: NotRequired[str]
+    suggestions_count: NotRequired[int]
+    acceptances_count: NotRequired[int]
+    lines_suggested: NotRequired[int]
+    lines_accepted: NotRequired[int]
+    active_users: NotRequired[int]
 
 
 __all__ = (
-    "OrgHookPropConfigType",
-    "OrgHookType",
+    "CopilotUsageMetricsPropBreakdownItemsType",
+    "CopilotUsageMetricsType",
 )

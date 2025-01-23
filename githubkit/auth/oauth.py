@@ -19,10 +19,10 @@ try:
     from anyio.from_thread import threadlocals
     from anyio.to_thread import run_sync
 except ImportError:
-    anyio = None
-    run_sync = None
-    run_async = None
-    threadlocals = None
+    anyio = None  # type: ignore[assignment]
+    run_sync = None  # type: ignore[assignment]
+    run_async = None  # type: ignore[assignment]
+    threadlocals = None  # type: ignore[assignment]
 
 if TYPE_CHECKING:
     from githubkit import GitHubCore
@@ -215,7 +215,9 @@ class OAuthTokenAuth(httpx.Auth):
     github: "GitHubCore"
     auth_strategy: "OAuthTokenAuthStrategy"
 
-    requires_response_body: ClassVar[bool] = True
+    # E: Cannot override instance variable (previously declared on base class "Auth")
+    # with class variable
+    requires_response_body: ClassVar[bool] = True  # type: ignore[misc]
 
     @property
     def client_id(self) -> str:
@@ -368,19 +370,19 @@ class OAuthWebAuth(httpx.Auth):
     ) -> AsyncGenerator[httpx.Request, httpx.Response]:
         # exchange token for the first time
         if (token_auth_strategy := self._token_auth_strategy) is None:
-            flow = exchange_web_flow_code(
+            exchange_flow = exchange_web_flow_code(
                 self.github,
                 self.client_id,
                 self.client_secret,
                 self.code,
                 self.redirect_uri,
             )
-            exchange_request = next(flow)
+            exchange_request = next(exchange_flow)
             while True:
                 response = yield exchange_request
                 await response.aread()
                 try:
-                    exchange_request = flow.send(response)
+                    exchange_request = exchange_flow.send(response)
                 except StopIteration as e:
                     data = e.value
                     break
@@ -479,8 +481,10 @@ class OAuthDeviceAuth(httpx.Auth):
                     continue
 
                 # exchange token successfully
-                result = _parse_token_exchange_response(data)
-                auth_strategy = OAuthTokenAuthStrategy(self.client_id, None, **result)
+                ex_result = _parse_token_exchange_response(data)
+                auth_strategy = OAuthTokenAuthStrategy(
+                    self.client_id, None, **ex_result
+                )
                 self._token_auth_strategy = auth_strategy
                 break
 
@@ -503,13 +507,13 @@ class OAuthDeviceAuth(httpx.Auth):
         # exchange token for the first time
         if (auth_strategy := self._token_auth_strategy) is None:
             # create device code
-            flow = create_device_code(self.github, self.client_id, self.scopes)
-            create_request = next(flow)
+            create_flow = create_device_code(self.github, self.client_id, self.scopes)
+            create_request = next(create_flow)
             while True:
                 response = yield create_request
                 await response.aread()
                 try:
-                    create_request = flow.send(response)
+                    create_request = create_flow.send(response)
                 except StopIteration as e:
                     data = e.value
                     break
@@ -522,15 +526,15 @@ class OAuthDeviceAuth(httpx.Auth):
                 # device code expired
                 if datetime.now(timezone.utc) > result["expire_time"]:
                     raise AuthExpiredError("Device code expired.")
-                flow = exchange_device_code(
+                exchange_flow = exchange_device_code(
                     self.github, self.client_id, result["device_code"]
                 )
-                auth_request = next(flow)
+                auth_request = next(exchange_flow)
                 while True:
                     response = yield auth_request
                     await response.aread()
                     try:
-                        auth_request = flow.send(response)
+                        auth_request = exchange_flow.send(response)
                     except StopIteration as e:
                         data = e.value
                         break
@@ -539,8 +543,10 @@ class OAuthDeviceAuth(httpx.Auth):
                     await anyio.sleep(result["interval"])
                     continue
 
-                result = _parse_token_exchange_response(data)
-                auth_strategy = OAuthTokenAuthStrategy(self.client_id, None, **result)
+                ex_result = _parse_token_exchange_response(data)
+                auth_strategy = OAuthTokenAuthStrategy(
+                    self.client_id, None, **ex_result
+                )
                 self._token_auth_strategy = auth_strategy
                 break
 
@@ -849,8 +855,8 @@ class OAuthDeviceAuthStrategy(BaseAuthStrategy):
                         sleep(result["interval"])
                         continue
 
-                    result = _parse_token_exchange_response(data)
-                    auth = OAuthTokenAuthStrategy(self.client_id, None, **result)
+                    ex_result = _parse_token_exchange_response(data)
+                    auth = OAuthTokenAuthStrategy(self.client_id, None, **ex_result)
                     self._token_auth = auth
                     return auth
 
@@ -904,8 +910,8 @@ class OAuthDeviceAuthStrategy(BaseAuthStrategy):
                         await anyio.sleep(result["interval"])
                         continue
 
-                    result = _parse_token_exchange_response(data)
-                    auth = OAuthTokenAuthStrategy(self.client_id, None, **result)
+                    ex_result = _parse_token_exchange_response(data)
+                    auth = OAuthTokenAuthStrategy(self.client_id, None, **ex_result)
                     self._token_auth = auth
                     return auth
 

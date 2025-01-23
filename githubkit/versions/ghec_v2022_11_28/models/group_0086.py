@@ -9,32 +9,55 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Literal
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-from .group_0078 import RepositoryRulesetConditionsPropRefName
-from .group_0080 import (
-    RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty,
-)
-from .group_0082 import (
-    EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId,
-)
+
+class RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty(
+    GitHubModel
+):
+    """RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty"""
+
+    include: Missing[
+        builtins.list[RepositoryRulesetConditionsRepositoryPropertySpec]
+    ] = Field(
+        default=UNSET,
+        description="The repository properties and values to include. All of these properties must match for the condition to pass.",
+    )
+    exclude: Missing[
+        builtins.list[RepositoryRulesetConditionsRepositoryPropertySpec]
+    ] = Field(
+        default=UNSET,
+        description="The repository properties and values to exclude. The condition will not pass if any of these properties match.",
+    )
 
 
-class EnterpriseRulesetConditionsOneof3(GitHubModel):
-    """organization_id_and_repository_property
+class RepositoryRulesetConditionsRepositoryPropertySpec(GitHubModel):
+    """Repository ruleset property targeting definition
 
-    Conditions to target organization by id and repositories by property
+    Parameters for a targeting a repository property
     """
 
-    organization_id: EnterpriseRulesetConditionsOrganizationIdTargetPropOrganizationId = Field()
-    repository_property: RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty = Field()
-    ref_name: Missing[RepositoryRulesetConditionsPropRefName] = Field(default=UNSET)
+    name: str = Field(description="The name of the repository property to target")
+    property_values: builtins.list[str] = Field(
+        description="The values to match for the repository property"
+    )
+    source: Missing[Literal["custom", "system"]] = Field(
+        default=UNSET,
+        description="The source of the repository property. Defaults to 'custom' if not specified.",
+    )
 
 
-model_rebuild(EnterpriseRulesetConditionsOneof3)
+model_rebuild(RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty)
+model_rebuild(RepositoryRulesetConditionsRepositoryPropertySpec)
 
-__all__ = ("EnterpriseRulesetConditionsOneof3",)
+__all__ = (
+    "RepositoryRulesetConditionsRepositoryPropertySpec",
+    "RepositoryRulesetConditionsRepositoryPropertyTargetPropRepositoryProperty",
+)

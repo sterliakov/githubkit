@@ -9,33 +9,23 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class ValidationErrorType(TypedDict):
-    """Validation Error
+class ScimErrorType(TypedDict):
+    """Scim Error
 
-    Validation Error
+    Scim Error
     """
 
-    message: str
-    documentation_url: str
-    errors: NotRequired[list[ValidationErrorPropErrorsItemsType]]
+    message: NotRequired[Union[str, None]]
+    documentation_url: NotRequired[Union[str, None]]
+    detail: NotRequired[Union[str, None]]
+    status: NotRequired[int]
+    scim_type: NotRequired[Union[str, None]]
+    schemas: NotRequired[builtins.list[str]]
 
 
-class ValidationErrorPropErrorsItemsType(TypedDict):
-    """ValidationErrorPropErrorsItems"""
-
-    resource: NotRequired[str]
-    field: NotRequired[str]
-    message: NotRequired[str]
-    code: str
-    index: NotRequired[int]
-    value: NotRequired[Union[str, None, int, None, list[str], None]]
-
-
-__all__ = (
-    "ValidationErrorPropErrorsItemsType",
-    "ValidationErrorType",
-)
+__all__ = ("ScimErrorType",)

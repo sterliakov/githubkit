@@ -12,11 +12,11 @@ from __future__ import annotations
 from typing_extensions import NotRequired, TypedDict
 
 
-class UserGpgKeysPostBodyType(TypedDict):
-    """UserGpgKeysPostBody"""
+class TeamsTeamIdProjectsProjectIdPutResponse403Type(TypedDict):
+    """TeamsTeamIdProjectsProjectIdPutResponse403"""
 
-    name: NotRequired[str]
-    armored_public_key: str
+    message: NotRequired[str]
+    documentation_url: NotRequired[str]
 
 
-__all__ = ("UserGpgKeysPostBodyType",)
+__all__ = ("TeamsTeamIdProjectsProjectIdPutResponse403Type",)

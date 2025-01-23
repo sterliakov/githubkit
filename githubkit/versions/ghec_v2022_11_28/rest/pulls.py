@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -99,8 +101,12 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestSimple], list[PullRequestSimpleType]]:
+    ) -> Response[
+        builtins.list[PullRequestSimple], builtins.list[PullRequestSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#list-pull-requests"""
+
+        import builtins
 
         from ..models import PullRequestSimple, ValidationError
 
@@ -118,12 +124,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestSimple],
+            response_model=builtins.list[PullRequestSimple],
             error_models={
                 "422": ValidationError,
             },
@@ -144,8 +150,12 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestSimple], list[PullRequestSimpleType]]:
+    ) -> Response[
+        builtins.list[PullRequestSimple], builtins.list[PullRequestSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#list-pull-requests"""
+
+        import builtins
 
         from ..models import PullRequestSimple, ValidationError
 
@@ -163,12 +173,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestSimple],
+            response_model=builtins.list[PullRequestSimple],
             error_models={
                 "422": ValidationError,
             },
@@ -209,7 +219,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequest, PullRequestType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#create-a-pull-request"""
 
@@ -228,12 +238,12 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPullsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -280,7 +290,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequest, PullRequestType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#create-a-pull-request"""
 
@@ -299,12 +309,12 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPullsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -327,8 +337,13 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestReviewComment], list[PullRequestReviewCommentType]]:
+    ) -> Response[
+        builtins.list[PullRequestReviewComment],
+        builtins.list[PullRequestReviewCommentType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#list-review-comments-in-a-repository"""
+
+        import builtins
 
         from ..models import PullRequestReviewComment
 
@@ -344,12 +359,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestReviewComment],
+            response_model=builtins.list[PullRequestReviewComment],
         )
 
     async def async_list_review_comments_for_repo(
@@ -363,8 +378,13 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestReviewComment], list[PullRequestReviewCommentType]]:
+    ) -> Response[
+        builtins.list[PullRequestReviewComment],
+        builtins.list[PullRequestReviewCommentType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#list-review-comments-in-a-repository"""
+
+        import builtins
 
         from ..models import PullRequestReviewComment
 
@@ -380,12 +400,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestReviewComment],
+            response_model=builtins.list[PullRequestReviewComment],
         )
 
     def get_review_comment(
@@ -404,7 +424,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -430,7 +450,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -456,7 +476,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -481,7 +501,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -521,7 +541,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReviewComment, PullRequestReviewCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#update-a-review-comment-for-a-pull-request"""
 
@@ -538,14 +558,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsCommentsCommentIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -584,7 +604,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReviewComment, PullRequestReviewCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#update-a-review-comment-for-a-pull-request"""
 
@@ -601,14 +621,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsCommentsCommentIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -636,7 +656,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -669,7 +689,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -717,7 +737,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequest, PullRequestType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#update-a-pull-request"""
 
@@ -736,12 +756,12 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPullsPullNumberPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -788,7 +808,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequest, PullRequestType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#update-a-pull-request"""
 
@@ -807,12 +827,12 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPullsPullNumberPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -836,8 +856,13 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestReviewComment], list[PullRequestReviewCommentType]]:
+    ) -> Response[
+        builtins.list[PullRequestReviewComment],
+        builtins.list[PullRequestReviewCommentType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#list-review-comments-on-a-pull-request"""
+
+        import builtins
 
         from ..models import PullRequestReviewComment
 
@@ -853,12 +878,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestReviewComment],
+            response_model=builtins.list[PullRequestReviewComment],
         )
 
     async def async_list_review_comments(
@@ -873,8 +898,13 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestReviewComment], list[PullRequestReviewCommentType]]:
+    ) -> Response[
+        builtins.list[PullRequestReviewComment],
+        builtins.list[PullRequestReviewCommentType],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#list-review-comments-on-a-pull-request"""
+
+        import builtins
 
         from ..models import PullRequestReviewComment
 
@@ -890,12 +920,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestReviewComment],
+            response_model=builtins.list[PullRequestReviewComment],
         )
 
     @overload
@@ -938,7 +968,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReviewComment, PullRequestReviewCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#create-a-review-comment-for-a-pull-request"""
 
@@ -957,14 +987,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1016,7 +1046,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReviewComment, PullRequestReviewCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#create-a-review-comment-for-a-pull-request"""
 
@@ -1035,14 +1065,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1090,7 +1120,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberCommentsCommentIdRepliesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReviewComment, PullRequestReviewCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#create-a-reply-for-a-review-comment"""
 
@@ -1108,14 +1138,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberCommentsCommentIdRepliesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1162,7 +1192,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberCommentsCommentIdRepliesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReviewComment, PullRequestReviewCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/comments#create-a-reply-for-a-review-comment"""
 
@@ -1180,14 +1210,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberCommentsCommentIdRepliesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1207,8 +1237,10 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Commit], list[CommitType]]:
+    ) -> Response[builtins.list[Commit], builtins.list[CommitType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#list-commits-on-a-pull-request"""
+
+        import builtins
 
         from ..models import Commit
 
@@ -1221,12 +1253,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Commit],
+            response_model=builtins.list[Commit],
         )
 
     async def async_list_commits(
@@ -1238,8 +1270,10 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Commit], list[CommitType]]:
+    ) -> Response[builtins.list[Commit], builtins.list[CommitType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#list-commits-on-a-pull-request"""
+
+        import builtins
 
         from ..models import Commit
 
@@ -1252,12 +1286,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Commit],
+            response_model=builtins.list[Commit],
         )
 
     def list_files(
@@ -1269,8 +1303,10 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DiffEntry], list[DiffEntryType]]:
+    ) -> Response[builtins.list[DiffEntry], builtins.list[DiffEntryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#list-pull-requests-files"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1288,12 +1324,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DiffEntry],
+            response_model=builtins.list[DiffEntry],
             error_models={
                 "422": ValidationError,
                 "500": BasicError,
@@ -1310,8 +1346,10 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DiffEntry], list[DiffEntryType]]:
+    ) -> Response[builtins.list[DiffEntry], builtins.list[DiffEntryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#list-pull-requests-files"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -1329,12 +1367,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DiffEntry],
+            response_model=builtins.list[DiffEntry],
             error_models={
                 "422": ValidationError,
                 "500": BasicError,
@@ -1356,7 +1394,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1377,7 +1415,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1422,7 +1460,7 @@ class PullsClient:
         data: Missing[
             Union[ReposOwnerRepoPullsPullNumberMergePutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestMergeResult, PullRequestMergeResultType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#merge-a-pull-request"""
 
@@ -1445,14 +1483,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoPullsPullNumberMergePutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1505,7 +1543,7 @@ class PullsClient:
         data: Missing[
             Union[ReposOwnerRepoPullsPullNumberMergePutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestMergeResult, PullRequestMergeResultType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/pulls#merge-a-pull-request"""
 
@@ -1528,14 +1566,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoPullsPullNumberMergePutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1566,7 +1604,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1589,7 +1627,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1621,8 +1659,8 @@ class PullsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        reviewers: list[str],
-        team_reviewers: Missing[list[str]] = UNSET,
+        reviewers: builtins.list[str],
+        team_reviewers: Missing[builtins.list[str]] = UNSET,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]: ...
 
     @overload
@@ -1634,8 +1672,8 @@ class PullsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        reviewers: Missing[list[str]] = UNSET,
-        team_reviewers: list[str],
+        reviewers: Missing[builtins.list[str]] = UNSET,
+        team_reviewers: builtins.list[str],
     ) -> Response[PullRequestSimple, PullRequestSimpleType]: ...
 
     def request_reviewers(
@@ -1651,7 +1689,7 @@ class PullsClient:
                 ReposOwnerRepoPullsPullNumberRequestedReviewersPostBodyAnyof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/review-requests#request-reviewers-for-a-pull-request"""
 
@@ -1672,7 +1710,7 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -1683,7 +1721,7 @@ class PullsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1719,8 +1757,8 @@ class PullsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        reviewers: list[str],
-        team_reviewers: Missing[list[str]] = UNSET,
+        reviewers: builtins.list[str],
+        team_reviewers: Missing[builtins.list[str]] = UNSET,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]: ...
 
     @overload
@@ -1732,8 +1770,8 @@ class PullsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        reviewers: Missing[list[str]] = UNSET,
-        team_reviewers: list[str],
+        reviewers: Missing[builtins.list[str]] = UNSET,
+        team_reviewers: builtins.list[str],
     ) -> Response[PullRequestSimple, PullRequestSimpleType]: ...
 
     async def async_request_reviewers(
@@ -1749,7 +1787,7 @@ class PullsClient:
                 ReposOwnerRepoPullsPullNumberRequestedReviewersPostBodyAnyof1Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/review-requests#request-reviewers-for-a-pull-request"""
 
@@ -1770,7 +1808,7 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -1781,7 +1819,7 @@ class PullsClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1812,8 +1850,8 @@ class PullsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        reviewers: list[str],
-        team_reviewers: Missing[list[str]] = UNSET,
+        reviewers: builtins.list[str],
+        team_reviewers: Missing[builtins.list[str]] = UNSET,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]: ...
 
     def remove_requested_reviewers(
@@ -1826,7 +1864,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberRequestedReviewersDeleteBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/review-requests#remove-requested-reviewers-from-a-pull-request"""
 
@@ -1844,14 +1882,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberRequestedReviewersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1882,8 +1920,8 @@ class PullsClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        reviewers: list[str],
-        team_reviewers: Missing[list[str]] = UNSET,
+        reviewers: builtins.list[str],
+        team_reviewers: Missing[builtins.list[str]] = UNSET,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]: ...
 
     async def async_remove_requested_reviewers(
@@ -1896,7 +1934,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberRequestedReviewersDeleteBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestSimple, PullRequestSimpleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/review-requests#remove-requested-reviewers-from-a-pull-request"""
 
@@ -1914,14 +1952,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberRequestedReviewersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -1941,8 +1979,12 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestReview], list[PullRequestReviewType]]:
+    ) -> Response[
+        builtins.list[PullRequestReview], builtins.list[PullRequestReviewType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#list-reviews-for-a-pull-request"""
+
+        import builtins
 
         from ..models import PullRequestReview
 
@@ -1955,12 +1997,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestReview],
+            response_model=builtins.list[PullRequestReview],
         )
 
     async def async_list_reviews(
@@ -1972,8 +2014,12 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestReview], list[PullRequestReviewType]]:
+    ) -> Response[
+        builtins.list[PullRequestReview], builtins.list[PullRequestReviewType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#list-reviews-for-a-pull-request"""
+
+        import builtins
 
         from ..models import PullRequestReview
 
@@ -1986,12 +2032,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestReview],
+            response_model=builtins.list[PullRequestReview],
         )
 
     @overload
@@ -2018,7 +2064,9 @@ class PullsClient:
         body: Missing[str] = UNSET,
         event: Missing[Literal["APPROVE", "REQUEST_CHANGES", "COMMENT"]] = UNSET,
         comments: Missing[
-            list[ReposOwnerRepoPullsPullNumberReviewsPostBodyPropCommentsItemsType]
+            builtins.list[
+                ReposOwnerRepoPullsPullNumberReviewsPostBodyPropCommentsItemsType
+            ]
         ] = UNSET,
     ) -> Response[PullRequestReview, PullRequestReviewType]: ...
 
@@ -2030,7 +2078,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberReviewsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#create-a-review-for-a-pull-request"""
 
@@ -2049,14 +2097,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2092,7 +2140,9 @@ class PullsClient:
         body: Missing[str] = UNSET,
         event: Missing[Literal["APPROVE", "REQUEST_CHANGES", "COMMENT"]] = UNSET,
         comments: Missing[
-            list[ReposOwnerRepoPullsPullNumberReviewsPostBodyPropCommentsItemsType]
+            builtins.list[
+                ReposOwnerRepoPullsPullNumberReviewsPostBodyPropCommentsItemsType
+            ]
         ] = UNSET,
     ) -> Response[PullRequestReview, PullRequestReviewType]: ...
 
@@ -2104,7 +2154,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberReviewsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#create-a-review-for-a-pull-request"""
 
@@ -2123,14 +2173,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2159,7 +2209,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2186,7 +2236,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2230,7 +2280,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#update-a-review-for-a-pull-request"""
 
@@ -2248,14 +2298,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2300,7 +2350,7 @@ class PullsClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#update-a-review-for-a-pull-request"""
 
@@ -2318,14 +2368,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2353,7 +2403,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2381,7 +2431,7 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2402,8 +2452,10 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ReviewComment], list[ReviewCommentType]]:
+    ) -> Response[builtins.list[ReviewComment], builtins.list[ReviewCommentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#list-comments-for-a-pull-request-review"""
+
+        import builtins
 
         from ..models import BasicError, ReviewComment
 
@@ -2416,12 +2468,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ReviewComment],
+            response_model=builtins.list[ReviewComment],
             error_models={
                 "404": BasicError,
             },
@@ -2437,8 +2489,10 @@ class PullsClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ReviewComment], list[ReviewCommentType]]:
+    ) -> Response[builtins.list[ReviewComment], builtins.list[ReviewCommentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#list-comments-for-a-pull-request-review"""
+
+        import builtins
 
         from ..models import BasicError, ReviewComment
 
@@ -2451,12 +2505,12 @@ class PullsClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ReviewComment],
+            response_model=builtins.list[ReviewComment],
             error_models={
                 "404": BasicError,
             },
@@ -2499,7 +2553,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#dismiss-a-review-for-a-pull-request"""
 
@@ -2520,14 +2574,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2576,7 +2630,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#dismiss-a-review-for-a-pull-request"""
 
@@ -2597,14 +2651,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsReviewIdDismissalsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2653,7 +2707,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberReviewsReviewIdEventsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#submit-a-review-for-a-pull-request"""
 
@@ -2672,14 +2726,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsReviewIdEventsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2729,7 +2783,7 @@ class PullsClient:
         data: Missing[
             ReposOwnerRepoPullsPullNumberReviewsReviewIdEventsPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PullRequestReview, PullRequestReviewType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pulls/reviews#submit-a-review-for-a-pull-request"""
 
@@ -2748,14 +2802,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoPullsPullNumberReviewsReviewIdEventsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2809,7 +2863,7 @@ class PullsClient:
         data: Missing[
             Union[ReposOwnerRepoPullsPullNumberUpdateBranchPutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoPullsPullNumberUpdateBranchPutResponse202,
         ReposOwnerRepoPullsPullNumberUpdateBranchPutResponse202Type,
@@ -2833,14 +2887,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoPullsPullNumberUpdateBranchPutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -2893,7 +2947,7 @@ class PullsClient:
         data: Missing[
             Union[ReposOwnerRepoPullsPullNumberUpdateBranchPutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoPullsPullNumberUpdateBranchPutResponse202,
         ReposOwnerRepoPullsPullNumberUpdateBranchPutResponse202Type,
@@ -2917,14 +2971,14 @@ class PullsClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoPullsPullNumberUpdateBranchPutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),

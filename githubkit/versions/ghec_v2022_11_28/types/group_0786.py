@@ -9,27 +9,102 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0002 import SimpleUserType
-from .group_0444 import EnterpriseWebhooksType
-from .group_0445 import SimpleInstallationType
-from .group_0446 import OrganizationSimpleWebhooksType
-from .group_0447 import RepositoryWebhooksType
-from .group_0491 import WebhooksAlertType
+from .group_0093 import (
+    RepositoryRuleCreationType,
+    RepositoryRuleDeletionType,
+    RepositoryRuleNonFastForwardType,
+    RepositoryRuleOneof15Type,
+    RepositoryRuleOneof17Type,
+    RepositoryRuleRequiredSignaturesType,
+)
+from .group_0094 import RepositoryRuleUpdateType
+from .group_0096 import (
+    RepositoryRuleOneof16Type,
+    RepositoryRuleRequiredLinearHistoryType,
+)
+from .group_0097 import RepositoryRuleMergeQueueType
+from .group_0099 import RepositoryRuleRequiredDeploymentsType
+from .group_0102 import RepositoryRulePullRequestType
+from .group_0104 import RepositoryRuleRequiredStatusChecksType
+from .group_0106 import RepositoryRuleCommitMessagePatternType
+from .group_0108 import RepositoryRuleCommitAuthorEmailPatternType
+from .group_0110 import RepositoryRuleCommitterEmailPatternType
+from .group_0112 import RepositoryRuleBranchNamePatternType
+from .group_0114 import RepositoryRuleTagNamePatternType
+from .group_0117 import RepositoryRuleWorkflowsType
+from .group_0119 import RepositoryRuleCodeScanningType
+from .group_0121 import RepositoryRuleOneof18Type
+from .group_0787 import (
+    WebhookRepositoryRulesetEditedPropChangesPropRulesPropUpdatedItemsType,
+)
 
 
-class WebhookRepositoryVulnerabilityAlertReopenType(TypedDict):
-    """repository_vulnerability_alert reopen event"""
+class WebhookRepositoryRulesetEditedPropChangesPropRulesType(TypedDict):
+    """WebhookRepositoryRulesetEditedPropChangesPropRules"""
 
-    action: Literal["reopen"]
-    alert: WebhooksAlertType
-    enterprise: NotRequired[EnterpriseWebhooksType]
-    installation: NotRequired[SimpleInstallationType]
-    organization: NotRequired[OrganizationSimpleWebhooksType]
-    repository: RepositoryWebhooksType
-    sender: SimpleUserType
+    added: NotRequired[
+        builtins.list[
+            Union[
+                RepositoryRuleCreationType,
+                RepositoryRuleUpdateType,
+                RepositoryRuleDeletionType,
+                RepositoryRuleRequiredLinearHistoryType,
+                RepositoryRuleMergeQueueType,
+                RepositoryRuleRequiredDeploymentsType,
+                RepositoryRuleRequiredSignaturesType,
+                RepositoryRulePullRequestType,
+                RepositoryRuleRequiredStatusChecksType,
+                RepositoryRuleNonFastForwardType,
+                RepositoryRuleCommitMessagePatternType,
+                RepositoryRuleCommitAuthorEmailPatternType,
+                RepositoryRuleCommitterEmailPatternType,
+                RepositoryRuleBranchNamePatternType,
+                RepositoryRuleTagNamePatternType,
+                RepositoryRuleOneof15Type,
+                RepositoryRuleOneof16Type,
+                RepositoryRuleOneof17Type,
+                RepositoryRuleOneof18Type,
+                RepositoryRuleWorkflowsType,
+                RepositoryRuleCodeScanningType,
+            ]
+        ]
+    ]
+    deleted: NotRequired[
+        builtins.list[
+            Union[
+                RepositoryRuleCreationType,
+                RepositoryRuleUpdateType,
+                RepositoryRuleDeletionType,
+                RepositoryRuleRequiredLinearHistoryType,
+                RepositoryRuleMergeQueueType,
+                RepositoryRuleRequiredDeploymentsType,
+                RepositoryRuleRequiredSignaturesType,
+                RepositoryRulePullRequestType,
+                RepositoryRuleRequiredStatusChecksType,
+                RepositoryRuleNonFastForwardType,
+                RepositoryRuleCommitMessagePatternType,
+                RepositoryRuleCommitAuthorEmailPatternType,
+                RepositoryRuleCommitterEmailPatternType,
+                RepositoryRuleBranchNamePatternType,
+                RepositoryRuleTagNamePatternType,
+                RepositoryRuleOneof15Type,
+                RepositoryRuleOneof16Type,
+                RepositoryRuleOneof17Type,
+                RepositoryRuleOneof18Type,
+                RepositoryRuleWorkflowsType,
+                RepositoryRuleCodeScanningType,
+            ]
+        ]
+    ]
+    updated: NotRequired[
+        builtins.list[
+            WebhookRepositoryRulesetEditedPropChangesPropRulesPropUpdatedItemsType
+        ]
+    ]
 
 
-__all__ = ("WebhookRepositoryVulnerabilityAlertReopenType",)
+__all__ = ("WebhookRepositoryRulesetEditedPropChangesPropRulesType",)

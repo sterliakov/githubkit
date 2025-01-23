@@ -9,35 +9,21 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Literal
 
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
-from githubkit.typing import Missing
-from githubkit.utils import UNSET
 
 
-class ReposOwnerRepoMilestonesMilestoneNumberPatchBody(GitHubModel):
-    """ReposOwnerRepoMilestonesMilestoneNumberPatchBody"""
+class ReposOwnerRepoImportLfsPatchBody(GitHubModel):
+    """ReposOwnerRepoImportLfsPatchBody"""
 
-    title: Missing[str] = Field(
-        default=UNSET, description="The title of the milestone."
-    )
-    state: Missing[Literal["open", "closed"]] = Field(
-        default=UNSET,
-        description="The state of the milestone. Either `open` or `closed`.",
-    )
-    description: Missing[str] = Field(
-        default=UNSET, description="A description of the milestone."
-    )
-    due_on: Missing[datetime] = Field(
-        default=UNSET,
-        description="The milestone due date. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.",
+    use_lfs: Literal["opt_in", "opt_out"] = Field(
+        description="Whether to store large files during the import. `opt_in` means large files will be stored using Git LFS. `opt_out` means large files will be removed during the import."
     )
 
 
-model_rebuild(ReposOwnerRepoMilestonesMilestoneNumberPatchBody)
+model_rebuild(ReposOwnerRepoImportLfsPatchBody)
 
-__all__ = ("ReposOwnerRepoMilestonesMilestoneNumberPatchBody",)
+__all__ = ("ReposOwnerRepoImportLfsPatchBody",)

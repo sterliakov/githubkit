@@ -9,14 +9,34 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 
-class ReposOwnerRepoIssuesIssueNumberSubIssuesPostBodyType(TypedDict):
-    """ReposOwnerRepoIssuesIssueNumberSubIssuesPostBody"""
+class ReposOwnerRepoIssuesPostBodyType(TypedDict):
+    """ReposOwnerRepoIssuesPostBody"""
 
-    sub_issue_id: int
-    replace_parent: NotRequired[bool]
+    title: Union[str, int]
+    body: NotRequired[str]
+    assignee: NotRequired[Union[str, None]]
+    milestone: NotRequired[Union[str, int, None]]
+    labels: NotRequired[
+        builtins.list[Union[str, ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type]]
+    ]
+    assignees: NotRequired[builtins.list[str]]
 
 
-__all__ = ("ReposOwnerRepoIssuesIssueNumberSubIssuesPostBodyType",)
+class ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type(TypedDict):
+    """ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1"""
+
+    id: NotRequired[int]
+    name: NotRequired[str]
+    description: NotRequired[Union[str, None]]
+    color: NotRequired[Union[str, None]]
+
+
+__all__ = (
+    "ReposOwnerRepoIssuesPostBodyPropLabelsItemsOneof1Type",
+    "ReposOwnerRepoIssuesPostBodyType",
+)

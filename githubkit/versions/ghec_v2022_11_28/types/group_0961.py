@@ -9,11 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0065 import CopilotSeatDetailsType
 
 
-class OrgsOrgOutsideCollaboratorsUsernamePutResponse202Type(TypedDict):
-    """OrgsOrgOutsideCollaboratorsUsernamePutResponse202"""
+class OrgsOrgCopilotBillingSeatsGetResponse200Type(TypedDict):
+    """OrgsOrgCopilotBillingSeatsGetResponse200"""
+
+    total_seats: NotRequired[int]
+    seats: NotRequired[builtins.list[CopilotSeatDetailsType]]
 
 
-__all__ = ("OrgsOrgOutsideCollaboratorsUsernamePutResponse202Type",)
+__all__ = ("OrgsOrgCopilotBillingSeatsGetResponse200Type",)

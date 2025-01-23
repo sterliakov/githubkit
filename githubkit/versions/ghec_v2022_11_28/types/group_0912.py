@@ -9,13 +9,17 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+import builtins
+from typing_extensions import NotRequired, TypedDict
+
+from .group_0156 import OrganizationCustomRepositoryRoleType
 
 
-class OrgsOrgActionsRunnersRunnerIdLabelsPostBodyType(TypedDict):
-    """OrgsOrgActionsRunnersRunnerIdLabelsPostBody"""
+class OrganizationsOrganizationIdCustomRolesGetResponse200Type(TypedDict):
+    """OrganizationsOrganizationIdCustomRolesGetResponse200"""
 
-    labels: list[str]
+    total_count: NotRequired[int]
+    custom_roles: NotRequired[builtins.list[OrganizationCustomRepositoryRoleType]]
 
 
-__all__ = ("OrgsOrgActionsRunnersRunnerIdLabelsPostBodyType",)
+__all__ = ("OrganizationsOrganizationIdCustomRolesGetResponse200Type",)

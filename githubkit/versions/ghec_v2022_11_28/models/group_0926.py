@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 
 from pydantic import Field
@@ -18,20 +19,39 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody(GitHubModel):
-    """OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody"""
+class OrgsOrgActionsRunnerGroupsPostBody(GitHubModel):
+    """OrgsOrgActionsRunnerGroupsPostBody"""
 
-    scope: Literal[
-        "all", "all_without_configurations", "public", "private_or_internal", "selected"
-    ] = Field(
-        description="The type of repositories to attach the configuration to. `selected` means the configuration will be attached to only the repositories specified by `selected_repository_ids`"
-    )
-    selected_repository_ids: Missing[list[int]] = Field(
+    name: str = Field(description="Name of the runner group.")
+    visibility: Missing[Literal["selected", "all", "private"]] = Field(
         default=UNSET,
-        description="An array of repository IDs to attach the configuration to. You can only provide a list of repository ids when the `scope` is set to `selected`.",
+        description="Visibility of a runner group. You can select all repositories, select individual repositories, or limit access to private repositories.",
+    )
+    selected_repository_ids: Missing[builtins.list[int]] = Field(
+        default=UNSET,
+        description="List of repository IDs that can access the runner group.",
+    )
+    runners: Missing[builtins.list[int]] = Field(
+        default=UNSET, description="List of runner IDs to add to the runner group."
+    )
+    allows_public_repositories: Missing[bool] = Field(
+        default=UNSET,
+        description="Whether the runner group can be used by `public` repositories.",
+    )
+    restricted_to_workflows: Missing[bool] = Field(
+        default=UNSET,
+        description="If `true`, the runner group will be restricted to running only the workflows specified in the `selected_workflows` array.",
+    )
+    selected_workflows: Missing[builtins.list[str]] = Field(
+        default=UNSET,
+        description="List of workflows the runner group should be allowed to run. This setting will be ignored unless `restricted_to_workflows` is set to `true`.",
+    )
+    network_configuration_id: Missing[str] = Field(
+        default=UNSET,
+        description="The identifier of a hosted compute network configuration.",
     )
 
 
-model_rebuild(OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody)
+model_rebuild(OrgsOrgActionsRunnerGroupsPostBody)
 
-__all__ = ("OrgsOrgCodeSecurityConfigurationsConfigurationIdAttachPostBody",)
+__all__ = ("OrgsOrgActionsRunnerGroupsPostBody",)

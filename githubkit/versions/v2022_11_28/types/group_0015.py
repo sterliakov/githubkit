@@ -14,7 +14,7 @@ from typing import Union
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0014 import EnterpriseType
+from .group_0007 import EnterpriseType
 
 
 class IntegrationInstallationRequestType(TypedDict):

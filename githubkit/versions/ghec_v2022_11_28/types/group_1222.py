@@ -11,15 +11,13 @@ from __future__ import annotations
 
 from typing_extensions import NotRequired, TypedDict
 
-from .group_0019 import RepositoryType
+
+class TeamsTeamIdDiscussionsPostBodyType(TypedDict):
+    """TeamsTeamIdDiscussionsPostBody"""
+
+    title: str
+    body: str
+    private: NotRequired[bool]
 
 
-class UserInstallationsInstallationIdRepositoriesGetResponse200Type(TypedDict):
-    """UserInstallationsInstallationIdRepositoriesGetResponse200"""
-
-    total_count: int
-    repository_selection: NotRequired[str]
-    repositories: list[RepositoryType]
-
-
-__all__ = ("UserInstallationsInstallationIdRepositoriesGetResponse200Type",)
+__all__ = ("TeamsTeamIdDiscussionsPostBodyType",)

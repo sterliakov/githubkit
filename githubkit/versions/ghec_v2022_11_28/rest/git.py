@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal
 
     from githubkit import GitHubCore
@@ -92,7 +94,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitBlobsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ShortBlob, ShortBlobType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/blobs#create-a-blob"""
 
@@ -114,12 +116,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitBlobsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -162,7 +164,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitBlobsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ShortBlob, ShortBlobType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/blobs#create-a-blob"""
 
@@ -184,12 +186,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitBlobsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -219,7 +221,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -248,7 +250,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -281,7 +283,7 @@ class GitClient:
         headers: Optional[Mapping[str, str]] = None,
         message: str,
         tree: str,
-        parents: Missing[list[str]] = UNSET,
+        parents: Missing[builtins.list[str]] = UNSET,
         author: Missing[ReposOwnerRepoGitCommitsPostBodyPropAuthorType] = UNSET,
         committer: Missing[ReposOwnerRepoGitCommitsPostBodyPropCommitterType] = UNSET,
         signature: Missing[str] = UNSET,
@@ -294,7 +296,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitCommitsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitCommit, GitCommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/commits#create-a-commit"""
 
@@ -313,12 +315,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitCommitsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -351,7 +353,7 @@ class GitClient:
         headers: Optional[Mapping[str, str]] = None,
         message: str,
         tree: str,
-        parents: Missing[list[str]] = UNSET,
+        parents: Missing[builtins.list[str]] = UNSET,
         author: Missing[ReposOwnerRepoGitCommitsPostBodyPropAuthorType] = UNSET,
         committer: Missing[ReposOwnerRepoGitCommitsPostBodyPropCommitterType] = UNSET,
         signature: Missing[str] = UNSET,
@@ -364,7 +366,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitCommitsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitCommit, GitCommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/commits#create-a-commit"""
 
@@ -383,12 +385,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitCommitsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -417,7 +419,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -444,7 +446,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -462,8 +464,10 @@ class GitClient:
         ref: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GitRef], list[GitRefType]]:
+    ) -> Response[builtins.list[GitRef], builtins.list[GitRefType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/refs#list-matching-references"""
+
+        import builtins
 
         from ..models import BasicError, GitRef
 
@@ -471,11 +475,11 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[GitRef],
+            response_model=builtins.list[GitRef],
             error_models={
                 "409": BasicError,
             },
@@ -488,8 +492,10 @@ class GitClient:
         ref: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[GitRef], list[GitRefType]]:
+    ) -> Response[builtins.list[GitRef], builtins.list[GitRefType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/refs#list-matching-references"""
+
+        import builtins
 
         from ..models import BasicError, GitRef
 
@@ -497,11 +503,11 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[GitRef],
+            response_model=builtins.list[GitRef],
             error_models={
                 "409": BasicError,
             },
@@ -523,7 +529,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -550,7 +556,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -590,7 +596,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitRefsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitRef, GitRefType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/refs#create-a-reference"""
 
@@ -609,12 +615,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitRefsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -655,7 +661,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitRefsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitRef, GitRefType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/refs#create-a-reference"""
 
@@ -674,12 +680,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitRefsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -707,7 +713,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -733,7 +739,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -775,7 +781,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitRefsRefPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitRef, GitRefType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/refs#update-a-reference"""
 
@@ -794,12 +800,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitRefsRefPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -843,7 +849,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitRefsRefPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitRef, GitRefType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/refs#update-a-reference"""
 
@@ -862,12 +868,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitRefsRefPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -911,7 +917,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitTagsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitTag, GitTagType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/tags#create-a-tag-object"""
 
@@ -930,12 +936,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitTagsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -979,7 +985,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitTagsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitTag, GitTagType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/tags#create-a-tag-object"""
 
@@ -998,12 +1004,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitTagsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1031,7 +1037,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1058,7 +1064,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1087,7 +1093,7 @@ class GitClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        tree: list[ReposOwnerRepoGitTreesPostBodyPropTreeItemsType],
+        tree: builtins.list[ReposOwnerRepoGitTreesPostBodyPropTreeItemsType],
         base_tree: Missing[str] = UNSET,
     ) -> Response[GitTree, GitTreeType]: ...
 
@@ -1098,7 +1104,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitTreesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitTree, GitTreeType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/trees#create-a-tree"""
 
@@ -1117,12 +1123,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitTreesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1154,7 +1160,7 @@ class GitClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        tree: list[ReposOwnerRepoGitTreesPostBodyPropTreeItemsType],
+        tree: builtins.list[ReposOwnerRepoGitTreesPostBodyPropTreeItemsType],
         base_tree: Missing[str] = UNSET,
     ) -> Response[GitTree, GitTreeType]: ...
 
@@ -1165,7 +1171,7 @@ class GitClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoGitTreesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[GitTree, GitTreeType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/git/trees#create-a-tree"""
 
@@ -1184,12 +1190,12 @@ class GitClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoGitTreesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1224,7 +1230,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1258,7 +1264,7 @@ class GitClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),

@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Union
 
@@ -36,7 +37,7 @@ class EventPropPayload(GitHubModel):
         title="Issue Comment",
         description="Comments provide a way for people to collaborate on an issue.",
     )
-    pages: Missing[list[EventPropPayloadPropPagesItems]] = Field(default=UNSET)
+    pages: Missing[builtins.list[EventPropPayloadPropPagesItems]] = Field(default=UNSET)
 
 
 class EventPropPayloadPropPagesItems(GitHubModel):

@@ -9,28 +9,33 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Literal
 
 from pydantic import Field
 
-from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.compat import PYDANTIC_V2, GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 
-class MarkdownPostBody(GitHubModel):
-    """MarkdownPostBody"""
+class EnterprisesEnterpriseNetworkConfigurationsPostBody(GitHubModel):
+    """EnterprisesEnterpriseNetworkConfigurationsPostBody"""
 
-    text: str = Field(description="The Markdown text to render in HTML.")
-    mode: Missing[Literal["markdown", "gfm"]] = Field(
-        default=UNSET, description="The rendering mode."
+    name: str = Field(
+        description="Name of the network configuration. Must be between 1 and 100 characters and may only contain upper and lowercase letters a-z, numbers 0-9, `.`, `-`, and `_`."
     )
-    context: Missing[str] = Field(
+    compute_service: Missing[Literal["none", "actions"]] = Field(
         default=UNSET,
-        description="The repository context to use when creating references in `gfm` mode.  For example, setting `context` to `octo-org/octo-repo` will change the text `#42` into an HTML link to issue 42 in the `octo-org/octo-repo` repository.",
+        description="The hosted compute service to use for the network configuration.",
+    )
+    network_settings_ids: builtins.list[str] = Field(
+        max_length=1 if PYDANTIC_V2 else None,
+        min_length=1 if PYDANTIC_V2 else None,
+        description="The identifier of the network settings to use for the network configuration. Exactly one network settings must be specified.",
     )
 
 
-model_rebuild(MarkdownPostBody)
+model_rebuild(EnterprisesEnterpriseNetworkConfigurationsPostBody)
 
-__all__ = ("MarkdownPostBody",)
+__all__ = ("EnterprisesEnterpriseNetworkConfigurationsPostBody",)

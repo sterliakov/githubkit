@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from typing import Literal
 
     from githubkit import GitHubCore
@@ -78,6 +80,7 @@ class DependabotClient:
         severity: Missing[str] = UNSET,
         ecosystem: Missing[str] = UNSET,
         package: Missing[str] = UNSET,
+        epss_percentage: Missing[str] = UNSET,
         scope: Missing[Literal["development", "runtime"]] = UNSET,
         sort: Missing[Literal["created", "updated", "epss_percentage"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
@@ -88,9 +91,12 @@ class DependabotClient:
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[DependabotAlertWithRepository], list[DependabotAlertWithRepositoryType]
+        builtins.list[DependabotAlertWithRepository],
+        builtins.list[DependabotAlertWithRepositoryType],
     ]:
         """See also: https://docs.github.com/rest/dependabot/alerts#list-dependabot-alerts-for-an-enterprise"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -105,6 +111,7 @@ class DependabotClient:
             "severity": severity,
             "ecosystem": ecosystem,
             "package": package,
+            "epss_percentage": epss_percentage,
             "scope": scope,
             "sort": sort,
             "direction": direction,
@@ -117,12 +124,12 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependabotAlertWithRepository],
+            response_model=builtins.list[DependabotAlertWithRepository],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -138,6 +145,7 @@ class DependabotClient:
         severity: Missing[str] = UNSET,
         ecosystem: Missing[str] = UNSET,
         package: Missing[str] = UNSET,
+        epss_percentage: Missing[str] = UNSET,
         scope: Missing[Literal["development", "runtime"]] = UNSET,
         sort: Missing[Literal["created", "updated", "epss_percentage"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
@@ -148,9 +156,12 @@ class DependabotClient:
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[DependabotAlertWithRepository], list[DependabotAlertWithRepositoryType]
+        builtins.list[DependabotAlertWithRepository],
+        builtins.list[DependabotAlertWithRepositoryType],
     ]:
         """See also: https://docs.github.com/rest/dependabot/alerts#list-dependabot-alerts-for-an-enterprise"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -165,6 +176,7 @@ class DependabotClient:
             "severity": severity,
             "ecosystem": ecosystem,
             "package": package,
+            "epss_percentage": epss_percentage,
             "scope": scope,
             "sort": sort,
             "direction": direction,
@@ -177,12 +189,12 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependabotAlertWithRepository],
+            response_model=builtins.list[DependabotAlertWithRepository],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -198,6 +210,7 @@ class DependabotClient:
         severity: Missing[str] = UNSET,
         ecosystem: Missing[str] = UNSET,
         package: Missing[str] = UNSET,
+        epss_percentage: Missing[str] = UNSET,
         scope: Missing[Literal["development", "runtime"]] = UNSET,
         sort: Missing[Literal["created", "updated", "epss_percentage"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
@@ -208,9 +221,12 @@ class DependabotClient:
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[DependabotAlertWithRepository], list[DependabotAlertWithRepositoryType]
+        builtins.list[DependabotAlertWithRepository],
+        builtins.list[DependabotAlertWithRepositoryType],
     ]:
         """See also: https://docs.github.com/rest/dependabot/alerts#list-dependabot-alerts-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -225,6 +241,7 @@ class DependabotClient:
             "severity": severity,
             "ecosystem": ecosystem,
             "package": package,
+            "epss_percentage": epss_percentage,
             "scope": scope,
             "sort": sort,
             "direction": direction,
@@ -237,12 +254,12 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependabotAlertWithRepository],
+            response_model=builtins.list[DependabotAlertWithRepository],
             error_models={
                 "400": BasicError,
                 "403": BasicError,
@@ -259,6 +276,7 @@ class DependabotClient:
         severity: Missing[str] = UNSET,
         ecosystem: Missing[str] = UNSET,
         package: Missing[str] = UNSET,
+        epss_percentage: Missing[str] = UNSET,
         scope: Missing[Literal["development", "runtime"]] = UNSET,
         sort: Missing[Literal["created", "updated", "epss_percentage"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
@@ -269,9 +287,12 @@ class DependabotClient:
         per_page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[DependabotAlertWithRepository], list[DependabotAlertWithRepositoryType]
+        builtins.list[DependabotAlertWithRepository],
+        builtins.list[DependabotAlertWithRepositoryType],
     ]:
         """See also: https://docs.github.com/rest/dependabot/alerts#list-dependabot-alerts-for-an-organization"""
+
+        import builtins
 
         from ..models import (
             BasicError,
@@ -286,6 +307,7 @@ class DependabotClient:
             "severity": severity,
             "ecosystem": ecosystem,
             "package": package,
+            "epss_percentage": epss_percentage,
             "scope": scope,
             "sort": sort,
             "direction": direction,
@@ -298,12 +320,12 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependabotAlertWithRepository],
+            response_model=builtins.list[DependabotAlertWithRepository],
             error_models={
                 "400": BasicError,
                 "403": BasicError,
@@ -336,7 +358,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -368,7 +390,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -390,7 +412,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -411,7 +433,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -433,7 +455,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -455,7 +477,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -483,7 +505,7 @@ class DependabotClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[str]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[str]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     def create_or_update_org_secret(
@@ -493,7 +515,7 @@ class DependabotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgDependabotSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/dependabot/secrets#create-or-update-an-organization-secret"""
 
@@ -507,12 +529,12 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgDependabotSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -541,7 +563,7 @@ class DependabotClient:
         encrypted_value: Missing[str] = UNSET,
         key_id: Missing[str] = UNSET,
         visibility: Literal["all", "private", "selected"],
-        selected_repository_ids: Missing[list[str]] = UNSET,
+        selected_repository_ids: Missing[builtins.list[str]] = UNSET,
     ) -> Response[EmptyObject, EmptyObjectType]: ...
 
     async def async_create_or_update_org_secret(
@@ -551,7 +573,7 @@ class DependabotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgDependabotSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/dependabot/secrets#create-or-update-an-organization-secret"""
 
@@ -565,12 +587,12 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgDependabotSecretsSecretNamePutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -591,7 +613,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -610,7 +632,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -643,7 +665,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -678,7 +700,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -704,7 +726,7 @@ class DependabotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     def set_selected_repos_for_org_secret(
@@ -716,7 +738,7 @@ class DependabotClient:
         data: Missing[
             OrgsOrgDependabotSecretsSecretNameRepositoriesPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret"""
 
@@ -730,14 +752,14 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgDependabotSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -762,7 +784,7 @@ class DependabotClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        selected_repository_ids: list[int],
+        selected_repository_ids: builtins.list[int],
     ) -> Response: ...
 
     async def async_set_selected_repos_for_org_secret(
@@ -774,7 +796,7 @@ class DependabotClient:
         data: Missing[
             OrgsOrgDependabotSecretsSecretNameRepositoriesPutBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret"""
 
@@ -788,14 +810,14 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 OrgsOrgDependabotSecretsSecretNameRepositoriesPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -818,7 +840,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -841,7 +863,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -864,7 +886,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -887,7 +909,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -904,6 +926,7 @@ class DependabotClient:
         ecosystem: Missing[str] = UNSET,
         package: Missing[str] = UNSET,
         manifest: Missing[str] = UNSET,
+        epss_percentage: Missing[str] = UNSET,
         scope: Missing[Literal["development", "runtime"]] = UNSET,
         sort: Missing[Literal["created", "updated", "epss_percentage"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
@@ -914,8 +937,10 @@ class DependabotClient:
         first: Missing[int] = UNSET,
         last: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DependabotAlert], list[DependabotAlertType]]:
+    ) -> Response[builtins.list[DependabotAlert], builtins.list[DependabotAlertType]]:
         """See also: https://docs.github.com/rest/dependabot/alerts#list-dependabot-alerts-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, DependabotAlert, ValidationErrorSimple
 
@@ -927,6 +952,7 @@ class DependabotClient:
             "ecosystem": ecosystem,
             "package": package,
             "manifest": manifest,
+            "epss_percentage": epss_percentage,
             "scope": scope,
             "sort": sort,
             "direction": direction,
@@ -940,12 +966,12 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependabotAlert],
+            response_model=builtins.list[DependabotAlert],
             error_models={
                 "400": BasicError,
                 "403": BasicError,
@@ -964,6 +990,7 @@ class DependabotClient:
         ecosystem: Missing[str] = UNSET,
         package: Missing[str] = UNSET,
         manifest: Missing[str] = UNSET,
+        epss_percentage: Missing[str] = UNSET,
         scope: Missing[Literal["development", "runtime"]] = UNSET,
         sort: Missing[Literal["created", "updated", "epss_percentage"]] = UNSET,
         direction: Missing[Literal["asc", "desc"]] = UNSET,
@@ -974,8 +1001,10 @@ class DependabotClient:
         first: Missing[int] = UNSET,
         last: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DependabotAlert], list[DependabotAlertType]]:
+    ) -> Response[builtins.list[DependabotAlert], builtins.list[DependabotAlertType]]:
         """See also: https://docs.github.com/rest/dependabot/alerts#list-dependabot-alerts-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, DependabotAlert, ValidationErrorSimple
 
@@ -987,6 +1016,7 @@ class DependabotClient:
             "ecosystem": ecosystem,
             "package": package,
             "manifest": manifest,
+            "epss_percentage": epss_percentage,
             "scope": scope,
             "sort": sort,
             "direction": direction,
@@ -1000,12 +1030,12 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DependabotAlert],
+            response_model=builtins.list[DependabotAlert],
             error_models={
                 "400": BasicError,
                 "403": BasicError,
@@ -1030,7 +1060,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1057,7 +1087,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1109,7 +1139,7 @@ class DependabotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDependabotAlertsAlertNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DependabotAlert, DependabotAlertType]:
         """See also: https://docs.github.com/rest/dependabot/alerts#update-a-dependabot-alert"""
 
@@ -1128,14 +1158,14 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoDependabotAlertsAlertNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1191,7 +1221,7 @@ class DependabotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDependabotAlertsAlertNumberPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DependabotAlert, DependabotAlertType]:
         """See also: https://docs.github.com/rest/dependabot/alerts#update-a-dependabot-alert"""
 
@@ -1210,14 +1240,14 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoDependabotAlertsAlertNumberPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -1257,7 +1287,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1290,7 +1320,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -1313,7 +1343,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1335,7 +1365,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1358,7 +1388,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1381,7 +1411,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1420,7 +1450,7 @@ class DependabotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDependabotSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/dependabot/secrets#create-or-update-a-repository-secret"""
 
@@ -1437,14 +1467,14 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoDependabotSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1484,7 +1514,7 @@ class DependabotClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDependabotSecretsSecretNamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[EmptyObject, EmptyObjectType]:
         """See also: https://docs.github.com/rest/dependabot/secrets#create-or-update-a-repository-secret"""
 
@@ -1501,14 +1531,14 @@ class DependabotClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoDependabotSecretsSecretNamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1530,7 +1560,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1550,7 +1580,7 @@ class DependabotClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),

@@ -19,7 +19,7 @@ from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
 from .group_0002 import SimpleUser
-from .group_0008 import Integration
+from .group_0009 import Integration
 from .group_0039 import ReactionRollup
 
 

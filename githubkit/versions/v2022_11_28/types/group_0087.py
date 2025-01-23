@@ -9,31 +9,62 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from datetime import datetime
+import builtins
+from datetime import date, datetime
 from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0056 import MinimalRepositoryType
+from .group_0059 import OrganizationSimpleType
+from .group_0086 import TeamType
 
 
-class PackageType(TypedDict):
-    """Package
+class CopilotSeatDetailsType(TypedDict):
+    """Copilot Business Seat Detail
 
-    A software package
+    Information about a Copilot Business seat assignment for a user, team, or
+    organization.
+    """
+
+    assignee: SimpleUserType
+    organization: NotRequired[Union[None, OrganizationSimpleType]]
+    assigning_team: NotRequired[Union[TeamType, EnterpriseTeamType, None]]
+    pending_cancellation_date: NotRequired[Union[date, None]]
+    last_activity_at: NotRequired[Union[datetime, None]]
+    last_activity_editor: NotRequired[Union[str, None]]
+    created_at: datetime
+    updated_at: NotRequired[datetime]
+    plan_type: NotRequired[Literal["business", "enterprise", "unknown"]]
+
+
+class EnterpriseTeamType(TypedDict):
+    """Enterprise Team
+
+    Group of enterprise owners and/or members
     """
 
     id: int
     name: str
-    package_type: Literal["npm", "maven", "rubygems", "docker", "nuget", "container"]
+    slug: str
     url: str
+    sync_to_organizations: str
+    group_id: NotRequired[Union[str, None]]
+    group_name: NotRequired[Union[str, None]]
     html_url: str
-    version_count: int
-    visibility: Literal["private", "public"]
-    owner: NotRequired[Union[None, SimpleUserType]]
-    repository: NotRequired[Union[None, MinimalRepositoryType]]
+    members_url: str
     created_at: datetime
     updated_at: datetime
 
 
-__all__ = ("PackageType",)
+class OrgsOrgCopilotBillingSeatsGetResponse200Type(TypedDict):
+    """OrgsOrgCopilotBillingSeatsGetResponse200"""
+
+    total_seats: NotRequired[int]
+    seats: NotRequired[builtins.list[CopilotSeatDetailsType]]
+
+
+__all__ = (
+    "CopilotSeatDetailsType",
+    "EnterpriseTeamType",
+    "OrgsOrgCopilotBillingSeatsGetResponse200Type",
+)

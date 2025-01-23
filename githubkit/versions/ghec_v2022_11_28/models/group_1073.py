@@ -9,20 +9,25 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
 
-from .group_0156 import CodespaceMachine
+
+class ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBody(GitHubModel):
+    """ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBody
+
+    Examples:
+        {'apps': ['my-app']}
+    """
+
+    apps: builtins.list[str] = Field(
+        description="The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items."
+    )
 
 
-class ReposOwnerRepoCodespacesMachinesGetResponse200(GitHubModel):
-    """ReposOwnerRepoCodespacesMachinesGetResponse200"""
+model_rebuild(ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBody)
 
-    total_count: int = Field()
-    machines: list[CodespaceMachine] = Field()
-
-
-model_rebuild(ReposOwnerRepoCodespacesMachinesGetResponse200)
-
-__all__ = ("ReposOwnerRepoCodespacesMachinesGetResponse200",)
+__all__ = ("ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBody",)

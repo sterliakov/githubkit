@@ -9,87 +9,68 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+from datetime import datetime
+from typing import Annotated, Literal, Union
 
 from pydantic import Field
 
-from githubkit.compat import ExtraGitHubModel, GitHubModel, model_rebuild
+from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
+from .group_0002 import SimpleUser
+from .group_0030 import SimpleRepository
+from .group_0077 import CodeScanningAlertRuleSummary
+from .group_0078 import CodeScanningAnalysisTool
+from .group_0079 import CodeScanningAlertInstance
 
-class CopilotOrganizationDetails(ExtraGitHubModel):
-    """Copilot Organization Details
 
-    Information about the seat breakdown and policies set for an organization with a
-    Copilot Business or Copilot Enterprise subscription.
-    """
+class CodeScanningOrganizationAlertItems(GitHubModel):
+    """CodeScanningOrganizationAlertItems"""
 
-    seat_breakdown: CopilotSeatBreakdown = Field(
-        title="Copilot Business Seat Breakdown",
-        description="The breakdown of Copilot Business seats for the organization.",
+    number: int = Field(description="The security alert number.")
+    created_at: datetime = Field(
+        description="The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`."
     )
-    public_code_suggestions: Literal["allow", "block", "unconfigured", "unknown"] = (
+    updated_at: Missing[datetime] = Field(
+        default=UNSET,
+        description="The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.",
+    )
+    url: str = Field(description="The REST API URL of the alert resource.")
+    html_url: str = Field(description="The GitHub URL of the alert resource.")
+    instances_url: str = Field(
+        description="The REST API URL for fetching the list of instances for an alert."
+    )
+    state: Union[None, Literal["open", "dismissed", "fixed"]] = Field(
+        description="State of a code scanning alert."
+    )
+    fixed_at: Missing[Union[datetime, None]] = Field(
+        default=UNSET,
+        description="The time that the alert was no longer detected and was considered fixed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.",
+    )
+    dismissed_by: Union[None, SimpleUser] = Field()
+    dismissed_at: Union[datetime, None] = Field(
+        description="The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`."
+    )
+    dismissed_reason: Union[
+        None, Literal["false positive", "won't fix", "used in tests"]
+    ] = Field(
+        description="**Required when the state is dismissed.** The reason for dismissing or closing the alert."
+    )
+    dismissed_comment: Missing[Union[Annotated[str, Field(max_length=280)], None]] = (
         Field(
-            description="The organization policy for allowing or disallowing Copilot to make suggestions that match public code."
+            default=UNSET,
+            description="The dismissal comment associated with the dismissal of the alert.",
         )
     )
-    ide_chat: Missing[Literal["enabled", "disabled", "unconfigured"]] = Field(
-        default=UNSET,
-        description="The organization policy for allowing or disallowing organization members to use Copilot Chat within their editor.",
-    )
-    platform_chat: Missing[Literal["enabled", "disabled", "unconfigured"]] = Field(
-        default=UNSET,
-        description="The organization policy for allowing or disallowing organization members to use Copilot features within github.com.",
-    )
-    cli: Missing[Literal["enabled", "disabled", "unconfigured"]] = Field(
-        default=UNSET,
-        description="The organization policy for allowing or disallowing organization members to use Copilot within their CLI.",
-    )
-    seat_management_setting: Literal[
-        "assign_all", "assign_selected", "disabled", "unconfigured"
-    ] = Field(description="The mode of assigning new seats.")
-    plan_type: Missing[Literal["business", "enterprise", "unknown"]] = Field(
-        default=UNSET,
-        description="The Copilot plan of the organization, or the parent enterprise, when applicable.",
+    rule: CodeScanningAlertRuleSummary = Field()
+    tool: CodeScanningAnalysisTool = Field()
+    most_recent_instance: CodeScanningAlertInstance = Field()
+    repository: SimpleRepository = Field(
+        title="Simple Repository", description="A GitHub repository."
     )
 
 
-class CopilotSeatBreakdown(GitHubModel):
-    """Copilot Business Seat Breakdown
+model_rebuild(CodeScanningOrganizationAlertItems)
 
-    The breakdown of Copilot Business seats for the organization.
-    """
-
-    total: Missing[int] = Field(
-        default=UNSET,
-        description="The total number of seats being billed for the organization as of the current billing cycle.",
-    )
-    added_this_cycle: Missing[int] = Field(
-        default=UNSET, description="Seats added during the current billing cycle."
-    )
-    pending_cancellation: Missing[int] = Field(
-        default=UNSET,
-        description="The number of seats that are pending cancellation at the end of the current billing cycle.",
-    )
-    pending_invitation: Missing[int] = Field(
-        default=UNSET,
-        description="The number of seats that have been assigned to users that have not yet accepted an invitation to this organization.",
-    )
-    active_this_cycle: Missing[int] = Field(
-        default=UNSET,
-        description="The number of seats that have used Copilot during the current billing cycle.",
-    )
-    inactive_this_cycle: Missing[int] = Field(
-        default=UNSET,
-        description="The number of seats that have not used Copilot during the current billing cycle.",
-    )
-
-
-model_rebuild(CopilotOrganizationDetails)
-model_rebuild(CopilotSeatBreakdown)
-
-__all__ = (
-    "CopilotOrganizationDetails",
-    "CopilotSeatBreakdown",
-)
+__all__ = ("CodeScanningOrganizationAlertItems",)

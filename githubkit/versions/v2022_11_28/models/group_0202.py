@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from typing import Union
 
 from pydantic import Field
@@ -17,17 +18,52 @@ from githubkit.compat import GitHubModel, model_rebuild
 from githubkit.typing import Missing
 from githubkit.utils import UNSET
 
-
-class Verification(GitHubModel):
-    """Verification"""
-
-    verified: bool = Field()
-    reason: str = Field()
-    payload: Union[str, None] = Field()
-    signature: Union[str, None] = Field()
-    verified_at: Missing[Union[str, None]] = Field(default=UNSET)
+from .group_0002 import SimpleUser
+from .group_0009 import Integration
+from .group_0086 import Team
 
 
-model_rebuild(Verification)
+class ProtectedBranchPullRequestReviewPropDismissalRestrictions(GitHubModel):
+    """ProtectedBranchPullRequestReviewPropDismissalRestrictions"""
 
-__all__ = ("Verification",)
+    users: Missing[builtins.list[SimpleUser]] = Field(
+        default=UNSET, description="The list of users with review dismissal access."
+    )
+    teams: Missing[builtins.list[Team]] = Field(
+        default=UNSET, description="The list of teams with review dismissal access."
+    )
+    apps: Missing[builtins.list[Union[Integration, None]]] = Field(
+        default=UNSET, description="The list of apps with review dismissal access."
+    )
+    url: Missing[str] = Field(default=UNSET)
+    users_url: Missing[str] = Field(default=UNSET)
+    teams_url: Missing[str] = Field(default=UNSET)
+
+
+class ProtectedBranchPullRequestReviewPropBypassPullRequestAllowances(GitHubModel):
+    """ProtectedBranchPullRequestReviewPropBypassPullRequestAllowances
+
+    Allow specific users, teams, or apps to bypass pull request requirements.
+    """
+
+    users: Missing[builtins.list[SimpleUser]] = Field(
+        default=UNSET,
+        description="The list of users allowed to bypass pull request requirements.",
+    )
+    teams: Missing[builtins.list[Team]] = Field(
+        default=UNSET,
+        description="The list of teams allowed to bypass pull request requirements.",
+    )
+    apps: Missing[builtins.list[Union[Integration, None]]] = Field(
+        default=UNSET,
+        description="The list of apps allowed to bypass pull request requirements.",
+    )
+
+
+model_rebuild(ProtectedBranchPullRequestReviewPropDismissalRestrictions)
+model_rebuild(ProtectedBranchPullRequestReviewPropBypassPullRequestAllowances)
+
+__all__ = (
+    "ProtectedBranchPullRequestReviewPropBypassPullRequestAllowances",
+    "ProtectedBranchPullRequestReviewPropDismissalRestrictions",
+)

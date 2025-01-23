@@ -9,6 +9,7 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 from typing import Union
 
@@ -91,7 +92,7 @@ class MinimalRepository(GitHubModel):
     default_branch: Missing[str] = Field(default=UNSET)
     open_issues_count: Missing[int] = Field(default=UNSET)
     is_template: Missing[bool] = Field(default=UNSET)
-    topics: Missing[list[str]] = Field(default=UNSET)
+    topics: Missing[builtins.list[str]] = Field(default=UNSET)
     has_issues: Missing[bool] = Field(default=UNSET)
     has_projects: Missing[bool] = Field(default=UNSET)
     has_wiki: Missing[bool] = Field(default=UNSET)

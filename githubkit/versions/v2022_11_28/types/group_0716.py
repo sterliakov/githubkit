@@ -9,27 +9,67 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
-from typing import Literal
+import builtins
+from typing import Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 from .group_0002 import SimpleUserType
-from .group_0154 import RepositoryRulesetType
-from .group_0393 import EnterpriseWebhooksType
-from .group_0394 import SimpleInstallationType
-from .group_0395 import OrganizationSimpleWebhooksType
-from .group_0396 import RepositoryWebhooksType
+from .group_0398 import EnterpriseWebhooksType
+from .group_0399 import SimpleInstallationType
+from .group_0400 import OrganizationSimpleWebhooksType
+from .group_0401 import RepositoryWebhooksType
 
 
-class WebhookRepositoryRulesetCreatedType(TypedDict):
-    """repository ruleset created event"""
+class WebhookRepositoryEditedType(TypedDict):
+    """repository edited event"""
 
-    action: Literal["created"]
+    action: Literal["edited"]
+    changes: WebhookRepositoryEditedPropChangesType
     enterprise: NotRequired[EnterpriseWebhooksType]
     installation: NotRequired[SimpleInstallationType]
     organization: NotRequired[OrganizationSimpleWebhooksType]
-    repository: NotRequired[RepositoryWebhooksType]
-    repository_ruleset: RepositoryRulesetType
+    repository: RepositoryWebhooksType
     sender: SimpleUserType
 
 
-__all__ = ("WebhookRepositoryRulesetCreatedType",)
+class WebhookRepositoryEditedPropChangesType(TypedDict):
+    """WebhookRepositoryEditedPropChanges"""
+
+    default_branch: NotRequired[WebhookRepositoryEditedPropChangesPropDefaultBranchType]
+    description: NotRequired[WebhookRepositoryEditedPropChangesPropDescriptionType]
+    homepage: NotRequired[WebhookRepositoryEditedPropChangesPropHomepageType]
+    topics: NotRequired[WebhookRepositoryEditedPropChangesPropTopicsType]
+
+
+class WebhookRepositoryEditedPropChangesPropDefaultBranchType(TypedDict):
+    """WebhookRepositoryEditedPropChangesPropDefaultBranch"""
+
+    from_: str
+
+
+class WebhookRepositoryEditedPropChangesPropDescriptionType(TypedDict):
+    """WebhookRepositoryEditedPropChangesPropDescription"""
+
+    from_: Union[str, None]
+
+
+class WebhookRepositoryEditedPropChangesPropHomepageType(TypedDict):
+    """WebhookRepositoryEditedPropChangesPropHomepage"""
+
+    from_: Union[str, None]
+
+
+class WebhookRepositoryEditedPropChangesPropTopicsType(TypedDict):
+    """WebhookRepositoryEditedPropChangesPropTopics"""
+
+    from_: NotRequired[Union[builtins.list[str], None]]
+
+
+__all__ = (
+    "WebhookRepositoryEditedPropChangesPropDefaultBranchType",
+    "WebhookRepositoryEditedPropChangesPropDescriptionType",
+    "WebhookRepositoryEditedPropChangesPropHomepageType",
+    "WebhookRepositoryEditedPropChangesPropTopicsType",
+    "WebhookRepositoryEditedPropChangesType",
+    "WebhookRepositoryEditedType",
+)

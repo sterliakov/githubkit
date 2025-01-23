@@ -12,14 +12,19 @@ from __future__ import annotations
 from pydantic import Field
 
 from githubkit.compat import GitHubModel, model_rebuild
+from githubkit.typing import Missing
+from githubkit.utils import UNSET
 
 
-class ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBody(GitHubModel):
-    """ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBody"""
+class ReposOwnerRepoProjectsPostBody(GitHubModel):
+    """ReposOwnerRepoProjectsPostBody"""
 
-    body: str = Field(description="The body text of the pull request review.")
+    name: str = Field(description="The name of the project.")
+    body: Missing[str] = Field(
+        default=UNSET, description="The description of the project."
+    )
 
 
-model_rebuild(ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBody)
+model_rebuild(ReposOwnerRepoProjectsPostBody)
 
-__all__ = ("ReposOwnerRepoPullsPullNumberReviewsReviewIdPutBody",)
+__all__ = ("ReposOwnerRepoProjectsPostBody",)

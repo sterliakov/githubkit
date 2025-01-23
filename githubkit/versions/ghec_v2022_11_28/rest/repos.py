@@ -9,8 +9,9 @@ See https://github.com/github/rest-api-description for more information.
 
 from __future__ import annotations
 
+import builtins
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Literal, Optional, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, overload
 from weakref import ref
 
 from pydantic import BaseModel
@@ -20,6 +21,7 @@ from githubkit.typing import Missing, UnsetType
 from githubkit.utils import UNSET, exclude_unset
 
 if TYPE_CHECKING:
+    import builtins
     from datetime import datetime
     from typing import Literal, Union
 
@@ -375,7 +377,7 @@ class ReposClient:
         name: str,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Literal["disabled", "active", "evaluate"],
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 EnterpriseRulesetConditionsOneof0Type,
@@ -385,7 +387,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -419,7 +421,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[EnterprisesEnterpriseRulesetsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#create-an-enterprise-repository-ruleset"""
 
@@ -437,12 +439,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(EnterprisesEnterpriseRulesetsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -473,7 +475,7 @@ class ReposClient:
         name: str,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Literal["disabled", "active", "evaluate"],
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 EnterpriseRulesetConditionsOneof0Type,
@@ -483,7 +485,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -517,7 +519,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[EnterprisesEnterpriseRulesetsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#create-an-enterprise-repository-ruleset"""
 
@@ -535,12 +537,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(EnterprisesEnterpriseRulesetsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -567,7 +569,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -593,7 +595,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -625,7 +627,7 @@ class ReposClient:
         name: Missing[str] = UNSET,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Missing[Literal["disabled", "active", "evaluate"]] = UNSET,
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 EnterpriseRulesetConditionsOneof0Type,
@@ -635,7 +637,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -670,7 +672,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[EnterprisesEnterpriseRulesetsRulesetIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#update-an-enterprise-repository-ruleset"""
 
@@ -688,14 +690,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseRulesetsRulesetIdPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -728,7 +730,7 @@ class ReposClient:
         name: Missing[str] = UNSET,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Missing[Literal["disabled", "active", "evaluate"]] = UNSET,
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 EnterpriseRulesetConditionsOneof0Type,
@@ -738,7 +740,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -773,7 +775,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[EnterprisesEnterpriseRulesetsRulesetIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#update-an-enterprise-repository-ruleset"""
 
@@ -791,14 +793,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 EnterprisesEnterpriseRulesetsRulesetIdPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -825,7 +827,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -850,7 +852,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -872,8 +874,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-organization-repositories"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -889,12 +895,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
 
     async def async_list_for_org(
@@ -909,8 +915,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-organization-repositories"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -926,12 +936,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
 
     @overload
@@ -989,7 +999,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgReposPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-an-organization-repository"""
 
@@ -1008,12 +1018,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgReposPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1080,7 +1090,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgReposPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-an-organization-repository"""
 
@@ -1099,12 +1109,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgReposPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1124,8 +1134,12 @@ class ReposClient:
         page: Missing[int] = UNSET,
         targets: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryRuleset], list[RepositoryRulesetType]]:
+    ) -> Response[
+        builtins.list[RepositoryRuleset], builtins.list[RepositoryRulesetType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rules#get-all-organization-repository-rulesets"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryRuleset
 
@@ -1139,12 +1153,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryRuleset],
+            response_model=builtins.list[RepositoryRuleset],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -1159,8 +1173,12 @@ class ReposClient:
         page: Missing[int] = UNSET,
         targets: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryRuleset], list[RepositoryRulesetType]]:
+    ) -> Response[
+        builtins.list[RepositoryRuleset], builtins.list[RepositoryRulesetType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rules#get-all-organization-repository-rulesets"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryRuleset
 
@@ -1174,12 +1192,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryRuleset],
+            response_model=builtins.list[RepositoryRuleset],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -1205,7 +1223,7 @@ class ReposClient:
         name: str,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Literal["disabled", "active", "evaluate"],
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 OrgRulesetConditionsOneof0Type,
@@ -1214,7 +1232,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -1248,7 +1266,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgRulesetsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rules#create-an-organization-repository-ruleset"""
 
@@ -1262,12 +1280,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgRulesetsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1298,7 +1316,7 @@ class ReposClient:
         name: str,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Literal["disabled", "active", "evaluate"],
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 OrgRulesetConditionsOneof0Type,
@@ -1307,7 +1325,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -1341,7 +1359,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgRulesetsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rules#create-an-organization-repository-ruleset"""
 
@@ -1355,12 +1373,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgRulesetsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -1384,8 +1402,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RuleSuitesItems], list[RuleSuitesItemsType]]:
+    ) -> Response[builtins.list[RuleSuitesItems], builtins.list[RuleSuitesItemsType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rule-suites#list-organization-rule-suites"""
+
+        import builtins
 
         from ..models import BasicError, RuleSuitesItems
 
@@ -1403,12 +1423,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RuleSuitesItems],
+            response_model=builtins.list[RuleSuitesItems],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -1427,8 +1447,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RuleSuitesItems], list[RuleSuitesItemsType]]:
+    ) -> Response[builtins.list[RuleSuitesItems], builtins.list[RuleSuitesItemsType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rule-suites#list-organization-rule-suites"""
+
+        import builtins
 
         from ..models import BasicError, RuleSuitesItems
 
@@ -1446,12 +1468,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RuleSuitesItems],
+            response_model=builtins.list[RuleSuitesItems],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -1473,7 +1495,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1499,7 +1521,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1525,7 +1547,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1551,7 +1573,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1583,7 +1605,7 @@ class ReposClient:
         name: Missing[str] = UNSET,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Missing[Literal["disabled", "active", "evaluate"]] = UNSET,
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 OrgRulesetConditionsOneof0Type,
@@ -1592,7 +1614,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -1627,7 +1649,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgRulesetsRulesetIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rules#update-an-organization-repository-ruleset"""
 
@@ -1645,12 +1667,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgRulesetsRulesetIdPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1683,7 +1705,7 @@ class ReposClient:
         name: Missing[str] = UNSET,
         target: Missing[Literal["branch", "tag", "push", "repository"]] = UNSET,
         enforcement: Missing[Literal["disabled", "active", "evaluate"]] = UNSET,
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[
             Union[
                 OrgRulesetConditionsOneof0Type,
@@ -1692,7 +1714,7 @@ class ReposClient:
             ]
         ] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -1727,7 +1749,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[OrgsOrgRulesetsRulesetIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/orgs/rules#update-an-organization-repository-ruleset"""
 
@@ -1745,12 +1767,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(OrgsOrgRulesetsRulesetIdPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -1777,7 +1799,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1802,7 +1824,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1827,7 +1849,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1853,7 +1875,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -1879,7 +1901,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1904,7 +1926,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -1972,7 +1994,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#update-a-repository"""
 
@@ -1991,12 +2013,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2067,7 +2089,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#update-a-repository"""
 
@@ -2086,12 +2108,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -2129,8 +2151,10 @@ class ReposClient:
             ]
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Activity], list[ActivityType]]:
+    ) -> Response[builtins.list[Activity], builtins.list[ActivityType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-activities"""
+
+        import builtins
 
         from ..models import Activity, ValidationErrorSimple
 
@@ -2149,12 +2173,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Activity],
+            response_model=builtins.list[Activity],
             error_models={
                 "422": ValidationErrorSimple,
             },
@@ -2185,8 +2209,10 @@ class ReposClient:
             ]
         ] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Activity], list[ActivityType]]:
+    ) -> Response[builtins.list[Activity], builtins.list[ActivityType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-activities"""
+
+        import builtins
 
         from ..models import Activity, ValidationErrorSimple
 
@@ -2205,12 +2231,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Activity],
+            response_model=builtins.list[Activity],
             error_models={
                 "422": ValidationErrorSimple,
             },
@@ -2250,7 +2276,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoAttestationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoAttestationsPostResponse201,
         ReposOwnerRepoAttestationsPostResponse201Type,
@@ -2272,12 +2298,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoAttestationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2323,7 +2349,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoAttestationsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ReposOwnerRepoAttestationsPostResponse201,
         ReposOwnerRepoAttestationsPostResponse201Type,
@@ -2345,12 +2371,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoAttestationsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2390,7 +2416,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2426,7 +2452,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -2440,8 +2466,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Autolink], list[AutolinkType]]:
+    ) -> Response[builtins.list[Autolink], builtins.list[AutolinkType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/autolinks#get-all-autolinks-of-a-repository"""
+
+        import builtins
 
         from ..models import Autolink
 
@@ -2449,11 +2477,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Autolink],
+            response_model=builtins.list[Autolink],
         )
 
     async def async_list_autolinks(
@@ -2462,8 +2490,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Autolink], list[AutolinkType]]:
+    ) -> Response[builtins.list[Autolink], builtins.list[AutolinkType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/autolinks#get-all-autolinks-of-a-repository"""
+
+        import builtins
 
         from ..models import Autolink
 
@@ -2471,11 +2501,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Autolink],
+            response_model=builtins.list[Autolink],
         )
 
     @overload
@@ -2508,7 +2538,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoAutolinksPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Autolink, AutolinkType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/autolinks#create-an-autolink-reference-for-a-repository"""
 
@@ -2522,12 +2552,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoAutolinksPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2568,7 +2598,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoAutolinksPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Autolink, AutolinkType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/autolinks#create-an-autolink-reference-for-a-repository"""
 
@@ -2582,12 +2612,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoAutolinksPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -2614,7 +2644,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2640,7 +2670,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2666,7 +2696,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2691,7 +2721,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2715,7 +2745,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2738,7 +2768,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2759,7 +2789,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2778,7 +2808,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -2797,7 +2827,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2816,7 +2846,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -2831,8 +2861,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ShortBranch], list[ShortBranchType]]:
+    ) -> Response[builtins.list[ShortBranch], builtins.list[ShortBranchType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#list-branches"""
+
+        import builtins
 
         from ..models import BasicError, ShortBranch
 
@@ -2846,12 +2878,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ShortBranch],
+            response_model=builtins.list[ShortBranch],
             error_models={
                 "404": BasicError,
             },
@@ -2866,8 +2898,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ShortBranch], list[ShortBranchType]]:
+    ) -> Response[builtins.list[ShortBranch], builtins.list[ShortBranchType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#list-branches"""
+
+        import builtins
 
         from ..models import BasicError, ShortBranch
 
@@ -2881,12 +2915,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ShortBranch],
+            response_model=builtins.list[ShortBranch],
             error_models={
                 "404": BasicError,
             },
@@ -2908,7 +2942,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2934,7 +2968,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2960,7 +2994,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -2986,7 +3020,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3045,7 +3079,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoBranchesBranchProtectionPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProtectedBranch, ProtectedBranchType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#update-branch-protection"""
 
@@ -3064,14 +3098,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3133,7 +3167,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoBranchesBranchProtectionPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ProtectedBranch, ProtectedBranchType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#update-branch-protection"""
 
@@ -3152,14 +3186,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -3188,7 +3222,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3213,7 +3247,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3238,7 +3272,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3261,7 +3295,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3284,7 +3318,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3307,7 +3341,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3330,7 +3364,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3355,7 +3389,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3382,7 +3416,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3407,7 +3441,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3430,7 +3464,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3455,7 +3489,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3512,7 +3546,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRequiredPullRequestReviewsPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ProtectedBranchPullRequestReview, ProtectedBranchPullRequestReviewType
     ]:
@@ -3532,7 +3566,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRequiredPullRequestReviewsPatchBody,
@@ -3540,7 +3574,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3599,7 +3633,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRequiredPullRequestReviewsPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[
         ProtectedBranchPullRequestReview, ProtectedBranchPullRequestReviewType
     ]:
@@ -3619,7 +3653,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRequiredPullRequestReviewsPatchBody,
@@ -3627,7 +3661,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3654,7 +3688,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3680,7 +3714,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3706,7 +3740,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3732,7 +3766,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -3758,7 +3792,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3783,7 +3817,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3810,7 +3844,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3838,7 +3872,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -3864,7 +3898,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3886,7 +3920,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -3915,9 +3949,9 @@ class ReposClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         strict: Missing[bool] = UNSET,
-        contexts: Missing[list[str]] = UNSET,
+        contexts: Missing[builtins.list[str]] = UNSET,
         checks: Missing[
-            list[
+            builtins.list[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksItemsType
             ]
         ] = UNSET,
@@ -3933,7 +3967,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[StatusCheckPolicy, StatusCheckPolicyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#update-status-check-protection"""
 
@@ -3954,7 +3988,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBody,
@@ -3962,7 +3996,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -3997,9 +4031,9 @@ class ReposClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         strict: Missing[bool] = UNSET,
-        contexts: Missing[list[str]] = UNSET,
+        contexts: Missing[builtins.list[str]] = UNSET,
         checks: Missing[
-            list[
+            builtins.list[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyPropChecksItemsType
             ]
         ] = UNSET,
@@ -4015,7 +4049,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[StatusCheckPolicy, StatusCheckPolicyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#update-status-check-protection"""
 
@@ -4036,7 +4070,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksPatchBody,
@@ -4044,7 +4078,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -4063,8 +4097,10 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[str], list[str]]:
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-all-status-check-contexts"""
+
+        import builtins
 
         from ..models import BasicError
 
@@ -4072,11 +4108,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "404": BasicError,
             },
@@ -4089,8 +4125,10 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[str], list[str]]:
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-all-status-check-contexts"""
+
+        import builtins
 
         from ..models import BasicError
 
@@ -4098,11 +4136,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "404": BasicError,
             },
@@ -4119,10 +4157,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[str], list[str]]: ...
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     @overload
     def set_status_check_contexts(
@@ -4133,8 +4171,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        contexts: list[str],
-    ) -> Response[list[str], list[str]]: ...
+        contexts: builtins.list[str],
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     def set_status_check_contexts(
         self,
@@ -4146,13 +4184,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[str], list[str]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-status-check-contexts"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4169,23 +4208,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPutBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -4203,10 +4242,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[str], list[str]]: ...
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     @overload
     async def async_set_status_check_contexts(
@@ -4217,8 +4256,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        contexts: list[str],
-    ) -> Response[list[str], list[str]]: ...
+        contexts: builtins.list[str],
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     async def async_set_status_check_contexts(
         self,
@@ -4230,13 +4269,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[str], list[str]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-status-check-contexts"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4253,23 +4293,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPutBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "422": ValidationError,
                 "404": BasicError,
@@ -4287,10 +4327,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[str], list[str]]: ...
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     @overload
     def add_status_check_contexts(
@@ -4301,8 +4341,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        contexts: list[str],
-    ) -> Response[list[str], list[str]]: ...
+        contexts: builtins.list[str],
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     def add_status_check_contexts(
         self,
@@ -4314,13 +4354,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[str], list[str]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-status-check-contexts"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4337,23 +4378,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPostBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "422": ValidationError,
                 "403": BasicError,
@@ -4372,10 +4413,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[str], list[str]]: ...
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     @overload
     async def async_add_status_check_contexts(
@@ -4386,8 +4427,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        contexts: list[str],
-    ) -> Response[list[str], list[str]]: ...
+        contexts: builtins.list[str],
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     async def async_add_status_check_contexts(
         self,
@@ -4399,13 +4440,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[str], list[str]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-status-check-contexts"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4422,23 +4464,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsPostBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "422": ValidationError,
                 "403": BasicError,
@@ -4457,10 +4499,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[str], list[str]]: ...
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     @overload
     def remove_status_check_contexts(
@@ -4471,8 +4513,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        contexts: list[str],
-    ) -> Response[list[str], list[str]]: ...
+        contexts: builtins.list[str],
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     def remove_status_check_contexts(
         self,
@@ -4484,13 +4526,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[str], list[str]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-status-check-contexts"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4507,23 +4550,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsDeleteBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -4541,10 +4584,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[str], list[str]]: ...
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     @overload
     async def async_remove_status_check_contexts(
@@ -4555,8 +4598,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        contexts: list[str],
-    ) -> Response[list[str], list[str]]: ...
+        contexts: builtins.list[str],
+    ) -> Response[builtins.list[str], builtins.list[str]]: ...
 
     async def async_remove_status_check_contexts(
         self,
@@ -4568,13 +4611,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[str], list[str]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[str], builtins.list[str]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-status-check-contexts"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4591,23 +4635,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRequiredStatusChecksContextsDeleteBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[str],
+            response_model=builtins.list[str],
             error_models={
                 "404": BasicError,
                 "422": ValidationError,
@@ -4630,7 +4674,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4656,7 +4700,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -4680,7 +4724,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4700,7 +4744,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -4713,9 +4757,13 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-apps-with-access-to-the-protected-branch"""
 
+        import builtins
         from typing import Union
 
         from ..models import BasicError, Integration
@@ -4724,11 +4772,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "404": BasicError,
             },
@@ -4741,9 +4789,13 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-apps-with-access-to-the-protected-branch"""
 
+        import builtins
         from typing import Union
 
         from ..models import BasicError, Integration
@@ -4752,11 +4804,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "404": BasicError,
             },
@@ -4772,7 +4824,8 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBodyType,
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     @overload
@@ -4784,9 +4837,10 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        apps: list[str],
+        apps: builtins.list[str],
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     def set_app_access_restrictions(
@@ -4799,10 +4853,14 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+        **kwargs: Any,
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-app-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4819,19 +4877,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "422": ValidationError,
             },
@@ -4847,7 +4905,8 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBodyType,
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     @overload
@@ -4859,9 +4918,10 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        apps: list[str],
+        apps: builtins.list[str],
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     async def async_set_app_access_restrictions(
@@ -4874,10 +4934,14 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+        **kwargs: Any,
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-app-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4894,19 +4958,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "422": ValidationError,
             },
@@ -4922,7 +4986,8 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPostBodyType,
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     @overload
@@ -4934,9 +4999,10 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        apps: list[str],
+        apps: builtins.list[str],
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     def add_app_access_restrictions(
@@ -4949,10 +5015,14 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPostBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+        **kwargs: Any,
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-app-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -4969,19 +5039,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "422": ValidationError,
             },
@@ -4997,7 +5067,8 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPostBodyType,
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     @overload
@@ -5009,9 +5080,10 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        apps: list[str],
+        apps: builtins.list[str],
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     async def async_add_app_access_restrictions(
@@ -5024,10 +5096,14 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPostBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+        **kwargs: Any,
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-app-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5044,19 +5120,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "422": ValidationError,
             },
@@ -5072,7 +5148,8 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsDeleteBodyType,
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     @overload
@@ -5084,9 +5161,10 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        apps: list[str],
+        apps: builtins.list[str],
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     def remove_app_access_restrictions(
@@ -5099,10 +5177,14 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsDeleteBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+        **kwargs: Any,
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-app-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5119,19 +5201,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "422": ValidationError,
             },
@@ -5147,7 +5229,8 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsDeleteBodyType,
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     @overload
@@ -5159,9 +5242,10 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        apps: list[str],
+        apps: builtins.list[str],
     ) -> Response[
-        list[Union[Integration, None]], list[Union[IntegrationType, None]]
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
     ]: ...
 
     async def async_remove_app_access_restrictions(
@@ -5174,10 +5258,14 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsDeleteBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Union[Integration, None]], list[Union[IntegrationType, None]]]:
+        **kwargs: Any,
+    ) -> Response[
+        builtins.list[Union[Integration, None]],
+        builtins.list[Union[IntegrationType, None]],
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-app-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5194,19 +5282,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsAppsDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Union[Integration, None]],
+            response_model=builtins.list[Union[Integration, None]],
             error_models={
                 "422": ValidationError,
             },
@@ -5219,8 +5307,10 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-teams-with-access-to-the-protected-branch"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -5228,11 +5318,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
             },
@@ -5245,8 +5335,10 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-teams-with-access-to-the-protected-branch"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -5254,11 +5346,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
             },
@@ -5275,10 +5367,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[Team], list[TeamType]]: ...
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     @overload
     def set_team_access_restrictions(
@@ -5289,8 +5381,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        teams: list[str],
-    ) -> Response[list[Team], list[TeamType]]: ...
+        teams: builtins.list[str],
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     def set_team_access_restrictions(
         self,
@@ -5302,13 +5394,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Team], list[TeamType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-team-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5325,23 +5418,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "422": ValidationError,
             },
@@ -5358,10 +5451,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[Team], list[TeamType]]: ...
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     @overload
     async def async_set_team_access_restrictions(
@@ -5372,8 +5465,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        teams: list[str],
-    ) -> Response[list[Team], list[TeamType]]: ...
+        teams: builtins.list[str],
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     async def async_set_team_access_restrictions(
         self,
@@ -5385,13 +5478,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Team], list[TeamType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-team-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5408,23 +5502,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPutBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "422": ValidationError,
             },
@@ -5441,10 +5535,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[Team], list[TeamType]]: ...
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     @overload
     def add_team_access_restrictions(
@@ -5455,8 +5549,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        teams: list[str],
-    ) -> Response[list[Team], list[TeamType]]: ...
+        teams: builtins.list[str],
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     def add_team_access_restrictions(
         self,
@@ -5468,13 +5562,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Team], list[TeamType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-team-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5491,23 +5586,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPostBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "422": ValidationError,
             },
@@ -5524,10 +5619,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[Team], list[TeamType]]: ...
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     @overload
     async def async_add_team_access_restrictions(
@@ -5538,8 +5633,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        teams: list[str],
-    ) -> Response[list[Team], list[TeamType]]: ...
+        teams: builtins.list[str],
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     async def async_add_team_access_restrictions(
         self,
@@ -5551,13 +5646,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPostBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Team], list[TeamType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-team-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5574,23 +5670,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsPostBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "422": ValidationError,
             },
@@ -5607,10 +5703,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[Team], list[TeamType]]: ...
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     @overload
     def remove_team_access_restrictions(
@@ -5621,8 +5717,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        teams: list[str],
-    ) -> Response[list[Team], list[TeamType]]: ...
+        teams: builtins.list[str],
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     def remove_team_access_restrictions(
         self,
@@ -5634,13 +5730,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Team], list[TeamType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-team-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5657,23 +5754,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsDeleteBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "422": ValidationError,
             },
@@ -5690,10 +5787,10 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-    ) -> Response[list[Team], list[TeamType]]: ...
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     @overload
     async def async_remove_team_access_restrictions(
@@ -5704,8 +5801,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        teams: list[str],
-    ) -> Response[list[Team], list[TeamType]]: ...
+        teams: builtins.list[str],
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]: ...
 
     async def async_remove_team_access_restrictions(
         self,
@@ -5717,13 +5814,14 @@ class ReposClient:
         data: Missing[
             Union[
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsDeleteBodyOneof0Type,
-                list[str],
+                builtins.list[str],
             ]
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[Team], list[TeamType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-team-access-restrictions"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -5740,23 +5838,23 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
                     ReposOwnerRepoBranchesBranchProtectionRestrictionsTeamsDeleteBodyOneof0,
-                    list[str],
+                    builtins.list[str],
                 ],
                 json,
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "422": ValidationError,
             },
@@ -5769,8 +5867,10 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-users-with-access-to-the-protected-branch"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -5778,11 +5878,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
             },
@@ -5795,8 +5895,10 @@ class ReposClient:
         branch: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#get-users-with-access-to-the-protected-branch"""
+
+        import builtins
 
         from ..models import BasicError, SimpleUser
 
@@ -5804,11 +5906,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "404": BasicError,
             },
@@ -5823,7 +5925,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBodyType,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     @overload
     def set_user_access_restrictions(
@@ -5834,8 +5936,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        users: list[str],
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+        users: builtins.list[str],
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     def set_user_access_restrictions(
         self,
@@ -5847,9 +5949,11 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-user-access-restrictions"""
+
+        import builtins
 
         from ..models import (
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody,
@@ -5865,19 +5969,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -5892,7 +5996,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBodyType,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     @overload
     async def async_set_user_access_restrictions(
@@ -5903,8 +6007,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        users: list[str],
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+        users: builtins.list[str],
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     async def async_set_user_access_restrictions(
         self,
@@ -5916,9 +6020,11 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#set-user-access-restrictions"""
+
+        import builtins
 
         from ..models import (
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody,
@@ -5934,19 +6040,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -5961,7 +6067,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBodyType,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     @overload
     def add_user_access_restrictions(
@@ -5972,8 +6078,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        users: list[str],
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+        users: builtins.list[str],
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     def add_user_access_restrictions(
         self,
@@ -5985,9 +6091,11 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-user-access-restrictions"""
+
+        import builtins
 
         from ..models import (
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBody,
@@ -6003,19 +6111,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -6030,7 +6138,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBodyType,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     @overload
     async def async_add_user_access_restrictions(
@@ -6041,8 +6149,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        users: list[str],
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+        users: builtins.list[str],
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     async def async_add_user_access_restrictions(
         self,
@@ -6054,9 +6162,11 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#add-user-access-restrictions"""
+
+        import builtins
 
         from ..models import (
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBody,
@@ -6072,19 +6182,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -6099,7 +6209,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBodyType,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     @overload
     def remove_user_access_restrictions(
@@ -6110,8 +6220,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        users: list[str],
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+        users: builtins.list[str],
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     def remove_user_access_restrictions(
         self,
@@ -6123,9 +6233,11 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-user-access-restrictions"""
+
+        import builtins
 
         from ..models import (
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBody,
@@ -6141,19 +6253,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -6168,7 +6280,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBodyType,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     @overload
     async def async_remove_user_access_restrictions(
@@ -6179,8 +6291,8 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        users: list[str],
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]: ...
+        users: builtins.list[str],
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]: ...
 
     async def async_remove_user_access_restrictions(
         self,
@@ -6192,9 +6304,11 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBodyType
         ] = UNSET,
-        **kwargs,
-    ) -> Response[list[SimpleUser], list[SimpleUserType]]:
+        **kwargs: Any,
+    ) -> Response[builtins.list[SimpleUser], builtins.list[SimpleUserType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branch-protection#remove-user-access-restrictions"""
+
+        import builtins
 
         from ..models import (
             ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBody,
@@ -6210,19 +6324,19 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchProtectionRestrictionsUsersDeleteBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=list[SimpleUser],
+            response_model=builtins.list[SimpleUser],
             error_models={
                 "422": ValidationError,
             },
@@ -6259,7 +6373,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoBranchesBranchRenamePostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[BranchWithProtection, BranchWithProtectionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#rename-a-branch"""
 
@@ -6278,14 +6392,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchRenamePostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6329,7 +6443,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoBranchesBranchRenamePostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[BranchWithProtection, BranchWithProtectionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#rename-a-branch"""
 
@@ -6348,14 +6462,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoBranchesBranchRenamePostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -6382,8 +6496,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PushRuleBypassRequest], list[PushRuleBypassRequestType]]:
+    ) -> Response[
+        builtins.list[PushRuleBypassRequest], builtins.list[PushRuleBypassRequestType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/bypass-requests#list-repository-push-rule-bypass-requests"""
+
+        import builtins
 
         from ..models import BasicError, PushRuleBypassRequest
 
@@ -6400,12 +6518,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PushRuleBypassRequest],
+            response_model=builtins.list[PushRuleBypassRequest],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -6426,8 +6544,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PushRuleBypassRequest], list[PushRuleBypassRequestType]]:
+    ) -> Response[
+        builtins.list[PushRuleBypassRequest], builtins.list[PushRuleBypassRequestType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/bypass-requests#list-repository-push-rule-bypass-requests"""
+
+        import builtins
 
         from ..models import BasicError, PushRuleBypassRequest
 
@@ -6444,12 +6566,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PushRuleBypassRequest],
+            response_model=builtins.list[PushRuleBypassRequest],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -6474,7 +6596,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6503,7 +6625,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6534,7 +6656,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -6563,7 +6685,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -6584,8 +6706,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Collaborator], list[CollaboratorType]]:
+    ) -> Response[builtins.list[Collaborator], builtins.list[CollaboratorType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/collaborators#list-repository-collaborators"""
+
+        import builtins
 
         from ..models import BasicError, Collaborator
 
@@ -6600,12 +6724,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Collaborator],
+            response_model=builtins.list[Collaborator],
             error_models={
                 "404": BasicError,
             },
@@ -6623,8 +6747,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Collaborator], list[CollaboratorType]]:
+    ) -> Response[builtins.list[Collaborator], builtins.list[CollaboratorType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/collaborators#list-repository-collaborators"""
+
+        import builtins
 
         from ..models import BasicError, Collaborator
 
@@ -6639,12 +6765,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Collaborator],
+            response_model=builtins.list[Collaborator],
             error_models={
                 "404": BasicError,
             },
@@ -6664,7 +6790,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6685,7 +6811,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6723,7 +6849,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCollaboratorsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryInvitation, RepositoryInvitationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/collaborators#add-a-repository-collaborator"""
 
@@ -6742,14 +6868,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCollaboratorsUsernamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6792,7 +6918,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCollaboratorsUsernamePutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryInvitation, RepositoryInvitationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/collaborators#add-a-repository-collaborator"""
 
@@ -6811,14 +6937,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCollaboratorsUsernamePutBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -6846,7 +6972,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6872,7 +6998,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -6900,7 +7026,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6928,7 +7054,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -6946,8 +7072,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CommitComment], list[CommitCommentType]]:
+    ) -> Response[builtins.list[CommitComment], builtins.list[CommitCommentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#list-commit-comments-for-a-repository"""
+
+        import builtins
 
         from ..models import CommitComment
 
@@ -6960,12 +7088,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CommitComment],
+            response_model=builtins.list[CommitComment],
         )
 
     async def async_list_commit_comments_for_repo(
@@ -6976,8 +7104,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CommitComment], list[CommitCommentType]]:
+    ) -> Response[builtins.list[CommitComment], builtins.list[CommitCommentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#list-commit-comments-for-a-repository"""
+
+        import builtins
 
         from ..models import CommitComment
 
@@ -6990,12 +7120,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CommitComment],
+            response_model=builtins.list[CommitComment],
         )
 
     def get_commit_comment(
@@ -7014,7 +7144,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7040,7 +7170,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7066,7 +7196,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7091,7 +7221,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -7131,7 +7261,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CommitComment, CommitCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#update-a-commit-comment"""
 
@@ -7149,12 +7279,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoCommentsCommentIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -7196,7 +7326,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCommentsCommentIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CommitComment, CommitCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#update-a-commit-comment"""
 
@@ -7214,12 +7344,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoCommentsCommentIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -7244,8 +7374,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Commit], list[CommitType]]:
+    ) -> Response[builtins.list[Commit], builtins.list[CommitType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/commits#list-commits"""
+
+        import builtins
 
         from ..models import BasicError, Commit
 
@@ -7264,12 +7396,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Commit],
+            response_model=builtins.list[Commit],
             error_models={
                 "500": BasicError,
                 "400": BasicError,
@@ -7292,8 +7424,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Commit], list[CommitType]]:
+    ) -> Response[builtins.list[Commit], builtins.list[CommitType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/commits#list-commits"""
+
+        import builtins
 
         from ..models import BasicError, Commit
 
@@ -7312,12 +7446,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Commit],
+            response_model=builtins.list[Commit],
             error_models={
                 "500": BasicError,
                 "400": BasicError,
@@ -7333,8 +7467,10 @@ class ReposClient:
         commit_sha: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BranchShort], list[BranchShortType]]:
+    ) -> Response[builtins.list[BranchShort], builtins.list[BranchShortType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/commits#list-branches-for-head-commit"""
+
+        import builtins
 
         from ..models import BasicError, BranchShort, ValidationError
 
@@ -7342,11 +7478,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[BranchShort],
+            response_model=builtins.list[BranchShort],
             error_models={
                 "422": ValidationError,
                 "409": BasicError,
@@ -7360,8 +7496,10 @@ class ReposClient:
         commit_sha: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[BranchShort], list[BranchShortType]]:
+    ) -> Response[builtins.list[BranchShort], builtins.list[BranchShortType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/commits#list-branches-for-head-commit"""
+
+        import builtins
 
         from ..models import BasicError, BranchShort, ValidationError
 
@@ -7369,11 +7507,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[BranchShort],
+            response_model=builtins.list[BranchShort],
             error_models={
                 "422": ValidationError,
                 "409": BasicError,
@@ -7389,8 +7527,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CommitComment], list[CommitCommentType]]:
+    ) -> Response[builtins.list[CommitComment], builtins.list[CommitCommentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#list-commit-comments"""
+
+        import builtins
 
         from ..models import CommitComment
 
@@ -7403,12 +7543,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CommitComment],
+            response_model=builtins.list[CommitComment],
         )
 
     async def async_list_comments_for_commit(
@@ -7420,8 +7560,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CommitComment], list[CommitCommentType]]:
+    ) -> Response[builtins.list[CommitComment], builtins.list[CommitCommentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#list-commit-comments"""
+
+        import builtins
 
         from ..models import CommitComment
 
@@ -7434,12 +7576,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[CommitComment],
+            response_model=builtins.list[CommitComment],
         )
 
     @overload
@@ -7476,7 +7618,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCommitsCommitShaCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CommitComment, CommitCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#create-a-commit-comment"""
 
@@ -7495,14 +7637,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCommitsCommitShaCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -7548,7 +7690,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoCommitsCommitShaCommentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[CommitComment, CommitCommentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/comments#create-a-commit-comment"""
 
@@ -7567,14 +7709,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoCommitsCommitShaCommentsPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -7595,8 +7737,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestSimple], list[PullRequestSimpleType]]:
+    ) -> Response[
+        builtins.list[PullRequestSimple], builtins.list[PullRequestSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/commits#list-pull-requests-associated-with-a-commit"""
+
+        import builtins
 
         from ..models import BasicError, PullRequestSimple
 
@@ -7609,12 +7755,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestSimple],
+            response_model=builtins.list[PullRequestSimple],
             error_models={
                 "409": BasicError,
             },
@@ -7629,8 +7775,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PullRequestSimple], list[PullRequestSimpleType]]:
+    ) -> Response[
+        builtins.list[PullRequestSimple], builtins.list[PullRequestSimpleType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/commits#list-pull-requests-associated-with-a-commit"""
+
+        import builtins
 
         from ..models import BasicError, PullRequestSimple
 
@@ -7643,12 +7793,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PullRequestSimple],
+            response_model=builtins.list[PullRequestSimple],
             error_models={
                 "409": BasicError,
             },
@@ -7682,7 +7832,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7725,7 +7875,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7763,7 +7913,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7797,7 +7947,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7817,8 +7967,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Status], list[StatusType]]:
+    ) -> Response[builtins.list[Status], builtins.list[StatusType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/statuses#list-commit-statuses-for-a-reference"""
+
+        import builtins
 
         from ..models import Status
 
@@ -7831,12 +7983,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Status],
+            response_model=builtins.list[Status],
         )
 
     async def async_list_commit_statuses_for_ref(
@@ -7848,8 +8000,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Status], list[StatusType]]:
+    ) -> Response[builtins.list[Status], builtins.list[StatusType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/statuses#list-commit-statuses-for-a-reference"""
+
+        import builtins
 
         from ..models import Status
 
@@ -7862,12 +8016,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Status],
+            response_model=builtins.list[Status],
         )
 
     def get_community_profile_metrics(
@@ -7885,7 +8039,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7907,7 +8061,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -7941,7 +8095,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -7981,7 +8135,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -8004,10 +8158,13 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
         Union[
-            list[ContentDirectoryItems], ContentFile, ContentSymlink, ContentSubmodule
+            builtins.list[ContentDirectoryItems],
+            ContentFile,
+            ContentSymlink,
+            ContentSubmodule,
         ],
         Union[
-            list[ContentDirectoryItemsType],
+            builtins.list[ContentDirectoryItemsType],
             ContentFileType,
             ContentSymlinkType,
             ContentSubmoduleType,
@@ -8015,6 +8172,7 @@ class ReposClient:
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/contents#get-repository-content"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -8033,13 +8191,13 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
             response_model=Union[
-                list[ContentDirectoryItems],
+                builtins.list[ContentDirectoryItems],
                 ContentFile,
                 ContentSymlink,
                 ContentSubmodule,
@@ -8060,10 +8218,13 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
         Union[
-            list[ContentDirectoryItems], ContentFile, ContentSymlink, ContentSubmodule
+            builtins.list[ContentDirectoryItems],
+            ContentFile,
+            ContentSymlink,
+            ContentSubmodule,
         ],
         Union[
-            list[ContentDirectoryItemsType],
+            builtins.list[ContentDirectoryItemsType],
             ContentFileType,
             ContentSymlinkType,
             ContentSubmoduleType,
@@ -8071,6 +8232,7 @@ class ReposClient:
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/contents#get-repository-content"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -8089,13 +8251,13 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
             response_model=Union[
-                list[ContentDirectoryItems],
+                builtins.list[ContentDirectoryItems],
                 ContentFile,
                 ContentSymlink,
                 ContentSubmodule,
@@ -8142,7 +8304,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoContentsPathPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FileCommit, FileCommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/contents#create-or-update-file-contents"""
 
@@ -8164,12 +8326,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoContentsPathPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -8218,7 +8380,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoContentsPathPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FileCommit, FileCommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/contents#create-or-update-file-contents"""
 
@@ -8240,12 +8402,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoContentsPathPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -8295,7 +8457,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoContentsPathDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FileCommit, FileCommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/contents#delete-a-file"""
 
@@ -8315,12 +8477,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoContentsPathDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -8371,7 +8533,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoContentsPathDeleteBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FileCommit, FileCommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/contents#delete-a-file"""
 
@@ -8391,12 +8553,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoContentsPathDeleteBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             json=exclude_unset(json),
@@ -8419,8 +8581,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Contributor], list[ContributorType]]:
+    ) -> Response[builtins.list[Contributor], builtins.list[ContributorType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-contributors"""
+
+        import builtins
 
         from ..models import BasicError, Contributor
 
@@ -8434,12 +8598,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Contributor],
+            response_model=builtins.list[Contributor],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -8455,8 +8619,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Contributor], list[ContributorType]]:
+    ) -> Response[builtins.list[Contributor], builtins.list[ContributorType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-contributors"""
+
+        import builtins
 
         from ..models import BasicError, Contributor
 
@@ -8470,12 +8636,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Contributor],
+            response_model=builtins.list[Contributor],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -8494,8 +8660,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Deployment], list[DeploymentType]]:
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/deployments#list-deployments"""
+
+        import builtins
 
         from ..models import Deployment
 
@@ -8512,12 +8680,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Deployment],
+            response_model=builtins.list[Deployment],
         )
 
     async def async_list_deployments(
@@ -8532,8 +8700,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Deployment], list[DeploymentType]]:
+    ) -> Response[builtins.list[Deployment], builtins.list[DeploymentType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/deployments#list-deployments"""
+
+        import builtins
 
         from ..models import Deployment
 
@@ -8550,12 +8720,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Deployment],
+            response_model=builtins.list[Deployment],
         )
 
     @overload
@@ -8579,7 +8749,7 @@ class ReposClient:
         ref: str,
         task: Missing[str] = UNSET,
         auto_merge: Missing[bool] = UNSET,
-        required_contexts: Missing[list[str]] = UNSET,
+        required_contexts: Missing[builtins.list[str]] = UNSET,
         payload: Missing[
             Union[ReposOwnerRepoDeploymentsPostBodyPropPayloadOneof0Type, str]
         ] = UNSET,
@@ -8596,7 +8766,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDeploymentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Deployment, DeploymentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/deployments#create-a-deployment"""
 
@@ -8614,12 +8784,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoDeploymentsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -8651,7 +8821,7 @@ class ReposClient:
         ref: str,
         task: Missing[str] = UNSET,
         auto_merge: Missing[bool] = UNSET,
-        required_contexts: Missing[list[str]] = UNSET,
+        required_contexts: Missing[builtins.list[str]] = UNSET,
         payload: Missing[
             Union[ReposOwnerRepoDeploymentsPostBodyPropPayloadOneof0Type, str]
         ] = UNSET,
@@ -8668,7 +8838,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDeploymentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Deployment, DeploymentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/deployments#create-a-deployment"""
 
@@ -8686,12 +8856,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoDeploymentsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -8718,7 +8888,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8744,7 +8914,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -8770,7 +8940,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -8796,7 +8966,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -8815,8 +8985,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DeploymentStatus], list[DeploymentStatusType]]:
+    ) -> Response[builtins.list[DeploymentStatus], builtins.list[DeploymentStatusType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/statuses#list-deployment-statuses"""
+
+        import builtins
 
         from ..models import BasicError, DeploymentStatus
 
@@ -8829,12 +9001,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DeploymentStatus],
+            response_model=builtins.list[DeploymentStatus],
             error_models={
                 "404": BasicError,
             },
@@ -8849,8 +9021,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DeploymentStatus], list[DeploymentStatusType]]:
+    ) -> Response[builtins.list[DeploymentStatus], builtins.list[DeploymentStatusType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/statuses#list-deployment-statuses"""
+
+        import builtins
 
         from ..models import BasicError, DeploymentStatus
 
@@ -8863,12 +9037,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DeploymentStatus],
+            response_model=builtins.list[DeploymentStatus],
             error_models={
                 "404": BasicError,
             },
@@ -8921,7 +9095,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentStatus, DeploymentStatusType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/statuses#create-a-deployment-status"""
 
@@ -8939,14 +9113,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9004,7 +9178,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentStatus, DeploymentStatusType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/statuses#create-a-deployment-status"""
 
@@ -9022,14 +9196,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoDeploymentsDeploymentIdStatusesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9057,7 +9231,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9084,7 +9258,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9125,7 +9299,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDispatchesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-a-repository-dispatch-event"""
 
@@ -9143,12 +9317,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoDispatchesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9190,7 +9364,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoDispatchesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-a-repository-dispatch-event"""
 
@@ -9208,12 +9382,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoDispatchesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9249,7 +9423,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9282,7 +9456,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9306,7 +9480,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9329,7 +9503,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9362,7 +9536,7 @@ class ReposClient:
         prevent_self_review: Missing[bool] = UNSET,
         reviewers: Missing[
             Union[
-                list[
+                builtins.list[
                     ReposOwnerRepoEnvironmentsEnvironmentNamePutBodyPropReviewersItemsType
                 ],
                 None,
@@ -9383,7 +9557,7 @@ class ReposClient:
         data: Missing[
             Union[ReposOwnerRepoEnvironmentsEnvironmentNamePutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Environment, EnvironmentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/environments#create-or-update-an-environment"""
 
@@ -9403,14 +9577,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoEnvironmentsEnvironmentNamePutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -9447,7 +9621,7 @@ class ReposClient:
         prevent_self_review: Missing[bool] = UNSET,
         reviewers: Missing[
             Union[
-                list[
+                builtins.list[
                     ReposOwnerRepoEnvironmentsEnvironmentNamePutBodyPropReviewersItemsType
                 ],
                 None,
@@ -9468,7 +9642,7 @@ class ReposClient:
         data: Missing[
             Union[ReposOwnerRepoEnvironmentsEnvironmentNamePutBodyType, None]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Environment, EnvironmentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/environments#create-or-update-an-environment"""
 
@@ -9488,14 +9662,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[ReposOwnerRepoEnvironmentsEnvironmentNamePutBody, None], json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -9520,7 +9694,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -9540,7 +9714,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -9574,7 +9748,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9610,7 +9784,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -9650,7 +9824,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[DeploymentBranchPolicyNamePatternWithTypeType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentBranchPolicy, DeploymentBranchPolicyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/branch-policies#create-a-deployment-branch-policy"""
 
@@ -9667,12 +9841,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(DeploymentBranchPolicyNamePatternWithType, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9713,7 +9887,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[DeploymentBranchPolicyNamePatternWithTypeType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentBranchPolicy, DeploymentBranchPolicyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/branch-policies#create-a-deployment-branch-policy"""
 
@@ -9730,12 +9904,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(DeploymentBranchPolicyNamePatternWithType, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -9761,7 +9935,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9785,7 +9959,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -9826,7 +10000,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[DeploymentBranchPolicyNamePatternType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentBranchPolicy, DeploymentBranchPolicyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/branch-policies#update-a-deployment-branch-policy"""
 
@@ -9840,12 +10014,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(DeploymentBranchPolicyNamePattern, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -9887,7 +10061,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[DeploymentBranchPolicyNamePatternType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentBranchPolicy, DeploymentBranchPolicyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/branch-policies#update-a-deployment-branch-policy"""
 
@@ -9901,12 +10075,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(DeploymentBranchPolicyNamePattern, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -9929,7 +10103,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -9950,7 +10124,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -9977,7 +10151,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10005,7 +10179,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10045,7 +10219,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentProtectionRule, DeploymentProtectionRuleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/protection-rules#create-a-custom-deployment-protection-rule-on-an-environment"""
 
@@ -10062,7 +10236,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesPostBody,
@@ -10070,7 +10244,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10111,7 +10285,7 @@ class ReposClient:
         data: Missing[
             ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesPostBodyType
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeploymentProtectionRule, DeploymentProtectionRuleType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deployments/protection-rules#create-a-custom-deployment-protection-rule-on-an-environment"""
 
@@ -10128,7 +10302,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoEnvironmentsEnvironmentNameDeploymentProtectionRulesPostBody,
@@ -10136,7 +10310,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10172,7 +10346,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -10208,7 +10382,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -10233,7 +10407,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10257,7 +10431,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10279,7 +10453,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10300,7 +10474,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10315,8 +10489,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/forks#list-forks"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -10330,12 +10508,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "400": BasicError,
             },
@@ -10350,8 +10528,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/forks#list-forks"""
+
+        import builtins
 
         from ..models import BasicError, MinimalRepository
 
@@ -10365,12 +10547,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "400": BasicError,
             },
@@ -10406,7 +10588,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoForksPostBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/forks#create-a-fork"""
 
@@ -10427,12 +10609,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[ReposOwnerRepoForksPostBody, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10476,7 +10658,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoForksPostBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/forks#create-a-fork"""
 
@@ -10497,12 +10679,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[ReposOwnerRepoForksPostBody, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10524,8 +10706,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Hook], list[HookType]]:
+    ) -> Response[builtins.list[Hook], builtins.list[HookType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#list-repository-webhooks"""
+
+        import builtins
 
         from ..models import BasicError, Hook
 
@@ -10538,12 +10722,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Hook],
+            response_model=builtins.list[Hook],
             error_models={
                 "404": BasicError,
             },
@@ -10557,8 +10741,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Hook], list[HookType]]:
+    ) -> Response[builtins.list[Hook], builtins.list[HookType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#list-repository-webhooks"""
+
+        import builtins
 
         from ..models import BasicError, Hook
 
@@ -10571,12 +10757,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Hook],
+            response_model=builtins.list[Hook],
             error_models={
                 "404": BasicError,
             },
@@ -10602,7 +10788,7 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         name: Missing[str] = UNSET,
         config: Missing[ReposOwnerRepoHooksPostBodyPropConfigType] = UNSET,
-        events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[Hook, HookType]: ...
 
@@ -10613,7 +10799,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoHooksPostBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Hook, HookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#create-a-repository-webhook"""
 
@@ -10634,12 +10820,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[ReposOwnerRepoHooksPostBody, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10672,7 +10858,7 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         name: Missing[str] = UNSET,
         config: Missing[ReposOwnerRepoHooksPostBodyPropConfigType] = UNSET,
-        events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[Hook, HookType]: ...
 
@@ -10683,7 +10869,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[Union[ReposOwnerRepoHooksPostBodyType, None]] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Hook, HookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#create-a-repository-webhook"""
 
@@ -10704,12 +10890,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(Union[ReposOwnerRepoHooksPostBody, None], json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -10738,7 +10924,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10764,7 +10950,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -10790,7 +10976,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10815,7 +11001,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -10845,9 +11031,9 @@ class ReposClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         config: Missing[WebhookConfigType] = UNSET,
-        events: Missing[list[str]] = UNSET,
-        add_events: Missing[list[str]] = UNSET,
-        remove_events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
+        add_events: Missing[builtins.list[str]] = UNSET,
+        remove_events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[Hook, HookType]: ...
 
@@ -10859,7 +11045,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoHooksHookIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Hook, HookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#update-a-repository-webhook"""
 
@@ -10878,12 +11064,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoHooksHookIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -10916,9 +11102,9 @@ class ReposClient:
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
         config: Missing[WebhookConfigType] = UNSET,
-        events: Missing[list[str]] = UNSET,
-        add_events: Missing[list[str]] = UNSET,
-        remove_events: Missing[list[str]] = UNSET,
+        events: Missing[builtins.list[str]] = UNSET,
+        add_events: Missing[builtins.list[str]] = UNSET,
+        remove_events: Missing[builtins.list[str]] = UNSET,
         active: Missing[bool] = UNSET,
     ) -> Response[Hook, HookType]: ...
 
@@ -10930,7 +11116,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoHooksHookIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Hook, HookType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#update-a-repository-webhook"""
 
@@ -10949,12 +11135,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoHooksHookIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -10982,7 +11168,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11005,7 +11191,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11046,7 +11232,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoHooksHookIdConfigPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[WebhookConfig, WebhookConfigType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#update-a-webhook-configuration-for-a-repository"""
 
@@ -11060,12 +11246,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoHooksHookIdConfigPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -11107,7 +11293,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoHooksHookIdConfigPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[WebhookConfig, WebhookConfigType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#update-a-webhook-configuration-for-a-repository"""
 
@@ -11121,12 +11307,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoHooksHookIdConfigPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -11143,8 +11329,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         cursor: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[HookDeliveryItem], list[HookDeliveryItemType]]:
+    ) -> Response[builtins.list[HookDeliveryItem], builtins.list[HookDeliveryItemType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#list-deliveries-for-a-repository-webhook"""
+
+        import builtins
 
         from ..models import BasicError, HookDeliveryItem, ValidationError
 
@@ -11157,12 +11345,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[HookDeliveryItem],
+            response_model=builtins.list[HookDeliveryItem],
             error_models={
                 "400": BasicError,
                 "422": ValidationError,
@@ -11178,8 +11366,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         cursor: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[HookDeliveryItem], list[HookDeliveryItemType]]:
+    ) -> Response[builtins.list[HookDeliveryItem], builtins.list[HookDeliveryItemType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/webhooks#list-deliveries-for-a-repository-webhook"""
+
+        import builtins
 
         from ..models import BasicError, HookDeliveryItem, ValidationError
 
@@ -11192,12 +11382,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[HookDeliveryItem],
+            response_model=builtins.list[HookDeliveryItem],
             error_models={
                 "400": BasicError,
                 "422": ValidationError,
@@ -11221,7 +11411,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11249,7 +11439,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11284,7 +11474,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -11319,7 +11509,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -11346,7 +11536,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -11371,7 +11561,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -11396,7 +11586,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -11421,7 +11611,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -11438,8 +11628,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryInvitation], list[RepositoryInvitationType]]:
+    ) -> Response[
+        builtins.list[RepositoryInvitation], builtins.list[RepositoryInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/invitations#list-repository-invitations"""
+
+        import builtins
 
         from ..models import RepositoryInvitation
 
@@ -11452,12 +11646,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryInvitation],
+            response_model=builtins.list[RepositoryInvitation],
         )
 
     async def async_list_invitations(
@@ -11468,8 +11662,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryInvitation], list[RepositoryInvitationType]]:
+    ) -> Response[
+        builtins.list[RepositoryInvitation], builtins.list[RepositoryInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/invitations#list-repository-invitations"""
+
+        import builtins
 
         from ..models import RepositoryInvitation
 
@@ -11482,12 +11680,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryInvitation],
+            response_model=builtins.list[RepositoryInvitation],
         )
 
     def delete_invitation(
@@ -11504,7 +11702,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -11524,7 +11722,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -11563,7 +11761,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoInvitationsInvitationIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryInvitation, RepositoryInvitationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/invitations#update-a-repository-invitation"""
 
@@ -11580,14 +11778,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoInvitationsInvitationIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -11628,7 +11826,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoInvitationsInvitationIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryInvitation, RepositoryInvitationType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/invitations#update-a-repository-invitation"""
 
@@ -11645,14 +11843,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoInvitationsInvitationIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -11668,8 +11866,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DeployKey], list[DeployKeyType]]:
+    ) -> Response[builtins.list[DeployKey], builtins.list[DeployKeyType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deploy-keys/deploy-keys#list-deploy-keys"""
+
+        import builtins
 
         from ..models import DeployKey
 
@@ -11682,12 +11882,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DeployKey],
+            response_model=builtins.list[DeployKey],
         )
 
     async def async_list_deploy_keys(
@@ -11698,8 +11898,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[DeployKey], list[DeployKeyType]]:
+    ) -> Response[builtins.list[DeployKey], builtins.list[DeployKeyType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deploy-keys/deploy-keys#list-deploy-keys"""
+
+        import builtins
 
         from ..models import DeployKey
 
@@ -11712,12 +11914,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[DeployKey],
+            response_model=builtins.list[DeployKey],
         )
 
     @overload
@@ -11750,7 +11952,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeployKey, DeployKeyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deploy-keys/deploy-keys#create-a-deploy-key"""
 
@@ -11764,12 +11966,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -11810,7 +12012,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoKeysPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[DeployKey, DeployKeyType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/deploy-keys/deploy-keys#create-a-deploy-key"""
 
@@ -11824,12 +12026,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoKeysPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -11856,7 +12058,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11882,7 +12084,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11906,7 +12108,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -11926,7 +12128,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -11947,7 +12149,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11969,7 +12171,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -11994,7 +12196,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -12020,7 +12222,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -12041,7 +12243,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -12060,7 +12262,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -12094,7 +12296,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMergeUpstreamPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[MergedUpstream, MergedUpstreamType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#sync-a-fork-branch-with-the-upstream-repository"""
 
@@ -12108,12 +12310,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoMergeUpstreamPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -12150,7 +12352,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMergeUpstreamPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[MergedUpstream, MergedUpstreamType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#sync-a-fork-branch-with-the-upstream-repository"""
 
@@ -12164,12 +12366,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoMergeUpstreamPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -12208,7 +12410,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMergesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Commit, CommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#merge-a-branch"""
 
@@ -12227,12 +12429,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoMergesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -12274,7 +12476,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoMergesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Commit, CommitType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/branches/branches#merge-a-branch"""
 
@@ -12293,12 +12495,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoMergesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -12325,7 +12527,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -12350,7 +12552,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -12489,7 +12691,7 @@ class ReposClient:
                 ReposOwnerRepoPagesPutBodyAnyof4Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#update-information-about-a-apiname-pages-site"""
 
@@ -12513,7 +12715,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -12527,7 +12729,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -12668,7 +12870,7 @@ class ReposClient:
                 ReposOwnerRepoPagesPutBodyAnyof4Type,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#update-information-about-a-apiname-pages-site"""
 
@@ -12692,7 +12894,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -12706,7 +12908,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -12771,7 +12973,7 @@ class ReposClient:
                 None,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Page, PageType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#create-a-apiname-pages-site"""
 
@@ -12793,7 +12995,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -12806,7 +13008,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -12871,7 +13073,7 @@ class ReposClient:
                 None,
             ]
         ] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Page, PageType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#create-a-apiname-pages-site"""
 
@@ -12893,7 +13095,7 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 Union[
@@ -12906,7 +13108,7 @@ class ReposClient:
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -12933,7 +13135,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -12959,7 +13161,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -12978,8 +13180,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PageBuild], list[PageBuildType]]:
+    ) -> Response[builtins.list[PageBuild], builtins.list[PageBuildType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#list-apiname-pages-builds"""
+
+        import builtins
 
         from ..models import PageBuild
 
@@ -12992,12 +13196,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PageBuild],
+            response_model=builtins.list[PageBuild],
         )
 
     async def async_list_pages_builds(
@@ -13008,8 +13212,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[PageBuild], list[PageBuildType]]:
+    ) -> Response[builtins.list[PageBuild], builtins.list[PageBuildType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#list-apiname-pages-builds"""
+
+        import builtins
 
         from ..models import PageBuild
 
@@ -13022,12 +13228,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[PageBuild],
+            response_model=builtins.list[PageBuild],
         )
 
     def request_pages_build(
@@ -13045,7 +13251,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -13067,7 +13273,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -13089,7 +13295,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13111,7 +13317,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13134,7 +13340,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13157,7 +13363,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13196,7 +13402,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPagesDeploymentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PageDeployment, PageDeploymentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#create-a-github-pages-deployment"""
 
@@ -13215,12 +13421,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPagesDeploymentsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -13265,7 +13471,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPagesDeploymentsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[PageDeployment, PageDeploymentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/pages/pages#create-a-github-pages-deployment"""
 
@@ -13284,12 +13490,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPagesDeploymentsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -13318,7 +13524,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13344,7 +13550,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13370,7 +13576,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -13395,7 +13601,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             headers=exclude_unset(headers),
@@ -13419,7 +13625,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13444,7 +13650,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13475,7 +13681,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13506,7 +13712,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -13531,7 +13737,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -13555,7 +13761,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -13579,7 +13785,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -13603,7 +13809,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -13618,8 +13824,12 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CustomPropertyValue], list[CustomPropertyValueType]]:
+    ) -> Response[
+        builtins.list[CustomPropertyValue], builtins.list[CustomPropertyValueType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/custom-properties#get-all-custom-property-values-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, CustomPropertyValue
 
@@ -13627,11 +13837,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CustomPropertyValue],
+            response_model=builtins.list[CustomPropertyValue],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -13644,8 +13854,12 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CustomPropertyValue], list[CustomPropertyValueType]]:
+    ) -> Response[
+        builtins.list[CustomPropertyValue], builtins.list[CustomPropertyValueType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/custom-properties#get-all-custom-property-values-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, CustomPropertyValue
 
@@ -13653,11 +13867,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CustomPropertyValue],
+            response_model=builtins.list[CustomPropertyValue],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -13682,7 +13896,7 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        properties: list[CustomPropertyValueType],
+        properties: builtins.list[CustomPropertyValueType],
     ) -> Response: ...
 
     def create_or_update_custom_properties_values(
@@ -13692,7 +13906,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPropertiesValuesPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/custom-properties#create-or-update-custom-property-values-for-a-repository"""
 
@@ -13710,12 +13924,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPropertiesValuesPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -13745,7 +13959,7 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        properties: list[CustomPropertyValueType],
+        properties: builtins.list[CustomPropertyValueType],
     ) -> Response: ...
 
     async def async_create_or_update_custom_properties_values(
@@ -13755,7 +13969,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoPropertiesValuesPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/custom-properties#create-or-update-custom-property-values-for-a-repository"""
 
@@ -13773,12 +13987,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoPropertiesValuesPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -13810,7 +14024,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -13842,7 +14056,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -13875,7 +14089,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -13908,7 +14122,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -13928,8 +14142,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Release], list[ReleaseType]]:
+    ) -> Response[builtins.list[Release], builtins.list[ReleaseType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#list-releases"""
+
+        import builtins
 
         from ..models import BasicError, Release
 
@@ -13942,12 +14158,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Release],
+            response_model=builtins.list[Release],
             error_models={
                 "404": BasicError,
             },
@@ -13961,8 +14177,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Release], list[ReleaseType]]:
+    ) -> Response[builtins.list[Release], builtins.list[ReleaseType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#list-releases"""
+
+        import builtins
 
         from ..models import BasicError, Release
 
@@ -13975,12 +14193,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Release],
+            response_model=builtins.list[Release],
             error_models={
                 "404": BasicError,
             },
@@ -14022,7 +14240,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Release, ReleaseType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#create-a-release"""
 
@@ -14041,12 +14259,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoReleasesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -14094,7 +14312,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Release, ReleaseType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#create-a-release"""
 
@@ -14113,12 +14331,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoReleasesPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -14146,7 +14364,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14172,7 +14390,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14196,7 +14414,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -14216,7 +14434,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -14255,7 +14473,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesAssetsAssetIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ReleaseAsset, ReleaseAssetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/assets#update-a-release-asset"""
 
@@ -14269,14 +14487,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoReleasesAssetsAssetIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -14317,7 +14535,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesAssetsAssetIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ReleaseAsset, ReleaseAssetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/assets#update-a-release-asset"""
 
@@ -14331,14 +14549,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoReleasesAssetsAssetIdPatchBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -14377,7 +14595,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesGenerateNotesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ReleaseNotesContent, ReleaseNotesContentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#generate-release-notes-content-for-a-release"""
 
@@ -14395,14 +14613,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoReleasesGenerateNotesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -14444,7 +14662,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesGenerateNotesPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[ReleaseNotesContent, ReleaseNotesContentType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#generate-release-notes-content-for-a-release"""
 
@@ -14462,14 +14680,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposOwnerRepoReleasesGenerateNotesPostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -14495,7 +14713,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14517,7 +14735,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14540,7 +14758,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14566,7 +14784,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14592,7 +14810,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14616,7 +14834,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -14638,7 +14856,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -14658,7 +14876,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -14702,7 +14920,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesReleaseIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Release, ReleaseType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#update-a-release"""
 
@@ -14720,12 +14938,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoReleasesReleaseIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -14774,7 +14992,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoReleasesReleaseIdPatchBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Release, ReleaseType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/releases#update-a-release"""
 
@@ -14792,12 +15010,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoReleasesReleaseIdPatchBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             json=exclude_unset(json),
@@ -14817,8 +15035,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ReleaseAsset], list[ReleaseAssetType]]:
+    ) -> Response[builtins.list[ReleaseAsset], builtins.list[ReleaseAssetType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/assets#list-release-assets"""
+
+        import builtins
 
         from ..models import ReleaseAsset
 
@@ -14831,12 +15051,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ReleaseAsset],
+            response_model=builtins.list[ReleaseAsset],
         )
 
     async def async_list_release_assets(
@@ -14848,8 +15068,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ReleaseAsset], list[ReleaseAssetType]]:
+    ) -> Response[builtins.list[ReleaseAsset], builtins.list[ReleaseAssetType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/releases/assets#list-release-assets"""
+
+        import builtins
 
         from ..models import ReleaseAsset
 
@@ -14862,12 +15084,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[ReleaseAsset],
+            response_model=builtins.list[ReleaseAsset],
         )
 
     def upload_release_asset(
@@ -14898,9 +15120,9 @@ class ReposClient:
             **(headers or {}),
         }
 
-        content = data
+        content: Any = data
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -14938,9 +15160,9 @@ class ReposClient:
             **(headers or {}),
         }
 
-        content = data
+        content: Any = data
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             params=exclude_unset(params),
@@ -14960,7 +15182,7 @@ class ReposClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[
+        builtins.list[
             Union[
                 RepositoryRuleDetailedOneof0,
                 RepositoryRuleDetailedOneof1,
@@ -14981,7 +15203,7 @@ class ReposClient:
                 RepositoryRuleDetailedOneof16,
             ]
         ],
-        list[
+        builtins.list[
             Union[
                 RepositoryRuleDetailedOneof0Type,
                 RepositoryRuleDetailedOneof1Type,
@@ -15005,6 +15227,7 @@ class ReposClient:
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#get-rules-for-a-branch"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -15036,12 +15259,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[
+            response_model=builtins.list[
                 Union[
                     RepositoryRuleDetailedOneof0,
                     RepositoryRuleDetailedOneof1,
@@ -15074,7 +15297,7 @@ class ReposClient:
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
     ) -> Response[
-        list[
+        builtins.list[
             Union[
                 RepositoryRuleDetailedOneof0,
                 RepositoryRuleDetailedOneof1,
@@ -15095,7 +15318,7 @@ class ReposClient:
                 RepositoryRuleDetailedOneof16,
             ]
         ],
-        list[
+        builtins.list[
             Union[
                 RepositoryRuleDetailedOneof0Type,
                 RepositoryRuleDetailedOneof1Type,
@@ -15119,6 +15342,7 @@ class ReposClient:
     ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#get-rules-for-a-branch"""
 
+        import builtins
         from typing import Union
 
         from ..models import (
@@ -15150,12 +15374,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[
+            response_model=builtins.list[
                 Union[
                     RepositoryRuleDetailedOneof0,
                     RepositoryRuleDetailedOneof1,
@@ -15188,8 +15412,12 @@ class ReposClient:
         includes_parents: Missing[bool] = UNSET,
         targets: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryRuleset], list[RepositoryRulesetType]]:
+    ) -> Response[
+        builtins.list[RepositoryRuleset], builtins.list[RepositoryRulesetType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#get-all-repository-rulesets"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryRuleset
 
@@ -15204,12 +15432,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryRuleset],
+            response_model=builtins.list[RepositoryRuleset],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -15226,8 +15454,12 @@ class ReposClient:
         includes_parents: Missing[bool] = UNSET,
         targets: Missing[str] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryRuleset], list[RepositoryRulesetType]]:
+    ) -> Response[
+        builtins.list[RepositoryRuleset], builtins.list[RepositoryRulesetType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#get-all-repository-rulesets"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryRuleset
 
@@ -15242,12 +15474,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryRuleset],
+            response_model=builtins.list[RepositoryRuleset],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -15275,10 +15507,10 @@ class ReposClient:
         name: str,
         target: Missing[Literal["branch", "tag", "push"]] = UNSET,
         enforcement: Literal["disabled", "active", "evaluate"],
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[RepositoryRulesetConditionsType] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -15313,7 +15545,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoRulesetsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#create-a-repository-ruleset"""
 
@@ -15331,12 +15563,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoRulesetsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -15369,10 +15601,10 @@ class ReposClient:
         name: str,
         target: Missing[Literal["branch", "tag", "push"]] = UNSET,
         enforcement: Literal["disabled", "active", "evaluate"],
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[RepositoryRulesetConditionsType] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -15407,7 +15639,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoRulesetsPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#create-a-repository-ruleset"""
 
@@ -15425,12 +15657,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoRulesetsPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -15454,8 +15686,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RuleSuitesItems], list[RuleSuitesItemsType]]:
+    ) -> Response[builtins.list[RuleSuitesItems], builtins.list[RuleSuitesItemsType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rule-suites#list-repository-rule-suites"""
+
+        import builtins
 
         from ..models import BasicError, RuleSuitesItems
 
@@ -15472,12 +15706,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RuleSuitesItems],
+            response_model=builtins.list[RuleSuitesItems],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -15496,8 +15730,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RuleSuitesItems], list[RuleSuitesItemsType]]:
+    ) -> Response[builtins.list[RuleSuitesItems], builtins.list[RuleSuitesItemsType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rule-suites#list-repository-rule-suites"""
+
+        import builtins
 
         from ..models import BasicError, RuleSuitesItems
 
@@ -15514,12 +15750,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RuleSuitesItems],
+            response_model=builtins.list[RuleSuitesItems],
             error_models={
                 "404": BasicError,
                 "500": BasicError,
@@ -15542,7 +15778,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -15569,7 +15805,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -15601,7 +15837,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -15634,7 +15870,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -15669,10 +15905,10 @@ class ReposClient:
         name: Missing[str] = UNSET,
         target: Missing[Literal["branch", "tag", "push"]] = UNSET,
         enforcement: Missing[Literal["disabled", "active", "evaluate"]] = UNSET,
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[RepositoryRulesetConditionsType] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -15708,7 +15944,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoRulesetsRulesetIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#update-a-repository-ruleset"""
 
@@ -15726,12 +15962,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoRulesetsRulesetIdPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -15766,10 +16002,10 @@ class ReposClient:
         name: Missing[str] = UNSET,
         target: Missing[Literal["branch", "tag", "push"]] = UNSET,
         enforcement: Missing[Literal["disabled", "active", "evaluate"]] = UNSET,
-        bypass_actors: Missing[list[RepositoryRulesetBypassActorType]] = UNSET,
+        bypass_actors: Missing[builtins.list[RepositoryRulesetBypassActorType]] = UNSET,
         conditions: Missing[RepositoryRulesetConditionsType] = UNSET,
         rules: Missing[
-            list[
+            builtins.list[
                 Union[
                     RepositoryRuleCreationType,
                     RepositoryRuleUpdateType,
@@ -15805,7 +16041,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoRulesetsRulesetIdPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[RepositoryRuleset, RepositoryRulesetType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/rules#update-a-repository-ruleset"""
 
@@ -15823,12 +16059,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoRulesetsRulesetIdPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -15856,7 +16092,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -15882,7 +16118,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -15898,18 +16134,20 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[list[int]], list[list[int]]]:
+    ) -> Response[builtins.list[builtins.list[int]], builtins.list[builtins.list[int]]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-the-weekly-commit-activity"""
+
+        import builtins
 
         url = f"/repos/{owner}/{repo}/stats/code_frequency"
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[list[int]],
+            response_model=builtins.list[builtins.list[int]],
             error_models={},
         )
 
@@ -15919,18 +16157,20 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[list[int]], list[list[int]]]:
+    ) -> Response[builtins.list[builtins.list[int]], builtins.list[builtins.list[int]]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-the-weekly-commit-activity"""
+
+        import builtins
 
         url = f"/repos/{owner}/{repo}/stats/code_frequency"
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[list[int]],
+            response_model=builtins.list[builtins.list[int]],
             error_models={},
         )
 
@@ -15940,8 +16180,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CommitActivity], list[CommitActivityType]]:
+    ) -> Response[builtins.list[CommitActivity], builtins.list[CommitActivityType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-the-last-year-of-commit-activity"""
+
+        import builtins
 
         from ..models import CommitActivity
 
@@ -15949,11 +16191,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CommitActivity],
+            response_model=builtins.list[CommitActivity],
         )
 
     async def async_get_commit_activity_stats(
@@ -15962,8 +16204,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[CommitActivity], list[CommitActivityType]]:
+    ) -> Response[builtins.list[CommitActivity], builtins.list[CommitActivityType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-the-last-year-of-commit-activity"""
+
+        import builtins
 
         from ..models import CommitActivity
 
@@ -15971,11 +16215,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[CommitActivity],
+            response_model=builtins.list[CommitActivity],
         )
 
     def get_contributors_stats(
@@ -15984,8 +16228,12 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ContributorActivity], list[ContributorActivityType]]:
+    ) -> Response[
+        builtins.list[ContributorActivity], builtins.list[ContributorActivityType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-all-contributor-commit-activity"""
+
+        import builtins
 
         from ..models import ContributorActivity
 
@@ -15993,11 +16241,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ContributorActivity],
+            response_model=builtins.list[ContributorActivity],
         )
 
     async def async_get_contributors_stats(
@@ -16006,8 +16254,12 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ContributorActivity], list[ContributorActivityType]]:
+    ) -> Response[
+        builtins.list[ContributorActivity], builtins.list[ContributorActivityType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-all-contributor-commit-activity"""
+
+        import builtins
 
         from ..models import ContributorActivity
 
@@ -16015,11 +16267,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ContributorActivity],
+            response_model=builtins.list[ContributorActivity],
         )
 
     def get_participation_stats(
@@ -16037,7 +16289,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -16062,7 +16314,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -16078,18 +16330,20 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[list[int]], list[list[int]]]:
+    ) -> Response[builtins.list[builtins.list[int]], builtins.list[builtins.list[int]]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-the-hourly-commit-count-for-each-day"""
+
+        import builtins
 
         url = f"/repos/{owner}/{repo}/stats/punch_card"
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[list[int]],
+            response_model=builtins.list[builtins.list[int]],
         )
 
     async def async_get_punch_card_stats(
@@ -16098,18 +16352,20 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[list[int]], list[list[int]]]:
+    ) -> Response[builtins.list[builtins.list[int]], builtins.list[builtins.list[int]]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/statistics#get-the-hourly-commit-count-for-each-day"""
+
+        import builtins
 
         url = f"/repos/{owner}/{repo}/stats/punch_card"
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[list[int]],
+            response_model=builtins.list[builtins.list[int]],
         )
 
     @overload
@@ -16146,7 +16402,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoStatusesShaPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Status, StatusType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/statuses#create-a-commit-status"""
 
@@ -16160,12 +16416,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoStatusesShaPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -16207,7 +16463,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoStatusesShaPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Status, StatusType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/commits/statuses#create-a-commit-status"""
 
@@ -16221,12 +16477,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoStatusesShaPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -16242,8 +16498,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Tag], list[TagType]]:
+    ) -> Response[builtins.list[Tag], builtins.list[TagType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-tags"""
+
+        import builtins
 
         from ..models import Tag
 
@@ -16256,12 +16514,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Tag],
+            response_model=builtins.list[Tag],
         )
 
     async def async_list_tags(
@@ -16272,8 +16530,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Tag], list[TagType]]:
+    ) -> Response[builtins.list[Tag], builtins.list[TagType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-tags"""
+
+        import builtins
 
         from ..models import Tag
 
@@ -16286,12 +16546,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Tag],
+            response_model=builtins.list[Tag],
         )
 
     def list_tag_protection(
@@ -16300,8 +16560,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TagProtection], list[TagProtectionType]]:
+    ) -> Response[builtins.list[TagProtection], builtins.list[TagProtectionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/tags#closing-down---list-tag-protection-states-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, TagProtection
 
@@ -16309,11 +16571,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[TagProtection],
+            response_model=builtins.list[TagProtection],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -16326,8 +16588,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[TagProtection], list[TagProtectionType]]:
+    ) -> Response[builtins.list[TagProtection], builtins.list[TagProtectionType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/tags#closing-down---list-tag-protection-states-for-a-repository"""
+
+        import builtins
 
         from ..models import BasicError, TagProtection
 
@@ -16335,11 +16599,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[TagProtection],
+            response_model=builtins.list[TagProtection],
             error_models={
                 "403": BasicError,
                 "404": BasicError,
@@ -16374,7 +16638,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoTagsProtectionPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TagProtection, TagProtectionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/tags#closing-down---create-a-tag-protection-state-for-a-repository"""
 
@@ -16392,12 +16656,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoTagsProtectionPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -16437,7 +16701,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoTagsProtectionPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[TagProtection, TagProtectionType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/tags#closing-down---create-a-tag-protection-state-for-a-repository"""
 
@@ -16455,12 +16719,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoTagsProtectionPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -16488,7 +16752,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -16514,7 +16778,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -16538,7 +16802,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -16558,7 +16822,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -16572,8 +16836,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-teams"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -16586,12 +16852,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
             },
@@ -16605,8 +16871,10 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Team], list[TeamType]]:
+    ) -> Response[builtins.list[Team], builtins.list[TeamType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repository-teams"""
+
+        import builtins
 
         from ..models import BasicError, Team
 
@@ -16619,12 +16887,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Team],
+            response_model=builtins.list[Team],
             error_models={
                 "404": BasicError,
             },
@@ -16652,7 +16920,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -16685,7 +16953,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -16714,7 +16982,7 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        names: list[str],
+        names: builtins.list[str],
     ) -> Response[Topic, TopicType]: ...
 
     def replace_all_topics(
@@ -16724,7 +16992,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoTopicsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Topic, TopicType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#replace-all-repository-topics"""
 
@@ -16743,12 +17011,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoTopicsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -16778,7 +17046,7 @@ class ReposClient:
         *,
         data: UnsetType = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-        names: list[str],
+        names: builtins.list[str],
     ) -> Response[Topic, TopicType]: ...
 
     async def async_replace_all_topics(
@@ -16788,7 +17056,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoTopicsPutBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[Topic, TopicType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#replace-all-repository-topics"""
 
@@ -16807,12 +17075,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoTopicsPutBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             json=exclude_unset(json),
@@ -16844,7 +17112,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -16875,7 +17143,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -16892,8 +17160,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ContentTraffic], list[ContentTrafficType]]:
+    ) -> Response[builtins.list[ContentTraffic], builtins.list[ContentTrafficType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/traffic#get-top-referral-paths"""
+
+        import builtins
 
         from ..models import BasicError, ContentTraffic
 
@@ -16901,11 +17171,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ContentTraffic],
+            response_model=builtins.list[ContentTraffic],
             error_models={
                 "403": BasicError,
             },
@@ -16917,8 +17187,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ContentTraffic], list[ContentTrafficType]]:
+    ) -> Response[builtins.list[ContentTraffic], builtins.list[ContentTrafficType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/traffic#get-top-referral-paths"""
+
+        import builtins
 
         from ..models import BasicError, ContentTraffic
 
@@ -16926,11 +17198,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ContentTraffic],
+            response_model=builtins.list[ContentTraffic],
             error_models={
                 "403": BasicError,
             },
@@ -16942,8 +17214,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ReferrerTraffic], list[ReferrerTrafficType]]:
+    ) -> Response[builtins.list[ReferrerTraffic], builtins.list[ReferrerTrafficType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/traffic#get-top-referral-sources"""
+
+        import builtins
 
         from ..models import BasicError, ReferrerTraffic
 
@@ -16951,11 +17225,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ReferrerTraffic],
+            response_model=builtins.list[ReferrerTraffic],
             error_models={
                 "403": BasicError,
             },
@@ -16967,8 +17241,10 @@ class ReposClient:
         repo: str,
         *,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[ReferrerTraffic], list[ReferrerTrafficType]]:
+    ) -> Response[builtins.list[ReferrerTraffic], builtins.list[ReferrerTrafficType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/metrics/traffic#get-top-referral-sources"""
+
+        import builtins
 
         from ..models import BasicError, ReferrerTraffic
 
@@ -16976,11 +17252,11 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
-            response_model=list[ReferrerTraffic],
+            response_model=builtins.list[ReferrerTraffic],
             error_models={
                 "403": BasicError,
             },
@@ -17006,7 +17282,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -17037,7 +17313,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
@@ -17068,7 +17344,7 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         new_owner: str,
         new_name: Missing[str] = UNSET,
-        team_ids: Missing[list[int]] = UNSET,
+        team_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[MinimalRepository, MinimalRepositoryType]: ...
 
     def transfer(
@@ -17078,7 +17354,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoTransferPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[MinimalRepository, MinimalRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#transfer-a-repository"""
 
@@ -17092,12 +17368,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoTransferPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -17125,7 +17401,7 @@ class ReposClient:
         headers: Optional[Mapping[str, str]] = None,
         new_owner: str,
         new_name: Missing[str] = UNSET,
-        team_ids: Missing[list[int]] = UNSET,
+        team_ids: Missing[builtins.list[int]] = UNSET,
     ) -> Response[MinimalRepository, MinimalRepositoryType]: ...
 
     async def async_transfer(
@@ -17135,7 +17411,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposOwnerRepoTransferPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[MinimalRepository, MinimalRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#transfer-a-repository"""
 
@@ -17149,12 +17425,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(ReposOwnerRepoTransferPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -17175,7 +17451,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -17195,7 +17471,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -17215,7 +17491,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -17234,7 +17510,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PUT",
             url,
             headers=exclude_unset(headers),
@@ -17253,7 +17529,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -17272,7 +17548,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -17292,7 +17568,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -17312,7 +17588,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             headers=exclude_unset(headers),
@@ -17350,7 +17626,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposTemplateOwnerTemplateRepoGeneratePostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-a-repository-using-a-template"""
 
@@ -17367,14 +17643,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposTemplateOwnerTemplateRepoGeneratePostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -17414,7 +17690,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[ReposTemplateOwnerTemplateRepoGeneratePostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-a-repository-using-a-template"""
 
@@ -17431,14 +17707,14 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(
                 ReposTemplateOwnerTemplateRepoGeneratePostBody, json
             )
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -17451,8 +17727,12 @@ class ReposClient:
         *,
         since: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-public-repositories"""
+
+        import builtins
 
         from ..models import MinimalRepository, ValidationError
 
@@ -17464,12 +17744,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "422": ValidationError,
             },
@@ -17480,8 +17760,12 @@ class ReposClient:
         *,
         since: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-public-repositories"""
+
+        import builtins
 
         from ..models import MinimalRepository, ValidationError
 
@@ -17493,12 +17777,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
             error_models={
                 "422": ValidationError,
             },
@@ -17517,8 +17801,10 @@ class ReposClient:
         since: Missing[datetime] = UNSET,
         before: Missing[datetime] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Repository], list[RepositoryType]]:
+    ) -> Response[builtins.list[Repository], builtins.list[RepositoryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repositories-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Repository, ValidationError
 
@@ -17538,12 +17824,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Repository],
+            response_model=builtins.list[Repository],
             error_models={
                 "422": ValidationError,
                 "403": BasicError,
@@ -17564,8 +17850,10 @@ class ReposClient:
         since: Missing[datetime] = UNSET,
         before: Missing[datetime] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[Repository], list[RepositoryType]]:
+    ) -> Response[builtins.list[Repository], builtins.list[RepositoryType]]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repositories-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, Repository, ValidationError
 
@@ -17585,12 +17873,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[Repository],
+            response_model=builtins.list[Repository],
             error_models={
                 "422": ValidationError,
                 "403": BasicError,
@@ -17646,7 +17934,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserReposPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-a-repository-for-the-authenticated-user"""
 
@@ -17665,12 +17953,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserReposPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -17733,7 +18021,7 @@ class ReposClient:
         *,
         headers: Optional[Mapping[str, str]] = None,
         data: Missing[UserReposPostBodyType] = UNSET,
-        **kwargs,
+        **kwargs: Any,
     ) -> Response[FullRepository, FullRepositoryType]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#create-a-repository-for-the-authenticated-user"""
 
@@ -17752,12 +18040,12 @@ class ReposClient:
             **(headers or {}),
         }
 
-        json = kwargs if data is UNSET else data
+        json: Any = kwargs if data is UNSET else data
         if self._github.config.rest_api_validate_body:
             json = type_validate_python(UserReposPostBody, json)
         json = model_dump(json) if isinstance(json, BaseModel) else json
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "POST",
             url,
             json=exclude_unset(json),
@@ -17778,8 +18066,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryInvitation], list[RepositoryInvitationType]]:
+    ) -> Response[
+        builtins.list[RepositoryInvitation], builtins.list[RepositoryInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/invitations#list-repository-invitations-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryInvitation
 
@@ -17792,12 +18084,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryInvitation],
+            response_model=builtins.list[RepositoryInvitation],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -17811,8 +18103,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[RepositoryInvitation], list[RepositoryInvitationType]]:
+    ) -> Response[
+        builtins.list[RepositoryInvitation], builtins.list[RepositoryInvitationType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/collaborators/invitations#list-repository-invitations-for-the-authenticated-user"""
+
+        import builtins
 
         from ..models import BasicError, RepositoryInvitation
 
@@ -17825,12 +18121,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[RepositoryInvitation],
+            response_model=builtins.list[RepositoryInvitation],
             error_models={
                 "404": BasicError,
                 "403": BasicError,
@@ -17852,7 +18148,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -17877,7 +18173,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "DELETE",
             url,
             headers=exclude_unset(headers),
@@ -17902,7 +18198,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "PATCH",
             url,
             headers=exclude_unset(headers),
@@ -17927,7 +18223,7 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "PATCH",
             url,
             headers=exclude_unset(headers),
@@ -17948,8 +18244,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repositories-for-a-user"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -17965,12 +18265,12 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return self._github.request(
+        return self._github.request(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
 
     async def async_list_for_user(
@@ -17983,8 +18283,12 @@ class ReposClient:
         per_page: Missing[int] = UNSET,
         page: Missing[int] = UNSET,
         headers: Optional[Mapping[str, str]] = None,
-    ) -> Response[list[MinimalRepository], list[MinimalRepositoryType]]:
+    ) -> Response[
+        builtins.list[MinimalRepository], builtins.list[MinimalRepositoryType]
+    ]:
         """See also: https://docs.github.com/enterprise-cloud@latest//rest/repos/repos#list-repositories-for-a-user"""
+
+        import builtins
 
         from ..models import MinimalRepository
 
@@ -18000,10 +18304,10 @@ class ReposClient:
 
         headers = {"X-GitHub-Api-Version": self._REST_API_VERSION, **(headers or {})}
 
-        return await self._github.arequest(
+        return await self._github.arequest(  # type: ignore[call-overload]
             "GET",
             url,
             params=exclude_unset(params),
             headers=exclude_unset(headers),
-            response_model=list[MinimalRepository],
+            response_model=builtins.list[MinimalRepository],
         )
